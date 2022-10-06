@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
-import com.example.demo.entity.enums.SectionsEnum;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.utils.Constant;
