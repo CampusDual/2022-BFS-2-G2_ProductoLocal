@@ -32,10 +32,7 @@ public class User implements Serializable {
 	private String name;
 
 	@Column
-	private String surname1;
-
-	@Column
-	private String surname2;
+	private String surname;
 
 	@Column(unique = true)
 	private String login;
@@ -55,17 +52,17 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(String nif, String name, String surname1, String surname2, String login) {
+	public User(String nif, String name, String surname, String login) {
 		super();
 		this.nif = nif;
 		this.name = name;
-		this.surname1 = surname1;
-		this.surname2 = surname2;
+		this.surname = surname;
+		
 		this.login = login;
 	}
 
-	public User(Integer id, String nif, String name, String surname1, String surname2, String login) {
-		this(nif, name, surname1, surname2, login);
+	public User(Integer id, String nif, String name, String surname, String login) {
+		this(nif, name, surname, login);
 		this.id = id;
 	}
 
@@ -93,20 +90,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getSurname1() {
-		return surname1;
+	public String getSurname() {
+		return surname;
 	}
 
-	public void setSurname1(String surname1) {
-		this.surname1 = surname1;
-	}
-
-	public String getSurname2() {
-		return surname2;
-	}
-
-	public void setSurname2(String surname2) {
-		this.surname2 = surname2;
+	public void setSurname(String surname1) {
+		this.surname = surname1;
 	}
 
 	public String getLogin() {
@@ -154,7 +143,7 @@ public class User implements Serializable {
 	}
 
 	public static User from(String query) {
-		return new User(query, query, query, query, query);
+		return new User(query, query, query, query);
 	}
 
 	/**
