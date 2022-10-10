@@ -32,7 +32,7 @@ public class UserServiceImpl implements IUserService {
 	 */
 	@Override
 	@Transactional
-	public UserDTO createUser(userDTO createUserRequest) {
+	public UserDTO createUser(UserDTO createUserRequest) {
 		User user = UserMapper.INSTANCE.userDTOtoUser(createUserRequest);
 		User newUser = userRepository.save(user);
 		return UserMapper.INSTANCE.userToUserDto(newUser);
