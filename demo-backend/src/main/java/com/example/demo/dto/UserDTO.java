@@ -47,7 +47,7 @@ public class UserDTO {
 	
 	private String fullName;
 	
-	@NotEmpty(message = Constant.PROFILE_REQUIRED)
+	
 	private Set<Profile> profiles = new HashSet<>();
 	
 
@@ -146,6 +146,14 @@ public class UserDTO {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	public Set<Profile> getProfiles() {
+		return profiles;
+	}
+
+	public void setProfiles(Set<Profile> profiles) {
+		this.profiles = profiles;
 	}
 	
 	

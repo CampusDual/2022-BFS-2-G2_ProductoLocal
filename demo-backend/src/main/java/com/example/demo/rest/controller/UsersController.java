@@ -47,7 +47,7 @@ public class UsersController {
     private IUserService userService;
     
     @PostMapping(path = "/createUser")
-    @PreAuthorize("hasAnyAuthority('USERS')")
+    
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO createUserRequest, BindingResult result) {
         LOGGER.info("createUser in progress...");
         UserDTO userNew = null;
