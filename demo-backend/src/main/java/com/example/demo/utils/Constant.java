@@ -6,6 +6,7 @@ public class Constant {
 	public static final String ID_REQUIRED ="ID_REQUIRED";
 	public static final String SURNAME1_REQUIRED ="SURNAME1_REQUIRED";
 	public static final String SURNAME2_REQUIRED ="SURNAME2_REQUIRED";
+	public static final String SURNAME_REQUIRED ="SURNAME_REQUIRED";
 	public static final String PHONE_REQUIRED ="PHONE_REQUIRED";
 	public static final String PHONE_INVALID ="PHONE_INVALID";
 	public static final String PHONE_ALREADY_EXISTS ="PHONE_ALREADY_EXISTS";
@@ -28,6 +29,13 @@ public class Constant {
 	public static final String USER_CREATE_SUCCESS ="USER_CREATE_SUCCESS";
 	public static final String USER_EDIT_SUCCESS ="USER_EDIT_SUCCESS";
 	public static final String USER_DELETE_SUCCESS ="USER_DELETE_SUCCESS";
+	public static final String USER_ADDRESS_REQUIRED = "USER_ADDRESS_REQUIRED";
+	public static final String USER_CITYNAME_REQUIRED = "USER_CITYNAME_REQUIRED";
+	public static final String USER_EMAIL_REQUIRED = "USER_EMAIL_REQUIRED";
+	public static final String USER_PHONE_REQUIRED = "USER_PHONE_REQUIRED";
+	public static final String USER_ZIP_REQUIRED="USER_ZIP_REQUIRED";
+	public static final String USER_PASSWORD_REQUIRED = "USER_PASSWORD_REQUIRED";
+	public static final String USER_FULLNAME_REQUIRED="USER_FULLNAME_REQUIRED";
 	
 	//User error
 	public static final String LOGIN_REQUIRED ="LOGIN_REQUIRED";
