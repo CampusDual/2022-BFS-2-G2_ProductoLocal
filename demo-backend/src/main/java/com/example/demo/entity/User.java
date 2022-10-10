@@ -25,7 +25,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Column
+	@Column(nullable=false,unique = true)
 	private String nif;
 
 	@Column
@@ -40,16 +40,16 @@ public class User implements Serializable {
 	@Column
 	private String city;
 	
-	@Column
+	@Column(nullable=false, unique = true)
 	private String email;
 	
-	@Column
+	@Column(unique = true)
 	private Integer phone;
 	
 	@Column 
 	private String zip;
 
-	@Column(unique = true)
+	@Column(nullable=false,unique = true)
 	private String login;
 
 	@Formula("name || ' ' || surname")
@@ -60,7 +60,7 @@ public class User implements Serializable {
 			@JoinColumn(name = "profile_id") })
 	private Set<Profile> profiles = new HashSet<>();
 
-	@Column
+	@Column(nullable=false)
 	private String password;
 
 	public User() {
