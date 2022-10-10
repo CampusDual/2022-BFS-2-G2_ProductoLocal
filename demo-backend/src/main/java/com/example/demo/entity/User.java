@@ -52,7 +52,7 @@ public class User implements Serializable {
 	@Column(unique = true)
 	private String login;
 
-	@Formula("name || ' ' || surname1 || ' ' || surname2")
+	@Formula("name || ' ' || surname")
 	private String fullName;
 
 	@ManyToMany
@@ -109,8 +109,8 @@ public class User implements Serializable {
 		return surname;
 	}
 
-	public void setSurname(String surname1) {
-		this.surname = surname1;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
 
 	public String getLogin() {
