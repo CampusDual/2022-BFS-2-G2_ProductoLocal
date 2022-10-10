@@ -45,6 +45,10 @@ public class Constant {
 	public static final String USER_NOT_EXISTS ="USER_NOT_EXISTS";
 	public static final String NO_SECTIONS_ACCESS ="NO_SECTIONS_ACCESS";
 	public static final String USER_CONSTRAINT_VIOLATION ="USER_CONSTRAINT_VIOLATION";
+	public static final String USER_NOT_CREATED = "USER_NOT_CREATED";
+	public static final String NIF_ALREADY_EXISTS ="NIF_ALREADY_EXISTS";
+	public static final String EMAIL_ALREADY_EXISTS ="EMAIL_ALREADY_EXISTS";
+	public static final String LOGIN_ALREADY_EXISTS ="LOGIN_ALREADY_EXISTS";
 	
 	//Profile error
 	public static final String PROFILE_CONSTRAINT_VIOLATION ="PROFILE_CONSTRAINT_VIOLATION";
@@ -63,6 +67,10 @@ public class Constant {
 	public static final String RESPONSE_CODE = "responseCode";
 	public static final String ERROR = "errors";
 	public static final String PHONE_ERROR ="contacts_phone_key";
+	public static final String USER_PHONE_ERROR ="users_phone_key";
+	public static final String NIF_ERROR ="users_nif_key";
+	public static final String EMAIL_ERROR ="users_email_key";
+	public static final String LOGIN_ERROR ="users_login_key";
 
 	
 	
