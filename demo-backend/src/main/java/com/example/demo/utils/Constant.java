@@ -71,7 +71,7 @@ public class Constant {
 	public static final String NIF_ERROR ="users_nif_key";
 	public static final String EMAIL_ERROR ="users_email_key";
 	public static final String LOGIN_ERROR ="users_login_key";
-
+    public static final String PROFILE_REQUIRED = "PROFILE_REQUIRED";
 	
 	
 

@@ -1,38 +1,41 @@
 package com.example.demo.dto;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import com.example.demo.entity.Profile;
 import com.example.demo.utils.Constant;
 
 public class UserDTO {
 	
 	private Integer id;
 	
-	@NotEmpty(message = Constant.NIF_REQUIRED)
 	private String nif;
 	
-	@NotEmpty(message = Constant.NAME_REQUIRED)
+	
 	private String name;
 	
-	@NotEmpty(message = Constant.SURNAME_REQUIRED)
+	
 	private String surname;
 	
-	@NotEmpty(message = Constant.USER_ADDRESS_REQUIRED)
+	
 	private String address;
 	
-	@NotEmpty(message = Constant.USER_CITYNAME_REQUIRED)
+	
 	private String city;
 	
 	@NotEmpty(message = Constant.USER_EMAIL_REQUIRED)
 	@Email(message= Constant.EMAIL_INVALID)
 	private String email;
 	
-	@NotNull(message = Constant.USER_PHONE_REQUIRED)
+	
 	private Integer phone;
 
-	@NotEmpty(message = Constant.USER_ZIP_REQUIRED)
+	
 	private String zip;
 	
 	@NotEmpty(message = Constant.LOGIN_REQUIRED)
@@ -41,8 +44,12 @@ public class UserDTO {
 	@NotEmpty(message = Constant.USER_PASSWORD_REQUIRED)
 	private String password;
 	
-	@NotEmpty(message = Constant.USER_FULLNAME_REQUIRED)
+	
 	private String fullName;
+	
+	@NotEmpty(message = Constant.PROFILE_REQUIRED)
+	private Set<Profile> profiles = new HashSet<>();
+	
 
 	
 	public Integer getId() {
