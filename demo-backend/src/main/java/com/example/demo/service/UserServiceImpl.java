@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.mapper.UserMapper;
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
 import com.example.demo.exception.DemoException;
@@ -25,5 +27,14 @@ public class UserServiceImpl implements IUserService {
 	@Autowired
 	private UserRepository userRepository;
 
-
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	@Transactional
+	public UserDTO createUser(userDTO createUserRequest) {
+		User user = UserMapper.INSTANCE.userDTOtoUser(createUserRequest);
+		User newUser = userRepository.save(user);
+		return UserMapper.INSTANCE.userToUserDto(newUser);
+	}
 }
