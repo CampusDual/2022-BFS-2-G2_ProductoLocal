@@ -44,7 +44,7 @@ public class User implements Serializable {
 	private String email;
 	
 	@Column
-	private Integer phone;
+	private int phone;
 	
 	@Column 
 	private String zip;
