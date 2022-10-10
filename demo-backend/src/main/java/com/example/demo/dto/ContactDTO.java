@@ -9,6 +9,7 @@ import com.example.demo.utils.Constant;
 public class ContactDTO {
 
 	private Integer id;
+	
 	@NotEmpty(message = Constant.NAME_REQUIRED)
 	private String name;
 	
@@ -25,11 +26,9 @@ public class ContactDTO {
 	@NotEmpty(message = Constant.EMAIL_REQUIRED)
 	private String email;
 
-
 	public Integer getId() {
 		return id;
 	}
-
 
 	public void setId(Integer id) {
 		this.id = id;
