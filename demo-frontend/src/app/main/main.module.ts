@@ -41,7 +41,7 @@ import { NgxChartsModule }from '@swimlane/ngx-charts';
 @NgModule({
   declarations: [
     MainHomeComponent,
-    FilterItemDirective,
+    FilterItemDirective
   ],
   imports: [
     TranslateModule,
