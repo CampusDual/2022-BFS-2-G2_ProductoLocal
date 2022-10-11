@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.bouncycastle.asn1.crmf.EncKeyWithID;
 import org.hibernate.annotations.Formula;
 
 @Entity
@@ -67,18 +68,25 @@ public class User implements Serializable {
 		super();
 	}
 
-	public User(String nif, String name, String surname, String login) {
+	public User(String nif, String name, String surname, String login, String email) {
 		super();
 		this.nif = nif;
 		this.name = name;
 		this.surname = surname;
-		
 		this.login = login;
+		this.email = email;
 	}
 
-	public User(Integer id, String nif, String name, String surname, String login) {
-		this(nif, name, surname, login);
+	public User(Integer id, String nif, String name, String surname, String login, String email) {
+		this(nif, name, surname, login, email);
 		this.id = id;
+	}
+	
+	public User(String email, String login, String password) {
+		this.email = email;
+		this.login = login;
+		this.password = password;
+		
 	}
 
 	public Integer getId() {
@@ -111,6 +119,14 @@ public class User implements Serializable {
 
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getLogin() {
@@ -158,7 +174,7 @@ public class User implements Serializable {
 	}
 
 	public static User from(String query) {
-		return new User(query, query, query, query);
+		return new User(query, query, query, query, query);
 	}
 
 	/**
