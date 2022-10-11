@@ -70,4 +70,5 @@ export class NavComponent implements OnInit, OnDestroy {
     }
     return allowedRoutes;
   }
+
 }

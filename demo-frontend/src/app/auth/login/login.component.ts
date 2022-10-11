@@ -58,4 +58,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.router.navigateByUrl(redirect);
     }
   }
+
+  onRegister() {
+    this.router.navigate(['/users']);
+  }
 }

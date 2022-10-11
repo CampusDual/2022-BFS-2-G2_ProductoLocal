@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { MainHomeComponent } from './main-home/main-home.component';
 import { AuthGuard } from '../auth/auth.guard';
 import { ContactsComponent } from './contacts/contacts.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -19,6 +20,14 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       allowedRoles: ['CONTACTS'],
+    },
+  },
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [AuthGuard],
+    data: {
+      allowedRoles:['CONTACTS'],
     },
   },
 ];

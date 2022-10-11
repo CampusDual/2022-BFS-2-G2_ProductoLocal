@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersComponent implements OnInit {
 
-  constructor() { }
+  constructor( ) { }
 
   ngOnInit(): void {
   }
@@ -15,5 +15,6 @@ export class UsersComponent implements OnInit {
   createFormGroup(){
     
   }
+
 
 }

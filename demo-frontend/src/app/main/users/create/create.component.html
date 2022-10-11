@@ -1,0 +1,87 @@
+<form [formGroup]="userForm" (ngSubmit)="save()" class="h-full">
+    <div fxLayout="column" fxLayoutGap="20px" class="form-content">
+        <div class="input-row">
+            <mat-card fxFlex>
+                <mat-card-header>
+                    <mat-card-title>{{'form.user' | translate}}</mat-card-title>
+                </mat-card-header>
+
+                <mat-card-content>
+                    <!--<div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
+                        <mat-form-field  fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
+                            formControlName="name" name="user-name" />
+                            <mat-error>{{}}</mat-error>
+                        </mat-form-field>
+                    </div> -->
+                    <!--<div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.surname' | translate}}"
+                            formControlName="surname" name="user-surname" />
+                            <!--<mat-error>{{}}</mat-error> 
+                        </mat-form-field>
+                    </div>  
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.address' | translate}}"
+                            formControlName="address" name="user-address" />
+                            <!--<mat-error>{{}}</mat-error> 
+                        </mat-form-field>
+                    </div>
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
+                            formControlName="city" name="user-city" />
+                            <!--<mat-error>{{}}</mat-error>
+                        </mat-form-field>
+                    </div>-->
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.email' | translate}}"
+                            formControlName="email" name="user-email" required/>
+                            <mat-error>{{'emailrequired' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                <!--    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.phone' | translate}}"
+                            formControlName="phone" name="user-phone" />
+                            <!--<mat-error>{{}}</mat-error> 
+                        </mat-form-field>
+                    </div>
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.zip' | translate}}"
+                            formControlName="zip" name="user-zip" />
+                            <!--<mat-error>{{}}</mat-error> 
+                        </mat-form-field>
+                    </div>-->
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.login' | translate}}"
+                            formControlName="login" name="user-login" />
+                            <mat-error>{{'loginrequired' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>               
+                    <div class="inputrow">
+                        <mat-form-field fxFlex>
+                            <input matInput type="text" color="primary" placeholder="{{'table.users.password' | translate}}"
+                            formControlName="password" name="user-password" />
+                            <mat-error>{{'passwordrequired' | translate}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
+                        <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
+                        [formNoValidate]="true">{{'button-cancel' | translate}}</button>
+                        <button fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" 
+                        [disabled]="!userForm.valid">{{'button-save' | translate}}</button>
+                    </div>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+</form> 
+
