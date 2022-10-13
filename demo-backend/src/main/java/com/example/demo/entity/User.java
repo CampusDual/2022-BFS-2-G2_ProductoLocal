@@ -17,6 +17,8 @@ import javax.persistence.Table;
 import org.bouncycastle.asn1.crmf.EncKeyWithID;
 import org.hibernate.annotations.Formula;
 
+import com.example.demo.utils.CipherUtils;
+
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -195,6 +197,7 @@ public class User implements Serializable {
 	}
 
 	public void setPassword(String password) {
-		this.password = password;
+		CipherUtils cipher = new CipherUtils();
+		this.password = cipher.encrypt(this.login, password);
 	}
 }
