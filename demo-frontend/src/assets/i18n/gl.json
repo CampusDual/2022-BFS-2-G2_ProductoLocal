@@ -36,7 +36,8 @@
       "email": "E-Mail",
       "login": "Nome de usuario",
       "password": "Contrasinal",
-      "category":"Categoría"
+      "category":"Categoría",
+      "nif": "NIF"
     }
   },
   "form": {

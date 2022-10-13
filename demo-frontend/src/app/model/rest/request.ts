@@ -47,16 +47,9 @@ export class CreateUserRequest {
   zip: number;
 
   constructor(user: User) {
-    this.name = '';
-    this.surname = '';
-    this.address = '';
-    this.city = '';
     this.email = user.email;
-    this.phone = 0;
-    this.nif = '';
     this.login = user.login;
     this.password = user.password;
-    this.zip = 0;
   
   }
 }
