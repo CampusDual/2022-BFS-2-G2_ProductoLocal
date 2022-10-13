@@ -60,6 +60,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
   onRegister() {
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users/create']);
   }
 }

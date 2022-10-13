@@ -3,10 +3,8 @@ import { User } from 'src/app/model/user';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { relativeTimeThreshold } from 'moment';
 
 @Component({
-  /*selector: 'app-create',*/
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
 })
@@ -14,10 +12,10 @@ export class CreateComponent implements OnInit {
 
   user : User;
   userForm: FormGroup;
-  router: Router;
 
   constructor(    
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private router: Router
     ) { 
       this.user = new User();
     }

@@ -34,7 +34,8 @@
       "phone": "Teléfono",
       "email": "E-Mail",
       "login": "Nome de usuario",
-      "password": "Contrasinal"
+      "password": "Contrasinal",
+      "type": "Tipo"
     }
   },
   "form": {

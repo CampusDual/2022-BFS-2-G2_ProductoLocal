@@ -34,7 +34,8 @@
       "phone": "Teléfono",
       "email": "E-Mail",
       "login": "Nombre de usuario",
-      "password": "Contraseña"
+      "password": "Contraseña",
+      "type": "Tipo"
     }
   },
   "form": {
