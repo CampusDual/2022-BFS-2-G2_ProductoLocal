@@ -27,10 +27,19 @@
       "surname2": "Segundo apelido",
       "phone": "Teléfono",
       "email": "E-Mail"
+    },
+    "users": {
+      "name": "Nome",
+      "surname": "Apelido(s)",
+      "phone": "Teléfono",
+      "email": "E-Mail",
+      "login": "Nome de usuario",
+      "password": "Contrasinal"
     }
   },
   "form": {
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "newuser": "Novo usuario"
   },
   "button": {
     "cancel": "Cancelar",

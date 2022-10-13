@@ -11,7 +11,7 @@ const routes: Routes = [
         component: UsersLayoutComponent,
         children: [
             {path: "", component: UsersComponent},
-            {path: '/create', component: CreateComponent}
+            {path: 'create', component: CreateComponent}
         ],
     },
     

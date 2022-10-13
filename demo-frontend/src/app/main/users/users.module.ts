@@ -16,6 +16,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { UsersLayoutComponent } from './users-layout.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { CreateComponent } from './create/create.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -27,6 +28,7 @@ import { CreateComponent } from './create/create.component';
   ],
   imports: [
     UsersRoutingModule,
+    ReactiveFormsModule,
     CommonModule,
     MatFormFieldModule,
     MatInputModule,

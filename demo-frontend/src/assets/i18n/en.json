@@ -27,10 +27,19 @@
       "surname2": "Second Surname",
       "phone": "Phone",
       "email": "E-Mail"
+    },
+    "users": {
+      "name": "Name",
+      "surname": "Surname(s)",
+      "phone": "Phone",
+      "email": "E-Mail",
+      "login": "Username",
+      "password": "Password"
     }
   },
   "form": {
-    "contact": "Contact"
+    "contact": "Contact",
+    "newuser": "New user"
   },
   "button": {
     "cancel": "Cancel",
