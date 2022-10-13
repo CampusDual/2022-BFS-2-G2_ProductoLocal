@@ -10,9 +10,8 @@
 
                     <div class="inputrow">
 
-                        <h4>Basic mat-select</h4>
                         <mat-form-field appearance="fill">
-                        <mat-label>Categoria</mat-label>
+                        <mat-label>{{'table.users.category' | translate}}</mat-label>
                         <mat-select>
                             <mat-option *ngFor="let category of categories" [value]="category.value">
                             {{category.viewValue}}

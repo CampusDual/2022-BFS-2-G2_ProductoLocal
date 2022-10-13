@@ -35,7 +35,7 @@
       "email": "E-Mail",
       "login": "Nombre de usuario",
       "password": "Contraseña",
-      "type": "Tipo"
+      "category":"Categoría"
     }
   },
   "form": {
