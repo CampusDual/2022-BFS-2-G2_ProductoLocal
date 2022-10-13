@@ -17,7 +17,7 @@ import { UsersLayoutComponent } from './users-layout.component';
 import { UsersRoutingModule } from './users-routing.module';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { MatSelectModule } from '@angular/material/select'; 
 
 
 @NgModule({
@@ -41,6 +41,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatCheckboxModule,
     TranslateModule,
+    MatSelectModule,
   ]
 })
 export class UsersModule { }

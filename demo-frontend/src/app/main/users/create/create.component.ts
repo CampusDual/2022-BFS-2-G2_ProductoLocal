@@ -4,6 +4,13 @@ import { User } from 'src/app/model/user';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
+
+
+interface Tipo {
+  value: string,
+  viewValue: string
+}
+
 @Component({
   templateUrl: './create.component.html',
   styleUrls: ['./create.component.scss']
@@ -12,6 +19,11 @@ export class CreateComponent implements OnInit {
 
   user : User;
   userForm: FormGroup;
+
+  categories: Tipo[] = [
+    {value: 'producto', viewValue: 'Productor'},
+    {value: 'cliente', viewValue: 'Cliente'},
+  ];
 
   constructor(    
     private fb: FormBuilder,
