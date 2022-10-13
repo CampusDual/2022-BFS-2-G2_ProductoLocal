@@ -49,7 +49,7 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   public isAuthenticated() {
-    if (!this.authService.isLoggedIn() && !(this.router.url === '/login' || this.router.url === '/' || this.router.url === '/users/create')) {
+    if (!this.authService.isLoggedIn() && !(this.router.url === '/login' || this.router.url === '/' || this.router.url === '/users/createUser')) {
       this.authService.redirectLoginSessionExpiration();
     }
     return this.authService.isLoggedIn();

@@ -20,7 +20,7 @@ export class CreateComponent implements OnInit {
 
   user : User;
   userForm: FormGroup;
-  selected = 'producto';
+  selected = 2;
 
   categories: Tipo[] = [
     {value: 2, viewValue: 'Productor'},

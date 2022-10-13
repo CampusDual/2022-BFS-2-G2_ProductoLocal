@@ -18,5 +18,5 @@ export const API_CONFIG = {
 
 
   //Users API
-  createUser: environment.authBaseUrl + '/create',
+  createUser: environment.usersBaseUrl + '/createUser',
 };

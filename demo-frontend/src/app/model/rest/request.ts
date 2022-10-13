@@ -54,7 +54,7 @@ export class CreateUserRequest {
     this.email = user.email;
     this.phone = 0;
     this.nif = '';
-    this.login = user.name;
+    this.login = user.login;
     this.password = user.password;
     this.zip = 0;
   
