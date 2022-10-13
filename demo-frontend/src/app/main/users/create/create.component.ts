@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 
 
 interface Tipo {
-  value: string,
+  value: number,
   viewValue: string
 }
 
@@ -22,11 +23,12 @@ export class CreateComponent implements OnInit {
   selected = 'producto';
 
   categories: Tipo[] = [
-    {value: 'producto', viewValue: 'Productor'},
-    {value: 'cliente', viewValue: 'Cliente'},
+    {value: 2, viewValue: 'Productor'},
+    {value: 3, viewValue: 'Cliente'},
   ];
 
   constructor(    
+    private userService : UserService,
     private fb: FormBuilder,
     private router: Router
     ) { 
@@ -35,7 +37,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.createFormGroup();
- }
+  }
 
   createFormGroup(){
     this.userForm = this.fb.group({      
@@ -50,6 +52,17 @@ export class CreateComponent implements OnInit {
   }
 
   save() {
+    const newUser: User = Object.assign({}, this.userForm.value);
+    this.userService.createUser(newUser).subscribe((response) => {
+      this.redirectList(response);
+    });
   }
 
+  redirectList(response: any) {
+    if (response.responseCode === 'OK') {
+      this.router.navigate(['/login']);
+    }else{
+      console.log(response);
+    }
+  }
 }
