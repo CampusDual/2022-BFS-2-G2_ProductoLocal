@@ -35,10 +35,14 @@
       -webkit-transform: translate(-50%, 0%);
 
       img {
-        max-height: 125px;
+        width: 150px;
+        height: 150px;
+        /*  position: relative;*/
+        border-radius: 50%;
+        /*max-height: 125px;
         max-width: 125px;
         margin-left: 12px;
-        margin-top: 46px;
+        margin-top: 46px;*/
       }
     }
 
