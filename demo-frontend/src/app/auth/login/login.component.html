@@ -36,6 +36,7 @@
         color="primary"
         (click)="login(username.value, password.value, $event)"
         id="login-button"
+        class="myClass"
       >
         {{ "login.enter" | translate }}
       </button>
@@ -55,10 +56,7 @@
         ng-reflect-fx-layout="column"
         ng-reflect-fx-layout-align="center center"
       >
-        <span class="login_info">Use this user and password for login:</span>
-        <span class="dark_text">Username : demo</span>
-        <span class="dark_text">Password : demouser</span>
-        <button fxFlex="25" fxFlex.xs="30" color="primary" mat-raised-button type="button" (click)="onRegister()"
+        <button fxFlex="25" class="myClass" fxFlex.xs="30" color="primary" mat-raised-button type="button" (click)="onRegister()"
         [formNoValidate]="true">{{ "login.register" | translate }}</button>
       </div>
     </form>

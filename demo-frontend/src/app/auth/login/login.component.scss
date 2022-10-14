@@ -1,6 +1,6 @@
 .login-outer-container {
   margin: 8px;
-  min-height: 640px;
+  min-height: 98vh;
   background-color: #bdbdbd;
   background-image: url(../../../assets/images/veg-background.jpg);
   background-position: center;
@@ -136,4 +136,9 @@
       }
     }
   }
+}
+
+.myClass {
+  background-color: #bfedff;
+  color: black;
 }
