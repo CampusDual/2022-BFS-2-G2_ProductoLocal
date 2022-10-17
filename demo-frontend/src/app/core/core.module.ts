@@ -27,11 +27,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { TranslateModule } from '@ngx-translate/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
-    NavComponent],
+    NavComponent,
+    LandingComponent],
   imports: [
     TranslateModule,
     CommonModule,
