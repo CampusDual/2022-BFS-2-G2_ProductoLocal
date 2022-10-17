@@ -16,6 +16,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "profiles")
 public class Profile implements Serializable {
@@ -31,11 +33,13 @@ public class Profile implements Serializable {
 	@Column
 	private String description;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "profiles_sections_map", joinColumns = {
 			@JoinColumn(name = "profile_id") }, inverseJoinColumns = { @JoinColumn(name = "section_id") })
 	private List<Section> sections = new ArrayList<>();
 
+	@JsonIgnore
 	@ManyToMany(mappedBy = "profiles")
 	private Set<User> users = new HashSet<>();
 

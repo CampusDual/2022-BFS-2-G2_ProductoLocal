@@ -37,4 +37,10 @@ public class UserServiceImpl implements IUserService {
 		User newUser = userRepository.save(user);
 		return UserMapper.INSTANCE.userToUserDto(newUser);
 	}
+	
+	@Override
+	public UserDTO getUser(Integer id) {
+		User user = userRepository.findById(id).orElse(null);
+		return UserMapper.INSTANCE.userToUserDto(user);
+	}
 }

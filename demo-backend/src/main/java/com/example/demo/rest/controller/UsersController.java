@@ -23,9 +23,11 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.UserDTO;
@@ -101,6 +103,33 @@ public class UsersController {
         
         return new ResponseEntity<Map<String, Object>>(response, status);
     }
+    
+    @GetMapping("/getUser")
+	public ResponseEntity<?> getUser(@RequestParam(value = "id") Integer id) {
+		LOGGER.info("getUser in progress...");
+		UserDTO user = null;
+		Map<String, Object> response = new HashMap<>();
+		ResponseEntity<?>re = null;
+		try {
+			user = userService.getUser(id);
+			if(user==null) {
+				response.put(Constant.MESSAGE, Constant.USER_NOT_EXISTS);
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			}else {
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
+				re = new ResponseEntity<UserDTO>(user, HttpStatus.OK);
+			}
+		} catch (DataAccessException e) {
+			LOGGER.error(e.getMessage());
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, e.getMessage());
+			re=  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		} 
+		LOGGER.info("getUser is finished...");
+		return re;
+	}
 
 
 

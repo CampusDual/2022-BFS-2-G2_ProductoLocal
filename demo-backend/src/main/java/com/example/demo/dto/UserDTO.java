@@ -48,9 +48,13 @@ public class UserDTO {
 	private String fullName;
 	
 	
-	private Set<Profile> profiles = new HashSet<>();
+	private Set<ProfileDTO> profiles = new HashSet<>();
 	
 
+	public UserDTO() {
+		super();
+	}
+	
 	
 	public Integer getId() {
 		return id;
@@ -148,14 +152,15 @@ public class UserDTO {
 		this.fullName = fullName;
 	}
 
-	public Set<Profile> getProfiles() {
+	public Set<ProfileDTO> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(Set<Profile> profiles) {
+	public void setProfiles(Set<ProfileDTO> profiles) {
 		this.profiles = profiles;
 	}
-	
+
+
 	
 	
 }

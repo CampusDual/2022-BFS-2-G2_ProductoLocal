@@ -18,6 +18,7 @@ import org.bouncycastle.asn1.crmf.EncKeyWithID;
 import org.hibernate.annotations.Formula;
 
 import com.example.demo.utils.CipherUtils;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "users")
@@ -58,6 +59,7 @@ public class User implements Serializable {
 	@Formula("name || ' ' || surname")
 	private String fullName;
 
+	@JsonIgnore
 	@ManyToMany
 	@JoinTable(name = "users_profiles_map", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = {
 			@JoinColumn(name = "profile_id") })
