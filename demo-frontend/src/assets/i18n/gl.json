@@ -94,8 +94,6 @@
   "yes": "Si",
   "delete-element-confirmation": "¿Está seguro de que quere continuar? Todos os elementos seleccionados eliminaranse",
   "namerequired": "O nome é un campo obrigatorio",
-  "passwordrequired": "O contrasinal é un campo obrigatorio",
-  "loginrequired": "O nome  de usuario é un campo obrigatorio",
   "surname1required": "O apelido é un campo obrigatorio",
   "phonerequired":"O teléfono é un campo requirido",
   "phonepattern": "O formato do teléfono non é correcto",
