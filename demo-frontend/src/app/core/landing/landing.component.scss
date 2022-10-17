@@ -1,0 +1,112 @@
+.frontal {
+    position: absolute;
+    width: 90%;
+    height: 618px;
+    left: 0px;
+    top: 0px;
+    /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(pexels-engin-akyurt-1435904.jpg);*/
+    margin: 1em;
+    border: 2px solid blue;
+    padding: 1em;
+}
+
+.frontal > p {
+    width: 300px;
+}
+
+.fondo {
+    width: 100%;
+    height: fit-content;
+    margin: 0.1em;
+}
+
+header h3 {
+    position: absolute;
+    width: 563px;
+    height: 69px;
+    left: 106px;
+    top: 155px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 140.69%;
+
+    /* or 56px */
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+}
+
+header p {
+    position: absolute;
+    width: 504px;
+    height: 156px;
+    left: 106px;
+    top: 236px;
+
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 140.69%;
+
+    /* or 23px */
+    display: flex;
+    align-items: center;
+
+    color: #FFFFFF;
+}
+
+#logo {
+    position: absolute;
+    width: 359px;
+    height: 359px;
+    left: 818px;
+    top: 94px;
+
+    background: #FFFFFF;
+    border-radius: 188px;
+}
+
+
+#ruta {
+    position: absolute;
+    width: 156px;
+    height: 124.25px;
+    left: 154px;
+    top: 688.75px;
+}
+
+
+#cali {
+    position: absolute;
+    width: 156px;
+    height: 123.09px;
+    left: 642px;
+    top: 689.91px;
+}
+
+
+#prec {
+    position: absolute;
+    width: 156px;
+    height: 117.88px;
+    left: 1129px;
+    top: 695.12px;
+}
+
+.boton {
+    position:absolute;
+    height: auto;
+    top:100%;
+    z-index: 1000000;
+    border: 1px solid red;
+}
+
+.access:hover {
+    color: aqua;
+}
+
