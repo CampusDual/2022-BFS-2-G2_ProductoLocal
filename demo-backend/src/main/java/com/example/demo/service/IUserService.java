@@ -12,6 +12,6 @@ public interface IUserService {
 	 */
 	UserDTO createUser(UserDTO createUserRequest);
 	
-	UserDTO getUser(Integer id);
+	UserDTO getUser(String login);
 	
 }
