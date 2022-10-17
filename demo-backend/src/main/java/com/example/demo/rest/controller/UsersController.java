@@ -105,13 +105,13 @@ public class UsersController {
     }
     
     @GetMapping("/getUser")
-	public ResponseEntity<?> getUser(@RequestParam(value = "id") Integer id) {
+	public ResponseEntity<?> getUser(@RequestParam(value = "login") String login) {
 		LOGGER.info("getUser in progress...");
 		UserDTO user = null;
 		Map<String, Object> response = new HashMap<>();
 		ResponseEntity<?>re = null;
 		try {
-			user = userService.getUser(id);
+			user = userService.getUser(login);
 			if(user==null) {
 				response.put(Constant.MESSAGE, Constant.USER_NOT_EXISTS);
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());

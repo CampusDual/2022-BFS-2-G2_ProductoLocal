@@ -28,4 +28,14 @@ export class UserService {
       })
     );
   }
+
+  public getUser(id: number): Observable<User> {
+    const url = API_CONFIG.getContact;
+    const headers = new HttpHeaders({
+      'Content-type': 'charset=utf-8',
+      Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    const params = new HttpParams().set('id', id.toString());
+    return this.http.get<User>(url, { params, headers });
+  }
 }
