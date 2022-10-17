@@ -1,112 +1,81 @@
 .frontal {
-    position: absolute;
-    width: 90%;
-    height: 618px;
-    left: 0px;
-    top: 0px;
-    /*background: linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(pexels-engin-akyurt-1435904.jpg);*/
-    margin: 1em;
-    border: 2px solid blue;
-    padding: 1em;
+    margin: 0 auto;
+    width: 98vw;
+    min-height: 650px;
+    
+    background:
+        radial-gradient(circle, rgb(255, 255, 255,0.9) 0%, rgba(255, 255, 255, 0.7) 40%),
+        url("../../../assets/images/landing_bg.png");
+    background-position: top;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: flex-start;
+    
+    font-family: Open Sans, sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    color: #000000;
+
+    .intro{
+        max-width: 800px;
+        padding: 1em;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    h3 {
+        font-size: 4em;
+        margin: 0.5em 0;
+    }
+    p{
+        font-size: 1.3em;
+        max-width:fit-content;
+        text-align: justify;
+    }
 }
 
-.frontal > p {
-    width: 300px;
-}
-
-.fondo {
+button {
+    position: inline center;
     width: 100%;
-    height: fit-content;
-    margin: 0.1em;
-}
-
-header h3 {
-    position: absolute;
-    width: 563px;
-    height: 69px;
-    left: 106px;
-    top: 155px;
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 40px;
-    line-height: 140.69%;
-
-    /* or 56px */
-    display: flex;
-    align-items: center;
-
-    color: #FFFFFF;
-}
-
-header p {
-    position: absolute;
-    width: 504px;
-    height: 156px;
-    left: 106px;
-    top: 236px;
-
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 140.69%;
-
-    /* or 23px */
-    display: flex;
-    align-items: center;
-
-    color: #FFFFFF;
+    height: 30px;
+    margin: 30px 0 0;
+    background-color: #bfedff;
+    color: black;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+    border-radius: 4px ;
+    border: none;
+    font-family: Open Sans, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
 }
 
 #logo {
-    position: absolute;
-    width: 359px;
-    height: 359px;
-    left: 818px;
-    top: 94px;
-
+    min-width: 20em;
     background: #FFFFFF;
-    border-radius: 188px;
+    border-radius: 100%;
 }
 
-
-#ruta {
-    position: absolute;
-    width: 156px;
-    height: 124.25px;
-    left: 154px;
-    top: 688.75px;
-}
-
-
-#cali {
-    position: absolute;
-    width: 156px;
-    height: 123.09px;
-    left: 642px;
-    top: 689.91px;
-}
-
-
-#prec {
-    position: absolute;
-    width: 156px;
-    height: 117.88px;
-    left: 1129px;
-    top: 695.12px;
-}
-
-.boton {
-    position:absolute;
-    height: auto;
-    top:100%;
-    z-index: 1000000;
-    border: 1px solid red;
-}
-
-.access:hover {
-    color: aqua;
+.points{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    align-content: space-evenly;
+    margin-top: 4em;
+    .icons{
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        align-content: center;
+    }
 }
 
