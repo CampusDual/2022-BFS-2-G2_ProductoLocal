@@ -1,0 +1,32 @@
+<div class="card border-primary mb-3" style="margin-top: 1vh;">
+    <div class="card-header">Profile</div>
+    <div class="card-body text-primary">
+        <h5 class="card-title">{{user.login}}</h5>
+        <table class="table table-bordered table-striped">
+            <thead>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Email</th>
+                <th>NIF</th>
+                <th>Dirección</th>
+                <th>Teléfono</th>
+                <th>Ciudad</th>
+                <th>Código Postal</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{user.id}}</td>
+                    <td>{{user.name}}</td>
+                    <td>{{user.surname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.nif}}</td>
+                    <td>{{user.address}}</td>
+                    <td>{{user.phone}}</td>
+                    <td>{{user.city}}</td>
+                    <td>{{user.zip}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

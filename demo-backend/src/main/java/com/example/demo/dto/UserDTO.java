@@ -43,19 +43,15 @@ public class UserDTO {
 	
 	@NotEmpty(message = Constant.USER_PASSWORD_REQUIRED)
 	private String password;
-	
-	
+		
 	private String fullName;
 	
+	private Set<Profile> profiles = new HashSet<>();
 	
-	private Set<ProfileDTO> profiles = new HashSet<>();
-	
-
 	public UserDTO() {
 		super();
 	}
-	
-	
+		
 	public Integer getId() {
 		return id;
 	}
@@ -152,15 +148,12 @@ public class UserDTO {
 		this.fullName = fullName;
 	}
 
-	public Set<ProfileDTO> getProfiles() {
+	public Set<Profile> getProfiles() {
 		return profiles;
 	}
 
-	public void setProfiles(Set<ProfileDTO> profiles) {
+	public void setProfiles(Set<Profile> profiles) {
 		this.profiles = profiles;
 	}
-
-
-	
 	
 }
