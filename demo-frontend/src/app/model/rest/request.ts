@@ -1,4 +1,5 @@
 import { Contact } from '../contact';
+import { Profiles } from '../profile';
 import { User } from '../user';
 
 export class QuerySortPaginationRequest {
@@ -45,11 +46,13 @@ export class CreateUserRequest {
   login: string;
   password: string;
   zip: number;
+  profile: Profiles;
 
   constructor(user: User) {
     this.email = user.email;
     this.login = user.login;
     this.password = user.password;
+    this.profile = user.profile;
   
   }
 }
