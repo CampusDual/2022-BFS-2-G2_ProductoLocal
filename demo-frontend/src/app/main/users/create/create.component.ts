@@ -4,6 +4,8 @@ import { UserService } from 'src/app/services/user.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Profiles } from 'src/app/model/profile';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
 
 
 
@@ -20,7 +22,11 @@ export class CreateComponent implements OnInit {
 
   user : User;
   userForm: FormGroup;
-  selected = 2;
+  selected: number = 1;
+  nome :string="nombre";
+  description: string ="shshshs";
+
+    
 
   categories: Tipo[] = [
     {value: 2, viewValue: 'Productor'},
@@ -33,17 +39,25 @@ export class CreateComponent implements OnInit {
     private router: Router
     ) { 
       this.user = new User();
+      this.user.profile = new Profiles();
     }
 
   ngOnInit(): void {
+    this.user.profile.id = this.selected;
+    this.user.profile.name = this.nome;
+    this.user.profile.description = this.description;
     this.createFormGroup();
   }
+
+
 
   createFormGroup(){
     this.userForm = this.fb.group({      
       email: [this.user.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
       login: [this.user.login],
       password:[this.user.password],
+      profile:[ this.user.profile]
+      /*profile:[ {id: this.selected, name: this.nome, description:this.description}]*/
     });
   }
   
@@ -54,6 +68,7 @@ export class CreateComponent implements OnInit {
   save() {
     const newUser: User = Object.assign({}, this.userForm.value);
     this.userService.createUser(newUser).subscribe((response) => {
+      console.log(this);
       this.redirectList(response);
     });
   }

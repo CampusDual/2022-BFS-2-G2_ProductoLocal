@@ -12,7 +12,7 @@
                 <div class="inputrow">
                     <mat-form-field appearance="fill">
                         <mat-label>{{'table.users.category' | translate}}</mat-label>
-                        <mat-select [(value)]="selected" required>
+                        <mat-select [(value)]="selected" required formControlName="profile">
                             <mat-option *ngFor="let category of categories" [value]="category.value">
                                 {{category.viewValue}}
                             </mat-option>

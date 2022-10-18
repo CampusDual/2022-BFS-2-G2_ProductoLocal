@@ -1,3 +1,5 @@
+import { Profiles } from "./profile";
+
 export class User {
     id: number;
     name: string;
@@ -9,5 +11,6 @@ export class User {
     nif: string;
     login: string;
     password: string;
-    zip: number
+    zip: number;
+    profile: Profiles;
 }
