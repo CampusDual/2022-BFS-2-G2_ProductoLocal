@@ -43,4 +43,12 @@ public class UserServiceImpl implements IUserService {
 		User user = userRepository.findByLogin(login).orElse(null);
 		return UserMapper.INSTANCE.userToUserDto(user);
 	}
+	
+	@Override
+	@Transactional
+	public String deleteUser(String login) {
+		User user = userRepository.findByLogin(login).orElse(null);
+		userRepository.delete(user);
+		return login;
+	}
 }
