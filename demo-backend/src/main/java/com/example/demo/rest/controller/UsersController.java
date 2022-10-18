@@ -23,6 +23,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -129,6 +130,29 @@ public class UsersController {
 		} 
 		LOGGER.info("getUser is finished...");
 		return re;
+	}
+    
+    
+/*Elimina un usuario de la BDD.*/
+	@DeleteMapping("/deleteUser")
+	public ResponseEntity<?> deleteUser(@RequestParam(value = "login")String login) {
+		LOGGER.info("deleteUser in progress...");
+		Map<String, Object> response = new HashMap<>();
+		HttpStatus status = HttpStatus.OK;
+		String message = Constant.USER_DELETE_SUCCESS;
+		try {
+			userService.deleteUser(login);
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
+		} catch (DataAccessException e) {
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			status = HttpStatus.BAD_REQUEST;
+			message = Constant.CONTACT_NOT_DELETE;
+		} 
+		response.put(Constant.MESSAGE, message);
+		LOGGER.info("deleteContact is finished...");
+		return new ResponseEntity<Map<String, Object>>(response,status);
 	}
 
 

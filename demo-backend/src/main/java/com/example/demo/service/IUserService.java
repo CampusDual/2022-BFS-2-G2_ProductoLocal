@@ -14,4 +14,6 @@ public interface IUserService {
 	
 	UserDTO getUser(String login);
 	
+	String deleteUser(String login);
+	
 }
