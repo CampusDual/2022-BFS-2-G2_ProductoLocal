@@ -17,23 +17,24 @@ interface Tipo {
 })
 export class GetUserComponent implements OnInit {
 
-  user : User;
+  user: User;
   login: string;
   userForm: FormGroup;
   errors: string[];
 
 
-  constructor(    
+  constructor(
     private authService: AuthService,
-    private userService : UserService,
+    private userService: UserService,
     private fb: FormBuilder,
     private router: Router
-    ) { 
-      this.login = this.authService.getUserName();
-      this.user = new User();
-    }
+  ) {
+    this.login = this.authService.getUserName();
+    this.user = new User();
+  }
 
   ngOnInit(): void {
+    this.userFormGroup();
     this.userService.getUser(this.login).subscribe(
       response => {
         this.user = response;
@@ -45,7 +46,22 @@ export class GetUserComponent implements OnInit {
       }
     );
   }
-  
+
+  userFormGroup() {
+    this.userForm = this.fb.group({
+      email: [this.user.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
+      login: [this.user.login],
+      nif: [this.user.nif],
+      password: [this.user.password],
+      city: [this.user.city],
+      name: [this.user.name],
+      surname: [this.user.surname],
+      address: [this.user.address],
+      phone: [this.user.phone],
+      zip: [this.user.zip]
+    });
+  }
+
   cancel() {
     this.router.navigate(['/login']);
   }
@@ -53,8 +69,12 @@ export class GetUserComponent implements OnInit {
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
       this.router.navigate(['/login']);
-    }else{
+    } else {
       console.log(response);
     }
+  }
+
+  update(){
+
   }
 }

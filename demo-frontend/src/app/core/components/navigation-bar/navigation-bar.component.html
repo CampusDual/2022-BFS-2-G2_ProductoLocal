@@ -37,12 +37,20 @@
           </button>
           <mat-menu #auth="matMenu">
             <span matSubheader><strong>{{userName}}</strong></span>
+
+            <button mat-menu-item (click)="my_profile()">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{ 'menu.personal_data' | translate }}</span>
+            </button>
             <button mat-menu-item (click)="logout()">
               <mat-icon>exit_to_app</mat-icon>
               <span>{{ 'menu.logout' | translate }}</span>
             </button>
+
+
           </mat-menu>
         </li>
+
       </ul>
     </div>
   </mat-toolbar-row>

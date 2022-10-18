@@ -14,7 +14,8 @@
   "menu": {
     "home": "Home",
     "contacts": "Contactos",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "personal_data": "Mi datos de perfil"
   },
   "language": {
     "spanish": "Español",
@@ -36,7 +37,11 @@
       "email": "E-Mail",
       "login": "Nombre de usuario",
       "password": "Contraseña",
-      "category":"Categoría"
+      "category":"Categoría",
+      "address": "Dirección",
+      "city": "Ciudad",
+      "nif": "NIF",
+      "zip": "Código postal"
     }
   },
   "form": {
