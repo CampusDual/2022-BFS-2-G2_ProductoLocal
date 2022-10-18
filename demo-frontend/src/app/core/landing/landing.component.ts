@@ -17,7 +17,6 @@ export class LandingComponent implements OnInit {
   }
 
   acceder(){
-    console.log("Click");
     this.router.navigate(['/login']);
   }
 

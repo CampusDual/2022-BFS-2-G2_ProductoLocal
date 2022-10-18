@@ -53,10 +53,12 @@ button {
     font-family: Open Sans, sans-serif;
     font-size: 14px;
     font-weight: 500;
+    cursor: pointer;
 }
 
 #logo {
-    min-width: 20em;
+    min-width: 12em;
+    width: 20em;
     background: #FFFFFF;
     border-radius: 100%;
 }
