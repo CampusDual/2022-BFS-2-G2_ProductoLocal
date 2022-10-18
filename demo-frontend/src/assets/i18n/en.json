@@ -14,7 +14,8 @@
   "menu": {
     "home": "Home",
     "contacts": "Contacts",
-    "logout": "Logout"
+    "logout": "Logout",
+    "personal_data": "My personal data"
   },
   "language": {
     "spanish": "Spanish",
@@ -36,7 +37,11 @@
       "email": "E-Mail",
       "login": "Username",
       "password": "Password",
-      "category":"Category"
+      "category":"Category",
+      "address": "Address",
+      "city": "City",
+      "nif": "NIF",
+      "zip": "ZIP Code"
     }
   },
   "form": {

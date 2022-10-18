@@ -43,4 +43,8 @@ export class NavigationBarComponent {
     this.selectedLanguage = lang;
     this.translateService.use(lang);
   }
+
+  my_profile() {
+    this.router.navigate(['/users/getUser']);
+  }
 }

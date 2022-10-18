@@ -18,6 +18,7 @@ import { UsersRoutingModule } from './users-routing.module';
 import { CreateComponent } from './create/create.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select'; 
+import { GetUserComponent } from './get-user/get-user.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { MatSelectModule } from '@angular/material/select';
     UsersComponent,
     UsersLayoutComponent,
     CreateComponent,
+    GetUserComponent,
   ],
   imports: [
     UsersRoutingModule,
