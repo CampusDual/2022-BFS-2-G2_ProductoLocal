@@ -20,7 +20,7 @@
                             <input matInput type="text" color="primary" formControlName="nif" name="user-nif" [value]="this.user.nif" readonly="true"/>
                         </mat-form-field>
                     </div>
-                    <div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                    <div class="inputrow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
                         fxLayoutGap.lt-md="0px">
                         <label for="user-name">{{"table.users.name" | translate}}: </label>
                         <mat-form-field fxFlex>
@@ -71,12 +71,14 @@
 
                         </mat-form-field>
                     </div>
-                    <button mat-raised-button >
-                        <mat-icon>edit</mat-icon> {{ "edit" | translate }}
-                    </button>
-                    <button mat-raised-button (click)="onDelete()">
-                        <mat-icon>delete</mat-icon> {{ "delete" | translate }}
-                    </button>
+                    <div class="btn-cont">
+                        <button class="edit-btn" mat-raised-button >
+                            <mat-icon>edit</mat-icon> {{ "edit" | translate }}
+                        </button>
+                        <button class="delete-btn" mat-raised-button (click)="onDelete()">
+                            <mat-icon>delete</mat-icon> {{ "delete" | translate }}
+                        </button>
+                    </div>
                 </mat-card-content>
 
                 <!-- <mat-card-actions>
