@@ -71,6 +71,9 @@
   "CONTACT_DELETE_SUCCESS": "Contacto borrado",
   "CONTACT_NOT_EDIT": "Error al editar el contacto",
   "CONTACT_NOT_DELETE": "Contacto no borrado",
+  "USER_CREATE_SUCCESS": "Usuario registrado correctamente",
+  "USER_LOGIN_UNIQUE": "Ya existe el nombre de usuario",
+  "USER_EMAIL_UNIQUE": "Este email ya está registrado",
   "USER_EDIT_SUCCESS": "Usuario editado",
   "CONTACT_NOT_CREATED": "Contacto no creado",
   "NAME_REQUIRED" :"Nombre obligatorio",
@@ -102,5 +105,8 @@
   "surname1required": "El apellido es un campo obligatorio",
   "phonerequired":"El teléfono es un campo obligatorio",
   "phonepattern": "El formato del teléfono no es correcto",
-  "emailpattern": "El formato del email no es correcto"
+  "emailpattern": "El formato del email no es correcto",
+  "loginrequired": "El nombre de usuario es un campo obligatorio",
+  "emailrequired": "El email es un campo obligatorio"
+
 }

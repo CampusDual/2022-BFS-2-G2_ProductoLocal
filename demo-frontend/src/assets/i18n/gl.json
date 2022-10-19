@@ -72,7 +72,10 @@
   "CONTACT_NOT_EDIT": "Erro ao editar o contacto",
   "CONTACT_NOT_DELETE": "Contacto non borrado",
   "CONTACT_NOT_CREATED": "Contacto non creado",
+  "USER_CREATE_SUCCESS": "Usuario rexistrado correctamente",
   "USER_EDIT_SUCCESS": "Usuario editado",
+  "USER_LOGIN_UNIQUE": "Xa existe o nome de usuario",
+  "USER_EMAIL_UNIQUE": "Este email xa está rexistrado",
   "NAME_REQUIRED" :"Nome obrigatorio",
   "ID_NOT_EXISTS" :"Id non existe",
   "ID_REQUIRED" :"Id obrigatorio",
@@ -102,5 +105,7 @@
   "surname1required": "O apelido é un campo obrigatorio",
   "phonerequired":"O teléfono é un campo requirido",
   "phonepattern": "O formato do teléfono non é correcto",
-  "emailpattern": "O formato do email non é correcto"
+  "emailpattern": "O formato do email non é correcto",
+  "loginrequired": "O nome de usuario é un campo obrigatorio",
+  "emailrequired": "O email é un campo obrigatorio"
 }

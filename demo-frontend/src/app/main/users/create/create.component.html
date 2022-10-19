@@ -59,8 +59,9 @@
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.users.email' | translate}}"
-                            formControlName="email" name="user-email" required />
-                        <mat-error>{{'emailrequired' | translate}}</mat-error>
+                            formControlName="email" name="user-email" required [ngClass]=""/>
+                        <mat-error *ngIf="userForm.get('email').hasError('required')">{{'emailrequired' | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.get('email').hasError('pattern')">{{'emailpattern' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
                 <!--    <div class="inputrow">
@@ -97,9 +98,9 @@
             <mat-card-actions>
                 <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
 
-                    <button class="register" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
+                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
                         [disabled]="!userForm.valid">{{'button.save' | translate}}</button>
-                    <button class="cacel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
+                    <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
                         [formNoValidate]="true">{{'button.cancel' |
                         translate}}</button>
                 </div>
