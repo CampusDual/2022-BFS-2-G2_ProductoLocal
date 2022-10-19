@@ -60,6 +60,7 @@
     "previous_page": "Previous page",
     "of": "of"
   },
+
   "EN": "English",
   "ES": "Spanish",
   "GL": "Galician",
@@ -73,6 +74,9 @@
   "CONTACT_NOT_DELETE": "Contact not deleted",
   "CONTACT_NOT_CREATED": "Contact not create",
   "USER_EDIT_SUCCESS": "Edited user",
+  "USER_CREATE_SUCCESS": "User successfully registered",
+  "USER_LOGIN_UNIQUE": "Usermane already exists",
+  "USER_EMAIL_UNIQUE": "Email already registered",
   "SESSION_EXPIRED": "Session expired",
   "PHONE_ALREADY_EXISTS": "Phone already exists",
   "NAME_REQUIRED" :"Mandatory name",
@@ -102,5 +106,7 @@
   "surnamerequired": "Surname is a required field",
   "phonerequired":"Phone is a required field",
   "phonepattern": "The phone format is not correct",
-  "emailpattern": "The email format is not correct"
+  "emailpattern": "The email format is not correct",
+  "loginrequired": "Username is a required field",
+  "emailrequired": "Email is a required field"
 }
