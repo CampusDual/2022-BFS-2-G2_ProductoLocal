@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.UserDTO;
 
 public interface IUserService {
@@ -14,6 +15,10 @@ public interface IUserService {
 	
 	UserDTO getUser(String login);
 	
+	UserDTO getUser(Integer id);
+	
 	String deleteUser(String login);
+	
+	Integer editUser(EditUserDTO editUserRequest);
 	
 }

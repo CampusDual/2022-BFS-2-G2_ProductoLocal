@@ -28,7 +28,6 @@ export class CreateComponent implements OnInit {
   constructor(
     private userService: UserService,
     private fb: FormBuilder,
-
     private router: Router,
     private translate: TranslateService,
   ) {
@@ -58,11 +57,10 @@ export class CreateComponent implements OnInit {
     this.userService.createUser(newUser).subscribe((response) => {
       console.log(this);
       message = this.translate.instant("USER_CREATE_SUCCESS")
-      swal.fire(message, "", 'success');
-      this.redirectList(response);
+      swal.fire(message, "", 'success').then((res) => this.redirectList(response));
+      
     }, err => {
       console.log(err.message);
-
       if (err.error.errors.toString().includes("users_login_unique")) {
         message = this.translate.instant("USER_LOGIN_UNIQUE");
       } else if (err.error.errors.toString().includes("users_email_unique")) {

@@ -9,8 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.example.demo.dto.ContactDTO;
+import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.UserDTO;
+import com.example.demo.dto.mapper.ContactMapper;
+import com.example.demo.dto.mapper.EditUserMapper;
 import com.example.demo.dto.mapper.UserMapper;
+import com.example.demo.entity.Contact;
 import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
 import com.example.demo.exception.DemoException;
@@ -19,7 +24,7 @@ import com.example.demo.utils.Constant;
 
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class UserServiceImpl extends AbstractDemoService implements IUserService {
 
 	/**
 	 * Especificación JPA para {@link User}.
@@ -51,4 +56,20 @@ public class UserServiceImpl implements IUserService {
 		userRepository.delete(user);
 		return login;
 	}
+	
+	@Override
+	public Integer editUser(EditUserDTO editUserRequest) {
+		User mappedUser = EditUserMapper.INSTANCE.editUserDTOtoUser(editUserRequest);
+		User editUser = userRepository.save(fromEditUserRequest(mappedUser));
+		return editUser.getId();
+	}
+	
+	@Override
+	public UserDTO getUser(Integer id) {
+		User user = userRepository.findById(id).orElse(null);
+		return UserMapper.INSTANCE.userToUserDto(user);
+	}
 }
+
+
+

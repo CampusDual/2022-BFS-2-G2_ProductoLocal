@@ -81,9 +81,16 @@ public class User implements Serializable {
 		this.email = email;
 	}
 
-	public User(Integer id, String nif, String name, String surname, String login, String email) {
+	public User(Integer id, String nif, String name, String surname, 
+			String address, String city, Integer phone, String login, String email, 
+			String zip, String password) {
 		this(nif, name, surname, login, email);
 		this.id = id;
+		this.address = address;
+		this.city = city;
+		this.phone = phone;
+		this.zip = zip;
+		this.password = password;
 	}
 	
 	public User(String email, String login, String password) {
@@ -202,4 +209,38 @@ public class User implements Serializable {
 		CipherUtils cipher = new CipherUtils();
 		this.password = cipher.encrypt(this.login, password);
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public Integer getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Integer phone) {
+		this.phone = phone;
+	}
+
+	public String getZip() {
+		return zip;
+	}
+
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+	
+	
 }
