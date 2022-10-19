@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import { Observable, Observer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import Swal from 'sweetalert2';
 
 
 interface Tipo {
@@ -107,18 +108,21 @@ export class GetUserComponent implements OnInit {
   }
 
   delete() {
+    
     this.userService.deleteUser(this.login).subscribe(
       response => {
+        Swal.fire( this.translate.instant("USER_REMOVE_SUCCESS")).then(() =>{
         this.user = response;
         this.authService.logout();
-        this.router.navigate(['']);
+        this.router.navigate(['/login']);
         localStorage.setItem('close_session', '1');
         localStorage.setItem('close_session_language', this.translate.currentLang);
-        setTimeout(() => {
-          window.location.reload();
-        }, 100);
-      },
+        /* setTimeout(() => {
+          //window.location.reload();
+        }, 100); */
+      })},
       err => {
+        Swal.fire(this.translate.instant("USER_REMOVE_ERROR"));
         this.errors = err.error.errors as string[];
         console.error(err.status);
         console.error(this.errors);

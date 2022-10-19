@@ -76,6 +76,8 @@
   "USER_EDIT_SUCCESS": "Usuario editado",
   "USER_LOGIN_UNIQUE": "Xa existe o nome de usuario",
   "USER_EMAIL_UNIQUE": "Este email xa está rexistrado",
+  "USER_REMOVE_SUCCESS": "Eliminouse a conta de usuario",
+  "USER_REMOVE_ERROR": "Non se puido elimina-la conta de usuario",
   "NAME_REQUIRED" :"Nome obrigatorio",
   "ID_NOT_EXISTS" :"Id non existe",
   "ID_REQUIRED" :"Id obrigatorio",
