@@ -3,6 +3,7 @@ import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBarComponent } from 'src/app/components/mat-snack-bar/mat-snack-bar.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +29,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           if (localStorage.getItem('expired_session_message') != null) {
             this.translateService.get('SESSION_EXPIRED').subscribe((resultExpired) => {
               this.translateService.get('CLOSE').subscribe((resultClose) => {
-                this.snackBar.openSnackBar(resultExpired, resultClose, 'yellow-snackbar');
+                this.snackBar.openSnackBar(resultExpired, resultClose, 'yellow-snackbar'); 
                 localStorage.removeItem('expired_session_message');
               });
             });
@@ -45,7 +46,15 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     this.authService.login(username, password).subscribe(() => {
       this.redirectMain();
-    });
+    }, (error) => {
+      if(error.error.error_description.toString().includes("USER_NOT_EXISTS")) {
+        Swal.fire(this.translateService.instant("USER_NOT_EXISTS"));
+      }
+      else if(error.error.error_description.toString().includes("WRONG_PASSWORD")) {
+        Swal.fire(this.translateService.instant("WRONG_PASSWORD"));
+      }
+    }
+    );
   }
 
   redirectMain() {
