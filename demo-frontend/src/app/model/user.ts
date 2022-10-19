@@ -1,4 +1,4 @@
-import { Profiles } from "./profile";
+import { Profile } from "./profile";
 
 export class User {
     id: number;
@@ -12,5 +12,5 @@ export class User {
     login: string;
     password: string;
     zip: number;
-    profile: Profiles;
+    profiles: Array<Profile>;
 }
