@@ -1,31 +1,55 @@
-/*
-.mat-card * {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-*/
-
 .mat-card {
-    margin: 0 auto;
+    margin: 2em auto;
+    padding: 3em;
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 50vw;
+    min-width: 350px;
+    overflow-x: hidden;
 }
 
-.mat-card-content{
-    background-color: aquamarine;
-    width: 30vw;
+label{
+    font-size: 1.2em;
+    font-weight: 800;
+    margin-right: 1em;
+    min-width: fit-content;
+}
+.mat-card-title{
+    display:flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: 600;
+    min-width: 350px;
 }
 
-.mat-form-field{
-    align-items:stretch;
-    align-self:stretch;
-    
+div.inputrow{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 350px;
 }
 
-input{
-    width: auto;
-    align-self: stretch;
+mat-form-field{
+    width:100%;
+}
+
+div.mat-form-field-infix {
+    display: flex;
+    position: relative;
+    min-width: 0;
+}
+
+div.btn-cont{
+    margin: 2em;
+    display: flex;
+    justify-content: space-between;
+    min-width: fit-content;
+}
+
+.edit-btn{
+    background-color: #bfedff;
+}
+.delete-btn{
+    background-color: #fdd4ce;
 }
