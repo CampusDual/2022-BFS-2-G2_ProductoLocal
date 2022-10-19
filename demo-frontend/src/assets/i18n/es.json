@@ -75,6 +75,8 @@
   "USER_LOGIN_UNIQUE": "Ya existe el nombre de usuario",
   "USER_EMAIL_UNIQUE": "Este email ya está registrado",
   "USER_EDIT_SUCCESS": "Usuario editado",
+  "USER_REMOVE_SUCCESS": "La cuenta de usuario ha sido eliminada",
+  "USER_REMOVE_ERROR": "No ha sido posible eliminar la cuenta de usuario",
   "CONTACT_NOT_CREATED": "Contacto no creado",
   "NAME_REQUIRED" :"Nombre obligatorio",
   "ID_NOT_EXISTS" :"Id no existe",
