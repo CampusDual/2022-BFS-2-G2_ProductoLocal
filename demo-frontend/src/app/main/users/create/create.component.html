@@ -93,6 +93,15 @@
                         <mat-error>{{'passwordrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="password" color="primary"
+                            placeholder="{{'table.users.confirmPassword' | translate}}" formControlName="confirmPassword"
+                            name="user-confirm-password" required />
+                        <mat-error *ngIf="userForm.get('confirmPassword').hasError('required')">{{'passconfirmrequired' | translate}}</mat-error>
+                        <mat-error *ngIf="userForm.get('confirmPassword').hasError('confirmPasswordValidator')">{{'passdoesnotmatch' | translate}}</mat-error>
+                    </mat-form-field>
+                </div>
             </mat-card-content>
 
             <mat-card-actions>

@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
+import { ConfirmPasswordValidator } from 'src/app/model/rest/confirm-password.validator';
+
 
 interface Tipo {
   value: number,
@@ -38,13 +40,19 @@ export class CreateComponent implements OnInit {
     this.createFormGroup();
   }
 
+
   createFormGroup() {
     this.userForm = this.fb.group({
       email: [this.user.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
       login: [this.user.login],
       password:[this.user.password],
-      profiles: [this.user.profiles]
-    });
+      profiles: [this.user.profiles],
+      confirmPassword:[this.user.password]
+    },
+    {
+      validator: ConfirmPasswordValidator("password", "confirmPassword")
+    }
+    );
   }
 
   cancel() {
