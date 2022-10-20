@@ -1,54 +1,46 @@
-package com.example.demo.entity;
+package com.example.demo.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 
-@Entity
-@Table(name="products")
-public class Product {
+import com.example.demo.utils.Constant;
+
+public class ProductDTO {
 	
-	@Column
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private int id;
 	
-	@Column
+	@NotEmpty(message = Constant.NAME_REQUIRED)
 	private String name;
 	
-	@Column
+
 	private int quantity;
 	
-	@Column
+	
 	private String description;
 	
-	@Column(name = "type_prod")
+	
 	private String typeProd;
 	
-	@Column
+	
 	private double price;
 	
-	@ManyToOne
-	@JoinColumn(name="user_id")
+	
 	private int userId;
 	
 	
-	public Product() {
+	public ProductDTO() {
 		
 	}
 
 
-	public Product(int id, String name) {
+	public ProductDTO(int id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
 	}
 
 
-	public Product(int id, String name, int quantity, String description, String typeProd, double price, int userId) {
+	public ProductDTO(int id, String name, int quantity, String description, String typeProd, double price, int userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -105,8 +97,8 @@ public class Product {
 	}
 
 
-	public void setTypeProd(String typeProd) {
-		this.typeProd = typeProd;
+	public void setTypeProd(String type_prod) {
+		this.typeProd = type_prod;
 	}
 
 
@@ -133,3 +125,4 @@ public class Product {
 	
 
 }
+
