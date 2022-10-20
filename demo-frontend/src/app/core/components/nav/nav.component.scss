@@ -24,3 +24,9 @@ $sidenav-width: 320px; // 240px;
 .app-nav-list-icon {
   margin: 0 12px 0 12px;
 }
+
+.list-item-active {
+  font-weight: bold;
+  color: #000000 !important;
+  background: rgba(191, 237, 255, 0.7);
+}

@@ -10,3 +10,8 @@ $app-toolbar-title-padding: 16px !default;
   margin: 0;
   cursor: pointer;
 }
+
+.mat-toolbar.mat-primary {
+  background: #bfedff;
+  color: black;
+}
