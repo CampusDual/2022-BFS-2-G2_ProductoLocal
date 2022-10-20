@@ -25,11 +25,12 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { CustomMatPaginatorIntl } from './model/custom-mat-paginator';
 import { CoreModule } from './core/core.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     ConfirmationDialogComponent,
-    MatSnackBarComponent
+    MatSnackBarComponent,
   ],
   imports: [
     TranslateModule.forRoot({
