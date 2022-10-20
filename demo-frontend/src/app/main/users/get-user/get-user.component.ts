@@ -28,7 +28,9 @@ export class GetUserComponent implements OnInit {
   login: string;
   userForm: FormGroup;
   errors: string[];
-
+  unEditable: boolean = true;
+  saveBttn: string = "display: none";
+  editBttn: string = "display: inline-block";
 
   constructor(
     private authService: AuthService,
@@ -48,8 +50,8 @@ export class GetUserComponent implements OnInit {
       response => {
         this.user = response;
       },
-      err => {
-        this.errors = err.error.errors as string[];
+      (err) => {
+        this.errors = err.error as string[];
         console.error(err.status);
         console.error(this.errors);
       }
@@ -83,10 +85,24 @@ export class GetUserComponent implements OnInit {
     }
   }
 
-  update(){
-
+  save() {
+    /*const newUser: User = Object.assign({}, this.userForm.value);
+    this.userService.editUser(newUser).subscribe((response) => {
+      this.redirectList(response);
+    });*/
   }
 
+  onEditable() {
+    this.unEditable = false;
+    this.saveBttn = "display: inline-block";
+    this.editBttn = "display: none";
+  }
+
+  onCancel() {
+    this.unEditable = true;
+    this.saveBttn = "display: none";
+    this.editBttn = "display: inline-block";
+  }
 
   onDelete() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
@@ -108,19 +124,20 @@ export class GetUserComponent implements OnInit {
   }
 
   delete() {
-    
+
     this.userService.deleteUser(this.login).subscribe(
       response => {
-        Swal.fire( this.translate.instant("USER_REMOVE_SUCCESS")).then(() =>{
-        this.user = response;
-        this.authService.logout();
-        this.router.navigate(['/login']);
-        localStorage.setItem('close_session', '1');
-        localStorage.setItem('close_session_language', this.translate.currentLang);
-        /* setTimeout(() => {
-          //window.location.reload();
-        }, 100); */
-      })},
+        Swal.fire(this.translate.instant("USER_REMOVE_SUCCESS")).then(() => {
+          this.user = response;
+          this.authService.logout();
+          this.router.navigate(['/login']);
+          localStorage.setItem('close_session', '1');
+          localStorage.setItem('close_session_language', this.translate.currentLang);
+          /* setTimeout(() => {
+            //window.location.reload();
+          }, 100); */
+        })
+      },
       err => {
         Swal.fire(this.translate.instant("USER_REMOVE_ERROR"));
         this.errors = err.error.errors as string[];
@@ -129,6 +146,6 @@ export class GetUserComponent implements OnInit {
       }
     );
 
-    
+
   }
 }
