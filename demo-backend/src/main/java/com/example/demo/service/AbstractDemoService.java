@@ -46,6 +46,6 @@ public class AbstractDemoService {
 	public User fromEditUserRequest(User userRequest) {
 		return new User(userRequest.getId(), userRequest.getNif(),userRequest.getName(), userRequest.getSurname(),
 				userRequest.getAddress(), userRequest.getCity(), userRequest.getPhone(),
-				userRequest.getLogin(), userRequest.getEmail(), userRequest.getZip(), userRequest.getPassword());
+				userRequest.getLogin(), userRequest.getEmail(), userRequest.getZip(), userRequest.getPassword(), userRequest.getProfiles());
 	}
 }

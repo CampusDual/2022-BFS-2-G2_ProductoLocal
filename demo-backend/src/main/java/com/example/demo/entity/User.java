@@ -83,7 +83,7 @@ public class User implements Serializable {
 
 	public User(Integer id, String nif, String name, String surname, 
 			String address, String city, Integer phone, String login, String email, 
-			String zip, String password) {
+			String zip, String password, Set<Profile> profiles) {
 		this(nif, name, surname, login, email);
 		this.id = id;
 		this.address = address;
@@ -91,6 +91,7 @@ public class User implements Serializable {
 		this.phone = phone;
 		this.zip = zip;
 		this.password = password;
+		this.profiles = profiles;
 	}
 	
 	public User(String email, String login, String password) {

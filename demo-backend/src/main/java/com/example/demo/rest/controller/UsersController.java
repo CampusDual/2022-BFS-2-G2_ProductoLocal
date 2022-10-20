@@ -167,6 +167,7 @@ public class UsersController {
 		CipherUtils cipher = new CipherUtils();
 		UserDTO userOlder = userService.getUser(editUserRequest.getId());
 		String psswd = cipher.decrypt(userOlder.getLogin(), userOlder.getPassword());
+		editUserRequest.setProfiles(userOlder.getProfiles());
 		editUserRequest.setPassword(psswd);
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
