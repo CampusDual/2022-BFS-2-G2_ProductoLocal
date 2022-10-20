@@ -81,7 +81,7 @@
   "CONTACT_NOT_DELETE": "Contacto non borrado",
   "CONTACT_NOT_CREATED": "Contacto non creado",
   "USER_CREATE_SUCCESS": "Usuario rexistrado correctamente",
-  "USER_EDIT_SUCCESS": "Usuario editado",
+  "USER_EDIT_SUCCESS": "Usuario editado correctamente",
   "USER_LOGIN_UNIQUE": "Xa existe o nome de usuario",
   "USER_EMAIL_UNIQUE": "Este email xa está rexistrado",
   "USER_REMOVE_SUCCESS": "Eliminouse a conta de usuario",

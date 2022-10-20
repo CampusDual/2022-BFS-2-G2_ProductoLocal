@@ -21,4 +21,5 @@ export const API_CONFIG = {
   createUser: environment.usersBaseUrl + '/createUser',
   getUser: environment.usersBaseUrl + '/getUser',
   deleteUser: environment.usersBaseUrl + '/deleteUser',
+  editUser: environment.usersBaseUrl + '/editUser',
 };

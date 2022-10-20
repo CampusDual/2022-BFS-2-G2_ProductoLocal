@@ -81,7 +81,7 @@
   "CONTACT_NOT_EDIT": "Error editing contact",
   "CONTACT_NOT_DELETE": "Contact not deleted",
   "CONTACT_NOT_CREATED": "Contact not create",
-  "USER_EDIT_SUCCESS": "Edited user",
+  "USER_EDIT_SUCCESS": "User successfully edited",
   "USER_CREATE_SUCCESS": "User successfully registered",
   "USER_LOGIN_UNIQUE": "Usermane already exists",
   "USER_EMAIL_UNIQUE": "Email already registered",

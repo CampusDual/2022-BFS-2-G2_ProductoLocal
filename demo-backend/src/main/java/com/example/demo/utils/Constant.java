@@ -37,8 +37,12 @@ public class Constant {
 	public static final String USER_PASSWORD_REQUIRED = "USER_PASSWORD_REQUIRED";
 	public static final String USER_FULLNAME_REQUIRED="USER_FULLNAME_REQUIRED";
 	
+	//Product messages
+	public static final String PRODUCT_NOT_CREATED = "PRODUCT_NOT_CREATED";
+	
 	//User error
 	public static final String LOGIN_REQUIRED ="LOGIN_REQUIRED";
+	public static final String USER_NOT_EDIT ="USER_NOT_EDITED";
 	public static final String NIF_REQUIRED ="NIF_REQUIRED";
 	public static final String LOGIN_EXISTS ="LOGIN_EXISTS";
 	public static final String NIF_MALFORMED ="NIF_MALFORMED";

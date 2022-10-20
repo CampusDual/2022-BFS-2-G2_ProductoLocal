@@ -1,3 +1,5 @@
+import { User } from "./user";
+
 export class Product{
     id:number;
     name:string;
@@ -5,5 +7,5 @@ export class Product{
     description:string;
     type_prod:string;
     price:number;
-    user_id:number;
+    user:User;
 }

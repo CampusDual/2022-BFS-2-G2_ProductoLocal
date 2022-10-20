@@ -34,7 +34,7 @@ public class Product {
 	
 	@ManyToOne
 	/*@JoinColumn (name="id")*/
-	private User userId;
+	private User user;
 	
 	
 	public Product() {
@@ -49,7 +49,7 @@ public class Product {
 	}
 
 
-	public Product(int id, String name, int quantity, String description, String typeProd, double price, User userId) {
+	public Product(int id, String name, int quantity, String description, String typeProd, double price, User user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -57,7 +57,7 @@ public class Product {
 		this.description = description;
 		this.typeProd = typeProd;
 		this.price = price;
-		this.userId = userId;
+		this.user = user;
 	}
 
 
@@ -122,12 +122,12 @@ public class Product {
 
 
 	public User getUserId() {
-		return userId;
+		return user;
 	}
 
 
-	public void setUserId(User userId) {
-		this.userId = userId;
+	public void setUserId(User user) {
+		this.user = user;
 	}
 	
 	

@@ -56,6 +56,33 @@ export class CreateUserRequest {
   
   }
 }
+export class EditUserRequest {
+  id: number;
+  name: string;
+  surname: string;
+  address: string;
+  city: string;
+  email: string;
+  phone: number;
+  nif: string;
+  login: string;
+  password: string;
+  zip: number;
+  profiles: Array<Profile>;
+
+  constructor(user: User) {
+    this.id = user.id;
+    this.name = user.name;
+    this.surname = user.surname;
+    this.address = user.address;
+    this.city = user.city;
+    this.email = user.email;
+    this.phone = user.phone;
+    this.nif = user.nif;
+    this.login = user.login;
+    this.zip = user.zip;    
+  }
+}
 
 export class EditContactRequest extends CreateContactRequest {
   id: number;

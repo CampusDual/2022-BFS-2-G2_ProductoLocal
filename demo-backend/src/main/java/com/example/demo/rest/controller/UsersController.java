@@ -196,7 +196,7 @@ public class UsersController {
 					errors.add(error.getDefaultMessage());
 				}
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.WARNING.getValue());
-				message = Constant.CONTACT_NOT_EDIT;
+				message = Constant.USER_NOT_EDIT;
 				response.put(Constant.ERROR, errors);
 				status = HttpStatus.OK;
 			}
