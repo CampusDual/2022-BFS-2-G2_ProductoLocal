@@ -37,6 +37,7 @@
       "email": "E-Mail",
       "login": "Username",
       "password": "Password",
+      "confirmPassword":"Confirm password",
       "category":"Category",
       "address": "Address",
       "city": "City",
@@ -110,5 +111,8 @@
   "phonepattern": "The phone format is not correct",
   "emailpattern": "The email format is not correct",
   "loginrequired": "Username is a required field",
-  "emailrequired": "Email is a required field"
+  "emailrequired": "Email is a required field",
+  "passwordrequired":"Password is a required field",
+  "passconfirmrequired":"Confirmation is a required field",
+  "passdoesnotmatch":"Cnfirmation and password doesn't match"
 }

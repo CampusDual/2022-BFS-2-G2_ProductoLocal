@@ -37,6 +37,7 @@
       "email": "E-Mail",
       "login": "Nombre de usuario",
       "password": "Contraseña",
+      "confirmPassword":"Confirmar contraseña",
       "category":"Categoría",
       "address": "Dirección",
       "city": "Ciudad",
@@ -109,6 +110,8 @@
   "phonepattern": "El formato del teléfono no es correcto",
   "emailpattern": "El formato del email no es correcto",
   "loginrequired": "El nombre de usuario es un campo obligatorio",
-  "emailrequired": "El email es un campo obligatorio"
-
+  "emailrequired": "El email es un campo obligatorio",
+  "passwordrequired":"La constraseña es un campo obligatorio",
+  "passconfirmrequired":"La confirmación es un campo obligatorio",
+  "passdoesnotmatch":"La confirmación y la contraseña no coinciden"
 }
