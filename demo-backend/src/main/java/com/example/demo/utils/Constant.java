@@ -42,6 +42,7 @@ public class Constant {
 	
 	//User error
 	public static final String LOGIN_REQUIRED ="LOGIN_REQUIRED";
+	public static final String USER_NOT_EDIT ="USER_NOT_EDITED";
 	public static final String NIF_REQUIRED ="NIF_REQUIRED";
 	public static final String LOGIN_EXISTS ="LOGIN_EXISTS";
 	public static final String NIF_MALFORMED ="NIF_MALFORMED";

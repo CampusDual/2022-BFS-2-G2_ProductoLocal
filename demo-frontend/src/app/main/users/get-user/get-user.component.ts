@@ -25,6 +25,7 @@ interface Tipo {
 export class GetUserComponent implements OnInit {
 
   user: User;
+  userE: User;
   login: string;
   userForm: FormGroup;
   errors: string[];
@@ -42,6 +43,7 @@ export class GetUserComponent implements OnInit {
   ) {
     this.login = this.authService.getUserName();
     this.user = new User();
+    this.userE = new User();
   }
 
   ngOnInit(): void {
@@ -60,16 +62,15 @@ export class GetUserComponent implements OnInit {
 
   userFormGroup() {
     this.userForm = this.fb.group({
-      email: [this.user.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
-      login: [this.user.login],
-      nif: [this.user.nif],
-      password: [this.user.password],
-      city: [this.user.city],
-      name: [this.user.name],
-      surname: [this.user.surname],
-      address: [this.user.address],
-      phone: [this.user.phone],
-      zip: [this.user.zip]
+      email: [this.userE.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
+      login: [this.userE.login],
+      nif: [this.userE.nif],
+      city: [this.userE.city],
+      name: [this.userE.name],
+      surname: [this.userE.surname],
+      address: [this.userE.address],
+      phone: [this.userE.phone],
+      zip: [this.userE.zip]
     });
   }
 
@@ -79,17 +80,60 @@ export class GetUserComponent implements OnInit {
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/login']);
+      this.router.navigate(['/getUser']);
     } else {
       console.log(response);
     }
   }
 
   save() {
-    /*const newUser: User = Object.assign({}, this.userForm.value);
+    const newUser: User = Object.assign({}, this.userForm.value);
+    let message;
+    this.assignValues(newUser);
     this.userService.editUser(newUser).subscribe((response) => {
+      message = this.translate.instant("USER_EDIT_SUCCESS")
       this.redirectList(response);
-    });*/
+    }, (err) => {
+      if (err.error.errors.toString().includes("users_email_unique")) {
+        message = this.translate.instant("USER_EMAIL_UNIQUE");
+      }
+      Swal.fire({
+        confirmButtonColor: '#bfedff',
+        title: this.translate.instant('ERROR'),
+        text: this.translate.instant(message),
+        icon: 'error'
+      });
+    });
+    this.onCancel();
+  }
+
+  assignValues(userE: User) {
+    userE.id = this.user.id;
+    userE.login = this.user.login;
+    if (userE.email == null) {
+      userE.email = this.user.email;
+    }
+    if (userE.phone == null) {
+      userE.phone = this.user.phone;
+    }
+    if (userE.zip == null) {
+      userE.zip = this.user.zip;
+    }
+    if (userE.name == null) {
+      userE.name = this.user.name;
+    }
+    if (userE.surname == null) {
+      userE.surname = this.user.surname;
+    }
+    if (userE.address == null) {
+      userE.address = this.user.address;
+    }
+    if (userE.city == null) {
+      userE.city = this.user.city;
+    }
+    if (userE.nif == null) {
+      userE.nif = this.user.nif;
+    }
   }
 
   onEditable() {
@@ -124,7 +168,6 @@ export class GetUserComponent implements OnInit {
   }
 
   delete() {
-
     this.userService.deleteUser(this.login).subscribe(
       response => {
         Swal.fire(this.translate.instant("USER_REMOVE_SUCCESS")).then(() => {

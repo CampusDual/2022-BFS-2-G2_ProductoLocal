@@ -43,7 +43,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   login(username: string, password: string, event: Event) {
     event.preventDefault(); // Avoid default action for the submit button of the login form
-
     this.authService.login(username, password).subscribe(() => {
       this.redirectMain();
     }, (error) => {
