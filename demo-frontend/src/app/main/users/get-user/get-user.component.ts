@@ -91,7 +91,8 @@ export class GetUserComponent implements OnInit {
     let message;
     this.assignValues(newUser);
     this.userService.editUser(newUser).subscribe((response) => {
-      message = this.translate.instant("USER_EDIT_SUCCESS")
+      message = this.translate.instant("USER_EDIT_SUCCESS");
+      Swal.fire(message, "", 'success');
       this.redirectList(response);
     }, (err) => {
       if (err.error.errors.toString().includes("users_email_unique")) {
