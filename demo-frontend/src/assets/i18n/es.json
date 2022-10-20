@@ -11,11 +11,18 @@
   "demo": {
     "title": "Demo"
   },
+  "mainMenu":{
+    "title": "Producto Local"
+  },
   "menu": {
+    "title": "MENU",
     "home": "Home",
     "contacts": "Contactos",
     "logout": "Cerrar sesión",
     "personal_data": "Mi datos de perfil"
+  },
+  "main":{
+    "welcome":"¡Bienvenido!"
   },
   "language": {
     "spanish": "Español",
