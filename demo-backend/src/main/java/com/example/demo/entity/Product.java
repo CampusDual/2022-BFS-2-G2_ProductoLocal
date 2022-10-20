@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -12,7 +13,7 @@ import javax.persistence.Table;
 @Table(name="products")
 public class Product {
 	
-	@Column
+	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
@@ -32,8 +33,8 @@ public class Product {
 	private double price;
 	
 	@ManyToOne
-	@JoinColumn(name="user_id")
-	private int userId;
+	/*@JoinColumn (name="id")*/
+	private User userId;
 	
 	
 	public Product() {
@@ -48,7 +49,7 @@ public class Product {
 	}
 
 
-	public Product(int id, String name, int quantity, String description, String typeProd, double price, int userId) {
+	public Product(int id, String name, int quantity, String description, String typeProd, double price, User userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -120,12 +121,12 @@ public class Product {
 	}
 
 
-	public int getUserId() {
+	public User getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(User userId) {
 		this.userId = userId;
 	}
 	

@@ -25,7 +25,7 @@ public class ProductDTO {
 	private double price;
 	
 	
-	private int userId;
+	private UserDTO userId;
 	
 	
 	public ProductDTO() {
@@ -40,7 +40,7 @@ public class ProductDTO {
 	}
 
 
-	public ProductDTO(int id, String name, int quantity, String description, String typeProd, double price, int userId) {
+	public ProductDTO(int id, String name, int quantity, String description, String typeProd, double price, UserDTO userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -112,12 +112,12 @@ public class ProductDTO {
 	}
 
 
-	public int getUserId() {
+	public UserDTO getUserId() {
 		return userId;
 	}
 
 
-	public void setUserId(int userId) {
+	public void setUserId(UserDTO userId) {
 		this.userId = userId;
 	}
 	
