@@ -62,7 +62,7 @@ export class GetUserComponent implements OnInit {
 
   userFormGroup() {
     this.userForm = this.fb.group({
-      email: [this.userE.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
+      email: [this.userE.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],
       login: [this.userE.login],
       nif: [this.userE.nif],
       city: [this.userE.city],
@@ -89,30 +89,32 @@ export class GetUserComponent implements OnInit {
   save() {
     const newUser: User = Object.assign({}, this.userForm.value);
     let message;
-    if (newUser.email == null || newUser.email.length != 0) {
+    if ((newUser.email == null || newUser.email.length != 0)) {
       this.assignValues(newUser);
-      this.userService.editUser(newUser).subscribe((response) => {
-        message = this.translate.instant(response.responseMessage);
-        if (response.responseCode == 'WARNING') {
-          console.log(response.errors);
-          message = this.translate.instant(response.errors[0]);
-          Swal.fire("ERROR", message, 'error').then((r) => window.location.reload());;
-        } else {
+      let regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
+      console.log(regex.test(newUser.email));
+      if (!regex.test(newUser.email)) {
+        message = "USER_EMAIL_INVALID";
+        Swal.fire("ERROR", message, 'error').then((r) => window.location.reload());;
+      } else {
+        this.userService.editUser(newUser).subscribe((response) => {
+          message = this.translate.instant(response.responseMessage);
+
           Swal.fire(message, "", 'success');
           this.redirectList(response);
-        }
-        console.log(response);
-      }, (err) => {
-        if (err.error.errors.toString().includes("users_email_unique")) {
-          message = this.translate.instant("USER_EMAIL_UNIQUE");
-        }
-        Swal.fire({
-          confirmButtonColor: '#bfedff',
-          title: this.translate.instant('ERROR'),
-          text: this.translate.instant(message),
-          icon: 'error'
-        }).then((r) => window.location.reload());
-      });
+          console.log(response);
+        }, (err) => {
+          if (err.error.errors.toString().includes("users_email_unique")) {
+            message = this.translate.instant("USER_EMAIL_UNIQUE");
+          }
+          Swal.fire({
+            confirmButtonColor: '#bfedff',
+            title: this.translate.instant('ERROR'),
+            text: this.translate.instant(message),
+            icon: 'error'
+          }).then((r) => window.location.reload());
+        });
+      }
     } else {
       message = "EMAIL_REQUIRED";
       Swal.fire({
