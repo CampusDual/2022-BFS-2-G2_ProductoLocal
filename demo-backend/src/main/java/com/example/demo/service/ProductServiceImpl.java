@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.borjaglez.springify.repository.specification.SpecificationBuilder;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.mapper.ProductMapper;
+import com.example.demo.dto.mapper.UserMapper;
 import com.example.demo.entity.Product;
+import com.example.demo.entity.User;
 import com.example.demo.repository.ProductRepository;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 
@@ -67,6 +71,19 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 	public ProductDTO getProduct(Integer id) {
 		Product product = productRepository.findById(id).orElse(null);
 		return ProductMapper.INSTANCE.productToProductDto(product);
+	}
+	
+	public List<ProductDTO> findByUser(String login) {
+		List<ProductDTO> allProducts = this.findAll();
+		List<ProductDTO> myProducts = new ArrayList<ProductDTO>();
+		for(ProductDTO product : allProducts) {
+			if(product.getUser() != null) {
+				if(product.getUser().getLogin().equals(login)) {
+					myProducts.add(product);
+				}
+			}
+		}
+		return myProducts;
 	}
 
 }

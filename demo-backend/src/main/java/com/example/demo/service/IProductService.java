@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 
 
@@ -20,5 +21,6 @@ public interface IProductService {
 	List<ProductDTO> findAll();
 	
 	Integer deleteProduct(Integer id);
-
+	
+	List<ProductDTO> findByUser(String login);
 }

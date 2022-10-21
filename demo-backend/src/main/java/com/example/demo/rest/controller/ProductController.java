@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.service.IProductService;
 import com.example.demo.utils.Constant;
@@ -162,5 +163,13 @@ public class ProductController {
 		return re;
 	}
 	
+	
+	@GetMapping(path = "/myProducts")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
+	public @ResponseBody List<ProductDTO> findAll(@RequestParam(value = "login") String login) {
+		LOGGER.info("findAll in progress...");
+		 List<ProductDTO> a = productService.findByUser(login);
+		 return a;
+	}
 }
       
