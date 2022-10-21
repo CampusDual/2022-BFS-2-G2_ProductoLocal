@@ -111,6 +111,7 @@
   "CONTACT_ALREADY_EXISTS" :"Contact already exists",
   "CONTACT_CONSTRAINT_VIOLATION" :"",
   "UNKNOWN_ERROR": "Unknown error",
+  "PRODUCT_CREATE_SUCCESS": "Product succesfully registered",
   "CLOSE": "CLOSE",
   "filter": "Filter",
   "new": "New",

@@ -110,6 +110,7 @@
   "PHONE_ALREADY_EXISTS": "O teléfono xa existe",
   "UNKNOWN_ERROR": "Erro descoñecido",
   "SESSION_EXPIRED": "Sesión expirada",
+  "PRODUCT_CREATE_SUCCESS": "Produto rexistrado correctamente",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",
