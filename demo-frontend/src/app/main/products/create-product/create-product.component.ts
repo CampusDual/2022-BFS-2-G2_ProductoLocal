@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
+import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -22,6 +23,8 @@ export class CreateProductComponent implements OnInit {
 
   product: Product;
   productForm: FormGroup;
+  userOwnerLogin:string;
+  userOwner:User;
 
   categories: Tipo[] = [
     { value: 'unidades'},
@@ -31,13 +34,29 @@ export class CreateProductComponent implements OnInit {
   ];
 
   constructor(
+    private authService: AuthService,
     private productService: ProductService,
     private fb: FormBuilder,
     private router: Router,
     private translate: TranslateService,
     private userService: UserService,
-  ) {
+    ) {
     this.product = new Product();
+    this.userOwnerLogin = this.authService.getUserName();
+    this.userService.getUser(this.userOwnerLogin).subscribe(
+      response => {
+        this.userOwner = response;
+      }
+/*
+      ,
+      (err) => {
+        this.errors = err.error as string[];
+        console.error(err.status);
+        console.error(this.errors);
+      }
+      );
+*/
+    )
   }
 
   ngOnInit(): void {
@@ -61,6 +80,8 @@ export class CreateProductComponent implements OnInit {
 
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
+    newProduct.user = this.userOwner;
+    console.log(newProduct);
     let message;
     this.productService.createProduct(newProduct).subscribe((response) => {
       console.log(this);
