@@ -16,6 +16,13 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.products.typeProd'| translate}}"
+                            formControlName="typeProd" name="typeProd" />
+                    </mat-form-field>
+                </div>
+
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
                         <input matInput type="number" color="primary" placeholder="{{'table.products.quantity' | translate}}"
                             formControlName="quantity" name="product-quantity" required />
                         <mat-error>{{'quantityrequired' | translate}}</mat-error>
@@ -36,8 +43,8 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="text" color="primary" placeholder="{{'table.products.price' | translate}}"
-                            formControlName="price" name="product-quantity" required />
+                        <input matInput type="number" color="primary" placeholder="{{'table.products.price' | translate}}"
+                            formControlName="price" name="product-quantity" required min=0/>
                         <mat-error>{{'pricerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>

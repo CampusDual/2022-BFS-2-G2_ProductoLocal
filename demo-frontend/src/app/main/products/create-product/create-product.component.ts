@@ -66,6 +66,7 @@ export class CreateProductComponent implements OnInit {
   createFormGroup() {
     this.productForm = this.fb.group({
       name: [this.product.name],
+      typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
       description:[this.product.description],
       price: [this.product.price],

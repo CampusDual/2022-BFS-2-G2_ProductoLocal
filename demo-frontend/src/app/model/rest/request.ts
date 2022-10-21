@@ -99,7 +99,7 @@ export class CreateProductRequest {
   name: string;
   quantity: number;
   description: string;
-  type_prod: string;
+  typeProd: string;
   price: number;
   user: User;
 
@@ -108,6 +108,8 @@ export class CreateProductRequest {
     this.quantity = product.quantity;
     this.description = product.description;
     this.price = product.price;
+    this.typeProd = product.typeProd;
+    this.user = product.user;
   
   }
 }

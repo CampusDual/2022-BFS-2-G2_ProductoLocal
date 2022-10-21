@@ -54,6 +54,7 @@
     },
     "products": {
       "name":"nombre",
+      "typeProd":"Categoría",
       "quantity":"cantidad",
       "description":"unidades",
       "price":"precio"
