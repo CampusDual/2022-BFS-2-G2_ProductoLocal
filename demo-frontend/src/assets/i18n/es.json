@@ -19,7 +19,8 @@
     "home": "Home",
     "contacts": "Contactos",
     "logout": "Cerrar sesión",
-    "personal_data": "Mi datos de perfil"
+    "personal_data": "Mi datos de perfil",
+    "add_product": "Añadir producto"
   },
   "main":{
     "welcome":"¡Bienvenido!"
