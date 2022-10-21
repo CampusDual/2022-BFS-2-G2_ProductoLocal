@@ -40,7 +40,7 @@ export class NavComponent implements OnInit, OnDestroy {
       icon: 'add box  icon',
       route: 'products/createProduct',
       title: 'menu.add_product',
-      allowedRoles: ['PRODUCTS']
+      allowedRoles: ['CREATE_PRODUCTS']
     },
 
   ];
