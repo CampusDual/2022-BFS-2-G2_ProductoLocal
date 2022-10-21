@@ -94,7 +94,7 @@ export class GetUserComponent implements OnInit {
       let regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
       console.log(regex.test(newUser.email));
       if (!regex.test(newUser.email)) {
-        message = "USER_EMAIL_INVALID";
+        message =this.translate.instant("EMAIL_INVALID");
         Swal.fire("ERROR", message, 'error').then((r) => window.location.reload());;
       } else {
         this.userService.editUser(newUser).subscribe((response) => {
