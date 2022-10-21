@@ -20,7 +20,11 @@
     "contacts": "Contactos",
     "logout": "Cerrar sesión",
     "personal_data": "Mi datos de perfil",
-    "add_product": "Añadir producto"
+    "add_product": "Añadir producto",
+    "units":"unidades",
+    "gr": "gramos",
+    "kg": "kg",
+    "litres": "litros"
   },
   "main":{
     "welcome":"¡Bienvenido!"
