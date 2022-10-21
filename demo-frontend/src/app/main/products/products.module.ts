@@ -16,14 +16,16 @@ import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
+import { CreateProductComponent } from './create-product/create-product.component';
 
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
-    ProductsLayoutComponent
+    ProductsLayoutComponent,
+    CreateProductComponent,
   ],
   imports: [
     ProductsRoutingModule,

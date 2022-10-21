@@ -1,4 +1,5 @@
 import { Contact } from '../contact';
+import { Product } from '../product';
 import { Profile } from '../profile';
 import { User } from '../user';
 
@@ -90,5 +91,23 @@ export class EditContactRequest extends CreateContactRequest {
   constructor(contact: Contact) {
     super(contact);
     this.id = contact.id;
+  }
+}
+
+export class CreateProductRequest {
+  id: number;
+  name: string;
+  quantity: number;
+  description: string;
+  type_prod: string;
+  price: number;
+  user: User;
+
+  constructor(product: Product) {
+    this.name = product.name;
+    this.quantity = product.quantity;
+    this.description = product.description;
+    this.price = product.price;
+  
   }
 }

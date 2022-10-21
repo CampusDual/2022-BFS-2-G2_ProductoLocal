@@ -45,7 +45,7 @@ public class ProductController {
 	
 	
 	@PostMapping(path = "/createProduct")
-	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
 		LOGGER.info("createProduct in progress...");
 		
