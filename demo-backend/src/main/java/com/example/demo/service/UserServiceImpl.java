@@ -1,26 +1,16 @@
 package com.example.demo.service;
 
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.dto.ContactDTO;
 import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.UserDTO;
-import com.example.demo.dto.mapper.ContactMapper;
 import com.example.demo.dto.mapper.EditUserMapper;
 import com.example.demo.dto.mapper.UserMapper;
-import com.example.demo.entity.Contact;
-import com.example.demo.entity.Section;
 import com.example.demo.entity.User;
-import com.example.demo.exception.DemoException;
 import com.example.demo.repository.UserRepository;
-import com.example.demo.utils.Constant;
 
 
 @Service

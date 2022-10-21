@@ -18,19 +18,19 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.ContactDTO;
 import com.example.demo.dto.ProductDTO;
-import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.service.IProductService;
-import com.example.demo.service.IUserService;
-import com.example.demo.utils.CipherUtils;
 import com.example.demo.utils.Constant;
+
 
 @CrossOrigin(origins = {"http://localhost:4201"})
 @RestController
@@ -42,8 +42,6 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 	
-	
-	
 	@PostMapping(path = "/createProduct")
 	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
@@ -52,7 +50,7 @@ public class ProductController {
 		ProductDTO productNew = null;
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
-		String message = Constant.CONTACT_CREATE_SUCCESS;
+		String message = Constant.PRODUCT_CREATE_SUCCESS;
 		
 		if (!result.hasErrors()) {
 			try {
@@ -81,11 +79,9 @@ public class ProductController {
 		}
 		LOGGER.info("createProduct is finished...");
 		response.put(Constant.MESSAGE, message);
-		
-		
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	}
-	
+
 	@PostMapping(path = "/editProduct", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
 	public ResponseEntity<?> editProduct(@Valid @RequestBody ProductDTO editProductRequest, BindingResult result) {
@@ -131,6 +127,40 @@ public class ProductController {
 	
 	}
 	
+	@GetMapping(path = "/getProducts")
+	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	public @ResponseBody List<ProductDTO> findAll() {
+		LOGGER.info("findAll in progress...");
+		return productService.findAll();
+	}
+	
+	@GetMapping("/getProduct")
+	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	public ResponseEntity<?> getProduct(@RequestParam(value = "id") Integer id) {
+		LOGGER.info("getProduct in progress...");
+		ProductDTO product = null;
+		Map<String, Object> response = new HashMap<>();
+		ResponseEntity<?>re = null;
+		try {
+			product = productService.getProduct(id);
+			if(product==null) {
+				response.put(Constant.MESSAGE, Constant.PRODUCT_NOT_EXISTS);
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+			}else {
+				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
+				re = new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
+			}
+		} catch (DataAccessException e) {
+			LOGGER.error(e.getMessage());
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, e.getMessage());
+			re=  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
+		} 
+		LOGGER.info("getProduct is finished...");
+		return re;
+	}
 	
 }
       

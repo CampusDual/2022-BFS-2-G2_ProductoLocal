@@ -69,7 +69,6 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 	public Integer deleteContact(Integer id) {
 		contactRepository.deleteById(id);
 		return id;
-
 	}
 
 	@Override
@@ -84,5 +83,7 @@ public class ContactServiceImpl extends AbstractDemoService implements IContactS
 		Contact editContact = contactRepository.save(fromEditContactRequest(mappedContact));
 		return editContact.getId();
 	}
+	
+	
 
 }
