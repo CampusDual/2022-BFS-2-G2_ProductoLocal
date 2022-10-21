@@ -55,8 +55,8 @@
                     <div class="inputrow">
                         <label for="user-email">{{"table.users.email" | translate}}: </label>
                         <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="email" name="user-email"
-                                [value]="this.user.email" required [readonly]="this.unEditable" />
+                            <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary" formControlName="email" name="user-email"
+                                [value]="this.user.email" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
@@ -75,7 +75,7 @@
                         </mat-form-field>
                     </div>
                     <div class="btn-cont">
-                        <button class="edit-btn"  (click)="save()" [style]="this.saveBttn" mat-raised-button>
+                        <button class="edit-btn" type="submit" (click)="save()" [style]="this.saveBttn" mat-raised-button>
                             <mat-icon>save</mat-icon> {{ "save" | translate }}
                         </button>
                         <button class="delete-btn" (click)="onCancel()" [style]="this.saveBttn" mat-raised-button>
