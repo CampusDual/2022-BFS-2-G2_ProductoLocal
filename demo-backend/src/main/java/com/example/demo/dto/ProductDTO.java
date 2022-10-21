@@ -112,12 +112,12 @@ public class ProductDTO {
 	}
 
 
-	public UserDTO getUserId() {
+	public UserDTO getUser() {
 		return userId;
 	}
 
 
-	public void setUserId(UserDTO userId) {
+	public void setUser(UserDTO userId) {
 		this.userId = userId;
 	}
 	
