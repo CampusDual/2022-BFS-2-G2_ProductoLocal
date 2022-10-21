@@ -80,7 +80,7 @@ export class GetUserComponent implements OnInit {
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/getUser']);
+      this.router.navigate(['/users/getUser']);
     } else {
       console.log(response);
     }
@@ -89,22 +89,39 @@ export class GetUserComponent implements OnInit {
   save() {
     const newUser: User = Object.assign({}, this.userForm.value);
     let message;
-    this.assignValues(newUser);
-    this.userService.editUser(newUser).subscribe((response) => {
-      message = this.translate.instant("USER_EDIT_SUCCESS");
-      Swal.fire(message, "", 'success');
-      this.redirectList(response);
-    }, (err) => {
-      if (err.error.errors.toString().includes("users_email_unique")) {
-        message = this.translate.instant("USER_EMAIL_UNIQUE");
-      }
+    if (newUser.email == null || newUser.email.length != 0) {
+      this.assignValues(newUser);
+      this.userService.editUser(newUser).subscribe((response) => {
+        message = this.translate.instant(response.responseMessage);
+        if (response.responseCode == 'WARNING') {
+          console.log(response.errors);
+          message = this.translate.instant(response.errors[0]);
+          Swal.fire("ERROR", message, 'error').then((r) => window.location.reload());;
+        } else {
+          Swal.fire(message, "", 'success');
+          this.redirectList(response);
+        }
+        console.log(response);
+      }, (err) => {
+        if (err.error.errors.toString().includes("users_email_unique")) {
+          message = this.translate.instant("USER_EMAIL_UNIQUE");
+        }
+        Swal.fire({
+          confirmButtonColor: '#bfedff',
+          title: this.translate.instant('ERROR'),
+          text: this.translate.instant(message),
+          icon: 'error'
+        }).then((r) => window.location.reload());
+      });
+    } else {
+      message = "EMAIL_REQUIRED";
       Swal.fire({
         confirmButtonColor: '#bfedff',
         title: this.translate.instant('ERROR'),
         text: this.translate.instant(message),
         icon: 'error'
-      });
-    });
+      }).then((r) => window.location.reload());
+    }
     this.onCancel();
   }
 
