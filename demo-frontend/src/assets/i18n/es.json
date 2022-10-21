@@ -51,11 +51,18 @@
       "city": "Ciudad",
       "nif": "NIF",
       "zip": "Código postal"
+    },
+    "products": {
+      "name":"nombre",
+      "quantity":"cantidad",
+      "description":"unidades",
+      "price":"precio"
     }
   },
   "form": {
     "contact": "Contacto",
-    "newuser": "Nuevo usuario"
+    "newuser": "Nuevo usuario",
+    "newproduct": "Nuevo producto"
   },
   "button": {
     "cancel": "Cancelar",
@@ -121,5 +128,8 @@
   "emailrequired": "El email es un campo obligatorio",
   "passwordrequired":"La constraseña es un campo obligatorio",
   "passconfirmrequired":"La confirmación es un campo obligatorio",
-  "passdoesnotmatch":"La confirmación y la contraseña no coinciden"
+  "passdoesnotmatch":"La confirmación y la contraseña no coinciden",
+  "quantityrequired":"La cantidad es un campo obligatorio",
+  "descriptionrequired": "Las unidades son un campo obligatorio",
+  "pricerequired":"El precio es un campo obligatorio"
 }

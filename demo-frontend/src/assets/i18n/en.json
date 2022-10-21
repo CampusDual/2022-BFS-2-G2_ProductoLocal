@@ -51,11 +51,18 @@
       "city": "City",
       "nif": "NIF",
       "zip": "ZIP Code"
+    },
+    "products": {
+      "name":"name",
+      "quantity":"quantity",
+      "description":"units",
+      "price":"price"
     }
   },
   "form": {
     "contact": "Contact",
-    "newuser": "New user"
+    "newuser": "New user",
+    "newproduct": "New product"
   },
   "button": {
     "cancel": "Cancel",
@@ -122,5 +129,8 @@
   "emailrequired": "Email is a required field",
   "passwordrequired":"Password is a required field",
   "passconfirmrequired":"Confirmation is a required field",
-  "passdoesnotmatch":"Cnfirmation and password doesn't match"
+  "passdoesnotmatch":"Confirmation and password doesn't match",
+  "quantityrequired":"Quantity is a required field",
+  "descriptionrequired": "Units is a required field",
+  "pricerequired":"Price is a required field"
 }
