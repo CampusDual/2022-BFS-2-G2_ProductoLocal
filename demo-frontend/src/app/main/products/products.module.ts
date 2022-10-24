@@ -18,14 +18,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateProductComponent } from './create-product/create-product.component';
-
-
+import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductsLayoutComponent,
     CreateProductComponent,
+    CreateProductByAdminComponent,
   ],
   imports: [
     ProductsRoutingModule,

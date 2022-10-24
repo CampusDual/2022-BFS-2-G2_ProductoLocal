@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { ProductsLayoutComponent } from './products-layout.component';
 import { CreateProductComponent } from './create-product/create-product.component';
+import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
 
 
 
@@ -13,6 +14,7 @@ const routes: Routes = [
       children: [
           {path: "", component: ProductsComponent},
           {path: 'createProduct', component: CreateProductComponent},
+          {path: 'createProductByAdmin', component: CreateProductByAdminComponent},
       ],
   },
   

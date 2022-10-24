@@ -57,6 +57,7 @@
       "zip": "Código postal"
     },
     "products": {
+      "ownername":"nome do usuario",
       "name":"nome",
       "typeProd":"Categoría",
       "quantity":"cantidade",

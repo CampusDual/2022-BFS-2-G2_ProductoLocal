@@ -2,12 +2,20 @@
     <div class="create-inner-container mat-elevation-z1">
 
         
-        <form [formGroup]="productForm" (ngSubmit)="save()" class="h-full">
+        <form [formGroup]="productFormAdmin" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
             </mat-card-header>
 
             <mat-card-content>
+
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.products.ownername' | translate}}"
+                            formControlName="ownername" name="owner-name" required />
+                        <mat-error>{{'namerequired' | translate}}</mat-error>
+                    </mat-form-field>
+                </div>
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
@@ -58,7 +66,7 @@
                 <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
 
                     <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
-                        [disabled]="!productForm.valid">{{'button.save' | translate}}</button>
+                        [disabled]="!productFormAdmin.valid">{{'button.save' | translate}}</button>
                     <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
                         [formNoValidate]="true">{{'button.cancel' |
                         translate}}</button>

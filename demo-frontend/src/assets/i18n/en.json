@@ -57,6 +57,7 @@
       "zip": "ZIP Code"
     },
     "products": {
+      "ownername":"user name",
       "name":"name",
       "typeProd":"Category",
       "quantity":"quantity",
