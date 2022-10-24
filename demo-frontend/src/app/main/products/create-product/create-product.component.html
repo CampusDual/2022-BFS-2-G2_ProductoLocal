@@ -1,4 +1,7 @@
-    <div fxLayout="column" fxLayoutGap="20px" class="form-content">
+    <div fxLayout="100" class="create-outer-container">
+        <div class="create-inner-container mat-elevation-z1">
+
+        
         <form [formGroup]="productForm" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
@@ -62,4 +65,5 @@
                 </div>
             </mat-card-actions>
         </form>
+    </div>
     </div>
