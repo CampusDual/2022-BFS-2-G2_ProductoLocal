@@ -84,7 +84,7 @@ public class ProductController {
 	}
 
 	@PostMapping(path = "/editProduct", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('EDIT_PRODUCTS')")
 	public ResponseEntity<?> editProduct(@Valid @RequestBody ProductDTO editProductRequest, BindingResult result) {
 		LOGGER.info("editProduct in progress...");
 		int id = 0;
@@ -129,14 +129,14 @@ public class ProductController {
 	}
 	
 	@GetMapping(path = "/getProducts")
-	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
 	public @ResponseBody List<ProductDTO> findAll() {
 		LOGGER.info("findAll in progress...");
 		return productService.findAll();
 	}
 	
 	@GetMapping("/getProduct")
-	@PreAuthorize("hasAnyAuthority('PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
 	public ResponseEntity<?> getProduct(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("getProduct in progress...");
 		ProductDTO product = null;
