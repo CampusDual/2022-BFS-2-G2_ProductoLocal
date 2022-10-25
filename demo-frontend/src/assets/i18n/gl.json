@@ -24,7 +24,8 @@
     "units":"unidades",
     "gr": "gramos",
     "kg": "kg",
-    "litres": "litros"
+    "litres": "litros",
+    "show_products": "Amosar tódolos produtos"
   },
   "main":{
     "welcome":"¡Benvido!"
