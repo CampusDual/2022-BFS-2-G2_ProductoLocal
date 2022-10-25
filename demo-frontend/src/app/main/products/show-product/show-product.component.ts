@@ -32,7 +32,7 @@ export class ShowProductComponent implements OnInit {
   error = false;
 
   //@ViewChild('edit') editTemplate: any;
-  //highlightedRow: Product;
+  highlightedRow: Product;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -102,4 +102,27 @@ export class ShowProductComponent implements OnInit {
     this.dataSource.getProducts(pageFilter);
   }
 
-}
+  masterToggle(){}
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.productsSubject.value.length;
+    return numSelected === numRows;
+  }
+
+  onDelete(){
+
+  }
+
+  onAdd(){
+
+  }
+
+  onEdit(row: Product) {
+    this.highlightedRow = row;
+    this.router.navigate(['/contacts/edit/' + row.id]);
+  }
+
+  }
+
+

@@ -8,21 +8,20 @@
       fxLayoutGap.lt-sm="10px"
     >
       <div fxFlex fxLayout.lt-sm="row" class="k-flex-wrap">
-        <!--<button mat-raised-button (click)="onAdd()">
+        <button mat-raised-button (click)="onAdd()">
           <mat-icon>add</mat-icon> {{ "new" | translate }}
-        </button> -->
-        <!--<button
+        </button>
+        <button
           mat-raised-button
           [disabled]="!selection.hasValue()"
           (click)="onDelete()"
         >
           <mat-icon>delete</mat-icon> {{ "delete" | translate }}
-        </button>-->
-        <!--<button mat-raised-button (click)="loadProductsPage()">
+        </button>
+        <button mat-raised-button (click)="loadProductsPage()">
           <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
-        </button>-->
+        </button>
       </div>
-
       <div fxflex>
         <mat-form-field>
           <input
@@ -48,14 +47,14 @@
       >
         <!-- Checkbox Column -->
          <ng-container matColumnDef="select">
-<!--           <th id="header" mat-header-cell *matHeaderCellDef>
+            <th id="header" mat-header-cell *matHeaderCellDef>
             <mat-checkbox
               (change)="$event ? masterToggle() : null"
               [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()"
+              [indeterminate]="selection.hasValue() && !isAllSelected()" 
             >
-            </mat-checkbox>
-          </th> -->
+            </mat-checkbox> 
+          </th> 
           <td mat-cell *matCellDef="let row">
             <mat-checkbox
               (click)="$event.stopPropagation()"
@@ -112,7 +111,7 @@
         </ng-container>
   
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <!--<mat-row
+        <mat-row
           *matRowDef="let row; columns: displayedColumns"
           (click)="onEdit(row)"
           class="row-link"
@@ -122,7 +121,7 @@
               : ''
           "
         >
-        </mat-row> -->
+        </mat-row>
       </table>
   
       <mat-card
