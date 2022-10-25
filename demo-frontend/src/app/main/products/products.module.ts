@@ -18,15 +18,25 @@ import { TranslateModule } from '@ngx-translate/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select';
 import { CreateProductComponent } from './create-product/create-product.component';
+<<<<<<< Updated upstream
 import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+=======
+import { ShowProductComponent } from './show-product/show-product.component';
+
+
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
     ProductsComponent,
     ProductsLayoutComponent,
     CreateProductComponent,
+<<<<<<< Updated upstream
     CreateProductByAdminComponent,
+=======
+    ShowProductComponent,
+>>>>>>> Stashed changes
   ],
   imports: [
     ProductsRoutingModule,

@@ -43,6 +43,7 @@ public class Constant {
 	public static final String PRODUCT_NOT_EDIT = "PRODUCT_NOT_EDIT";
 	public static final String PRODUCT_NOT_EXISTS = "PRODUCT_NOT_EXISTS";
 	public static final String PRODUCT_CREATE_SUCCESS = "PRODUCT_CREATE_SUCCESS";
+	public static final String PRODUCT_SHOW_SUCCESS = "PRODUCT_SHOW_SUCCESS";
 	
 	//User error
 	public static final String LOGIN_REQUIRED ="LOGIN_REQUIRED";

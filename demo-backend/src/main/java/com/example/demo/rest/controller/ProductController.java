@@ -26,9 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
 import com.example.demo.utils.Constant;
 
@@ -123,17 +125,38 @@ public class ProductController {
 		}
 		
 		response.put(Constant.MESSAGE, message);
-		LOGGER.info("editProduct is finished...");
+			LOGGER.info("editProduct is finished...");
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	
 	}
 	
-	@GetMapping(path = "/getProducts")
+	@PostMapping(path = "/getProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
-	public @ResponseBody List<ProductDTO> findAll() {
-		LOGGER.info("findAll in progress...");
-		return productService.findAll();
+	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getProducts(@RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("showProducts in progress...");
+		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+		
+		try {
+			dres = productService.getProducts(pageFilter);
+		}
+		catch(DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("showProducts is finished...");
+		return dres;
 	}
+	
+	
+	/*
+	 * @GetMapping(path = "/getProducts")
+	 * 
+	 * @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')") public @ResponseBody
+	 * List<ProductDTO> findAll() { LOGGER.info("findAll in progress..."); return
+	 * productService.findAll(); }
+	 */
 	
 	@GetMapping("/getProduct")
 	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")

@@ -19,7 +19,8 @@ export class ProductService {
     const url = API_CONFIG.createProduct;
     const body: CreateProductRequest = new CreateProductRequest(product);
     const headers = new HttpHeaders({
-      'Content-type': 'application/json; charset=utf-8',
+      //'Content-type': 'application/json; charset=utf-8',
+      'Content-type': 'charset=utf-8',
     });
     return this.http.post<Product>(url, body, { headers }).pipe(
       catchError(e =>{
@@ -28,6 +29,17 @@ export class ProductService {
     );
   }
 
+<<<<<<< Updated upstream
 
+=======
+  public getProducts(pageFilter: AnyPageFilter): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.getProducts;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { headers });
+  }
+>>>>>>> Stashed changes
 
 }

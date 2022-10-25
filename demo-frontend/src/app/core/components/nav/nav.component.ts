@@ -43,10 +43,18 @@ export class NavComponent implements OnInit, OnDestroy {
       allowedRoles: ['CREATE_PRODUCTS']
     },
     {
+<<<<<<< Updated upstream
       icon: 'add box icon',
       route: 'products/createProductByAdmin',
       title: 'menu.add_product' + '_by_admin',
       allowedRoles: ['CREATE_PRODUCTS']
+=======
+      icon: 'list',
+      route: 'products/showProducts',
+      title: 'menu.show_products',
+      allowedRoles: ['SHOW_PRODUCTS']
+
+>>>>>>> Stashed changes
     },
 
   ];

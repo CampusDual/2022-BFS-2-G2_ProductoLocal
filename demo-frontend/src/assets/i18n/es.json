@@ -57,7 +57,10 @@
       "zip": "Código postal"
     },
     "products": {
+<<<<<<< Updated upstream
       "ownername":"Productor",
+=======
+>>>>>>> Stashed changes
       "name":"Nombre",
       "typeProd":"Categoría",
       "quantity":"Cantidad",
