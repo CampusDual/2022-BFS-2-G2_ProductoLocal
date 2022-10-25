@@ -57,12 +57,12 @@
       "zip": "ZIP Code"
     },
     "products": {
-      "ownername":"user name",
-      "name":"name",
+      "ownername":"Prodoucer",
+      "name":"Name",
       "typeProd":"Category",
-      "quantity":"quantity",
-      "description":"units",
-      "price":"price"
+      "quantity":"Quantity",
+      "description":"Units",
+      "price":"Price"
     }
   },
   "form": {
@@ -86,21 +86,27 @@
   "EN": "English",
   "ES": "Spanish",
   "GL": "Galician",
+
   "USER_NOT_EXISTS": "User not exists in the database",
   "WRONG_PASSWORD": "Wrong password",
   "TOKEN_EXPIRED": "Session expired",
+
   "CONTACT_EDIT_SUCCESS":"Edited contact",
   "CONTACT_CREATE_SUCCESS": "Contact created",
   "CONTACT_DELETE_SUCCESS": "Contact deleted",
   "CONTACT_NOT_EDIT": "Error editing contact",
   "CONTACT_NOT_DELETE": "Contact not deleted",
   "CONTACT_NOT_CREATED": "Contact not create",
+
   "USER_EDIT_SUCCESS": "User successfully edited",
   "USER_CREATE_SUCCESS": "User successfully registered",
   "USER_LOGIN_UNIQUE": "Usermane already exists",
   "USER_EMAIL_UNIQUE": "Email already registered",
   "USER_REMOVE_SUCCESS": "User account was removed",
   "USER_REMOVE_ERROR": "Unable to remove user account",
+
+  
+
   "SESSION_EXPIRED": "Session expired",
   "PHONE_ALREADY_EXISTS": "Phone already exists",
   "NAME_REQUIRED" :"Mandatory name",

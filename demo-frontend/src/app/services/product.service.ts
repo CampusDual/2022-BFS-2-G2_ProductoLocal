@@ -13,7 +13,6 @@ import { Buffer } from 'buffer';
   providedIn: 'root'
 })
 export class ProductService {
-
   constructor(private http: HttpClient) { }
 
   public createProduct(product: Product): Observable<any> {
@@ -28,5 +27,7 @@ export class ProductService {
       })
     );
   }
+
+
 
 }

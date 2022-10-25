@@ -57,12 +57,12 @@
       "zip": "Código postal"
     },
     "products": {
-      "ownername":"nombre del usuario",
-      "name":"nombre",
+      "ownername":"Productor",
+      "name":"Nombre",
       "typeProd":"Categoría",
-      "quantity":"cantidad",
-      "description":"unidades",
-      "price":"precio"
+      "quantity":"Cantidad",
+      "description":"Unidades",
+      "price":"Precio"
     }
   },
   "form": {

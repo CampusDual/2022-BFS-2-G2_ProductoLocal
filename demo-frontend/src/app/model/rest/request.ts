@@ -110,6 +110,5 @@ export class CreateProductRequest {
     this.price = product.price;
     this.typeProd = product.typeProd;
     this.user = product.user;
-  
   }
 }

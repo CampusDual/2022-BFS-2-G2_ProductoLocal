@@ -29,6 +29,18 @@ export class UserService {
     );
   }
 
+  public getProducers(): Observable<any> {
+    const url = API_CONFIG.getProducers;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+    });
+    return this.http.get<User>(url, { headers }).pipe(
+      catchError(e =>{
+        return throwError(()=>e);
+      })
+    );
+}
+
   public getUser(login: string): Observable<User> {
     const url = API_CONFIG.getUser;
     const headers = new HttpHeaders({

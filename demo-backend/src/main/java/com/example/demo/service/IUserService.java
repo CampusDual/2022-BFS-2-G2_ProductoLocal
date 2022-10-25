@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.UserDTO;
 
@@ -19,6 +21,10 @@ public interface IUserService {
 	
 	String deleteUser(String login);
 	
+	List<UserDTO> findAll();
+	
+	List<UserDTO> findProducers();
+
 	Integer editUser(EditUserDTO editUserRequest);
 	
 }

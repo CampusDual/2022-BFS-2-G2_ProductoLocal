@@ -12,7 +12,12 @@
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.products.ownername' | translate}}"
-                            formControlName="ownername" name="owner-name" required />
+                            formControlName="ownername" name="owner-name" [matAutocomplete]="auto" required >
+                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                                <mat-option *ngFor="let producer of producers" [value]="producer.login">
+                                  {{producer.login}}
+                                </mat-option>
+                              </mat-autocomplete>
                         <mat-error>{{'namerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>

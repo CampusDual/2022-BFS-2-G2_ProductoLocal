@@ -23,15 +23,16 @@ export class CreateProductByAdminComponent implements OnInit {
 
   product: Product;
   productFormAdmin: FormGroup;
-  userOwnerLogin:string;
+  userOwnerLogin: string;
   userOwner: User;
+  producers: User[];
 
 
   categories: Tipo[] = [
-    { value: 'unidades'},
-    { value: 'kilos'},
-    { value: 'gramos'},
-    { value: 'litros'}
+    { value: 'unidades' },
+    { value: 'kilos' },
+    { value: 'gramos' },
+    { value: 'litros' }
   ];
 
   constructor(
@@ -40,13 +41,25 @@ export class CreateProductByAdminComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private userService: UserService,
-    ) {
+  ) {
     this.product = new Product();
     this.userOwner = new User();
     this.product.user = new User();
   }
 
   ngOnInit(): void {
+    this.userService.getProducers().subscribe((response) => {
+     // console.log(response);
+      this.producers = response;
+    }, (err) => {
+      swal.fire({
+        confirmButtonColor: '#bfedff',
+        title: this.translate.instant('ERROR'),
+        text: this.translate.instant("GET_PRODUCERS_ERROR"),
+        icon: 'error'
+      });
+    }
+    )
     this.createFormGroup();
   }
 
@@ -56,7 +69,7 @@ export class CreateProductByAdminComponent implements OnInit {
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
-      description:[this.product.description],
+      description: [this.product.description],
       price: [this.product.price],
     },
     );
@@ -79,7 +92,7 @@ export class CreateProductByAdminComponent implements OnInit {
           console.log(this);
           message = this.translate.instant("PRODUCT_CREATE_SUCCESS")
           swal.fire(message, "", 'success').then((res) => this.redirectList(response));
-          
+
         }, err => {
           console.log(err.message);
           swal.fire({
