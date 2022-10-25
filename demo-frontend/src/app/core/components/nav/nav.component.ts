@@ -35,25 +35,12 @@ export class NavComponent implements OnInit, OnDestroy {
       route: 'contacts',
       title: 'menu.contacts',
       allowedRoles: ['CONTACTS']
-    },
-    {
-      icon: 'add box  icon',
-      route: 'products/createProduct',
-      title: 'menu.add_product',
-      allowedRoles: ['CREATE_PRODUCTS']
-    },
-    {
-      icon: 'add box icon',
-      route: 'products/createProductByAdmin',
-      title: 'menu.add_product' + '_by_admin',
-      allowedRoles: ['CREATE_PRODUCTS']
-    },
-    
+    },    
     {  
       icon: 'list',
       route: 'products/showProducts',
       title: 'menu.show_products',
-      allowedRoles: ['SHOW_PRODUCTS']
+      allowedRoles: ['SHOW_PRODUCTS_ADMIN']
 
     },
 

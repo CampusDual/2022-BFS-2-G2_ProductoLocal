@@ -115,7 +115,7 @@ export class ShowProductComponent implements OnInit {
   }
 
   onAdd(){
-
+    this.router.navigate(['/products/createProductByAdmin']);
   }
 
   onEdit(row: Product) {

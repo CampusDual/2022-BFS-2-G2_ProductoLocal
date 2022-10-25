@@ -46,7 +46,7 @@ public class ProductController {
 	private IProductService productService;
 	
 	@PostMapping(path = "/createProduct")
-	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS','CREATE_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
 		LOGGER.info("createProduct in progress...");
 		
@@ -131,7 +131,7 @@ public class ProductController {
 	}
 	
 	@PostMapping(path = "/getProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getProducts(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("showProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
