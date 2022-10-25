@@ -69,7 +69,8 @@
   "form": {
     "contact": "Contact",
     "newuser": "New user",
-    "newproduct": "New product"
+    "newproduct": "New product",
+    "editproduct": "Edit product"
   },
   "button": {
     "cancel": "Cancel",

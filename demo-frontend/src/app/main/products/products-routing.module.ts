@@ -5,6 +5,7 @@ import { ProductsLayoutComponent } from './products-layout.component';
 import { CreateProductComponent } from './create-product/create-product.component';
 import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
 import { ShowProductComponent } from './show-product/show-product.component';
+import { EditProductComponent } from './edit-product/edit-product.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
           {path: 'createProduct', component: CreateProductComponent},
           {path: 'createProductByAdmin', component: CreateProductByAdminComponent},
           {path: 'showProducts', component:ShowProductComponent},
+          { path: 'edit/:id', component: EditProductComponent },
       ],
   },
   

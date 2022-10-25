@@ -112,3 +112,10 @@ export class CreateProductRequest {
     this.user = product.user;
   }
 }
+
+export class EditProductRequest extends CreateProductRequest {
+  constructor(product: Product) {
+    super(product);
+    this.id = product.id;
+  }
+}

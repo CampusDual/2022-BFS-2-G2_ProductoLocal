@@ -120,7 +120,7 @@ export class ShowProductComponent implements OnInit {
 
   onEdit(row: Product) {
     this.highlightedRow = row;
-    this.router.navigate(['/contacts/edit/' + row.id]);
+    this.router.navigate(['/products/edit/' + row.id]);
   }
 
   }
