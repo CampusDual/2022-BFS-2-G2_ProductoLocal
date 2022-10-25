@@ -3,13 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './products.component';
 import { ProductsLayoutComponent } from './products-layout.component';
 import { CreateProductComponent } from './create-product/create-product.component';
-<<<<<<< Updated upstream
 import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
-=======
 import { ShowProductComponent } from './show-product/show-product.component';
->>>>>>> Stashed changes
-
-
 
 const routes: Routes = [
   {
@@ -18,11 +13,8 @@ const routes: Routes = [
       children: [
           {path: "", component: ProductsComponent},
           {path: 'createProduct', component: CreateProductComponent},
-<<<<<<< Updated upstream
           {path: 'createProductByAdmin', component: CreateProductByAdminComponent},
-=======
           {path: 'showProducts', component:ShowProductComponent},
->>>>>>> Stashed changes
       ],
   },
   

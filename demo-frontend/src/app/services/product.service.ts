@@ -29,9 +29,6 @@ export class ProductService {
     );
   }
 
-<<<<<<< Updated upstream
-
-=======
   public getProducts(pageFilter: AnyPageFilter): Observable<DataSourceRESTResponse<Product[]>> {
     const url = API_CONFIG.getProducts;
     const headers = new HttpHeaders({
@@ -40,6 +37,6 @@ export class ProductService {
     });
     return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { headers });
   }
->>>>>>> Stashed changes
+
 
 }
