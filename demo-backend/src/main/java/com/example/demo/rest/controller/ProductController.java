@@ -159,7 +159,7 @@ public class ProductController {
 	 */
 	
 	@GetMapping("/getProduct")
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS', 'SHOW_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> getProduct(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("getProduct in progress...");
 		ProductDTO product = null;
