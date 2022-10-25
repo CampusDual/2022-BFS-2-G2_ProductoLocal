@@ -57,10 +57,7 @@
       "zip": "ZIP Code"
     },
     "products": {
-<<<<<<< Updated upstream
-      "ownername":"Prodoucer",
-=======
->>>>>>> Stashed changes
+      "ownername":"Producer",
       "name":"Name",
       "typeProd":"Category",
       "quantity":"Quantity",
