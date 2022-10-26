@@ -31,7 +31,9 @@ import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
+import com.example.demo.service.IProductService;
 import com.example.demo.service.IUserService;
+import com.example.demo.service.ProductServiceImpl;
 import com.example.demo.utils.CipherUtils;
 import com.example.demo.utils.Constant;
 
@@ -47,6 +49,9 @@ public class UsersController {
     
     @Autowired
     private IUserService userService;
+    
+    @Autowired
+    private IProductService productService;
     
     @PostMapping(path = "/createUser")
     public ResponseEntity<?> createUser(@Valid @RequestBody UserDTO createUserRequest, BindingResult result) {
@@ -139,6 +144,10 @@ public class UsersController {
 		HttpStatus status = HttpStatus.OK;
 		String message = Constant.USER_DELETE_SUCCESS;
 		try {
+			List<ProductDTO> productList = productService.findByUser(login);
+			for(ProductDTO product : productList) {
+				productService.deleteProduct(product.getId());
+			}
 			userService.deleteUser(login);
 			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 		} catch (DataAccessException e) {

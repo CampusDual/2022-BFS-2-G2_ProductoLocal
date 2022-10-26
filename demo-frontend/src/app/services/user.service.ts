@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   public createUser(user: User): Observable<any> {
-    const url = API_CONFIG.editUser;
+    const url = API_CONFIG.createUser;
     const body: CreateUserRequest = new CreateUserRequest(user);
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8',
