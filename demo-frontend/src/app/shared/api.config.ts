@@ -26,6 +26,7 @@ export const API_CONFIG = {
   //Products API
   createProduct: environment.productsBaseUrl + '/createProduct',
   getProducts: environment.productsBaseUrl + '/getProducts',
+  getMyProducts: environment.productsBaseUrl + '/myProducts',
   editProduct: environment.productsBaseUrl + '/editProduct',
   getProduct: environment.productsBaseUrl + '/getProduct',
   deleteProduct: environment.productsBaseUrl + '/deleteProduct'

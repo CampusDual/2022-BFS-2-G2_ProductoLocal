@@ -6,20 +6,22 @@ import { CreateProductComponent } from './create-product/create-product.componen
 import { CreateProductByAdminComponent } from './create-product-by-admin/create-product-by-admin.component';
 import { ShowProductComponent } from './show-product/show-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { ShowProductProducerComponent } from './show-product-producer/show-product-producer.component';
 
 const routes: Routes = [
   {
-      path: '', 
-      component: ProductsLayoutComponent,
-      children: [
-          {path: "", component: ProductsComponent},
-          {path: 'createProduct', component: CreateProductComponent},
-          {path: 'createProductByAdmin', component: CreateProductByAdminComponent},
-          {path: 'showProducts', component:ShowProductComponent},
-          { path: 'edit/:id', component: EditProductComponent },
-      ],
+    path: '',
+    component: ProductsLayoutComponent,
+    children: [
+      { path: "", component: ProductsComponent },
+      { path: 'createProduct', component: CreateProductComponent },
+      { path: 'createProductByAdmin', component: CreateProductByAdminComponent },
+      { path: 'showProducts', component: ShowProductComponent },
+      { path: 'myProducts', component: ShowProductProducerComponent },
+      { path: 'edit/:id', component: EditProductComponent },
+    ],
   },
-  
+
 ];
 
 @NgModule({

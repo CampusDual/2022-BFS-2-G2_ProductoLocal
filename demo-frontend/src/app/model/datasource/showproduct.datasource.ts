@@ -29,6 +29,19 @@ export class ShowProductDatasource extends DataSource<Product> {
         );
     }
 
+    getMyProducts(pageFilter: AnyPageFilter, login: string) {
+        this.productsSubject.next([]);
+        this.loadingSubject.next(true);
+        this.productService.getMyProducts(pageFilter, login).pipe(
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+            response => {
+                this.totalElements = response.totalElements;
+                this.productsSubject.next(response.data);
+            }
+        );
+    }
+
 /*     connect(collectionViewer: CollectionViewer): Observable<readonly Product[]> {
         throw new Error("Method not implemented.");
     } */

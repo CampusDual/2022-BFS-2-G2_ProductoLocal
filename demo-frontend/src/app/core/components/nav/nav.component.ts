@@ -43,6 +43,13 @@ export class NavComponent implements OnInit, OnDestroy {
       allowedRoles: ['SHOW_PRODUCTS_ADMIN']
 
     },
+    {  
+      icon: 'list',
+      route: 'products/myProducts',
+      title: 'menu.show_products',
+      allowedRoles: ['SHOW_PRODUCTS']
+
+    },
 
   ];
 

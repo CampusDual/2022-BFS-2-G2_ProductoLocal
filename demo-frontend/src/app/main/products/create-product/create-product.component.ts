@@ -103,7 +103,7 @@ export class CreateProductComponent implements OnInit {
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/products/myProducts']);
     } else {
       console.log(response);
     }

@@ -43,6 +43,19 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		datares.setData(productsDTO);
 		return datares;
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> getMyProducts(AnyPageFilter pageFilter, String login) {
+		checkInputParams(pageFilter);
+		Page<Product> products = SpecificationBuilder.selectDistinctFrom(productRepository).where(pageFilter)
+				.findAll(pageFilter); 
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = this.findByUser(login);
+		datares.setTotalElements((int) products.getTotalElements());
+		datares.setData(productsDTO);
+		return datares;
+	}
 
 	@Override
 	public List<ProductDTO> findAll() {

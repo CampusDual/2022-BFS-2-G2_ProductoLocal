@@ -19,8 +19,8 @@ export class ProductService {
     const url = API_CONFIG.createProduct;
     const body: CreateProductRequest = new CreateProductRequest(product);
     const headers = new HttpHeaders({
-      //'Content-type': 'application/json; charset=utf-8',
-      'Content-type': 'charset=utf-8',
+      'Content-type': 'application/json; charset=utf-8',
+      //'Content-type': 'charset=utf-8',
     });
     return this.http.post<Product>(url, body, { headers }).pipe(
       catchError(e =>{
@@ -46,6 +46,16 @@ export class ProductService {
       Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
     return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { headers });
+  }
+
+  public getMyProducts(pageFilter: AnyPageFilter, login: string): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.getMyProducts;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    const params = new HttpParams().set('login', login);
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
   }
 
   public editProduct(product: Product): Observable<any> {

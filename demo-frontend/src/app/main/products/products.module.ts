@@ -22,6 +22,7 @@ import { CreateProductByAdminComponent } from './create-product-by-admin/create-
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ShowProductComponent } from './show-product/show-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
+import { ShowProductProducerComponent } from './show-product-producer/show-product-producer.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { EditProductComponent } from './edit-product/edit-product.component';
     CreateProductComponent,
     CreateProductByAdminComponent,
     ShowProductComponent,
-    EditProductComponent
+    EditProductComponent,
+    ShowProductProducerComponent,
   ],
   imports: [
     ProductsRoutingModule,

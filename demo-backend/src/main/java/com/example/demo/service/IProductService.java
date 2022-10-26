@@ -16,6 +16,8 @@ public interface IProductService {
 	ProductDTO getProduct(Integer id);
 
 	DataSourceRESTResponse<List<ProductDTO>> getProducts(AnyPageFilter pageFilter);
+	
+	DataSourceRESTResponse<List<ProductDTO>> getMyProducts(AnyPageFilter pageFilter, String login);
 
 	List<ProductDTO> findAll();
 	
