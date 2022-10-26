@@ -147,5 +147,6 @@
   "passdoesnotmatch":"Confirmation and password doesn't match",
   "quantityrequired":"Quantity is a required field",
   "descriptionrequired": "Units is a required field",
-  "pricerequired":"Price is a required field"
+  "pricerequired":"Price is a required field",
+  "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted"
 }

@@ -140,5 +140,6 @@
   "passdoesnotmatch":"La confirmación y la contraseña no coinciden",
   "quantityrequired":"La cantidad es un campo obligatorio",
   "descriptionrequired": "Las unidades son un campo obligatorio",
-  "pricerequired":"El precio es un campo obligatorio"
+  "pricerequired":"El precio es un campo obligatorio",
+  "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado."
 }

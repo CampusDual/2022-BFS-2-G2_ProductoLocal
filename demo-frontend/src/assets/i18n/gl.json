@@ -140,5 +140,6 @@
   "passdoesnotmatch":"A confirmación e o contrasinal non coinciden",
   "quantityrequired":"A cantidade é un campo obrigatorio",
   "descriptionrequired": "As unidades son un campo obrigatorio",
-  "pricerequired":"O prezo é un campo obrigatorio"
+  "pricerequired":"O prezo é un campo obrigatorio",
+  "delete-product-confirmation":"¿Está seguro de que quere continuar? O(s) seu(s) produto(s) ha(n) ser eliminado(s)"
 }
