@@ -18,6 +18,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -184,7 +185,32 @@ public class ProductController {
 		LOGGER.info("getProduct is finished...");
 		return re;
 	}
-	
+		
+	@DeleteMapping("/deleteProduct")
+	@PreAuthorize("hasAnyAuthority('DELETE_PRODUCTS','DELETE_PRODUCTS_ADMIN')")
+	public ResponseEntity<?> deleteProduct(@RequestParam(value="id") Integer id ) {
+		LOGGER.info("deleteProduct in progress...");
+		Map<String, Object> response = new HashMap<>();
+		HttpStatus status = HttpStatus.OK;
+		String message = Constant.PRODUCT_DELETE_SUCCESS;
+		
+		try {
+			productService.deleteProduct(id);
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
+		}
+		catch (DataAccessException dae) {
+			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
+			response.put(Constant.ERROR, dae.getMessage().concat(": ").concat(dae.getMostSpecificCause().getMessage()));
+			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
+			status = HttpStatus.BAD_REQUEST;
+			message = Constant.CONTACT_NOT_DELETE;
+		}
+		response.put(Constant.MESSAGE, message);
+		LOGGER.info("deleteContact is finished...");
+		return new ResponseEntity<Map<String, Object>>(response,status);
+		
+	}
+
 	
 	@PostMapping(path = "/myProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
