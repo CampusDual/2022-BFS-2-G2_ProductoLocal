@@ -6,6 +6,10 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { User } from 'src/app/model/user';
+import { Profile } from 'src/app/model/profile';
+import { CreateProductByAdminComponent } from '../create-product-by-admin/create-product-by-admin.component';
+import { AuthService } from 'src/app/auth/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 interface Tipo {
   value: string,
@@ -16,11 +20,12 @@ interface Tipo {
   styleUrls: ['./edit-product.component.scss'],
 })
 
-export class EditProductComponent implements OnInit{
+export class EditProductComponent implements OnInit {
   idProduct: number;
 
   productForm: FormGroup;
   product: Product;
+  user: User;
   errores: string[];
 
   categories: Tipo[] = [
@@ -33,12 +38,15 @@ export class EditProductComponent implements OnInit{
   constructor(
     private fb: FormBuilder,
     private productService: ProductService,
+    private authService: AuthService,
+    private userService: UserService,
     private router: Router,
     private route: ActivatedRoute,
     private logger: LoggerService
   ) {
     this.product = new Product();
     this.product.user = new User();
+    userService.getUser(authService.getUserName()).subscribe(response => this.user = response);
   }
   value: string;
 
@@ -87,7 +95,11 @@ export class EditProductComponent implements OnInit{
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      this.router.navigate(['products/showProducts']);
+      if (this.isAdmin(this.user)) {
+        this.router.navigate(['products/showProducts']);
+      } else {
+        this.router.navigate(['products/myProducts']);
+      }
     } else {
       console.log(response);
     }
@@ -102,6 +114,20 @@ export class EditProductComponent implements OnInit{
   }
 
   cancel() {
-    this.router.navigate(['products/showProducts']);
+    if (this.isAdmin(this.user)) {
+      this.router.navigate(['products/showProducts']);
+    } else {
+      this.router.navigate(['products/myProducts']);
+    }
+  }
+
+  isAdmin(user: User) {
+    let admin = false;
+    user.profiles.forEach(profile => {
+      if (profile.id == 1) {
+        admin = true;
+      }
+    });
+    return admin;
   }
 }
