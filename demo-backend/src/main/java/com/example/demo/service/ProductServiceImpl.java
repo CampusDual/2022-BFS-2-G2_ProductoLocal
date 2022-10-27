@@ -52,7 +52,7 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 				.findAll(pageFilter); 
 		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
 		List<ProductDTO> productsDTO = this.findByUser(login);
-		datares.setTotalElements((int) products.getTotalElements());
+		datares.setTotalElements(productsDTO.size());
 		datares.setData(productsDTO);
 		return datares;
 	}

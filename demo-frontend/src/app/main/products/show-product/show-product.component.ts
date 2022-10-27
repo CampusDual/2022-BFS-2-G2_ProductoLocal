@@ -27,9 +27,10 @@ export class ShowProductComponent implements OnInit {
     'quantity',
     'description',
     'typeProd',
-    'price'
+    'price',
+    'user'
   ];
-  fields = ['name', 'quantity', 'description', 'typeProd', 'price'];
+  fields = ['name', 'quantity', 'description', 'typeProd', 'price', 'user'];
 
   selection = new SelectionModel<Product>(true, []);
   error = false;

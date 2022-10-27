@@ -63,7 +63,8 @@
       "typeProd":"Categoría",
       "quantity":"Cantidade",
       "description":"Unidades",
-      "price":"Prezo"
+      "price":"Prezo",
+      "producer":"Produtor"
     }
   },
   "form": {
