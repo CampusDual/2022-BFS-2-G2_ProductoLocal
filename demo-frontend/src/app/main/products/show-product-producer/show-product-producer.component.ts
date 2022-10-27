@@ -12,6 +12,7 @@ import { Product } from 'src/app/model/product';
 import { AnyField, AnyPageFilter, SortFilter } from 'src/app/model/rest/filter';
 import { ProductService } from 'src/app/services/product.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import swal from 'sweetalert2';
 
 @Component({
   //selector: 'app-show-product',
@@ -128,13 +129,16 @@ export class ShowProductProducerComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.delete();
+        swal.fire(this.translate.instant('PRODUCT_DELETE_SUCCESS'), '','success').then((res) => {
         return new Observable((observer: Observer<boolean>) =>
           observer.next(true)
-        );
+        )});
       } else {
+        swal.fire(this.translate.instant('PRODUCT_DELETE_ERROR'), '','error').then((res) => {
         return new Observable((observer: Observer<boolean>) =>
           observer.next(false)
         );
+      })
       }
     });
   }
