@@ -75,7 +75,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/main']);
+    this.router.navigate(['/products/myProducts']);
   }
 
 
