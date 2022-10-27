@@ -106,6 +106,10 @@ export class GetUserComponent implements OnInit {
         }, (err) => {
           if (err.error.errors.toString().includes("users_email_unique")) {
             message = this.translate.instant("USER_EMAIL_UNIQUE");
+          }else if (err.error.errors.toString().includes("users_nif_unique")){
+            message = this.translate.instant("USER_NIF_UNIQUE");
+          }else if (err.error.errors.toString().includes("users_phone_unique")){
+            message = this.translate.instant("USER_PHONE_UNIQUE");
           }
           Swal.fire({
             confirmButtonColor: '#bfedff',

@@ -104,6 +104,8 @@
   "USER_CREATE_SUCCESS": "User successfully registered",
   "USER_LOGIN_UNIQUE": "Usermane already exists",
   "USER_EMAIL_UNIQUE": "Email already registered",
+  "USER_NIF_UNIQUE": "NIF already registered",
+  "USER_PHONE_UNIQUE": "Phone already registered",
   "USER_REMOVE_SUCCESS": "User account was removed",
   "USER_REMOVE_ERROR": "Unable to remove user account",
 

@@ -98,6 +98,8 @@
   "USER_CREATE_SUCCESS": "Usuario registrado correctamente",
   "USER_LOGIN_UNIQUE": "Ya existe el nombre de usuario",
   "USER_EMAIL_UNIQUE": "Este email ya está registrado",
+  "USER_NIF_UNIQUE": "Este NIF ya está registrado",
+  "USER_PHONE_UNIQUE": "Este teléfono ya está registrado",
   "USER_EDIT_SUCCESS": "Usuario editado correctamente",
   "USER_REMOVE_SUCCESS": "La cuenta de usuario ha sido eliminada",
   "USER_REMOVE_ERROR": "No ha sido posible eliminar la cuenta de usuario",

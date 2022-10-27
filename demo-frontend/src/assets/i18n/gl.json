@@ -100,6 +100,8 @@
   "USER_EDIT_SUCCESS": "Usuario editado correctamente",
   "USER_LOGIN_UNIQUE": "Xa existe o nome de usuario",
   "USER_EMAIL_UNIQUE": "Este email xa está rexistrado",
+  "USER_NIF_UNIQUE": "Este NIF xa está rexistrado",
+  "USER_PHONE_UNIQUE": "Este teléfono xa está rexistrado",
   "USER_REMOVE_SUCCESS": "Eliminouse a conta de usuario",
   "USER_REMOVE_ERROR": "Non se puido elimina-la conta de usuario",
   "NAME_REQUIRED" :"Nome obrigatorio",
