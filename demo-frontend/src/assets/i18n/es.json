@@ -123,6 +123,7 @@
   "PRODUCT_CREATE_SUCCESS": "Producto registrado correctamente",
   "PRODUCT_DELETE_SUCCESS": "Producto eliminado correctamente",
   "PRODUCT_DELETE_ERROR": "No se ha posido eliminar el producto",
+  "PRODUCT_EDIT_SUCCESS":"Producto actualizado correctamente",
   "CLOSE": "CERRAR",
   "filter": "Filtro",
   "new": "Nuevo",

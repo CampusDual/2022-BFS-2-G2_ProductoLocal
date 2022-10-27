@@ -130,6 +130,7 @@
   "PRODUCT_CREATE_SUCCESS": "Product succesfully registered",
   "PRODUCT_DELETE_SUCCESS":"Product succesfully deleted",
   "PRODUCT_DELETE_ERROR":"Cannot delete product",
+  "PRODUCT_EDIT_SUCCESS":"Product succesfully updated",
   "CLOSE": "CLOSE",
   "filter": "Filter",
   "new": "New",
