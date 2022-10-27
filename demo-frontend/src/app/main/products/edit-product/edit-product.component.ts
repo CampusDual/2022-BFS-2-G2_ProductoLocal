@@ -10,6 +10,8 @@ import { Profile } from 'src/app/model/profile';
 import { CreateProductByAdminComponent } from '../create-product-by-admin/create-product-by-admin.component';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 interface Tipo {
   value: string,
@@ -41,6 +43,7 @@ export class EditProductComponent implements OnInit {
     private authService: AuthService,
     private userService: UserService,
     private router: Router,
+    private translate: TranslateService,
     private route: ActivatedRoute,
     private logger: LoggerService
   ) {
@@ -88,7 +91,9 @@ export class EditProductComponent implements OnInit {
     console.log(newProduct);
     if (newProduct.id) {
       this.productService.editProduct(newProduct).subscribe((response) => {
-        this.redirectList(response);
+        swal.fire(this.translate.instant('PRODUCT_EDIT_SUCCESS'), '','success').then((res) => {
+          this.redirectList(response);
+        })
       });
     }
   }

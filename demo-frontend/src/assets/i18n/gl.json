@@ -123,6 +123,7 @@
   "PRODUCT_CREATE_SUCCESS": "Produto rexistrado correctamente",
   "PRODUCT_DELETE_SUCCESS":"Producto eliminado correctamente",
   "PRODUCT_DELETE_ERROR":"Non se puido elimina-lo produto",
+  "PRODUCT_EDIT_SUCCESS":"Produto actualizado correctamente",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",
