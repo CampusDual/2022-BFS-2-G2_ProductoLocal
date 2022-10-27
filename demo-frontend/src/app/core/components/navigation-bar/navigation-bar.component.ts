@@ -3,6 +3,8 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 import { TranslateService } from '@ngx-translate/core';
+import { User } from 'src/app/model/user';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-navigation-bar',
@@ -16,9 +18,17 @@ export class NavigationBarComponent {
   private returnUrl = '/';
   selectedLanguage = this.translateService.currentLang;
   userName: string;
+  user:User;
+  userProfile: string;
+  
 
-  constructor(private authService: AuthService, private router: Router, private logger: LoggerService,
-    private translateService: TranslateService) {
+  constructor( 
+    private authService: AuthService, 
+    private router: Router, 
+    private logger: LoggerService,
+    private translateService: TranslateService,
+    private userService: UserService,
+    ) {
     this.userName = authService.getUserName();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -26,6 +36,14 @@ export class NavigationBarComponent {
         this.logger.info('NavigationBarComponent returnUrl: ' + this.returnUrl);
       }
     });
+
+  }
+  ngOnInit(): void {
+    this.userService.getUser(this.userName).subscribe(
+      response => {
+        this.user = response;
+        this.userProfile = this.user.profiles[0].name; 
+      }); 
   }
 
   logout() {
