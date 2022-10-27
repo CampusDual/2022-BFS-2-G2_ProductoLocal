@@ -76,7 +76,7 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/main']);
+    this.router.navigate(['/products/showProducts']);
   }
 
 
