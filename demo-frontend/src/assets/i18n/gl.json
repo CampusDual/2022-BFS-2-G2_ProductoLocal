@@ -120,6 +120,8 @@
   "UNKNOWN_ERROR": "Erro descoñecido",
   "SESSION_EXPIRED": "Sesión expirada",
   "PRODUCT_CREATE_SUCCESS": "Produto rexistrado correctamente",
+  "PRODUCT_DELETE_SUCCESS":"Producto eliminado correctamente",
+  "PRODUCT_DELETE_ERROR":"Non se puido elimina-lo produto",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",

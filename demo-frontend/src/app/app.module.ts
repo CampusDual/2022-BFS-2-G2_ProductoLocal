@@ -63,11 +63,11 @@ import { CoreModule } from './core/core.module';
     TranslateModule
   ],
   providers: [AuthService, MatSnackBarComponent, InterceptService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: InterceptService,
-      multi: true
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: InterceptService,
+    //   multi: true
+    // },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

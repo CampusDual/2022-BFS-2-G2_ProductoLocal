@@ -11,6 +11,7 @@ import { Product } from 'src/app/model/product';
 import { AnyField, AnyPageFilter, SortFilter } from 'src/app/model/rest/filter';
 import { ProductService } from 'src/app/services/product.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
+import Swal from 'sweetalert2';
 
 @Component({
   //selector: 'app-show-product',
@@ -120,10 +121,12 @@ export class ShowProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.delete();
+        Swal.fire(this.translate.instant('PRODUCT_DELETE_SUCCESS'), '','success');
         return new Observable((observer: Observer<boolean>) =>
           observer.next(true)
         );
       } else {
+        Swal.fire(this.translate.instant('PRODUCT_DELETE_ERROR'), '','success');
         return new Observable((observer: Observer<boolean>) =>
           observer.next(false)
         );

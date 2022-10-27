@@ -127,6 +127,8 @@
   "CONTACT_CONSTRAINT_VIOLATION" :"",
   "UNKNOWN_ERROR": "Unknown error",
   "PRODUCT_CREATE_SUCCESS": "Product succesfully registered",
+  "PRODUCT_DELETE_SUCCESS":"Product succesfully deleted",
+  "PRODUCT_DELETE_ERROR":"Cannot delete product",
   "CLOSE": "CLOSE",
   "filter": "Filter",
   "new": "New",
