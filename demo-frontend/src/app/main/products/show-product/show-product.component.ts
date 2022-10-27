@@ -144,16 +144,16 @@ export class ShowProductComponent implements OnInit {
       this.productService.deleteProduct(product.id).subscribe((response) => {
         console.log(response)
         if (response.responseCode !== 'OK') {
-           this.error = true;
-         } else {
+          this.error = true;
+        } else {
           this.loadProductsPage();
-         }
+        }
       });
     } else {
       this.productService.deleteProduct(product.id).subscribe((response) => {
         console.log(response);
         if (response.responseCode !== 'OK') {
-           this.error = true;
+          this.error = true;
         }
         this.delete();
       });

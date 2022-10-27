@@ -22,7 +22,7 @@
           <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
         </button>
       </div>
-      <div fxflex>
+      <div fxFlex class="filter">
         <mat-form-field>
           <input
             matInput
@@ -46,7 +46,7 @@
         class="w-full"
       >
         <!-- Checkbox Column -->
-         <ng-container matColumnDef="select">
+        <ng-container matColumnDef="select">
             <th id="header" mat-header-cell *matHeaderCellDef>
             <mat-checkbox
               (change)="$event ? masterToggle() : null"
