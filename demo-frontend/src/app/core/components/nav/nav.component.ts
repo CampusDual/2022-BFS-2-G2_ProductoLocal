@@ -6,6 +6,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { SidenavService } from 'src/app/services/sidenav.service';
 import { AuthGuard } from 'src/app/auth/auth.guard';
 import { Router } from '@angular/router';
+import { LocalStorage } from '@ng-idle/core';
 
 interface ROUTE {
   icon?: string;
@@ -73,12 +74,15 @@ export class NavComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy() {
-    this.logger.info('NavComponent: ngOnDestroy()');
+    this.logger.info('NavComponent: ngOnDestroy()'); 
   }
 
   get allowedRoutes() {
     const allowedRoutes: Array<ROUTE> = [];
     if (this.isAuthenticated()) {
+      if (this.router.url =="/") {
+        this.commandBarSidenavService.toggle();
+      }
       this.sidenavRoutes.forEach(route => {
         if (this.authGuard.isAllowed(route.allowedRoles)) {
           allowedRoutes.push(route);
