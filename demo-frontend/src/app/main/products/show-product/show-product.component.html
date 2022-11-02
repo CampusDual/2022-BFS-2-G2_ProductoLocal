@@ -79,19 +79,10 @@
             {{ "table.products.quantity" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="quantity">
-            {{ row.quantity }}
+            {{ row.quantity }}    {{ row.description }}
           </mat-cell>
         </ng-container>
-  
-        <ng-container matColumnDef="description">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.description" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="description">
-            {{ row.description }}
-          </mat-cell>
-        </ng-container>
-  
+   
         <ng-container matColumnDef="typeProd">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.typeProd" | translate }}
@@ -106,15 +97,15 @@
             {{ "table.products.price" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="price">
-            {{ row.price }}€
+            {{ row.price }}  €
           </mat-cell>
         </ng-container>
 
-        <ng-container matColumnDef="user">
+        <ng-container matColumnDef="user.login">
           <mat-header-cell *matHeaderCellDef>
             {{ "table.products.producer" | translate }}
           </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="user">
+          <mat-cell *matCellDef="let row" data-label="user.login">
             {{ row.user.login }}
           </mat-cell>
         </ng-container>

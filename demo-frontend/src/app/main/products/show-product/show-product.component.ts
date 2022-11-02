@@ -9,6 +9,7 @@ import { debounceTime, distinctUntilChanged, fromEvent, merge, Observable, Obser
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { Product } from 'src/app/model/product';
 import { AnyField, AnyPageFilter, SortFilter } from 'src/app/model/rest/filter';
+import { User } from 'src/app/model/user';
 import { ProductService } from 'src/app/services/product.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import swal from 'sweetalert2';
@@ -25,11 +26,11 @@ export class ShowProductComponent implements OnInit {
     'select',
     'name',
     'quantity',
-    'description',
     'typeProd',
-    'price'
+    'price',
+    'user.login'
   ];
-  fields = ['name', 'quantity', 'description', 'typeProd', 'price'];
+  fields = ['name', 'quantity', 'typeProd', 'price', 'user.login'];
 
   selection = new SelectionModel<Product>(true, []);
   error = false;
@@ -98,10 +99,12 @@ export class ShowProductComponent implements OnInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
+  
     pageFilter.order = [];
     pageFilter.order.push(
       new SortFilter(this.sort.active, this.sort.direction.toString())
     );
+  
     this.dataSource.getProducts(pageFilter);
   }
 
