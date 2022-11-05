@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.UserDTO;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 
 public interface IUserService {
 	
@@ -26,5 +28,6 @@ public interface IUserService {
 	List<UserDTO> findProducers();
 
 	Integer editUser(EditUserDTO editUserRequest);
-	
+
+	DataSourceRESTResponse<List<UserDTO>> findProducers(int id, AnyPageFilter pageFilter);
 }

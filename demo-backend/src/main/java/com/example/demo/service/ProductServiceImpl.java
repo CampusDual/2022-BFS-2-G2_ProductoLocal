@@ -8,7 +8,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+
+import com.borjaglez.springify.repository.filter.Operator;
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
+import com.borjaglez.springify.repository.filter.impl.Filter;
 import com.borjaglez.springify.repository.specification.SpecificationBuilder;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.dto.UserDTO;
@@ -16,6 +19,7 @@ import com.example.demo.dto.mapper.ProductMapper;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.repository.ProductRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 
 @Service
@@ -23,6 +27,9 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 
 	@Autowired
 	ProductRepository productRepository;
+	
+	@Autowired
+	UserRepository userRepository;
 
 	@Override
 	public ProductDTO createProduct(ProductDTO createProductRequest) {
@@ -49,7 +56,9 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 	@Transactional(readOnly = true)
 	public DataSourceRESTResponse<List<ProductDTO>> getMyProducts(AnyPageFilter pageFilter, String login) {
 		checkInputParams(pageFilter);
-		Page<Product> products = SpecificationBuilder.selectDistinctFrom(productRepository).where(pageFilter)
+		User user = userRepository.findByLogin(login).get();
+		Filter filter = new Filter("user", Operator.EQUAL, user.getId());
+		Page<Product> products = SpecificationBuilder.selectDistinctFrom(productRepository).where(filter).where(pageFilter)
 				.findAll(pageFilter);
 		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
 		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(products.getContent());

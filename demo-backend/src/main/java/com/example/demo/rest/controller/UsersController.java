@@ -14,7 +14,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,13 +26,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.dto.UserDTO;
 import com.example.demo.entity.enums.ResponseCodeEnum;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
 import com.example.demo.service.IUserService;
-import com.example.demo.service.ProductServiceImpl;
 import com.example.demo.utils.CipherUtils;
 import com.example.demo.utils.Constant;
 
@@ -230,7 +230,21 @@ public class UsersController {
 		return userService.findProducers();
 	}
 	
-
-
+	@PostMapping(path = "/findProducers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	public @ResponseBody DataSourceRESTResponse<List<UserDTO>> findProducers(@RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findProducers in progress...");
+		DataSourceRESTResponse<List<UserDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = userService.findProducers(2, pageFilter);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findProducers is finished...");
+		return dres;
+	}
 
 }
