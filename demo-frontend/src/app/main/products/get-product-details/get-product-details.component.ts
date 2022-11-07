@@ -42,7 +42,7 @@ export class GetProductDetailsComponent implements OnInit {
     this.idProduct = this.route.snapshot.params['id'];
 
     if (this.idProduct) {
-      this.productService.getProductDeatil(this.idProduct).subscribe(
+      this.productService.getProduct(this.idProduct).subscribe(
         response => {
           this.product = response;
           this.producer = this.product.user;

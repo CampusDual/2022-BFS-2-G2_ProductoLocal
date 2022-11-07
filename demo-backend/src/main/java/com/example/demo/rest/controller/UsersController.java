@@ -232,7 +232,7 @@ public class UsersController {
 	}
 	
 	@PostMapping(path = "/findProducers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	//@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCERS')")
 	public @ResponseBody DataSourceRESTResponse<List<UserDTO>> findProducers(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("findProducers in progress...");
 		DataSourceRESTResponse<List<UserDTO>> dres = new DataSourceRESTResponse<>();

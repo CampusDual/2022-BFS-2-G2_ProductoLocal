@@ -57,73 +57,73 @@
                 </td>
             </ng-container>
 
-            <ng-container matColumnDef="login">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container  matColumnDef="login">
+                <mat-header-cell class="medium-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.login" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="login">
+                <mat-cell class="medium-col" *matCellDef="let row" data-label="login">
                     {{ row.login }}
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="name">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container  matColumnDef="name">
+                <mat-header-cell class="medium-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.name" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="name">
+                <mat-cell class="medium-col" *matCellDef="let row" data-label="name">
                     {{ row.name }}
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="surname">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell class="long-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.surname" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="surname">
+                <mat-cell class="long-col" *matCellDef="let row" data-label="surname">
                     {{ row.surname }}
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="nif">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container  matColumnDef="nif">
+                <mat-header-cell class="short-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.nif" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="nif">
+                <mat-cell class="short-col" *matCellDef="let row" data-label="nif">
                     {{ row.nif }}
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="city">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container  matColumnDef="city">
+                <mat-header-cell class="medium-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.city" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="city">
+                <mat-cell class="medium-col" *matCellDef="let row" data-label="city">
                     {{ row.city }}
                 </mat-cell>
             </ng-container>
 
-            <ng-container matColumnDef="zip">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+            <ng-container  matColumnDef="zip">
+                <mat-header-cell class="short-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.zip" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="zip">
+                <mat-cell class="short-col" *matCellDef="let row" data-label="zip">
                     {{ row.zip }}
                 </mat-cell>
             </ng-container>
 
             <ng-container matColumnDef="phone">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell class="short-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.phone" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="phone">
+                <mat-cell class="short-col" *matCellDef="let row" data-label="phone">
                     {{ row.phone }}
                 </mat-cell>
             </ng-container>
             <ng-container matColumnDef="email">
-                <mat-header-cell *matHeaderCellDef mat-sort-header>
+                <mat-header-cell class="long-col" *matHeaderCellDef mat-sort-header>
                     {{ "table.users.email" | translate }}
                 </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="email">
+                <mat-cell class="long-col" *matCellDef="let row" data-label="email">
                     {{ row.email }}
                 </mat-cell>
             </ng-container>

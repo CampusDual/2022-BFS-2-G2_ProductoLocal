@@ -82,13 +82,4 @@ export class ProductService {
     return this.http.delete<any>(url, { params, headers });
   }
 
-  public getProductDeatil(id: number): Observable<Product> {
-    const url = API_CONFIG.getProductDetails;
-    const headers = new HttpHeaders({
-      'Content-type': 'charset=utf-8',
-      Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
-    });
-    const params = new HttpParams().set('id', id.toString());
-    return this.http.get<Product>(url, { params, headers });
-  }
 }
