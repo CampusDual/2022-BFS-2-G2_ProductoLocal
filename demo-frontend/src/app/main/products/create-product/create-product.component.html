@@ -47,10 +47,34 @@
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="number" color="primary" placeholder="{{'table.products.price' | translate}}"
-                            formControlName="price" min="0" name="product-quantity" required />
+                            formControlName="price" min="0" name="product-price" required />
                         <mat-error>{{'pricerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div class="inputrow">
+                    
+                    <mat-form-field>
+                        <input matInput /> 
+                        <input
+                            class="MyClass"
+                            type="file"
+                            id="fileInput"
+                            name="fileInput"
+                            accept="image/*"
+                            (change)="selectFiles($event)"
+                        />
+                        <!--<div>
+                            <img *ngFor='let preview of previews' [src]="preview" class="preview">
+                          </div> -->
+                        
+                        
+                    </mat-form-field>
+
+
+                </div>
+
+
 
             </mat-card-content>
 

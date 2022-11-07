@@ -52,6 +52,6 @@ public class AbstractDemoService {
 	
 	public Product fromEditProductRequest(Product productRequest) {
 		return new Product(productRequest.getId(), productRequest.getName(),productRequest.getQuantity(), productRequest.getDescription(),
-				productRequest.getTypeProd(), productRequest.getPrice(), productRequest.getUser());
+				productRequest.getTypeProd(), productRequest.getPrice(), productRequest.getImageUrl(), productRequest.getImage(), productRequest.getUser());
 	}
 }

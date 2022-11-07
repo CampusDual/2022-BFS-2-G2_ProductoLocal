@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.io.File;
 import java.util.List;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
@@ -24,4 +25,5 @@ public interface IProductService {
 	Integer deleteProduct(Integer id);
 	
 	List<ProductDTO> findByUser(String login);
+	
 }

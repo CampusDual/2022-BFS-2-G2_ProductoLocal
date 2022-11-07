@@ -1,6 +1,15 @@
 package com.example.demo.rest.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,6 +60,12 @@ public class ProductController {
 		LOGGER.info("createProduct in progress...");
 		
 		ProductDTO productNew = null;
+		if ((createProductRequest.getImage() != null &&  createProductRequest.getImageUrl() != null) ||
+				(!createProductRequest.getImage().equals("") && !createProductRequest.getImageUrl().equals("") )) {
+			String image = createProductRequest.getImage();
+			String imageUrl = createProductRequest.getImageUrl();
+			storeImage(image, imageUrl);
+		}
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
 		String message = Constant.PRODUCT_CREATE_SUCCESS;
@@ -230,5 +245,91 @@ public class ProductController {
 		LOGGER.info("showMyProducts is finished...");
 		return dres;
 	}
+	
+	
+	
+	public void storeImage(String image, String imageName) {
+		final String IMG_PATH = "./src/main/resources/images/";
+		String fullImagePath = IMG_PATH + imageName;
+			
+		
+		byte[] imageDecode = null;
+		
+		byte[] base64DecodeImage = null;
+		
+		Base64.Decoder decoder = Base64.getDecoder();
+		
+		/* 
+		 * descomponemos la cadena texto base64 en
+		 * un array de bytes codificados en base 64
+		 * 
+		*/
+		try {
+			
+			base64DecodeImage = loadImage64(image);
+		
+		} catch (Exception e) {
+		
+			e.printStackTrace();
+		
+		}
+		
+		if (base64DecodeImage != null) {
+		
+			imageDecode = decoder.decode(base64DecodeImage);
+			
+			if (imageDecode != null) {
+				//guardar a fichero
+				createImageFile(imageDecode, fullImagePath);
+				
+			}
+		}
+	}
+		
+			
+	private byte[] loadImage64(String data)  {
+					
+		int length = data.length();
+				
+		byte[] bytes = new byte[length];
+		
+		bytes = data.getBytes();
+		
+		return bytes;	
+		
+	}
+	
+	private void createImageFile(byte[] data, String path) {
+		
+		File i = new File(path);
+		
+		try(OutputStream fos = new FileOutputStream(i);) {
+			
+			fos.write(data);
+			
+			
+		} catch (FileNotFoundException fnfe) {
+
+			fnfe.printStackTrace();
+		
+		} catch (IOException ioe) {
+
+			ioe.printStackTrace();
+		}
+			
+	}
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
       

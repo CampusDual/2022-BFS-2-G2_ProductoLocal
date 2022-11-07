@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -8,6 +8,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 interface Tipo {
@@ -26,7 +28,19 @@ export class CreateProductComponent implements OnInit {
   userOwnerLogin:string;
   userOwner:User;
 
-  categories: Tipo[] = [
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  imageInfos?: Observable<any>;
+
+  /*  fin carga imagenes*/ 
+
+  @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
+
+   categories: Tipo[] = [
     { value: 'unidades'},
     { value: 'kilos'},
     { value: 'gramos'},
@@ -70,6 +84,8 @@ export class CreateProductComponent implements OnInit {
       quantity: [this.product.quantity],
       description:[this.product.description],
       price: [this.product.price],
+      // imageUrl: [this.selectedFileNames[0]],
+      // image: [this.image]
     },
     );
   }
@@ -82,6 +98,8 @@ export class CreateProductComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
     newProduct.user = this.userOwner;
+    newProduct.imageUrl = this.selectedFileNames[0];
+    newProduct.image = this.image;
     console.log(newProduct);
     let message;
     this.productService.createProduct(newProduct).subscribe((response) => {
@@ -109,4 +127,41 @@ export class CreateProductComponent implements OnInit {
     }
   }
 
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+   this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+  
+        reader.onload = (e: any) => {
+          //console.log(e.target.result);
+          this.image = e.target.result;
+          //console.log(typeof this.image)
+          //console.log('>>>>>>>>>>>>> ' + this.image);
+          //console.log(this.image.indexOf(","));
+          //console.log(this.image.slice(this.image.indexOf(",") + 1));
+          this.image = this.image.slice(this.image.indexOf(",") + 1);
+          console.log('>>>>>>>>>>>>> ' + this.image);
+          this.previews.push(e.target.result);
+        };
+  
+        reader.readAsDataURL(this.selectedFiles[i]);
+
+        console.log(reader);
+
+        console.log("Objeto creado: " + this.selectedFiles[0].type);
+
+        console.log("Nombre asignado: " + this.selectedFiles[0].name);
+       
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+
+        console.log("Nombre: " + this.selectedFileNames[0]);
+      }
+    } 
+  }
 }

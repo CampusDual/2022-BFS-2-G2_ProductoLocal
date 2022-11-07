@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.io.File;
+
 import javax.validation.constraints.NotEmpty;
 
 import com.example.demo.utils.Constant;
@@ -25,6 +27,12 @@ public class ProductDTO {
 	private double price;
 	
 	
+	private String imageUrl; 
+	
+	
+	private String image;
+	
+	
 	private UserDTO userId;
 	
 	
@@ -40,7 +48,7 @@ public class ProductDTO {
 	}
 
 
-	public ProductDTO(int id, String name, int quantity, String description, String typeProd, double price, UserDTO userId) {
+	public ProductDTO(int id, String name, int quantity, String description, String typeProd, double price, String imageUrl, UserDTO userId) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -48,6 +56,7 @@ public class ProductDTO {
 		this.description = description;
 		this.typeProd = typeProd;
 		this.price = price;
+		this.imageUrl = imageUrl;
 		this.userId = userId;
 	}
 
@@ -109,6 +118,26 @@ public class ProductDTO {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	
+	public String getImageUrl() {
+		return imageUrl;
+	}
+
+	
+	public void setImageUrl(String imageUrl) {
+		this.imageUrl = imageUrl;
+	}
+
+
+	public String getImage() {
+		return image;
+	}
+
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 
