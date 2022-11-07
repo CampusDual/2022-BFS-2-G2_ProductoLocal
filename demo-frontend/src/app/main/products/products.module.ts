@@ -23,6 +23,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ShowProductComponent } from './show-product/show-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ShowProductProducerComponent } from './show-product-producer/show-product-producer.component';
+import { ShowProductClientComponent } from './show-product-client/show-product-client.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -34,6 +37,7 @@ import { ShowProductProducerComponent } from './show-product-producer/show-produ
     ShowProductComponent,
     EditProductComponent,
     ShowProductProducerComponent,
+    ShowProductClientComponent,
   ],
   imports: [
     ProductsRoutingModule,
@@ -52,6 +56,10 @@ import { ShowProductProducerComponent } from './show-product-producer/show-produ
     MatCheckboxModule,
     TranslateModule,
     MatSelectModule,
+    MatToolbarModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatCardModule
   ]
 })
 export class ProductsModule { }

@@ -25,7 +25,8 @@
     "gr": "gramos",
     "kg": "kg",
     "litres": "litros",
-    "show_products": "Gestionar productos"
+    "show_products": "Gestionar productos",
+    "show_products_client": "Productos"
   },
   "main":{
     "welcome":"¡Bienvenido!"
@@ -63,10 +64,23 @@
       "typeProd":"Categoría",
       "quantity":"Cantidad",
       "description":"Unidades",
+
+      "description-type": {
+        "kilos": "kg",
+        "unidades": "u",
+        "gramos": "gr",
+        "litros": "L"
+      },
       "price":"Precio (€)",
-      "producer": "Productor"
+      "producer": "Productor",
+      "email-book": "Reserva por email!"
     }
   },
+
+  "sections-title": {
+    "product-grid": "Catálogo de productos"
+  },
+
   "form": {
     "contact": "Contacto",
     "newuser": "Nuevo usuario",
@@ -85,6 +99,8 @@
     "previous_page": "Página anterior",
     "of": "de"
   },
+
+  
   "EN": "Inglés",
   "ES": "Español",
   "GL": "Gallego",

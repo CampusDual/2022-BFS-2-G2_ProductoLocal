@@ -131,7 +131,7 @@ public class ProductController {
 	}
 	
 	@PostMapping(path = "/getProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN','GET_PRODUCTS_CLIENT')")
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getProducts(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("showProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();

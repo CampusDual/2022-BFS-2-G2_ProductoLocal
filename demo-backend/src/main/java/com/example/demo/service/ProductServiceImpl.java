@@ -14,7 +14,6 @@ import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.borjaglez.springify.repository.filter.impl.Filter;
 import com.borjaglez.springify.repository.specification.SpecificationBuilder;
 import com.example.demo.dto.ProductDTO;
-import com.example.demo.dto.UserDTO;
 import com.example.demo.dto.mapper.ProductMapper;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;

@@ -14,6 +14,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -231,7 +232,7 @@ public class UsersController {
 	}
 	
 	@PostMapping(path = "/findProducers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
 	public @ResponseBody DataSourceRESTResponse<List<UserDTO>> findProducers(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("findProducers in progress...");
 		DataSourceRESTResponse<List<UserDTO>> dres = new DataSourceRESTResponse<>();

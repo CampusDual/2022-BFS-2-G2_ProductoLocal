@@ -1,0 +1,22 @@
+<h3> {{'sections-title.product-grid' | translate}}</h3>
+<div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div class="prueba" fxFlex='20%' *ngFor="let product of products">
+            <mat-card class="mat-elevation-z4">
+                <mat-card-header fxLayout="column" fxLayoutAlign="center center">
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <!-- <mat-card-subtitle>{{product.user.city}}</mat-card-subtitle> -->
+                </mat-card-header>
+                <img mat-card-image src="./../../../../assets/images/items/cebolla.jpg">
+                <mat-card-content fxLayout="column" fxLayoutAlign="center center"> {{product.price}}
+                    €/{{("table.products.description-type." + product.description) | translate}} </mat-card-content>
+                <mat-card-actions fxLayout="column">
+                    <button mat-button (click)="contact(product.user.email, product.name)">{{'table.products.email-book'
+                        |translate}}</button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <!-- <mat-paginator [length]="dataSource.totalElements" [pageSize]="16" [pageSizeOptions]="[8, 16, 32, 64]"
+        showFirstLastButtons></mat-paginator> -->
+</div>

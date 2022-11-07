@@ -11,7 +11,7 @@
   "demo": {
     "title": "Demo"
   },
-  "mainMenu":{
+  "mainMenu": {
     "title": "Producto Local"
   },
   "menu": {
@@ -21,14 +21,15 @@
     "logout": "Pechar sesión",
     "personal_data": "Os meus datos personais",
     "add_product": "Engadir produto",
-    "units":"unidades",
+    "units": "unidades",
     "gr": "gramos",
     "kg": "kg",
     "litres": "litros",
-    "show_products": "Xestionar produtos"
+    "show_products": "Xestionar produtos",
+    "show_products_client": "Produtos"
   },
-  "main":{
-    "welcome":"¡Benvido!"
+  "main": {
+    "welcome": "¡Benvido!"
   },
   "language": {
     "spanish": "Castelán",
@@ -50,22 +51,31 @@
       "email": "E-Mail",
       "login": "Nome de usuario",
       "password": "Contrasinal",
-      "confirmPassword":"Confirmar contrasinal",
-      "category":"Categoría",
-      "nif": "NIF",      
+      "confirmPassword": "Confirmar contrasinal",
+      "category": "Categoría",
+      "nif": "NIF",
       "address": "Dirección",
       "city": "Cidade",
       "zip": "Código postal"
     },
     "products": {
-      "ownername":"Produtor",
-      "name":"Nome",
-      "typeProd":"Categoría",
-      "quantity":"Cantidade",
-      "description":"Unidades",
-      "price":"Prezo (€)",
-      "producer":"Produtor"
+      "ownername": "Produtor",
+      "name": "Nome",
+      "typeProd": "Categoría",
+      "quantity": "Cantidade",
+      "description": "Unidades",
+      "price": "Prezo",
+      "producer": "Produtor",
+      "description-type": {
+        "kilos": "kg",
+        "unidades": "u",
+        "gramos": "gr",
+        "litros": "L"
+      }
     }
+  },
+  "sections-title": {
+    "product-grid": "Catálogo de produtos"
   },
   "form": {
     "contact": "Contacto",
@@ -91,7 +101,7 @@
   "USER_NOT_EXISTS": "O usuario non existe na base de datos",
   "WRONG_PASSWORD": "Contrasinal incorrecta",
   "TOKEN_EXPIRED": "A sesión expirou",
-  "CONTACT_EDIT_SUCCESS":"Contacto editado",
+  "CONTACT_EDIT_SUCCESS": "Contacto editado",
   "CONTACT_CREATE_SUCCESS": "Contacto creado",
   "CONTACT_DELETE_SUCCESS": "Contacto borrado",
   "CONTACT_NOT_EDIT": "Erro ao editar o contacto",
@@ -105,25 +115,25 @@
   "USER_PHONE_UNIQUE": "Este teléfono xa está rexistrado",
   "USER_REMOVE_SUCCESS": "Eliminouse a conta de usuario",
   "USER_REMOVE_ERROR": "Non se puido elimina-la conta de usuario",
-  "NAME_REQUIRED" :"Nome obrigatorio",
-  "ID_NOT_EXISTS" :"Id non existe",
-  "ID_REQUIRED" :"Id obrigatorio",
-  "SURNAME1_REQUIRED" :"Primeiro apelido obrigatorio",
-  "SURNAME2_REQUIRED" :"Segundo apelido obrigatorio",
-  "PHONE_REQUIRED" :"Teléfono obrigatorio",
-  "PHONE_INVALID" :"Teléfono inválido",
-  "EMAIL_REQUIRED" :"Email obrigatorio",
-  "EMAIL_INVALID" :"Email invalido",
-  "CONTACT_NOT_EXISTS" :"Contacto non existe",
-  "CONTACT_ALREADY_EXISTS" :"Contacto xa existe",
-  "CONTACT_CONSTRAINT_VIOLATION" :"Violación de restrición de contacto",
+  "NAME_REQUIRED": "Nome obrigatorio",
+  "ID_NOT_EXISTS": "Id non existe",
+  "ID_REQUIRED": "Id obrigatorio",
+  "SURNAME1_REQUIRED": "Primeiro apelido obrigatorio",
+  "SURNAME2_REQUIRED": "Segundo apelido obrigatorio",
+  "PHONE_REQUIRED": "Teléfono obrigatorio",
+  "PHONE_INVALID": "Teléfono inválido",
+  "EMAIL_REQUIRED": "Email obrigatorio",
+  "EMAIL_INVALID": "Email invalido",
+  "CONTACT_NOT_EXISTS": "Contacto non existe",
+  "CONTACT_ALREADY_EXISTS": "Contacto xa existe",
+  "CONTACT_CONSTRAINT_VIOLATION": "Violación de restrición de contacto",
   "PHONE_ALREADY_EXISTS": "O teléfono xa existe",
   "UNKNOWN_ERROR": "Erro descoñecido",
   "SESSION_EXPIRED": "Sesión expirada",
   "PRODUCT_CREATE_SUCCESS": "Produto rexistrado correctamente",
-  "PRODUCT_DELETE_SUCCESS":"Producto eliminado correctamente",
-  "PRODUCT_DELETE_ERROR":"Non se puido elimina-lo produto",
-  "PRODUCT_EDIT_SUCCESS":"Produto actualizado correctamente",
+  "PRODUCT_DELETE_SUCCESS": "Producto eliminado correctamente",
+  "PRODUCT_DELETE_ERROR": "Non se puido elimina-lo produto",
+  "PRODUCT_EDIT_SUCCESS": "Produto actualizado correctamente",
   "CLOSE": "PECHAR",
   "filter": "Filtro",
   "new": "Novo",
@@ -136,16 +146,16 @@
   "delete-element-confirmation": "¿Está seguro de que quere continuar? O seu usuario será eliminado",
   "namerequired": "O nome é un campo obrigatorio",
   "surname1required": "O apelido é un campo obrigatorio",
-  "phonerequired":"O teléfono é un campo requirido",
+  "phonerequired": "O teléfono é un campo requirido",
   "phonepattern": "O formato do teléfono non é correcto",
   "emailpattern": "O formato do email non é correcto",
   "loginrequired": "O nome de usuario é un campo obrigatorio",
   "emailrequired": "O email é un campo obrigatorio",
-  "passwordrequired":"O contrasinal é un campo obrigatorio",
-  "passconfirmrequired":"A confirmación é un campo obrigatorio",
-  "passdoesnotmatch":"A confirmación e o contrasinal non coinciden",
-  "quantityrequired":"A cantidade é un campo obrigatorio",
+  "passwordrequired": "O contrasinal é un campo obrigatorio",
+  "passconfirmrequired": "A confirmación é un campo obrigatorio",
+  "passdoesnotmatch": "A confirmación e o contrasinal non coinciden",
+  "quantityrequired": "A cantidade é un campo obrigatorio",
   "descriptionrequired": "As unidades son un campo obrigatorio",
-  "pricerequired":"O prezo é un campo obrigatorio",
-  "delete-product-confirmation":"¿Está seguro de que quere continuar? O(s) seu(s) produto(s) ha(n) ser eliminado(s)"
+  "pricerequired": "O prezo é un campo obrigatorio",
+  "delete-product-confirmation": "¿Está seguro de que quere continuar? O(s) seu(s) produto(s) ha(n) ser eliminado(s)"
 }

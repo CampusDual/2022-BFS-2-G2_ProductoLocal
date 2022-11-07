@@ -52,6 +52,13 @@ export class NavComponent implements OnInit, OnDestroy {
       allowedRoles: ['SHOW_PRODUCTS']
 
     },
+    {  
+      icon: 'list',
+      route: 'products/products',
+      title: 'menu.show_products_client',
+      allowedRoles: ['GET_PRODUCTS_CLIENT']
+
+    },
 
   ];
 

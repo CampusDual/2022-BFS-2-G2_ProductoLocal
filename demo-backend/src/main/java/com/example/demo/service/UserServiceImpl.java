@@ -89,14 +89,7 @@ public class UserServiceImpl extends AbstractDemoService implements IUserService
 	@Override
 	public List<UserDTO> findProducers() {
 		List<User> userList = (List<User>)userRepository.findAll();
-		List<User> producerList = new ArrayList<User>();
-		for(User user: userList) {
-			for(Profile profile : user.getProfiles()) {
-				if(profile.getId() == 2) {
-					producerList.add(user);
-				}
-			}
-		}
+		List<User> producerList = userRepository.findByProfile(2);
 		return UserMapper.INSTANCE.userToUserDtoList(producerList);
 	}
 }
