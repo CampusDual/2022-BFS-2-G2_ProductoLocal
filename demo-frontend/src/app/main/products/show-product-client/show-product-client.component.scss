@@ -9,3 +9,40 @@ button{
 mat-card-title {
     text-align: center;
 }
+
+
+.mat-card-header-text{
+    width: 100%;
+}
+
+button.mat-button[id='details'] {
+    margin-bottom:10px;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
+}
+
+button.mat-button[id='details']:hover{
+    background-color: #bfedff;
+    border-width: 5px;
+}
+
+button.mat-button:hover {
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
+}
+div.prueba{
+    height: 510px;
+    margin: 1vh;
+}
+/*
+mat-card:hover{
+    margin-bottom:10px;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
+    cursor: hand;
+}*/
