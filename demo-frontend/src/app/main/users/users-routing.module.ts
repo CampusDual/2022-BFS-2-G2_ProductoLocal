@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CreateComponent } from './create/create.component';
 import { GetUserComponent } from './get-user/get-user.component';
+import { ShowProducersComponent } from './show-producers/show-producers.component';
 import { UsersLayoutComponent } from './users-layout.component';
 import { UsersComponent } from './users.component';
 
@@ -13,7 +14,8 @@ const routes: Routes = [
         children: [
             {path: "", component: UsersComponent},
             {path: 'create', component: CreateComponent},
-            {path: 'getUser', component: GetUserComponent}
+            {path: 'getUser', component: GetUserComponent},
+            {path: "showProducers", component: ShowProducersComponent}
         ],
     },
     

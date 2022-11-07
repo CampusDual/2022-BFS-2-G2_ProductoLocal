@@ -74,4 +74,17 @@ export class UserService {
       })
     );
   }
+
+  public showProducers(pageFilter: AnyPageFilter): Observable<DataSourceRESTResponse<User[]>> {
+    const url = API_CONFIG.showProducers;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    return this.http.post<DataSourceRESTResponse<User[]>>(url, pageFilter, { headers }).pipe(
+      catchError((e:HttpErrorResponse) =>{
+        return throwError(()=>e);
+      })
+    );
+  }
 }

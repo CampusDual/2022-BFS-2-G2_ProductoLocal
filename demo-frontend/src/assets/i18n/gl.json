@@ -26,7 +26,9 @@
     "kg": "kg",
     "litres": "litros",
     "show_products": "Xestionar produtos",
-    "show_products_client": "Produtos"
+    "show_products_client": "Produtos",
+    "show_producers" : "Xestionar produtores",
+    "product_details" : "Detalles do produto"
   },
   "main": {
     "welcome": "¡Benvido!"
@@ -71,7 +73,8 @@
         "unidades": "u",
         "gramos": "gr",
         "litros": "L"
-      }
+      },
+      "show_details":"Ver detalles"
     }
   },
   "sections-title": {
@@ -85,7 +88,8 @@
   },
   "button": {
     "cancel": "Cancelar",
-    "save": "Gardar"
+    "save": "Gardar",
+    "go_back": "Voltar"
   },
   "paginator": {
     "first_page": "Primeira páxina",

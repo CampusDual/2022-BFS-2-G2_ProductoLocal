@@ -22,11 +22,13 @@ export const API_CONFIG = {
   getProducers: environment.usersBaseUrl + '/getProducers',
   deleteUser: environment.usersBaseUrl + '/deleteUser',
   editUser: environment.usersBaseUrl + '/editUser',
+  showProducers: environment.usersBaseUrl + '/findProducers',
 
   //Products API
   createProduct: environment.productsBaseUrl + '/createProduct',
   getProducts: environment.productsBaseUrl + '/getProducts',
   getMyProducts: environment.productsBaseUrl + '/myProducts',
+  getProductDetails: environment.productsBaseUrl + '/getProductDetail',
   editProduct: environment.productsBaseUrl + '/editProduct',
   getProduct: environment.productsBaseUrl + '/getProduct',
   deleteProduct: environment.productsBaseUrl + '/deleteProduct'

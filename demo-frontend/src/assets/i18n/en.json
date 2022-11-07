@@ -26,7 +26,9 @@
     "kg": "kg",
     "litres": "liters",
     "show_products": "Manage products",
-    "show_products_client": "Products"
+    "show_products_client": "Products",
+    "show_producers" : "Manage producers",
+    "product_details" : "Product details"
   },
   "main": {
     "welcome": "¡Welcome!"
@@ -72,7 +74,8 @@
         "gramos": "gr",
         "litros": "L"
       },
-      "email-book": "¡Book by email!"
+      "email-book": "¡Book by email!",
+      "show_details":"Show details"
     }
   },
   "sections-title": {
@@ -86,7 +89,8 @@
   },
   "button": {
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "go_back": "Go back"
   },
   "paginator": {
     "first_page": "First page",

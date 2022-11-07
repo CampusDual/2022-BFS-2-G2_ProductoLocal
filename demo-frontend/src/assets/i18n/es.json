@@ -26,7 +26,9 @@
     "kg": "kg",
     "litres": "litros",
     "show_products": "Gestionar productos",
-    "show_products_client": "Productos"
+    "show_products_client": "Productos",
+    "show_producers" : "Gestionar productores",
+    "product_details" : "Detalles del producto"
   },
   "main":{
     "welcome":"¡Bienvenido!"
@@ -73,7 +75,8 @@
       },
       "price":"Precio (€)",
       "producer": "Productor",
-      "email-book": "Reserva por email!"
+      "email-book": "Reserva por email!",
+      "show_details":"Ver detalles"
     }
   },
 
@@ -89,7 +92,8 @@
   },
   "button": {
     "cancel": "Cancelar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "go_back": "Volver"
   },
   "paginator": {
     "first_page": "Primera página",

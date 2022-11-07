@@ -43,14 +43,12 @@ export class NavComponent implements OnInit, OnDestroy {
       route: 'products/showProducts',
       title: 'menu.show_products',
       allowedRoles: ['SHOW_PRODUCTS_ADMIN']
-
     },
     {  
       icon: 'list',
       route: 'products/myProducts',
       title: 'menu.show_products',
       allowedRoles: ['SHOW_PRODUCTS']
-
     },
     {  
       icon: 'list',
@@ -59,6 +57,12 @@ export class NavComponent implements OnInit, OnDestroy {
       allowedRoles: ['GET_PRODUCTS_CLIENT']
 
     },
+    {
+      icon: 'group',
+      route: 'users/showProducers',
+      title: 'menu.show_producers',
+      allowedRoles: ['MANAGE_USERS']
+    },  
 
   ];
 

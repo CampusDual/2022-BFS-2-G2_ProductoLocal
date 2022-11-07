@@ -26,6 +26,7 @@ import { ShowProductProducerComponent } from './show-product-producer/show-produ
 import { ShowProductClientComponent } from './show-product-client/show-product-client.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { GetProductDetailsComponent } from './get-product-details/get-product-details.component';
 
 
 @NgModule({
@@ -38,6 +39,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     EditProductComponent,
     ShowProductProducerComponent,
     ShowProductClientComponent,
+    GetProductDetailsComponent,
   ],
   imports: [
     ProductsRoutingModule,

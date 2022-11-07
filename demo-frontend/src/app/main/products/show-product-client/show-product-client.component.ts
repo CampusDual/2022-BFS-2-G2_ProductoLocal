@@ -65,6 +65,10 @@ export class ShowProductClientComponent implements OnInit {
     location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
   }
 
+  showDetails (id : number){
+    this.router.navigate(['/products/getProductDetail/' + id]);
+  }
+
   loadProductsPage() {
     this.selection.clear();
     this.error = false;

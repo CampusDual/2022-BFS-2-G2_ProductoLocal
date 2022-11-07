@@ -11,8 +11,12 @@
                 <mat-card-content fxLayout="column" fxLayoutAlign="center center"> {{product.price}}
                     €/{{("table.products.description-type." + product.description) | translate}} </mat-card-content>
                 <mat-card-actions fxLayout="column">
-                    <button mat-button (click)="contact(product.user.email, product.name)">{{'table.products.email-book'
-                        |translate}}</button>
+                    <button mat-button (click)="showDetails(product.id)">
+                        {{'table.products.show_details'|translate}}
+                    </button>
+                    <button mat-button (click)="contact(product.user.email, product.name)">
+                        {{'table.products.email-book'|translate}}
+                    </button>
                 </mat-card-actions>
             </mat-card>
         </div>
