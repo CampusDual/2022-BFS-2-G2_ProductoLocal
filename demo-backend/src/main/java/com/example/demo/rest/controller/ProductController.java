@@ -230,32 +230,5 @@ public class ProductController {
 		LOGGER.info("showMyProducts is finished...");
 		return dres;
 	}
-	
-	@GetMapping("/getProductDetail")
-	public ResponseEntity<?> viewProduct(@RequestParam(value = "id") Integer id) {
-		LOGGER.info("getProduct in progress...");
-		ProductDTO product = null;
-		Map<String, Object> response = new HashMap<>();
-		ResponseEntity<?>re = null;
-		try {
-			product = productService.getProduct(id);
-			if(product==null) {
-				response.put(Constant.MESSAGE, Constant.PRODUCT_NOT_EXISTS);
-				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
-				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-			}else {
-				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
-				re = new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
-			}
-		} catch (DataAccessException e) {
-			LOGGER.error(e.getMessage());
-			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
-			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
-			response.put(Constant.ERROR, e.getMessage());
-			re=  new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
-		} 
-		LOGGER.info("getProduct is finished...");
-		return re;
-	}
 }
       
