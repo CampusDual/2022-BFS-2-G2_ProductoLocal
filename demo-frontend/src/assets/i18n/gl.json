@@ -75,7 +75,9 @@
         "gramos": "gr",
         "litros": "L"
       },
-      "show_details":"Ver detalles"
+      "show_details":"Ver detalles",
+      "Stock": "Stock",
+      "suggestions": "Produtos de"
     }
   },
   "sections-title": {

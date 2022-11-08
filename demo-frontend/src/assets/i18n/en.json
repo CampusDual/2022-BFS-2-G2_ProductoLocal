@@ -59,7 +59,8 @@
       "address": "Address",
       "city": "City",
       "nif": "NIF",
-      "zip": "ZIP Code"
+      "zip": "ZIP Code",
+      "suggestions": "Products from"
     },
     "products": {
       "ownername": "Producer",
@@ -75,6 +76,7 @@
         "gramos": "gr",
         "litros": "L"
       },
+      "stock": "Stock",
       "email-book": "¡Book by email!",
       "show_details":"Show details"
     }

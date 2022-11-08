@@ -1,99 +1,130 @@
-.img {
-    display: flex;
-    max-width: 15em;
-    max-height: 15em;
-    margin: 0 auto;
+img.img {
+    border-radius: 50%;
+    width: 250px;
+    margin: 20px;
 }
-mat-card-header {
+
+div.productDetail {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    flex-direction: column;
-    margin-bottom: 1em;
-
+    justify-content: space-between;
 }
 
-.create-outer-container {
-    margin: 8px;
-    
-    .create-inner-container {
-
-        box-sizing:content-box;
-        position: absolute;
-        left: 50%;
-        top: 5em;
-        transform: translate(-50%, 0);
-        -moz-transform: translate(-50%, 0);
-        -webkit-transform: translate(-50%, 0);
-        width: 250px;
-        padding: 1em;
-        background-color: #FFFFFF;
-
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        form {
-            margin-top: 4vh;
-            height: 65%;
-            top: -75px;
-            bottom: 0;
-        }
-
-        button {
-            width: 100%;
-            margin: 30px 0 0;
-        }
-
-        mat-form-field {
-            width: 100%;
-            margin: 30px 0 0;
-        }
-
-        .dark_text {
-            color: #c5c5c5;
-            font-size: 9pt;
-        }
-
-        .title_text {
-            color: #7b7a79;
-            font-size: 10pt;
-            font-weight: bold;
-        }
-        .mat-card-title{
-            font-size: 20px;;
-        }
-
-    }
+.producerDetails>.inputrow {
+    font-size: large;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
 }
 
-@media (min-width: 600px) {
-    .create-outer-container {
-        .create-inner-container {
-            width: 450px;
-            min-height: 750px;
-            padding:5em;
-            padding-top: 0;
-        }
-    }
-    .mat-form-field-infix{
-        border-top: 0;
-    }
+
+div.product {
+    display: inline-block;
+    flex-grow: 1.5;
+    margin: 0 5vw;
 }
 
-.btn {
+span.quantity {
+    color: red;
+}
+
+label {
+    font-weight: bold;
+}
+
+.inputrow {
+    font-size: large;
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.inputrow.title {
+    font-weight: bold;
+    justify-content: center;
+}
+
+button {
+    margin: 20px;
+    background-color: #bfedff;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
+    flex-shrink: 1.5;
+}
+
+button.mat-button:hover {
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
     background-color: #bfedff;
 }
 
-.ng-star-inserted {
-    max-height: 90vh;
-}
-label{
-    display:flex;
+.withLogo {
+    display: flex;
     align-items: center;
-    padding: 1em 0;
 }
-.mat-form-field-infix{
-    border:0;
+
+div.producerDetails {
+    margin: 20px;
+}
+.producerSuggestions {
+    margin: 20px;
+    margin-top: 40px;
+}
+
+div.productSuggestions {
+    display: flex;
+    justify-content: space-evenly;
+    overflow-x: scroll;
+
+    .content {
+        padding: 16px;
+    }
+    
+    button{
+        background-color: #bfedff;
+    }
+    
+    mat-card-title {
+        text-align: center;
+    }
+    
+    .mat-card-header-text{
+        width: 100%;
+    }
+    
+    button.mat-button[id='details'] {
+        margin-bottom:10px;
+        background-color: white;
+        border-style: solid;
+        border-width: 3px;
+        border-color: #bfedff;
+    }
+    
+    button.mat-button[id='details']:hover{
+        background-color: #bfedff;
+        border-width: 5px;
+    }
+    
+    button.mat-button:hover {
+        border-style: solid;
+        border-width: 3px;
+        border-color: #bfedff;
+    }
+    div.prueba{
+        width: 250px;
+        margin: 20px;
+    }
+}
+
+div.input-row.container{
+    display: flex;
+    justify-content: center;
+    mat-card {
+        max-width: 70vw;
+        margin-top: 2vh;
+        margin-bottom: 5vh;
+    }
 }

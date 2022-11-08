@@ -11,6 +11,7 @@ import { Observable, Observer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { User } from 'src/app/model/user';
+import { AnyField, AnyPageFilter } from 'src/app/model/rest/filter';
 
 @Component({
   //selector: 'app-get-product-details',
@@ -22,56 +23,52 @@ export class GetProductDetailsComponent implements OnInit {
   product: Product;
   productForm: FormGroup;
   producer: User;
+  suggestions: Product[];
 
   constructor(
-    private productService:ProductService,
+    private productService: ProductService,
     private fb: FormBuilder,
     private router: Router,
     private dialog: MatDialog,
     private translate: TranslateService,
     private route: ActivatedRoute,
     private logger: LoggerService
-  ) { 
+  ) {
     this.product = new Product();
     this.producer = new User();
   }
 
   ngOnInit(): void {
-    this.productFormGroup();
     this.idProduct = this.route.snapshot.params['id'];
-
     if (this.idProduct) {
+      const pageFilter = new AnyPageFilter(
+        "",
+        ['id', 'name', 'price'].map((field) => new AnyField(field)),
+        0,
+        100,
+        'price'
+      );
       this.productService.getProduct(this.idProduct).subscribe(
         response => {
           this.product = response;
           this.producer = this.product.user;
-          this.productForm.patchValue(this.product, { emitEvent: false, onlySelf: false });
-          this.logger.info(this.product);
+          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) => this.suggestions = a.data);
+          console.log(this.product);
         }
       );
     }
-    
+
   }
-
-  productFormGroup() {
-    this.productForm = this.fb.group({
-      name: [{value:this.product.name, disabled:true}],
-      quantity: [{value:this.product.quantity, disabled:true}],
-      description: [{value:this.product.description, disabled:true}],
-      typeProd: [{value:this.product.typeProd, disabled:true}],
-      price: [{value:this.product.price, disabled:true}],
-
-      producer: [{value:this.producer.login, disabled:true}],     
-      city: [{value:this.producer.city, disabled:true}],
-      zip: [{value:this.producer.zip, disabled:true}],
-      email: [{value:this.producer.email, disabled:true}],
-      phone: [ {value:this.producer.phone, disabled:true}],
-    });
-  }
-
-
   goBack() {
     this.router.navigate(['/products/products']);
   }
 
+  contact(email: string, productName: string) {
+    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
+  }
+
+  showDetails(id: number) {
+    this.router.navigate(['/products/getProductDetail/' + id]).then(() =>
+      window.location.reload());
+  }
 }

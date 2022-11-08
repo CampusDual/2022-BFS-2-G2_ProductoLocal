@@ -59,7 +59,8 @@
       "address": "Dirección",
       "city": "Ciudad",
       "nif": "NIF",
-      "zip": "Código postal"
+      "zip": "Código postal",
+      "suggestions": "Productos de"
     },
     "products": {
       "ownername":"Productor",
@@ -67,7 +68,6 @@
       "typeProd":"Categoría",
       "quantity":"Cantidad",
       "description":"Unidades",
-
       "description-type": {
         "kilos": "kg",
         "unidades": "u",
@@ -77,7 +77,8 @@
       "price":"Precio (€)",
       "producer": "Productor",
       "email-book": "Reserva por email!",
-      "show_details":"Ver detalles"
+      "show_details":"Ver detalles",
+      "stock": "Stock"
     }
   },
 
