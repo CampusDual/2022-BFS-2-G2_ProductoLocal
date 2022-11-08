@@ -113,16 +113,8 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 
 	@Override
 	public List<ProductDTO> findByUser(String login) {
-		List<ProductDTO> productList = this.findAll();
-		;
-		for (ProductDTO product : productList) {
-			if (product.getUser() != null) {
-				if (!product.getUser().getLogin().equals(login)) {
-					productList.remove(product);
-				}
-			}
-		}
-		return productList;
+		List<Product> products = this.productRepository.findByLogin(login);
+		return ProductMapper.INSTANCE.productToProductDtoList(products);
 	}
 	
 	
