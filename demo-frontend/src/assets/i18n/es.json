@@ -83,14 +83,17 @@
   },
 
   "sections-title": {
-    "product-grid": "Catálogo de productos"
+    "product-grid": "Catálogo de productos",
+    "products-management": "Gestión de productos",
+    "producers-management": "Gestión de productores"
   },
 
   "form": {
     "contact": "Contacto",
     "newuser": "Nuevo usuario",
     "newproduct": "Nuevo producto",
-    "editproduct": "Editar producto"
+    "editproduct": "Editar producto",
+    "newproducer": "Nuevo productor"
   },
   "button": {
     "cancel": "Cancelar",
@@ -169,5 +172,6 @@
   "quantityrequired":"La cantidad es un campo obligatorio",
   "descriptionrequired": "Las unidades son un campo obligatorio",
   "pricerequired":"El precio es un campo obligatorio",
-  "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado."
+  "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado.",
+  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados."
 }

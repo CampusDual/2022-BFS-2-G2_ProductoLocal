@@ -200,9 +200,6 @@ export class GetUserComponent implements OnInit {
           this.router.navigate(['/login']);
           localStorage.setItem('close_session', '1');
           localStorage.setItem('close_session_language', this.translate.currentLang);
-          /* setTimeout(() => {
-            //window.location.reload();
-          }, 100); */
         })
       },
       err => {

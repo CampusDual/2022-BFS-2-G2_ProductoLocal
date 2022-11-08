@@ -1,3 +1,4 @@
+<h3> {{'sections-title.producers-management' | translate}}</h3>
 <div>
     <div 
         fxLayout="row" 
@@ -11,11 +12,9 @@
             <button mat-raised-button (click)="onAdd()">
                 <mat-icon>add</mat-icon> {{ "new" | translate }}
             </button>
-<!--
-    <button mat-raised-button [disabled]="!selection.hasValue()" (click)="onDelete()">
-        <mat-icon>delete</mat-icon> {{ "delete" | translate }}
-    </button>
--->
+            <button mat-raised-button [disabled]="!selection.hasValue()" (click)="onDelete()">
+                <mat-icon>delete</mat-icon> {{ "delete" | translate }}
+            </button>
             <button mat-raised-button (click)="loadProducersPage()">
                 <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
             </button>

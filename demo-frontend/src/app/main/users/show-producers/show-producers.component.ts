@@ -116,22 +116,21 @@ export class ShowProducersComponent implements OnInit {
     const numRows = this.dataSource.producersSubject.value.length;
     return numSelected === numRows;
   }
-/*
+
   onDelete() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: this.translate.instant('delete-producer-confirmation'),
+      data: this.translate.instant('delete-user-confirmation'),
     });
-    let message;
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.delete();
-        swal.fire(this.translate.instant('PRODUCT_DELETE_SUCCESS'), '','success').then((res) => {
+        swal.fire(this.translate.instant('USER_REMOVE_SUCCESS'), '','success').then((res) => {
         return new Observable((observer: Observer<boolean>) =>
           observer.next(true)
         )});
       } else {
-        swal.fire(this.translate.instant('PRODUCT_DELETE_ERROR'), '','error').then((res) => {
+        swal.fire(this.translate.instant('USER_REMOVE_ERROR'), '','error').then((res) => {
         return new Observable((observer: Observer<boolean>) =>
         observer.next(false)
           )
@@ -144,8 +143,7 @@ export class ShowProducersComponent implements OnInit {
     const user = this.selection.selected[0];
     this.selection.deselect(user);
     if (this.selection.selected && this.selection.selected.length === 0) {
-      this.userService.deleteProducer(user.login).subscribe((response) => {
-        console.log(response);
+      this.userService.deleteUser(user.login).subscribe((response) => {
         if (response.responseCode !== 'OK') {
           this.error = true;
         } else {
@@ -153,8 +151,7 @@ export class ShowProducersComponent implements OnInit {
         }
       });
     } else {
-      this.userService.deleteProducer(user.login).subscribe((response) => {
-        console.log(response);
+      this.userService.deleteUser(user.login).subscribe((response) => {
         if (response.responseCode !== 'OK') {
           this.error = true;
         }
@@ -162,8 +159,8 @@ export class ShowProducersComponent implements OnInit {
       });
     }
   }
+
   
-  */
   onAdd() {
     this.router.navigate(['/users/createProducer']);
   }

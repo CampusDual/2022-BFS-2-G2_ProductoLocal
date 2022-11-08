@@ -82,13 +82,16 @@
     }
   },
   "sections-title": {
-    "product-grid": "Product catalog"
+    "product-grid": "Product catalog",
+    "products-management": "Products management",
+    "producers-management": "Producers management"
   },
   "form": {
     "contact": "Contact",
     "newuser": "New user",
     "newproduct": "New product",
-    "editproduct": "Edit product"
+    "editproduct": "Edit product",
+    "newproducer": "New producer"
   },
   "button": {
     "cancel": "Cancel",
@@ -165,5 +168,6 @@
   "quantityrequired": "Quantity is a required field",
   "descriptionrequired": "Units is a required field",
   "pricerequired": "Price is a required field",
-  "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted"
+  "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted",
+  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted"
 }
