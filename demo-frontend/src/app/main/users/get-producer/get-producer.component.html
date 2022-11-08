@@ -1,0 +1,83 @@
+<div fxLayout="100" class="create-outer-container">
+    <div class="create-inner-container mat-elevation-z1">
+        <form [formGroup]="producerForm" class="h-full">
+
+            <mat-card-header>
+                <mat-card-title>{{'menu.producer_data' | translate}}</mat-card-title>
+            </mat-card-header>
+
+            <mat-card-content>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.login' | translate}}"
+                            formControlName="login" name="user-login" [value]="this.user.login" required/>
+                        <mat-error>{{'loginrequired' | translate}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.nif' | translate}}"
+                            formControlName="nif" name="user-nif" [value]="this.user.nif" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
+                        formControlName="name" name="user-name" [value]="this.user.name" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.surname' | translate}}"
+                        formControlName="surname" name="user-surname" [value]="this.user.surname" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.address' | translate}}"
+                        formControlName="address" name="user-address" [value]="this.user.address" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
+                        formControlName="city" name="user-city" [value]="this.user.city" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary" 
+                            placeholder="{{'table.users.email' | translate}}" required
+                            formControlName="email" name="user-email" [value]="this.user.email"/>
+                            <mat-error>{{'emailrequired' | translate}}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.phone' | translate}}"
+                        formControlName="phone" name="user-phone" [value]="this.user.phone" />
+                    </mat-form-field>
+                </div>
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.zip' | translate}}"
+                        formControlName="zip" name="user-zip" [value]="this.user.zip" />
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+
+            <mat-card-actions>
+                <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
+                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
+                        [disabled]="!producerForm.valid">{{'button.save' | translate}}</button>
+                    <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
+                        [formNoValidate]="true">{{'button.cancel' |
+                        translate}}</button>
+                </div>
+            </mat-card-actions>
+            
+
+
+        </form>
+    </div>
+</div>

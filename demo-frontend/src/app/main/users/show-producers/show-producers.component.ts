@@ -162,14 +162,14 @@ export class ShowProducersComponent implements OnInit {
       });
     }
   }
-
-  onAdd() {
-    this.router.navigate(['/users/createProducerByAdmin']);
-  }
+  
   */
+  onAdd() {
+    this.router.navigate(['/users/createProducer']);
+  }
 
   onEdit(row: User) {
     this.highlightedRow = row;
-    this.router.navigate(['/users/edit/' + row.id]);
+    this.router.navigate(['/users/getUser/producer/' + row.login]);
   }
 }

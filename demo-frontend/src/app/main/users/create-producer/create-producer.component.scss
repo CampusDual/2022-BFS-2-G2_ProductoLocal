@@ -1,23 +1,14 @@
-.img {
-    display: flex;
-    max-width: 15em;
-    max-height: 15em;
-    margin: 0 auto;
-}
 mat-card-header {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-bottom: 1em;
-
 }
 
 .create-outer-container {
     margin: 8px;
-    
-    .create-inner-container {
 
-        box-sizing:content-box;
+    .create-inner-container {
+        box-sizing: content-box;
         position: absolute;
         left: 50%;
         top: 5em;
@@ -32,6 +23,23 @@ mat-card-header {
         h1 {
             text-align: center;
             margin-bottom: 30px;
+        }
+
+        .logo-container {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            position: relative;
+            background-color: #FFFFFF;
+            top: -75px;
+            left: 50%;
+            -webkit-transform: translate(-50%, 0%);
+
+            img {
+                width: 150px;
+                height: 150px;
+                border-radius: 50%;
+            }
         }
 
         form {
@@ -61,10 +69,7 @@ mat-card-header {
             font-size: 10pt;
             font-weight: bold;
         }
-        .mat-card-title{
-            font-size: 20px;;
-        }
-
+    
     }
 }
 
@@ -72,28 +77,30 @@ mat-card-header {
     .create-outer-container {
         .create-inner-container {
             width: 450px;
-            min-height: 750px;
-            padding:5em;
-            padding-top: 0;
+            min-height: 775px;
+            padding-right: 5em;
+            padding-left: 5em;
+
+            .logo-europa-concello-container {
+                bottom: -200px;
+
+                img {
+                    height: 156px;
+                }
+            }
         }
-    }
-    .mat-form-field-infix{
-        border-top: 0;
     }
 }
 
-.btn {
+.myClass {
     background-color: #bfedff;
+    color: black;
+}
+
+.cancel {
+    background-color: #fdd4ce;
 }
 
 .ng-star-inserted {
     max-height: 90vh;
-}
-label{
-    display:flex;
-    align-items: center;
-    padding: 1em 0;
-}
-.mat-form-field-infix{
-    border:0;
 }

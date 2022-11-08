@@ -15,9 +15,9 @@
                             formControlName="ownername" name="owner-name" [matAutocomplete]="auto" required >
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                 <mat-option *ngFor="let producer of producers" [value]="producer.login">
-                                  {{producer.login}}
+                                    {{producer.login}}
                                 </mat-option>
-                              </mat-autocomplete>
+                            </mat-autocomplete>
                         <mat-error>{{'namerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>

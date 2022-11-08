@@ -20,6 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatSelectModule } from '@angular/material/select'; 
 import { GetUserComponent } from './get-user/get-user.component';
 import { ShowProducersComponent } from './show-producers/show-producers.component';
+import { GetProducerComponent } from './get-producer/get-producer.component';
+import { CreateProducerComponent } from './create-producer/create-producer.component';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import { ShowProducersComponent } from './show-producers/show-producers.componen
     UsersLayoutComponent,
     CreateComponent,
     GetUserComponent,
-    ShowProducersComponent
+    ShowProducersComponent,
+    GetProducerComponent,
+    CreateProducerComponent,
   ],
   imports: [
     UsersRoutingModule,

@@ -1,98 +1,110 @@
-<form [formGroup]="productForm" class="h-full">
-    <div fxLayout="column" fxLayoutGap="20px" class="form-content">
-        <div class="input-row">
-            <mat-card fxFlex>
-                <mat-card-header>
-                    <mat-card-title>{{'menu.product_details' | translate}}</mat-card-title>
-                </mat-card-header>
-                <img class="img" mat-card-image src="./../../../../assets/images/items/cebolla.jpg">
-                <mat-card-content>
-                    <div class="inputrow">
-                        <label for="name">{{"table.products.name" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="name" name="name"
-                                [value]="this.product.name" readonly/>
-                            <mat-error>{{'loginrequired' | translate}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="quantity">{{"table.products.quantity" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="quantity" name="quantity"
-                                [value]="this.product.quantity" readonly/>
-                            <mat-error>{{'loginrequired' | translate}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="description">{{"table.products.description" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="description" name="description"
-                                [value]="this.product.description" readonly/>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="typeProd">{{"table.products.typeProd" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="typeProd" name="typeProd"
-                                [value]="this.product.typeProd" readonly/>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="price">{{"table.products.price" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="price" name="price"
-                                [value]="this.product.price" readonly/>
-                        </mat-form-field>
-                    </div>
+<div fxLayout="100" class="create-outer-container">
+    <div class="create-inner-container mat-elevation-z1">
+        <form [formGroup]="productForm" class="h-full">
+                        <mat-card-header>
+                            <mat-card-title>{{'menu.product_details' | translate}}</mat-card-title>
+                        </mat-card-header>
+                        <img class="img" mat-card-image src="./../../../../assets/images/items/cebolla.jpg">
+                        <mat-card-content>
+                            <div class="inputrow">
+                                <label for="name">{{"table.products.name" | translate}}: {{this.product.name}}</label>
+                                <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="name" name="name"
+                                        [value]="this.product.name" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
+                            <div class="inputrow">
+                                <label for="quantity">{{"table.products.quantity" | translate}}: {{this.product.quantity}} {{this.product.description}}</label>
+                            <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="quantity" name="quantity" 
+                                    [value]="this.product.quantity" readonly/>
+                                </mat-form-field>
+                            -->                         
+                            </div>
+                            <!--
+                            <div class="inputrow">
+                                <label for="description">{{"table.products.description" | translate}}: {{this.product.description}}</label>
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="description" name="description"
+                                        [value]="this.product.description" readonly/>
+                                </mat-form-field>
+                            </div>
+                            -->
+                            <div class="inputrow">
+                                <label for="typeProd">{{"table.products.typeProd" | translate}}: {{this.product.typeProd}}</label>
+                            <!--    
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="typeProd" name="typeProd"
+                                        [value]="this.product.typeProd" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
+                            <div class="inputrow">
+                                <label for="price">{{"table.products.price" | translate}}: {{this.product.price}}</label>
+                            <!--    
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="price" name="price"
+                                        [value]="this.product.price" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
 
-                    <mat-card-title>{{'table.products.ownername' | translate}}</mat-card-title>
-                    <div class="inputrow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
-                        fxLayoutGap.lt-md="0px">
-                        <label for="user-login">{{"table.users.name" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="producer" name="user-login"
-                                [value]="this.producer.login" readonly/>
-                        </mat-form-field>
-                    </div>
+                            <mat-card-title>{{'table.products.ownername' | translate}}</mat-card-title>
+                            <div class="inputrow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
+                                fxLayoutGap.lt-md="0px">
+                                <label for="user-login">{{"table.users.name" | translate}}: {{this.producer.login}}</label>
+                            <!--    
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="producer" name="user-login"
+                                        [value]="this.producer.login" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
 
-                    <div class="inputrow">
-                        <label for="user-city">{{"table.users.city" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="city" name="user-city"
-                                [value]="this.producer.city" readonly/>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="user-email">{{"table.users.email" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="email" name="user-email"
-                                [value]="this.producer.email" readonly/>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="user-phone">{{"table.users.phone" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="phone" name="user-phone"
-                                [value]="this.producer.phone" readonly/>
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <label for="user-zip">{{"table.users.zip" | translate}}: </label>
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" formControlName="zip" name="user-zip"
-                            [value]="this.producer.zip" readonly />
+                            <div class="inputrow">
+                                <label for="user-city">{{"table.users.city" | translate}}: {{this.producer.city || '    ----    '}}</label>
+                            <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="city" name="user-city"
+                                        [value]="this.producer.city" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
+                            <div class="inputrow">
+                                <label for="user-email">{{"table.users.email" | translate}}:  {{this.producer.email }}</label>
+                            <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="email" name="user-email"
+                                        [value]="this.producer.email" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
+                            <div class="inputrow">
+                                <label for="user-phone">{{"table.users.phone" | translate}}: {{this.producer.phone || '    ----    '}}</label>
+                            <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="phone" name="user-phone"
+                                        [value]="this.producer.phone" readonly/>
+                                </mat-form-field>
+                            -->
+                            </div>
+                            <div class="inputrow">
+                                <label for="user-zip">{{"table.users.zip" | translate}}: {{this.producer.zip || '    ----    '}}</label>
+                            <!--
+                                <mat-form-field fxFlex>
+                                    <input matInput type="text" color="primary" formControlName="zip" name="user-zip"
+                                    [value]="this.producer.zip" readonly />
+                                </mat-form-field>
+                            -->
+                            </div>
 
-                        </mat-form-field>
-                    </div>
-
-                    <div class="btn-cont">
-                        <button class="delete-btn" (click)="goBack()" [style]="" mat-raised-button>
-                            <mat-icon>keyboard_backspace</mat-icon> {{ "button.go_back" | translate }}
-                        </button>
-                    </div>
-                </mat-card-content>
-
-            </mat-card>
-        </div>
+                            <button class="btn" (click)="goBack()" [style]="" mat-raised-button>
+                                <mat-icon>keyboard_backspace</mat-icon> {{ "button.go_back" | translate }}
+                            </button>
+                        </mat-card-content>
+        </form>
     </div>
-</form>
+</div>

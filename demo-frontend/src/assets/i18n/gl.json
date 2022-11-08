@@ -28,7 +28,8 @@
     "show_products": "Xestionar produtos",
     "show_products_client": "Produtos",
     "show_producers" : "Xestionar produtores",
-    "product_details" : "Detalles do produto"
+    "product_details" : "Detalles do produto",
+    "producer_data" : "Datos do produtor"
   },
   "main": {
     "welcome": "¡Benvido!"

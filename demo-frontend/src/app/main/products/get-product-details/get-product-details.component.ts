@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -56,17 +55,17 @@ export class GetProductDetailsComponent implements OnInit {
 
   productFormGroup() {
     this.productForm = this.fb.group({
-      name: [this.product.name],
-      quantity: [this.product.quantity],
-      description: [this.product.description],
-      typeProd: [this.product.typeProd],
-      price: [this.product.price],
+      name: [{value:this.product.name, disabled:true}],
+      quantity: [{value:this.product.quantity, disabled:true}],
+      description: [{value:this.product.description, disabled:true}],
+      typeProd: [{value:this.product.typeProd, disabled:true}],
+      price: [{value:this.product.price, disabled:true}],
 
-      producer: [this.producer.login],     
-      city: [this.producer.city],
-      zip: [this.producer.zip],
-      email: [this.producer.email],
-      phone: [ this.producer.phone],
+      producer: [{value:this.producer.login, disabled:true}],     
+      city: [{value:this.producer.city, disabled:true}],
+      zip: [{value:this.producer.zip, disabled:true}],
+      email: [{value:this.producer.email, disabled:true}],
+      phone: [ {value:this.producer.phone, disabled:true}],
     });
   }
 

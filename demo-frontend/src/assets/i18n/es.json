@@ -28,7 +28,8 @@
     "show_products": "Gestionar productos",
     "show_products_client": "Productos",
     "show_producers" : "Gestionar productores",
-    "product_details" : "Detalles del producto"
+    "product_details" : "Detalles del producto",
+    "producer_data" : "Datos del productor"
   },
   "main":{
     "welcome":"¡Bienvenido!"
