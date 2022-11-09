@@ -1,14 +1,10 @@
 <div fxLayout="100" class="create-outer-container">
-    <div class="create-inner-container mat-elevation-z1">
-
-        
+    <div class="create-inner-container mat-elevation-z1">       
         <form [formGroup]="productFormAdmin" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
             </mat-card-header>
-
             <mat-card-content>
-
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.products.ownername' | translate}}"
