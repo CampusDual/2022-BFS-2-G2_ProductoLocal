@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router  } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -11,6 +11,13 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import { Observable, Observer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
+import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
+import { SelectionModel } from '@angular/cdk/collections';
+import { Product } from 'src/app/model/product';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { AnyField, AnyPageFilter, SortFilter } from 'src/app/model/rest/filter';
+import { ProductService } from 'src/app/services/product.service';
 
 interface Tipo {
   value: number,
@@ -22,8 +29,9 @@ interface Tipo {
   templateUrl: './get-producer.component.html',
   styleUrls: ['./get-producer.component.scss']
 })
+
+
 export class GetProducerComponent implements OnInit {
-  
   user: User;
   userE: User;
   producerForm: FormGroup;
@@ -31,6 +39,26 @@ export class GetProducerComponent implements OnInit {
   unEditable: boolean = true;
   saveBttn: string = "display: none";
   editBttn: string = "display: inline-block";
+
+  dataSource: ShowProductDatasource;
+  displayedColumns = [
+    'name',
+    'quantity',
+    'typeProd',
+    'price',
+  ];
+  fields = ['name', 'quantity', 'typeProd', 'price'];
+
+  selection = new SelectionModel<Product>(true, []);
+  error = false;
+
+  //@ViewChild('edit') editTemplate: any;
+  highlightedRow: Product;
+
+  @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
+
 
   constructor(
     private authService: AuthService,
@@ -40,7 +68,8 @@ export class GetProducerComponent implements OnInit {
     private dialog: MatDialog,
     private translate: TranslateService,
     private route: ActivatedRoute,
-  ) {
+    private productService: ProductService
+    ) {
     this.user = new User();
     this.userE = new User();
   }
@@ -48,7 +77,13 @@ export class GetProducerComponent implements OnInit {
   ngOnInit(): void {
     this.producerFormGroup();
     this.user.login = this.route.snapshot.params['login'];
-
+    const pageFilter = new AnyPageFilter(
+      '',
+      this.fields.map((field) => new AnyField(field)),
+      0, 
+      20,
+      'name'
+    );
     if (this.user.login) {
       this.userService.getUser(this.user.login).subscribe(
         response => {
@@ -57,7 +92,10 @@ export class GetProducerComponent implements OnInit {
         }
       );
     }
+    this.dataSource = new ShowProductDatasource(this.productService);
+    this.dataSource.getMyProducts(pageFilter, this.user.login);
   }
+
   onFormChanges() {
     this.producerForm.valueChanges.subscribe((val) => { });
   }
@@ -96,21 +134,20 @@ export class GetProducerComponent implements OnInit {
       let regex = new RegExp("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$");
       console.log(regex.test(newUser.email));
       if (!regex.test(newUser.email)) {
-        message =this.translate.instant("EMAIL_INVALID");
+        message = this.translate.instant("EMAIL_INVALID");
         Swal.fire("ERROR", message, 'error').then((r) => window.location.reload());;
       } else {
         this.userService.editUser(newUser).subscribe((response) => {
           message = this.translate.instant(response.responseMessage);
-
           Swal.fire(message, "", 'success');
           this.redirectList(response);
           console.log(response);
         }, (err) => {
           if (err.error.errors.toString().includes("users_email_unique")) {
             message = this.translate.instant("USER_EMAIL_UNIQUE");
-          }else if (err.error.errors.toString().includes("users_nif_unique")){
+          } else if (err.error.errors.toString().includes("users_nif_unique")) {
             message = this.translate.instant("USER_NIF_UNIQUE");
-          }else if (err.error.errors.toString().includes("users_phone_unique")){
+          } else if (err.error.errors.toString().includes("users_phone_unique")) {
             message = this.translate.instant("USER_PHONE_UNIQUE");
           }
           Swal.fire({
@@ -206,7 +243,41 @@ export class GetProducerComponent implements OnInit {
       }
     );
   }
+
+  loadProductsPage() {
+    this.selection.clear();
+    this.error = false;
+    const pageFilter = new AnyPageFilter(
+      this.input.nativeElement.value,
+      this.fields.map((field) => new AnyField(field)),
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
   
+    pageFilter.order = [];
+    pageFilter.order.push(
+      new SortFilter(this.sort.active, this.sort.direction.toString())
+    );
+  
+    this.dataSource.getMyProducts(pageFilter, this.user.login);
+  }
+
+  masterToggle(){}
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.productsSubject.value.length;
+    return numSelected === numRows;
+  }
+
+  onEdit(row: Product) {
+    this.highlightedRow = row;
+    this.router.navigate(['/products/edit/' + row.id]);
+  }
+
+  onAdd(){
+    this.router.navigate(['/products/createProductByAdmin']);
+  }
 }
 
 
