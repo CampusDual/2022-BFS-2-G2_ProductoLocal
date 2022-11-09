@@ -82,6 +82,11 @@ public class Constant {
 	public static final String EMAIL_ERROR ="users_email_key";
 	public static final String LOGIN_ERROR ="users_login_key";
     public static final String PROFILE_REQUIRED = "PROFILE_REQUIRED";
+    
+    
+    //Image backend path
+    public static final String BASE64HEADER = "data:image/jpeg;base64,";
+    public static final String IMG_PATH = "./src/main/resources/images/";
 	
 	
 	

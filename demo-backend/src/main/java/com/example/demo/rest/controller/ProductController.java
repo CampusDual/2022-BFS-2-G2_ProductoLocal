@@ -1,13 +1,12 @@
 package com.example.demo.rest.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -38,6 +37,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.entity.Product;
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
@@ -63,7 +63,7 @@ public class ProductController {
 		if ((createProductRequest.getImage() != null &&  createProductRequest.getImageUrl() != null) ||
 				(!createProductRequest.getImage().equals("") && !createProductRequest.getImageUrl().equals("") )) {
 			String image = createProductRequest.getImage();
-			String imageUrl = createProductRequest.getImageUrl();
+			String imageUrl = Integer.toString(createProductRequest.getId());
 			storeImage(image, imageUrl);
 		}
 		Map<String, Object> response = new HashMap<>();
@@ -153,6 +153,16 @@ public class ProductController {
 		
 		try {
 			dres = productService.getProducts(pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
+
 		}
 		catch(DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
@@ -246,6 +256,7 @@ public class ProductController {
 		return dres;
 	}
 	
+
 	@PostMapping(path = "/findCities", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findCities(@RequestParam String city, @RequestBody AnyPageFilter pageFilter) {
@@ -281,14 +292,22 @@ public class ProductController {
 	}
 	
 	
+
+	/**
+	 * 
+	 * Recibe la cadena de texto del frontend en base64,
+	 * se descodifica y se graba en un fichero jpg.
+	 *
+	 * 
+	 * @param image
+	 * @param imageName
+	 */
+
 	
 	public void storeImage(String image, String imageName) {
-		final String IMG_PATH = "./src/main/resources/images/";
-		String fullImagePath = IMG_PATH + imageName;
-			
 		
-		byte[] imageDecode = null;
-		
+		String fullImagePath = Constant.IMG_PATH + imageName;
+
 		byte[] base64DecodeImage = null;
 		
 		Base64.Decoder decoder = Base64.getDecoder();
@@ -300,38 +319,30 @@ public class ProductController {
 		*/
 		try {
 			
-			base64DecodeImage = loadImage64(image);
+			base64DecodeImage = decoder.decode(image);
 		
-		} catch (Exception e) {
+		} catch (IllegalArgumentException iae) {
 		
-			e.printStackTrace();
+			iae.printStackTrace();
 		
 		}
 		
 		if (base64DecodeImage != null) {
-		
-			imageDecode = decoder.decode(base64DecodeImage);
-			
-			if (imageDecode != null) {
-				//guardar a fichero
-				createImageFile(imageDecode, fullImagePath);
 				
-			}
+			createImageFile(base64DecodeImage, fullImagePath);
 		}
 	}
-		
-			
-	private byte[] loadImage64(String data)  {
-					
-		int length = data.length();
-				
-		byte[] bytes = new byte[length];
-		
-		bytes = data.getBytes();
-		
-		return bytes;	
-		
-	}
+
+	
+	/**
+	 * 
+	 * Crea un fichero de imagen (jpg) en el sistema
+	 * de ficheros del servidor (backend), en la ruta
+	 * indicada
+	 * 
+	 * @param data
+	 * @param path
+	 */
 	
 	private void createImageFile(byte[] data, String path) {
 		
@@ -353,5 +364,138 @@ public class ProductController {
 			
 	}
 	
+
+	
+	/**
+	 * 
+	 * Convierte un fichero de imagen (jpg) en una cadena
+	 * de texto codificada con base64 para enviar a 
+	 * frontend.
+	 * 
+	 * 
+	 * @param fileName
+	 * @param userLogin
+	 * @return
+	 */
+	
+	public String imageToString(String fileName, String userLogin) {
+		
+		String base64Data = null;
+		
+		String fullPath = Constant.IMG_PATH + userLogin + "/" + fileName;
+		
+		Base64.Encoder encoder = Base64.getEncoder();
+		
+		
+		try {
+			
+			File imageFile = new File(fullPath);
+			
+			
+			  if (!imageFile.exists()) {
+			  
+			  fullPath = Constant.IMG_PATH + "default/veg-logo.png";
+			  
+			  imageFile = new File(fullPath); }
+			 
+			
+			FileInputStream fis = new FileInputStream(imageFile);
+			
+			byte[] rawBytes = new byte[(int) imageFile.length()];
+			
+			rawBytes = fis.readAllBytes();
+			
+			base64Data = encoder.encodeToString(rawBytes);
+			
+			base64Data = Constant.BASE64HEADER + base64Data;
+			
+			fis.close();
+
+		}
+		catch (FileNotFoundException fnfe) {
+			
+			//base64Data = "";
+						
+			fnfe.printStackTrace();
+		}
+		catch (NullPointerException npe) {
+			
+			//base64Data = "";
+			
+			npe.printStackTrace();
+		} 
+		catch (IOException ioe) {
+			
+			//base64Data = "";
+			
+			ioe.printStackTrace();
+		}
+
+		
+		return base64Data;
+	}
+	
+	
+//	/**
+//	 * Convierte los nombres plurales a singular
+//	 * puesto que los nombres de los ficheros
+//	 * de image son siempre singulares.
+//	 * 
+//	 * @param s
+//	 * @return
+//	 */
+//	public String simplize(String s) {
+//		
+//		String simple = "";
+//		s = s.trim();
+//		
+//		//if (s.substring(s.length() - 2).equals("s")) {
+//		if (s.endsWith("s")) {
+//			
+//			simple= s.substring(0, s.length() - 1);
+//		}
+//		else {
+//			
+//			simple = s;	
+//		}
+//		
+//		return simple;
+//	}
+//	
+//	/**
+//	 * 
+//	 * Elimina acentos de una palabra
+//	 * 
+//	 * @param s
+//	 * @return
+//	 */
+//	
+//	public static String stripAccents(String s) 
+//	{
+//	    /*Salvamos las ñ*/
+//	    s = s.replace('ñ', '\001');
+//	    s = s.replace('Ñ', '\002');
+//	    s = Normalizer.normalize(s, Normalizer.Form.NFD);
+//	    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+//	    /*Volvemos las ñ a la cadena*/
+//	    s = s.replace('\001', 'ñ');
+//	    s = s.replace('\002', 'Ñ');
+//
+//	    return s;
+//	}  
+//	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }
       
