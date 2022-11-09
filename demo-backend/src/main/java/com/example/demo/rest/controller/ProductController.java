@@ -246,6 +246,40 @@ public class ProductController {
 		return dres;
 	}
 	
+	@PostMapping(path = "/findCities", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findCities(@RequestParam String city, @RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findCities in progress...");
+		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = productService.findCities(city, pageFilter);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findCities is finished...");
+		return dres;
+	}
+	
+	@PostMapping(path = "/findTypes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findTypes(@RequestParam String typeProd, @RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findTypes in progress...");
+		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = productService.findTypes(typeProd, pageFilter);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findTypes is finished...");
+		return dres;
+	}
+	
 	
 	
 	public void storeImage(String image, String imageName) {
@@ -318,18 +352,6 @@ public class ProductController {
 		}
 			
 	}
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
       

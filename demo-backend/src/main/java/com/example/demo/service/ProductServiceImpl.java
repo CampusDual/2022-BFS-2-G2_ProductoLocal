@@ -117,6 +117,28 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		return ProductMapper.INSTANCE.productToProductDtoList(products);
 	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> findCities(String city, AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Product> cities = productRepository.findByCity(city, pageFilter.toPageable());
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(cities.getContent());
+		datares.setData(productsDTO);
+		datares.setTotalElements((int) cities.getTotalElements());
+		return datares;
+	}
 	
-
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> findTypes(String typeProd, AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Product> types = productRepository.findByType(typeProd, pageFilter.toPageable());
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(types.getContent());
+		datares.setData(productsDTO);
+		datares.setTotalElements((int) types.getTotalElements());
+		return datares;
+	}
+	
 }
