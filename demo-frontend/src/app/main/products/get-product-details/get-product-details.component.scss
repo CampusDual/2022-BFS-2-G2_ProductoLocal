@@ -76,7 +76,7 @@ div.producerDetails {
 
 div.productSuggestions {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: start;
     overflow-x: scroll;
 
     .content {
