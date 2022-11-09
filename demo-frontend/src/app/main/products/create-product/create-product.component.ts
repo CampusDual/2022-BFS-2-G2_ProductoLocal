@@ -34,8 +34,6 @@ export class CreateProductComponent implements OnInit {
   image: string;
   
   previews: string[] = [];
-  imageInfos?: Observable<any>;
-
   /*  fin carga imagenes*/ 
 
   @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
@@ -84,8 +82,6 @@ export class CreateProductComponent implements OnInit {
       quantity: [this.product.quantity],
       description:[this.product.description],
       price: [this.product.price],
-      // imageUrl: [this.selectedFileNames[0]],
-      // image: [this.image]
     },
     );
   }
@@ -139,28 +135,14 @@ export class CreateProductComponent implements OnInit {
         const reader = new FileReader();
   
         reader.onload = (e: any) => {
-          console.log(e.target.result);
           this.image = e.target.result;
-          //console.log(typeof this.image)
-          //console.log('>>>>>>>>>>>>> ' + this.image);
-          //console.log(this.image.indexOf(","));
-          //console.log(this.image.slice(this.image.indexOf(",") + 1));
           this.image = this.image.slice(this.image.indexOf(",") + 1);
-          console.log('>>>>>>>>>>>>> ' + this.image);
           this.previews.push(e.target.result);
         };
-  
-        reader.readAsDataURL(this.selectedFiles[i]);
-
-        console.log(reader);
-
-        console.log("Objeto creado: " + this.selectedFiles[0].type);
-
-        console.log("Nombre asignado: " + this.selectedFiles[0].name);
-       
+        reader.readAsDataURL(this.selectedFiles[i]);     
         this.selectedFileNames.push(this.selectedFiles[i].name);
 
-        console.log("Nombre: " + this.selectedFileNames[0]);
+        
       }
     } 
   }

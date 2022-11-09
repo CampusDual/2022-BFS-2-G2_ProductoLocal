@@ -60,6 +60,23 @@
                         <mat-error>{{'pricerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div class="inputrow">
+                    
+                    <mat-form-field>
+                        <input matInput hidden /> 
+                        <input
+                            class="MyClass"
+                            type="file"
+                            id="fileInput"
+                            name="fileInput"
+                            accept="image/*"
+                            (change)="selectFiles($event)"
+                        />
+                    </mat-form-field>
+                </div>
+
+
             </mat-card-content>
 
             <mat-card-actions>

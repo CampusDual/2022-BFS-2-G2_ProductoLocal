@@ -27,6 +27,14 @@ export class CreateProductByAdminComponent implements OnInit {
   userOwner: User;
   producers: User[];
 
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  /*  fin carga imagenes*/ 
+
 
   categories: Tipo[] = [
     { value: 'unidades' },
@@ -87,6 +95,8 @@ export class CreateProductByAdminComponent implements OnInit {
       response => {
         this.userOwner = response;
         newProduct.user = this.userOwner;
+        newProduct.imageUrl = this.selectedFileNames[0];
+        newProduct.image = this.image;
         console.log(newProduct);
         this.productService.createProduct(newProduct).subscribe((response) => {
           console.log(this);
@@ -123,6 +133,28 @@ export class CreateProductByAdminComponent implements OnInit {
     } else {
       console.log(response);
     }
+  }
+
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+          this.image = this.image.slice(this.image.indexOf(',') + 1);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+      }
+    } 
   }
 
 }
