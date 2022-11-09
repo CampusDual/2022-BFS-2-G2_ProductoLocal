@@ -60,12 +60,13 @@ public class ProductController {
 		LOGGER.info("createProduct in progress...");
 		
 		ProductDTO productNew = null;
-		if ((createProductRequest.getImage() != null &&  createProductRequest.getImageUrl() != null) ||
+		if ((createProductRequest.getImage() != null &&  createProductRequest.getImageUrl() != null) &&
 				(!createProductRequest.getImage().equals("") && !createProductRequest.getImageUrl().equals("") )) {
 			String image = createProductRequest.getImage();
 			String imageUrl = Integer.toString(createProductRequest.getId());
 			storeImage(image, imageUrl);
 		}
+
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
 		String message = Constant.PRODUCT_CREATE_SUCCESS;
@@ -192,11 +193,18 @@ public class ProductController {
 		ResponseEntity<?>re = null;
 		try {
 			product = productService.getProduct(id);
+			
 			if(product==null) {
 				response.put(Constant.MESSAGE, Constant.PRODUCT_NOT_EXISTS);
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
 				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}else {
+				if (product.getImageUrl() == null) {
+					
+					product.setImageUrl(Integer.toString(id) + ".jpg");
+				}
+				product.setImage(imageToString(product.getImageUrl(), product.getUser().getLogin()));
+				
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 				re = new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 			}
@@ -245,6 +253,15 @@ public class ProductController {
 		
 		try {
 			dres = productService.getMyProducts(pageFilter, login);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
 		}
 		catch(DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {

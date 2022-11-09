@@ -7,7 +7,7 @@
             <mat-card-content>
                 <div class="productDetail">
                     <!--<span><img class="img" mat-card-image src="./../../../../assets/images/items/cebolla.jpg"></span>-->
-                    <span><img class="img" mat-card-image src={{product.image}}></span>
+                    <span><img class="img" mat-card-image src={{this.product.image}}></span>
                     <div class="product">
                         <div class="inputrow title">{{this.product.name}}</div>
                         <div class="inputrow">
@@ -70,7 +70,8 @@
                                 <mat-card-header fxLayout="column" width="100%" fxLayoutAlign="center center">
                                     <mat-card-title>{{productSg.name}}</mat-card-title>
                                 </mat-card-header>
-                                <img mat-card-image src="./../../../../assets/images/Producto Local_files/veg-logo.png">
+                                <!--<img mat-card-image src="./../../../../assets/images/Producto Local_files/veg-logo.png"> -->
+                                <img mat-card-image src={{this.productSg.image}}>
                                 <mat-card-content fxLayout="column" fxLayoutAlign="center center">
                                     {{productSg.price}}
                                     €/{{("table.products.description-type." + productSg.description) | translate}}
