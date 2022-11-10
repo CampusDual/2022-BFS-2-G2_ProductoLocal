@@ -28,8 +28,13 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="text" color="primary" placeholder="{{'table.products.typeProd'| translate}}"
-                            formControlName="typeProd" name="typeProd" />
+                        <mat-label>{{'table.products.typeProd' | translate}}</mat-label>
+                        <mat-select required formControlName="typeProd">
+                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                                {{tipo.value}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{'typeprodrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
 

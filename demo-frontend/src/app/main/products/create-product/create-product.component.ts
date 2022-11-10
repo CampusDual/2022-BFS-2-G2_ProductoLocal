@@ -28,6 +28,16 @@ export class CreateProductComponent implements OnInit {
   userOwnerLogin:string;
   userOwner:User;
 
+  tipos: Tipo[] = [
+    { value: 'Bebidas' },
+    { value: 'Frutas' },
+    { value: 'Hortalizas' },
+    { value: 'Legumbres' },
+    { value: 'Lacteos' },
+    { value: 'Verduras' },
+    { value: 'Otros' },
+  ];
+
   /* Carga de imagenes*/
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];

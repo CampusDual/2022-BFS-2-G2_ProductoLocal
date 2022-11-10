@@ -165,6 +165,7 @@
   "passwordrequired": "O contrasinal é un campo obrigatorio",
   "passconfirmrequired": "A confirmación é un campo obrigatorio",
   "passdoesnotmatch": "A confirmación e o contrasinal non coinciden",
+  "typeprodrequired":"A categoría é un campo obrigatorio",
   "quantityrequired": "A cantidade é un campo obrigatorio",
   "descriptionrequired": "As unidades son un campo obrigatorio",
   "pricerequired": "O prezo é un campo obrigatorio",

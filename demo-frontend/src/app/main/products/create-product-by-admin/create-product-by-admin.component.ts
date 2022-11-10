@@ -35,7 +35,15 @@ export class CreateProductByAdminComponent implements OnInit {
   previews: string[] = [];
   /*  fin carga imagenes*/ 
 
-
+  tipos: Tipo[] = [
+    { value: 'Bebidas' },
+    { value: 'Frutas' },
+    { value: 'Hortalizas' },
+    { value: 'Legumbres' },
+    { value: 'Lacteos' },
+    { value: 'Verduras' },
+    { value: 'Otros' },
+  ];
   categories: Tipo[] = [
     { value: 'unidades' },
     { value: 'kilos' },

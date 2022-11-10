@@ -38,7 +38,15 @@ export class EditProductComponent implements OnInit {
   previews: string[] = [];
   /*  fin carga imagenes*/ 
 
-
+  tipos: Tipo[] = [
+    { value: 'Bebidas' },
+    { value: 'Frutas' },
+    { value: 'Hortalizas' },
+    { value: 'Legumbres' },
+    { value: 'Lacteos' },
+    { value: 'Verduras' },
+    { value: 'Otros' },
+  ];
   categories: Tipo[] = [
     { value: 'unidades' },
     { value: 'kilos' },
@@ -87,7 +95,7 @@ export class EditProductComponent implements OnInit {
 
   createFormGroup() {
     this.productForm = this.fb.group({
-      ownername: [this.product.user.login],
+      //ownername: [this.product.user.login],
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],

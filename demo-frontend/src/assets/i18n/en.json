@@ -166,6 +166,7 @@
   "passwordrequired": "Password is a required field",
   "passconfirmrequired": "Confirmation is a required field",
   "passdoesnotmatch": "Confirmation and password doesn't match",
+  "typeprodrequired":"Category is a required field",
   "quantityrequired": "Quantity is a required field",
   "descriptionrequired": "Units is a required field",
   "pricerequired": "Price is a required field",

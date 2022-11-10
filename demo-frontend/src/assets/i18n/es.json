@@ -170,6 +170,7 @@
   "passwordrequired":"La constraseña es un campo obligatorio",
   "passconfirmrequired":"La confirmación es un campo obligatorio",
   "passdoesnotmatch":"La confirmación y la contraseña no coinciden",
+  "typeprodrequired":"La categoría es necesaria",
   "quantityrequired":"La cantidad es un campo obligatorio",
   "descriptionrequired": "Las unidades son un campo obligatorio",
   "pricerequired":"El precio es un campo obligatorio",
