@@ -65,4 +65,18 @@ export class NavigationBarComponent {
   my_profile() {
     this.router.navigate(['/users/getUser']);
   }
+
+  get navVisible(){
+
+    let navVisible:boolean = true;
+
+    if(this.router.url === '/'){
+
+      navVisible= false;
+
+    }
+
+    return navVisible;
+
+   }
 }
