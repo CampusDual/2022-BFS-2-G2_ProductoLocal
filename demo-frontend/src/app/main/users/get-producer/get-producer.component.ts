@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import { Observable, Observer } from 'rxjs';
+import { debounceTime, distinctUntilChanged, fromEvent, merge, Observable, Observer, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
@@ -42,6 +42,7 @@ export class GetProducerComponent implements OnInit {
 
   dataSource: ShowProductDatasource;
   displayedColumns = [
+    'select',
     'name',
     'quantity',
     'typeProd',
@@ -69,7 +70,7 @@ export class GetProducerComponent implements OnInit {
     private translate: TranslateService,
     private route: ActivatedRoute,
     private productService: ProductService
-    ) {
+  ) {
     this.user = new User();
     this.userE = new User();
   }
@@ -80,7 +81,7 @@ export class GetProducerComponent implements OnInit {
     const pageFilter = new AnyPageFilter(
       '',
       this.fields.map((field) => new AnyField(field)),
-      0, 
+      0,
       20,
       'name'
     );
@@ -94,6 +95,35 @@ export class GetProducerComponent implements OnInit {
     }
     this.dataSource = new ShowProductDatasource(this.productService);
     this.dataSource.getMyProducts(pageFilter, this.user.login);
+  }
+
+  ngAfterViewInit(): void {
+    // server-side search
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadProductsPage();
+        })
+      )
+      .subscribe();
+
+    // reset the paginator after sorting
+    this.sort.sortChange.subscribe(() => {
+      this.paginator.pageIndex = 0;
+      this.selection.clear();
+    });
+
+    // on sort or paginate events, load a new page
+    merge(this.sort.sortChange, this.paginator.page)
+      .pipe(
+        tap(() => {
+          this.loadProductsPage();
+        })
+      )
+      .subscribe();
   }
 
   onFormChanges() {
@@ -120,7 +150,7 @@ export class GetProducerComponent implements OnInit {
 
   redirectList(response: any) {
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/users/getUser/producer/:login']);
+      this.router.navigate(['/users/getUser/producer/' + this.user.login]);
     } else {
       console.log(response);
     }
@@ -208,7 +238,7 @@ export class GetProducerComponent implements OnInit {
   onDelete() {
     const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       width: '350px',
-      data: this.translate.instant('delete-element-confirmation'),
+      data: this.translate.instant('delete-product-confirmation'),
     });
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
@@ -225,18 +255,17 @@ export class GetProducerComponent implements OnInit {
   }
 
   delete() {
-    this.userService.deleteUser(this.user.login).subscribe(
+    const product = this.selection.selected[0];
+    this.selection.deselect(product);
+    this.productService.deleteProduct(product.id).subscribe(
       response => {
-        Swal.fire(this.translate.instant("USER_REMOVE_SUCCESS")).then(() => {
-          this.user = response;
-          this.authService.logout();
-          this.router.navigate(['/login']);
-          localStorage.setItem('close_session', '1');
-          localStorage.setItem('close_session_language', this.translate.currentLang);
+        Swal.fire(this.translate.instant("PRODUCT_DELETE_SUCCESS")).then(() => {
+          this.router.navigate(['/users/getUser/producer/' + this.user.login]);
+          window.location.reload();
         })
       },
       err => {
-        Swal.fire(this.translate.instant("USER_REMOVE_ERROR"));
+        Swal.fire(this.translate.instant("PRODUCT_REMOVE_ERROR"));
         this.errors = err.error.errors as string[];
         console.error(err.status);
         console.error(this.errors);
@@ -253,16 +282,19 @@ export class GetProducerComponent implements OnInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
-  
     pageFilter.order = [];
     pageFilter.order.push(
       new SortFilter(this.sort.active, this.sort.direction.toString())
     );
-  
+
     this.dataSource.getMyProducts(pageFilter, this.user.login);
   }
 
-  masterToggle(){}
+
+  masterToggle() {
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.productsSubject.value.forEach(row => this.selection.select(row));
+  }
+
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
@@ -275,7 +307,7 @@ export class GetProducerComponent implements OnInit {
     this.router.navigate(['/products/edit/' + row.id]);
   }
 
-  onAdd(){
+  onAdd() {
     this.router.navigate(['/products/createProductByAdmin']);
   }
 }

@@ -107,8 +107,9 @@ export class ShowProductComponent implements OnInit {
   
     this.dataSource.getProducts(pageFilter);
   }
-
-  masterToggle(){}
+  masterToggle() {
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.productsSubject.value.forEach(row => this.selection.select(row));
+  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;

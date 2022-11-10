@@ -43,8 +43,6 @@ export class ShowProducersComponent implements OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('input') input: ElementRef;
 
-
-
   constructor(
     private userService: UserService,
     private translate: TranslateService,
@@ -109,7 +107,9 @@ export class ShowProducersComponent implements OnInit {
     this.dataSource.showProducers(pageFilter);
   }
 
-  masterToggle(){ }
+  masterToggle() {
+    this.isAllSelected() ? this.selection.clear() : this.dataSource.producersSubject.value.forEach(row => this.selection.select(row));
+  }
 
   isAllSelected() {
     const numSelected = this.selection.selected.length;
