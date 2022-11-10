@@ -1,5 +1,17 @@
 <h3> {{'sections-title.product-grid' | translate}}</h3>
 <div class="content">
+    <div class="content">
+        <div fxflex>
+            <mat-form-field>
+              <input
+                matInput
+                placeholder="{{ 'table.users.city' | translate }}"
+                #input
+                id="show-product-client-filter"
+                name="show-product-client-filter"
+              />
+            </mat-form-field>
+        </div>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div class="prueba" fxFlex='250px' *ngFor="let element of this.products">
             <mat-card class="mat-elevation-z4">

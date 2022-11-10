@@ -82,4 +82,14 @@ export class ProductService {
     return this.http.delete<any>(url, { params, headers });
   }
 
+  public findCities(pageFilter: AnyPageFilter, city: string): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.findCities;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    const params = new HttpParams().set('city', city);
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
+  }
+
 }

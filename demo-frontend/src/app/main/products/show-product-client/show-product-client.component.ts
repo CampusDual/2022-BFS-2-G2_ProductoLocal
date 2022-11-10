@@ -24,12 +24,13 @@ import swal from 'sweetalert2';
 export class ShowProductClientComponent implements OnInit {
 
   dataSource: ShowProductDatasource;
-  fields = ['name', 'quantity', 'typeProd', 'price', 'user.login'];
+  fields = ['name', 'quantity', 'typeProd', 'price', 'user.login', 'user.city'];
   products: Product[];
   selection = new SelectionModel<Product>(true, []);
   error = false;
 
 
+  @ViewChild('input') input: ElementRef;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private productService: ProductService,
@@ -53,6 +54,16 @@ export class ShowProductClientComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+    fromEvent(this.input.nativeElement, 'keyup')
+      .pipe(
+        debounceTime(150),
+        distinctUntilChanged(),
+        tap(() => {
+          this.paginator.pageIndex = 0;
+          this.loadProductsCities();
+        })
+      )
+      .subscribe();
     this.paginator.page.pipe(
         tap(() => {
           this.loadProductsPage();
@@ -83,4 +94,19 @@ export class ShowProductClientComponent implements OnInit {
       this.products = a.data;
     });
   }
+
+  loadProductsCities() {
+    this.selection.clear();
+    this.error = false;
+    const pageFilter = new AnyPageFilter(
+      this.input.nativeElement.value,
+      [new AnyField(this.fields[5])],
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
+    this.dataSource.getProducts(pageFilter);
+    this.productService.getProducts(pageFilter).subscribe((a) => {
+      this.products = a.data;
+    });
+}
 }

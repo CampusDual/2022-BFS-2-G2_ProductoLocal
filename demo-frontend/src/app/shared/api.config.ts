@@ -30,5 +30,6 @@ export const API_CONFIG = {
   getMyProducts: environment.productsBaseUrl + '/myProducts',
   editProduct: environment.productsBaseUrl + '/editProduct',
   getProduct: environment.productsBaseUrl + '/getProduct',
-  deleteProduct: environment.productsBaseUrl + '/deleteProduct'
+  deleteProduct: environment.productsBaseUrl + '/deleteProduct',
+  findCities: environment.productsBaseUrl + '/findCities'
 };

@@ -42,6 +42,20 @@ export class ShowProductDatasource extends DataSource<Product> {
         );
     }
 
+    findCities(pageFilter: AnyPageFilter, city: string) {
+        this.productsSubject.next([]);
+        this.loadingSubject.next(true);
+        this.productService.findCities(pageFilter, city).pipe(
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+            response => {
+                this.totalElements = response.totalElements;
+                this.productsSubject.next(response.data);
+            }
+        );
+    }
+
+
 /*     connect(collectionViewer: CollectionViewer): Observable<readonly Product[]> {
         throw new Error("Method not implemented.");
     } */
