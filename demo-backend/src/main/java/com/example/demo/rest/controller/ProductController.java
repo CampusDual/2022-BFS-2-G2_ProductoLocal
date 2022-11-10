@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Base64;
@@ -54,18 +57,25 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 	
+	/**
+	 * @param createProductRequest
+	 * @param result
+	 * @return
+	 */
 	@PostMapping(path = "/createProduct")
 	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS','CREATE_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
 		LOGGER.info("createProduct in progress...");
 		
 		ProductDTO productNew = null;
-		if ((createProductRequest.getImage() != null &&  createProductRequest.getImageUrl() != null) &&
-				(!createProductRequest.getImage().equals("") && !createProductRequest.getImageUrl().equals("") )) {
-			String image = createProductRequest.getImage();
-			String imageUrl = Integer.toString(createProductRequest.getId());
-			storeImage(image, imageUrl);
-		}
+//		if (createProductRequest.getImage() != null &&  !createProductRequest.getImage().equals("")) {
+//			String image = createProductRequest.getImage();
+			/*
+			 * String imageUrl = Integer.toString(createProductRequest.getId()) + ".jpg";
+			 * createProductRequest.setImageUrl(imageUrl);
+			 */
+		//	storeImage(image, imageUrl, createProductRequest.getUser().getLogin());
+	//	}
 
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
@@ -74,6 +84,9 @@ public class ProductController {
 		if (!result.hasErrors()) {
 			try {
 				productNew = productService.createProduct(createProductRequest);
+				productNew.setImageUrl(Integer.toString(productNew.getId()) + ".jpg");
+				productNew.setImage(createProductRequest.getImage());
+				this.editProduct(productNew, result);
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());	
 			}
 			catch (DataAccessException dae) {
@@ -98,6 +111,7 @@ public class ProductController {
 		}
 		LOGGER.info("createProduct is finished...");
 		response.put(Constant.MESSAGE, message);
+		
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	}
 
@@ -107,6 +121,15 @@ public class ProductController {
 		LOGGER.info("editProduct in progress...");
 		int id = 0;
 		ProductDTO productOlder = productService.getProduct(editProductRequest.getId());
+		if ((editProductRequest.getImage() != null &&  editProductRequest.getImageUrl() != null) &&
+				(!editProductRequest.getImage().equals("") && !editProductRequest.getImageUrl().equals("") )) {
+			String image = editProductRequest.getImage();
+			String imageUrl = Integer.toString(editProductRequest.getId()) + ".jpg";
+			editProductRequest.setImageUrl(imageUrl);
+			storeImage(image, imageUrl, productOlder.getUser().getLogin());
+			
+		}
+		
 		editProductRequest.setUser(productOlder.getUser());
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
@@ -321,9 +344,11 @@ public class ProductController {
 	 */
 
 	
-	public void storeImage(String image, String imageName) {
+	public void storeImage(String image, String imageName, String login) {
 		
-		String fullImagePath = Constant.IMG_PATH + imageName;
+		String fullImagePath = Constant.IMG_PATH + login + "/" + imageName;
+		
+		String directoryPath = Constant.IMG_PATH + login + "/";
 
 		byte[] base64DecodeImage = null;
 		
@@ -346,7 +371,7 @@ public class ProductController {
 		
 		if (base64DecodeImage != null) {
 				
-			createImageFile(base64DecodeImage, fullImagePath);
+			createImageFile(base64DecodeImage, fullImagePath, directoryPath);
 		}
 	}
 
@@ -361,22 +386,57 @@ public class ProductController {
 	 * @param path
 	 */
 	
-	private void createImageFile(byte[] data, String path) {
+	private void createImageFile(byte[] data, String imagePath, String directoryPath ) {
 		
-		File i = new File(path);
+		Path path = Paths.get(directoryPath);
 		
-		try(OutputStream fos = new FileOutputStream(i);) {
-			
-			fos.write(data);
-			
-			
-		} catch (FileNotFoundException fnfe) {
-
-			fnfe.printStackTrace();
+		if (Files.exists(path)) {
 		
-		} catch (IOException ioe) {
-
-			ioe.printStackTrace();
+			File i = new File(imagePath);
+			
+			try(OutputStream fos = new FileOutputStream(i);) {
+				
+				fos.write(data);
+				
+				
+			} catch (FileNotFoundException fnfe) {
+	
+				fnfe.printStackTrace();
+			
+			} catch (IOException ioe) {
+	
+				ioe.printStackTrace();
+			}
+		}
+		else {
+			
+			File i = new File(imagePath);
+			
+					
+			try {
+				
+				Files.createDirectories(path);
+				
+			} catch (IOException e) {
+								
+				e.printStackTrace();
+			}
+			
+			
+			try(OutputStream fos = new FileOutputStream(i);) {
+				
+				fos.write(data);
+				
+				
+			} catch (FileNotFoundException fnfe) {
+	
+				fnfe.printStackTrace();
+			
+			} catch (IOException ioe) {
+	
+				ioe.printStackTrace();
+			}
+			
 		}
 			
 	}

@@ -95,7 +95,7 @@ export class CreateProductByAdminComponent implements OnInit {
       response => {
         this.userOwner = response;
         newProduct.user = this.userOwner;
-        newProduct.imageUrl = this.selectedFileNames[0];
+        newProduct.imageUrl = "";
         newProduct.image = this.image;
         console.log(newProduct);
         this.productService.createProduct(newProduct).subscribe((response) => {

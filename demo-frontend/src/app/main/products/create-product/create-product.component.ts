@@ -94,7 +94,7 @@ export class CreateProductComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
     newProduct.user = this.userOwner;
-    newProduct.imageUrl = this.selectedFileNames[0];
+    newProduct.imageUrl = "";
     newProduct.image = this.image;
     console.log(newProduct);
     let message;

@@ -30,6 +30,15 @@ export class EditProductComponent implements OnInit {
   user: User;
   errores: string[];
 
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  /*  fin carga imagenes*/ 
+
+
   categories: Tipo[] = [
     { value: 'unidades' },
     { value: 'kilos' },
@@ -66,6 +75,8 @@ export class EditProductComponent implements OnInit {
         }
       );
     }
+
+    console.log(this.idProduct);
   }
 
 
@@ -88,6 +99,8 @@ export class EditProductComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
     newProduct.id = this.idProduct;
+    newProduct.imageUrl = this.idProduct.toString();
+    newProduct.image = this.image;
     console.log(newProduct);
     if (newProduct.id) {
       this.productService.editProduct(newProduct).subscribe((response) => {
@@ -134,5 +147,27 @@ export class EditProductComponent implements OnInit {
       }
     });
     return admin;
+  }
+
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+          this.image = this.image.slice(this.image.indexOf(',') + 1);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+      }
+    } 
   }
 }
