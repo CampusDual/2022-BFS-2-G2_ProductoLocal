@@ -17,7 +17,7 @@ import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/
 import swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-show-product-client',
+  //selector: 'app-show-product-client',
   templateUrl: './show-product-client.component.html',
   styleUrls: ['./show-product-client.component.scss']
 })

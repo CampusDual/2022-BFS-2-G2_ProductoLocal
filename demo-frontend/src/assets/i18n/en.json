@@ -160,6 +160,7 @@
   "phonerequired": "Phone is a required field",
   "phonepattern": "The phone format is not correct",
   "emailpattern": "The email format is not correct",
+  "nifpattern": "The NIF format is not correct",
   "loginrequired": "Username is a required field",
   "emailrequired": "Email is a required field",
   "passwordrequired": "Password is a required field",

@@ -16,6 +16,8 @@ mat-card-title {
 }
 
 button.mat-button[id='details'] {
+    margin-right:8px;
+    margin-left: 8px;
     margin-bottom:10px;
     background-color: white;
     border-style: solid;
@@ -46,3 +48,17 @@ mat-card:hover{
     border-color: #bfedff;
     cursor: hand;
 }*/
+
+
+button#details{
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+mat-card-title{
+    min-height: 3em;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}

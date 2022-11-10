@@ -8,73 +8,67 @@
 
                 <mat-card-content>
                     <div class="inputrow">
-                        <label for="login">{{"table.users.login" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="login" name="user-login"
-                                [value]="this.user.login" readonly/>
+                                placeholder="{{'table.users.login' | translate}}" [value]="this.user.login" readonly/>
                             <mat-error>{{'loginrequired' | translate}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-nif">{{"table.users.nif" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="nif" name="user-nif"
-                                [value]="this.user.nif" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.nif' | translate}}" [value]="this.user.nif" [readonly]="this.unEditable"/>
+                                <mat-error>{{'nifpattern' | translate}}</mat-error>
                         </mat-form-field>
                     </div>
                     <div class="inputrow" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px"
                         fxLayoutGap.lt-md="0px">
-                        <label for="user-name">{{"table.users.name" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="name" name="user-name"
-                                [value]="this.user.name" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.name' | translate}}" [value]="this.user.name" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-surname">{{"table.users.surname" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="surname" name="user-surname"
-                                [value]="this.user.surname" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.surname' | translate}}" [value]="this.user.surname" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-address">{{"table.users.address" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="address" name="user-address"
-                                [value]="this.user.address" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.address' | translate}}" [value]="this.user.address" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-city">{{"table.users.city" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="city" name="user-city"
-                                [value]="this.user.city" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.city' | translate}}" [value]="this.user.city" [readonly]="this.unEditable" />
 
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-email">{{"table.users.email" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary" formControlName="email" name="user-email"
-                                [value]="this.user.email" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.email' | translate}}" [value]="this.user.email" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-phone">{{"table.users.phone" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="phone" name="user-phone"
-                                [value]="this.user.phone" [readonly]="this.unEditable" />
+                            placeholder="{{'table.users.phone' | translate}}" [value]="this.user.phone" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
                     <div class="inputrow">
-                        <label for="user-zip">{{"table.users.zip" | translate}}: </label>
                         <mat-form-field fxFlex>
                             <input matInput type="text" color="primary" formControlName="zip" name="user-zip"
-                            [value]="this.user.zip" [readonly]="this.unEditable" />
-
+                            placeholder="{{'table.users.zip' | translate}}" [value]="this.user.zip" [readonly]="this.unEditable" />
                         </mat-form-field>
                     </div>
-                    <div class="btn-cont">
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <div class="btn-cont" fxFlex fxLayout="column" fxLayout="column">
                         <button class="edit-btn" type="submit" (click)="save()" [style]="this.saveBttn" mat-raised-button>
                             <mat-icon>save</mat-icon> {{ "button.save" | translate }}
                         </button>
@@ -88,7 +82,7 @@
                             <mat-icon>delete</mat-icon> {{ "delete" | translate }}
                         </button>
                     </div>
-                </mat-card-content>
+                </mat-card-actions>
 
                 <!-- <mat-card-actions>
                     <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">

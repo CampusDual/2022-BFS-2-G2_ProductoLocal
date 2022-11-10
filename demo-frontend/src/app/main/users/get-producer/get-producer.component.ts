@@ -134,7 +134,7 @@ export class GetProducerComponent implements OnInit {
     this.producerForm = this.fb.group({
       email: [this.userE.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],
       login: [this.userE.login],
-      nif: [this.userE.nif],
+      nif: [this.userE.nif, Validators.pattern("[0-9]{8}[A-Za-z]{1}")],
       city: [this.userE.city],
       name: [this.userE.name],
       surname: [this.userE.surname],

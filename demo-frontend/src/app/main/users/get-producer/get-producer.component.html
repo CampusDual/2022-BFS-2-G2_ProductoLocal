@@ -14,6 +14,7 @@
           <mat-form-field fxFlex>
             <input matInput type="text" color="primary" placeholder="{{'table.users.nif' | translate}}"
               formControlName="nif" name="user-nif" [value]="this.user.nif" />
+              <mat-error>{{'nifpattern' | translate}}</mat-error>
           </mat-form-field>
           <mat-form-field fxFlex>
             <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"

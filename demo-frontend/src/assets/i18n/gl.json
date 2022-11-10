@@ -159,6 +159,7 @@
   "phonerequired": "O teléfono é un campo requirido",
   "phonepattern": "O formato do teléfono non é correcto",
   "emailpattern": "O formato do email non é correcto",
+  "nifpattern": "O formato do NIF non é correcto",
   "loginrequired": "O nome de usuario é un campo obrigatorio",
   "emailrequired": "O email é un campo obrigatorio",
   "passwordrequired": "O contrasinal é un campo obrigatorio",
