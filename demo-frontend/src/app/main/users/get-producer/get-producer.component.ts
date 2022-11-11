@@ -58,8 +58,6 @@ export class GetProducerComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild('input') input: ElementRef;
-
 
   constructor(
     private authService: AuthService,
@@ -98,18 +96,6 @@ export class GetProducerComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
-    // server-side search
-    fromEvent(this.input.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadProductsPage();
-        })
-      )
-      .subscribe();
-
     // reset the paginator after sorting
     this.sort.sortChange.subscribe(() => {
       this.paginator.pageIndex = 0;
@@ -277,7 +263,7 @@ export class GetProducerComponent implements OnInit {
     this.selection.clear();
     this.error = false;
     const pageFilter = new AnyPageFilter(
-      this.input.nativeElement.value,
+      '',
       this.fields.map((field) => new AnyField(field)),
       this.paginator.pageIndex,
       this.paginator.pageSize

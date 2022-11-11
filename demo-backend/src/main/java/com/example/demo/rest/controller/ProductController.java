@@ -9,7 +9,6 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.HashMap;
@@ -40,7 +39,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.ProductDTO;
-import com.example.demo.entity.Product;
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
@@ -273,7 +271,6 @@ public class ProductController {
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getMyProducts(@RequestBody AnyPageFilter pageFilter, @RequestParam(value = "login") String login) {
 		LOGGER.info("showMyProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
-		
 		try {
 			dres = productService.getMyProducts(pageFilter, login);
 			List<ProductDTO> products = dres.getData();

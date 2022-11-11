@@ -71,16 +71,7 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 				.findAll(pageFilter);
 		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
 		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(products.getContent());
-		List<ProductDTO> deleteDTO = new ArrayList<ProductDTO> ();
-		for (ProductDTO product : productsDTO) {
-			if (product.getUser() != null) {
-				if (!product.getUser().getLogin().equals(login)) {
-					deleteDTO.add(product);
-				}
-			}
-		}
-		productsDTO.removeAll(deleteDTO);
-		datares.setTotalElements(productsDTO.size());
+		datares.setTotalElements((int) products.getTotalElements());
 		datares.setData(productsDTO);
 		return datares;
 	}
