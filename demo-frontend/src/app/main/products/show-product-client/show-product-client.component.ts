@@ -33,7 +33,8 @@ export class ShowProductClientComponent implements OnInit {
   products: Product[];
   selection = new SelectionModel<Product>(true, []);
   error = false;
-  
+  catSel = '';
+
 
 
   @ViewChild('input') input: ElementRef;
@@ -46,14 +47,14 @@ export class ShowProductClientComponent implements OnInit {
   ) { }
 
   categories: Tipo[] = [
+    { value: 'todas', viewValue: 'All' },
     { value: 'bebida', viewValue: 'Drinks' },
     { value: 'fruta', viewValue: 'Fruits' },
     { value: 'hortaliza', viewValue: 'Vegetables' },
     { value: 'legumbre', viewValue: 'Legumes' },
     { value: 'lacteo', viewValue: 'Dairy' },
     { value: 'otro', viewValue: 'Others' },
-    { value: 'todas', viewValue: 'All' },
-  ];
+  ]
 
   ngOnInit(): void {
     this.dataSource = new ShowProductDatasource(this.productService);
@@ -98,6 +99,12 @@ export class ShowProductClientComponent implements OnInit {
     this.router.navigate(['/products/getProductDetail/' + id]);
   }
 
+  readCategorys(name: string) {
+    this.catSel = name;
+    this.input.nativeElement.value = '';
+    this.loadProductsPage();
+  }
+
   loadProductsPage() {
     this.selection.clear();
     this.error = false;
@@ -106,6 +113,10 @@ export class ShowProductClientComponent implements OnInit {
     if (this.input.nativeElement.value != '' && this.input.nativeElement.value != null) {
       stringValue = this.input.nativeElement.value;
       fieldSearch = [new AnyField(this.fields[5])];
+    } else if (this.catSel != '' && this.catSel != 'todas') {
+      fieldSearch = [new AnyField(this.fields[2])];
+      stringValue = this.catSel;
+
     } else {
       fieldSearch = this.fields.map((field) => new AnyField(field));
     }
@@ -119,41 +130,5 @@ export class ShowProductClientComponent implements OnInit {
     this.productService.getProducts(pageFilter).subscribe((a) => {
       this.products = a.data;
     })
-  }
-
-  loadProductsCities() {
-    this.selection.clear();
-    this.error = false;
-    const pageFilter = new AnyPageFilter(
-      this.input.nativeElement.value,
-      [new AnyField(this.fields[5])],
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
-    this.dataSource.getProducts(pageFilter);
-    this.productService.getProducts(pageFilter).subscribe((a) => {
-      this.products = a.data;
-    });
-  }
-
-  readCategorys(name: string) {
-    if(name== 'todas'){
-      this.loadProductsPage();
-    }else{
-      this.selection.clear();
-    this.error = false;
-    const pageFilter = new AnyPageFilter(
-      name,
-      [new AnyField(this.fields[2])],
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
-    this.dataSource.getProducts(pageFilter);
-    this.productService.getProducts(pageFilter).subscribe((a) => {
-      this.products = a.data;
-    });
-
-    }
-    
   }
 }
