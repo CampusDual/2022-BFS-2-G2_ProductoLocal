@@ -139,6 +139,7 @@ export class EditProductComponent implements OnInit {
     }
   }
 
+  /*
   cancel() {
     if (this.isAdmin(this.user)) {
       this.router.navigate(['products/showProducts']);
@@ -146,7 +147,8 @@ export class EditProductComponent implements OnInit {
       this.router.navigate(['products/myProducts']);
     }
   }
-
+  */
+  
   isAdmin(user: User) {
     let admin = false;
     user.profiles.forEach(profile => {
