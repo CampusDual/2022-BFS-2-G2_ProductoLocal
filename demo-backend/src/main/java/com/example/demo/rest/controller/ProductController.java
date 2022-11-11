@@ -276,7 +276,6 @@ public class ProductController {
 			List<ProductDTO> products = dres.getData();
 			for (ProductDTO p: products) {
 				if (p.getImageUrl() == null) {
-
 					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
 				}
 				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
@@ -301,6 +300,14 @@ public class ProductController {
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
 		try {
 			dres = productService.findCities(city, pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
 		} catch (DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
 				LOGGER.error(dae.getMessage());
@@ -318,6 +325,14 @@ public class ProductController {
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
 		try {
 			dres = productService.findTypes(typeProd, pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
 		} catch (DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
 				LOGGER.error(dae.getMessage());
@@ -326,6 +341,31 @@ public class ProductController {
 		}
 		LOGGER.info("findTypes is finished...");
 		return dres;
+	}
+		
+		@PostMapping(path = "/findCityType", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+		public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findCityTypes(@RequestParam String city,@RequestParam String type, @RequestBody AnyPageFilter pageFilter) {
+			LOGGER.info("findCityTypes in progress...");
+			DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+			try {
+				dres = productService.findByCityType(city, type, pageFilter);
+				List<ProductDTO> products = dres.getData();
+				for (ProductDTO p: products) {
+					if (p.getImageUrl() == null) {
+						p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+					}
+					p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+				}
+				dres.setData(products);
+			} catch (DataAccessException dae) {
+				if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+					LOGGER.error(dae.getMessage());
+					dres.setResponseMessage(dae.getMessage());
+				}
+			}
+			LOGGER.info("findCityTypes is finished...");
+			return dres;
 	}
 	
 	

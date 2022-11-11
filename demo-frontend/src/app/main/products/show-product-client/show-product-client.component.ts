@@ -101,34 +101,32 @@ export class ShowProductClientComponent implements OnInit {
 
   readCategorys(name: string) {
     this.catSel = name;
-    this.input.nativeElement.value = '';
     this.loadProductsPage();
   }
 
   loadProductsPage() {
     this.selection.clear();
     this.error = false;
-    let stringValue: string = '';
-    let fieldSearch;
-    if (this.input.nativeElement.value != '' && this.input.nativeElement.value != null) {
-      stringValue = this.input.nativeElement.value;
-      fieldSearch = [new AnyField(this.fields[5])];
-    } else if (this.catSel != '' && this.catSel != 'todas') {
-      fieldSearch = [new AnyField(this.fields[2])];
-      stringValue = this.catSel;
-
-    } else {
-      fieldSearch = this.fields.map((field) => new AnyField(field));
-    }
+    let typeValue = this.catSel;
+    let cityValue = this.input.nativeElement.value;
     const pageFilter = new AnyPageFilter(
-      stringValue,
-      fieldSearch,
+      '',
+      this.fields.map((field) => new AnyField(field)),
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
-    this.dataSource.getProducts(pageFilter);
-    this.productService.getProducts(pageFilter).subscribe((a) => {
-      this.products = a.data;
-    })
+    if (cityValue != '' && cityValue != null && typeValue != '' && typeValue != 'todas') {
+      this.dataSource.getProductsCityType(pageFilter, cityValue, typeValue);
+      this.productService.findCityType(pageFilter,cityValue,typeValue).subscribe((a) => this.products = a.data);
+    } else if (cityValue != '' && cityValue != null) {
+      this.dataSource.getProductsCity(pageFilter, cityValue);
+      this.productService.findCities(pageFilter, cityValue).subscribe((a) => this.products = a.data);
+    } else if (typeValue != '' && typeValue != 'todas') {
+      this.dataSource.getProductsType(pageFilter, typeValue);
+      this.productService.findTypes(pageFilter, typeValue).subscribe((a) => this.products = a.data);
+    } else {
+      this.dataSource.getProducts(pageFilter);
+      this.productService.getProducts(pageFilter).subscribe((a) => this.products = a.data);
+    }
   }
 }

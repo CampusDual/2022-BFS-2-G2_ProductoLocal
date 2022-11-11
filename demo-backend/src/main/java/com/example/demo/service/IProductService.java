@@ -27,6 +27,8 @@ public interface IProductService {
 	
 	DataSourceRESTResponse<List<ProductDTO>> findCities(String city, AnyPageFilter pageFilter);
 	
+	DataSourceRESTResponse<List<ProductDTO>> findByCityType(String city, String type, AnyPageFilter pageFilter);
+	
 	DataSourceRESTResponse<List<ProductDTO>> findTypes(String typeProd, AnyPageFilter pageFilter);
 	
 }

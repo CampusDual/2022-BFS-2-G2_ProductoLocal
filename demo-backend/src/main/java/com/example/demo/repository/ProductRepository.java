@@ -20,10 +20,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 	@Query("SELECT distinct p FROM Product p WHERE p.user.login = :login")
 	public List<Product>findByLogin(@Param("login") String login);
 	
-	@Query("SELECT distinct p FROM Product p where p.user.city = :city")
+	@Query("SELECT distinct p FROM Product p where lower(p.user.city) like lower(concat('%',:city,'%'))")
 	public Page<Product>findByCity(@Param("city") String city, Pageable pageable);
 	
-	@Query("SELECT distinct p FROM Product p where p.typeProd= :typeProd")
-	public Page<Product>findByType(@Param("typeProd") String typeProd, Pageable pageable);
+	@Query("SELECT distinct p FROM Product p where lower(p.typeProd) = lower(:type)")
+	public Page<Product>findByType(@Param("type") String type, Pageable pageable);
+	
+	@Query("SELECT distinct p FROM Product p where lower(p.typeProd)= lower(:typeProd) and lower(p.user.city) like lower(concat('%',:city,'%'))")
+	public Page<Product>findByCityType( @Param("city") String city,@Param("typeProd") String typeProd, Pageable pageable);
 
 }
