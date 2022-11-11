@@ -60,15 +60,16 @@ export class ShowProductClientComponent implements OnInit {
         distinctUntilChanged(),
         tap(() => {
           this.paginator.pageIndex = 0;
-          this.loadProductsCities();
-        })
-      )
-      .subscribe();
-    this.paginator.page.pipe(
-        tap(() => {
           this.loadProductsPage();
         })
       )
+      .subscribe();
+
+    this.paginator.page.pipe(
+      tap(() => {
+        this.loadProductsPage();
+      })
+    )
       .subscribe()
   }
 
@@ -76,37 +77,30 @@ export class ShowProductClientComponent implements OnInit {
     location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
   }
 
-  showDetails (id : number){
+  showDetails(id: number) {
     this.router.navigate(['/products/getProductDetail/' + id]);
   }
 
   loadProductsPage() {
     this.selection.clear();
     this.error = false;
+    let stringValue: string = '';
+    let fieldSearch;
+    if (this.input.nativeElement.value != '' && this.input.nativeElement.value != null) {
+      stringValue = this.input.nativeElement.value;
+      fieldSearch = [new AnyField(this.fields[5])];
+    } else {
+      fieldSearch = this.fields.map((field) => new AnyField(field));
+    }
     const pageFilter = new AnyPageFilter(
-      '',
-      this.fields.map((field) => new AnyField(field)),
+      stringValue,
+      fieldSearch,
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {
       this.products = a.data;
-    });
+    })
   }
-
-  loadProductsCities() {
-    this.selection.clear();
-    this.error = false;
-    const pageFilter = new AnyPageFilter(
-      this.input.nativeElement.value,
-      [new AnyField(this.fields[5])],
-      this.paginator.pageIndex,
-      this.paginator.pageSize
-    );
-    this.dataSource.getProducts(pageFilter);
-    this.productService.getProducts(pageFilter).subscribe((a) => {
-      this.products = a.data;
-    });
-}
 }
