@@ -21,7 +21,7 @@
                         <mat-label>{{'table.products.typeProd' | translate}}</mat-label>
                         <mat-select required formControlName="typeProd">
                             <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
-                                {{tipo.value}}
+                                {{("table.products.category." + tipo.viewValue) | translate}}
                             </mat-option>
                         </mat-select>
                         <mat-error>{{'typeprodrequired' | translate}}</mat-error>
@@ -42,7 +42,7 @@
                         <mat-label>{{'table.products.description' | translate}}</mat-label>
                         <mat-select required formControlName="description">
                             <mat-option *ngFor="let category of categories" [value]="category.value">
-                                {{category.value}}
+                                {{('table.products.description-units.'+category.value) | translate}}
                             </mat-option>
                         </mat-select>
                         <mat-error>{{'descriptionrequired' | translate}}</mat-error>

@@ -66,8 +66,23 @@
       "ownername":"Productor",
       "name":"Nombre",
       "typeProd":"Categoría",
+      "category": {
+        "Drinks" :"Bebidas",
+        "Fruits":"Frutas",
+        "Vegetables":"Hortalizas",
+        "Legumes":"Legumbres",
+        "Dairy":"Lacteos",
+        "Others": "Otros",
+        "All": "Todas"
+      },
       "quantity":"Cantidad",
       "description":"Unidades",
+      "description-units":{
+        "Kilograms": "Kilogramos",
+        "Units": "Unidades",
+        "Grams": "Gramos",
+        "Liters": "Litros"
+      },
       "description-type": {
         "kilos": "kg",
         "unidades": "u",

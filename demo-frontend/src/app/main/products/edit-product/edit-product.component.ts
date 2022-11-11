@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 interface Tipo {
   value: string,
+  viewValue:String
 }
 
 @Component({
@@ -39,19 +40,19 @@ export class EditProductComponent implements OnInit {
   /*  fin carga imagenes*/ 
 
   tipos: Tipo[] = [
-    { value: 'Bebidas' },
-    { value: 'Frutas' },
-    { value: 'Hortalizas' },
-    { value: 'Legumbres' },
-    { value: 'Lacteos' },
-    { value: 'Verduras' },
-    { value: 'Otros' },
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
   ];
   categories: Tipo[] = [
-    { value: 'unidades' },
-    { value: 'kilos' },
-    { value: 'gramos' },
-    { value: 'litros' }
+    { value: 'unidades', viewValue: 'Units'},
+    { value: 'kilos', viewValue: 'Kilograms'},
+    { value: 'gramos', viewValue: 'Grams'},
+    { value: 'litros', viewValue: 'Liters'}
   ];
 
   constructor(

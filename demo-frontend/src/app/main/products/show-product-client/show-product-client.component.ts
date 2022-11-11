@@ -46,14 +46,13 @@ export class ShowProductClientComponent implements OnInit {
   ) { }
 
   categories: Tipo[] = [
-    { value: 'bebida', viewValue: 'Bebida' },
-    { value: 'fruta', viewValue: 'Fruta' },
-    { value: 'hortaliza', viewValue: 'Hortaliza' },
-    { value: 'legumbre', viewValue: 'Legumbre' },
-    { value: 'lacteo', viewValue: 'lacteo' },
-    { value: 'verdura', viewValue: 'Verdura' },
-    { value: 'otro', viewValue: 'Otro' },
-    { value: 'todas', viewValue: 'Todas' },
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
   ];
 
   ngOnInit(): void {

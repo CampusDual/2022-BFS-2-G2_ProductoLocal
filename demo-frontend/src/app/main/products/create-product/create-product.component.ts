@@ -14,6 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 interface Tipo {
   value: string,
+  viewValue:String
 }
 
 @Component({
@@ -29,13 +30,13 @@ export class CreateProductComponent implements OnInit {
   userOwner:User;
 
   tipos: Tipo[] = [
-    { value: 'Bebidas' },
-    { value: 'Frutas' },
-    { value: 'Hortalizas' },
-    { value: 'Legumbres' },
-    { value: 'Lacteos' },
-    { value: 'Verduras' },
-    { value: 'Otros' },
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
   ];
 
   /* Carga de imagenes*/
@@ -48,11 +49,11 @@ export class CreateProductComponent implements OnInit {
 
   @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
 
-   categories: Tipo[] = [
-    { value: 'unidades'},
-    { value: 'kilos'},
-    { value: 'gramos'},
-    { value: 'litros'}
+  categories: Tipo[] = [
+    { value: 'unidades', viewValue: 'Units'},
+    { value: 'kilos', viewValue: 'Kilograms'},
+    { value: 'gramos', viewValue: 'Grams'},
+    { value: 'litros', viewValue: 'Liters'}
   ];
 
   constructor(

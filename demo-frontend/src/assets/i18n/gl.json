@@ -65,8 +65,23 @@
       "ownername": "Produtor",
       "name": "Nome",
       "typeProd": "Categoría",
+      "category": {
+        "Drinks" :"Bebidas",
+        "Fruits":"Froitas",
+        "Vegetables":"Vexetais",
+        "Legumes":"Legumes",
+        "Dairy":"Lacteos",
+        "Others": "Outros",
+        "All": "Todas"
+      },
       "quantity": "Cantidade",
       "description": "Unidades",
+      "description-units":{
+        "Kilograms": "Quilogramos",
+        "Units": "Unidades",
+        "Grams": "Gramos",
+        "Liters": "Litros"
+      },
       "price": "Prezo",
       "producer": "Produtor",
       "description-type": {

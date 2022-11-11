@@ -3,19 +3,19 @@
     <div class="content">
         <div fxflex>
             <mat-form-field>
-              <input
+                <input
                 matInput
                 placeholder="{{ 'table.users.city' | translate }}"
                 #input
                 id="show-product-client-filter"
                 name="show-product-client-filter"
-              />
+                />
             </mat-form-field> 
     <div class="category">
         <mat-label for="types">Seleccionar Categoría  </mat-label>
             <mat-select #category name="types">
                 <mat-option *ngFor="let category of categories" [value]="category.value" (click)="readCategorys(category.value)">
-                    {{category.viewValue}}
+                    {{("table.products.category." + category.viewValue) | translate}}
                 </mat-option>
             </mat-select>
     </div>

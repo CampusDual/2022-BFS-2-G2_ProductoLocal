@@ -66,8 +66,23 @@
       "ownername": "Producer",
       "name": "Name",
       "typeProd": "Category",
+      "category": {
+        "Drinks" :"Drinks",
+        "Fruits":"Fruits",
+        "Vegetables":"Vegetables",
+        "Legumes":"Legumes",
+        "Dairy":"Dairy",
+        "Others": "Others",
+        "All": "All"
+      },
       "quantity": "Quantity",
       "description": "Units",
+      "description-units":{
+        "Kilograms": "Kilograms",
+        "Units": "Units",
+        "Grams": "Grams",
+        "Liters": "Liters"
+      },
       "price": "Price (€)",
       "producer": "Producer",
       "description-type": {
