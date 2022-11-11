@@ -10,8 +10,16 @@
                 id="show-product-client-filter"
                 name="show-product-client-filter"
               />
-            </mat-form-field>
-        </div>
+            </mat-form-field> 
+    <div class="category">
+        <mat-label for="types">Seleccionar Categoría  </mat-label>
+            <mat-select #category name="types">
+                <mat-option *ngFor="let category of categories" [value]="category.value" (click)="readCategorys(category.value)">
+                    {{category.viewValue}}
+                </mat-option>
+            </mat-select>
+    </div>
+</div>
     <div fxLayout="row wrap" fxLayoutGap="16px grid">
         <div class="prueba" fxFlex='250px' *ngFor="let element of this.products">
             <mat-card class="mat-elevation-z4">

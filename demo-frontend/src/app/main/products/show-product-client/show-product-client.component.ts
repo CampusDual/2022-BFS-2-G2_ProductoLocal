@@ -16,6 +16,11 @@ import { User } from 'src/app/model/user';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import swal from 'sweetalert2';
 
+interface Tipo {
+  value: string,
+  viewValue: string,
+}
+
 @Component({
   //selector: 'app-show-product-client',
   templateUrl: './show-product-client.component.html',
@@ -28,15 +33,28 @@ export class ShowProductClientComponent implements OnInit {
   products: Product[];
   selection = new SelectionModel<Product>(true, []);
   error = false;
+  
 
 
   @ViewChild('input') input: ElementRef;
+  @ViewChild('category') category: ElementRef;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private productService: ProductService,
     private translate: TranslateService,
     private router: Router,
   ) { }
+
+  categories: Tipo[] = [
+    { value: 'bebida', viewValue: 'Bebida' },
+    { value: 'fruta', viewValue: 'Fruta' },
+    { value: 'hortaliza', viewValue: 'Hortaliza' },
+    { value: 'legumbre', viewValue: 'Legumbre' },
+    { value: 'lacteo', viewValue: 'lacteo' },
+    { value: 'verdura', viewValue: 'Verdura' },
+    { value: 'otro', viewValue: 'Otro' },
+    { value: 'todas', viewValue: 'Todas' },
+  ];
 
   ngOnInit(): void {
     this.dataSource = new ShowProductDatasource(this.productService);
@@ -102,5 +120,41 @@ export class ShowProductClientComponent implements OnInit {
     this.productService.getProducts(pageFilter).subscribe((a) => {
       this.products = a.data;
     })
+  }
+
+  loadProductsCities() {
+    this.selection.clear();
+    this.error = false;
+    const pageFilter = new AnyPageFilter(
+      this.input.nativeElement.value,
+      [new AnyField(this.fields[5])],
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
+    this.dataSource.getProducts(pageFilter);
+    this.productService.getProducts(pageFilter).subscribe((a) => {
+      this.products = a.data;
+    });
+  }
+
+  readCategorys(name: string) {
+    if(name== 'todas'){
+      this.loadProductsPage();
+    }else{
+      this.selection.clear();
+    this.error = false;
+    const pageFilter = new AnyPageFilter(
+      name,
+      [new AnyField(this.fields[2])],
+      this.paginator.pageIndex,
+      this.paginator.pageSize
+    );
+    this.dataSource.getProducts(pageFilter);
+    this.productService.getProducts(pageFilter).subscribe((a) => {
+      this.products = a.data;
+    });
+
+    }
+    
   }
 }
