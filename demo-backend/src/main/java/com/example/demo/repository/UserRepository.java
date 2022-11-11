@@ -18,7 +18,11 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 	@Query("SELECT distinct u FROM User u JOIN u.profiles p WHERE p.id = :id")
 	public List<User>findByProfile(@Param("id") Integer id);
 	
-	@Query("SELECT distinct u FROM User u JOIN u.profiles p WHERE p.id = :id")
-	public Page<User>findByProfile(@Param("id") Integer id, Pageable pageable);
+	@Query("SELECT distinct u FROM User u JOIN u.profiles p WHERE p.id = :id AND (lower(u.login) like lower(concat('%',:query,'%')) or"
+			+ " lower(u.name) like lower(concat('%',:query,'%')) or lower(u.surname) like lower(concat('%',:query,'%')) or"
+			+ " lower(u.city) like lower(concat('%',:query,'%')) or lower(u.email) like lower(concat('%',:query,'%')) or"
+			+ " lower(u.nif) like lower(concat('%',:query,'%')) or lower(u.zip) like lower(concat('%',:query,'%')) or"
+			+ " concat(u.phone,'') like %:query%)")
+	public Page<User>findByProfileIgnoreCase(@Param("id") Integer id, Pageable pageable, String query);
 
 }

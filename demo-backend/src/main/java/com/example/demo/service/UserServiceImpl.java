@@ -78,7 +78,11 @@ public class UserServiceImpl extends AbstractDemoService implements IUserService
 	@Transactional(readOnly = true)
 	public DataSourceRESTResponse<List<UserDTO>> findProducers(int id, AnyPageFilter pageFilter) {
 		checkInputParams(pageFilter);
-		Page<User> producers = userRepository.findByProfile(id, pageFilter.toPageable());
+		String query = "";
+		if(pageFilter.getValue() != null) {
+			query = pageFilter.getValue().toString();
+		}
+		Page<User> producers = userRepository.findByProfileIgnoreCase(id, pageFilter.toPageable(), query);
 		DataSourceRESTResponse<List<UserDTO>> datares = new DataSourceRESTResponse<>();
 		List<UserDTO> usersDTO = UserMapper.INSTANCE.userToUserDtoList(producers.getContent());
 		datares.setData(usersDTO);
