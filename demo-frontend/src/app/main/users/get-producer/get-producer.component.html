@@ -1,4 +1,9 @@
-<h3>{{'menu.producer_data' | translate}}</h3>
+<div class="header" >
+  <h3>{{'menu.producer_data' | translate}}</h3>
+  <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button"
+      (click)="cancel()">{{'button.go_back' | translate}}</button>
+</div>
+
 <div fxLayout="100" class="create-outer-container">
   <div class="create-inner-container mat-elevation-z1">
     <form [formGroup]="producerForm" class="h-full">

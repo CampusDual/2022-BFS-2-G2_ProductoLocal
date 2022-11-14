@@ -105,3 +105,11 @@ button {
 .ng-star-inserted {
     max-height: 90vh;
 }
+
+div.header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+
+}
