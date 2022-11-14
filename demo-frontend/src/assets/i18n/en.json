@@ -11,7 +11,7 @@
   "demo": {
     "title": "Demo"
   },
-  "mainMenu":{
+  "mainMenu": {
     "title": "Local Product"
   },
   "menu": {
@@ -21,14 +21,18 @@
     "logout": "Logout",
     "personal_data": "My personal data",
     "add_product": "Add product",
-    "units":"units",
+    "units": "units",
     "gr": "grams",
     "kg": "kg",
     "litres": "liters",
-    "show_products": "Manage products"
+    "show_products": "Manage products",
+    "show_products_client": "Products",
+    "show_producers" : "Manage producers",
+    "product_details" : "Product details",
+    "producer_data" : "Producer data"
   },
-  "main":{
-    "welcome":"¡Welcome!"
+  "main": {
+    "welcome": "¡Welcome!"
   },
   "language": {
     "spanish": "Spanish",
@@ -50,32 +54,68 @@
       "email": "E-Mail",
       "login": "Username",
       "password": "Password",
-      "confirmPassword":"Confirm password",
-      "category":"Category",
+      "confirmPassword": "Confirm password",
+      "category": "Category",
       "address": "Address",
       "city": "City",
       "nif": "NIF",
-      "zip": "ZIP Code"
+      "zip": "ZIP Code",
+      "suggestions": "Products from"
     },
     "products": {
-      "ownername":"Producer",
-      "name":"Name",
-      "typeProd":"Category",
-      "quantity":"Quantity",
-      "description":"Units",
-      "price":"Price",
-      "producer": "Producer"
+      "ownername": "Producer",
+      "name": "Name",
+      "typeProd": "Category",
+      "category": {
+        "Drinks" :"Drinks",
+        "Fruits":"Fruits",
+        "Vegetables":"Vegetables",
+        "Legumes":"Legumes",
+        "Dairy":"Dairy",
+        "Others": "Others",
+        "All": "All"
+      },
+      "quantity": "Quantity",
+      "description": "Units",
+      "description-units":{
+        "Kilograms": "Kilograms",
+        "Units": "Units",
+        "Grams": "Grams",
+        "Liters": "Liters"
+      },
+      "price": "Price (€)",
+      "producer": "Producer",
+      "description-type": {
+        "kilos": "kg",
+        "unidades": "u",
+        "gramos": "gr",
+        "litros": "L",
+        "Kilograms": "kg",
+        "Units": "u",
+        "Grams": "gr",
+        "Liters": "L"
+      },
+      "stock": "Stock",
+      "email-book": "¡Book by email!",
+      "show_details":"Show details"
     }
+  },
+  "sections-title": {
+    "product-grid": "Product catalog",
+    "products-management": "Products management",
+    "producers-management": "Producers management"
   },
   "form": {
     "contact": "Contact",
     "newuser": "New user",
     "newproduct": "New product",
-    "editproduct": "Edit product"
+    "editproduct": "Edit product",
+    "newproducer": "New producer"
   },
   "button": {
     "cancel": "Cancel",
-    "save": "Save"
+    "save": "Save",
+    "go_back": "Go back"
   },
   "paginator": {
     "first_page": "First page",
@@ -85,22 +125,18 @@
     "previous_page": "Previous page",
     "of": "of"
   },
-
   "EN": "English",
   "ES": "Spanish",
   "GL": "Galician",
-
   "USER_NOT_EXISTS": "User not exists in the database",
   "WRONG_PASSWORD": "Wrong password",
   "TOKEN_EXPIRED": "Session expired",
-
-  "CONTACT_EDIT_SUCCESS":"Edited contact",
+  "CONTACT_EDIT_SUCCESS": "Edited contact",
   "CONTACT_CREATE_SUCCESS": "Contact created",
   "CONTACT_DELETE_SUCCESS": "Contact deleted",
   "CONTACT_NOT_EDIT": "Error editing contact",
   "CONTACT_NOT_DELETE": "Contact not deleted",
   "CONTACT_NOT_CREATED": "Contact not create",
-
   "USER_EDIT_SUCCESS": "User successfully edited",
   "USER_CREATE_SUCCESS": "User successfully registered",
   "USER_LOGIN_UNIQUE": "Usermane already exists",
@@ -109,28 +145,25 @@
   "USER_PHONE_UNIQUE": "Phone already registered",
   "USER_REMOVE_SUCCESS": "User account was removed",
   "USER_REMOVE_ERROR": "Unable to remove user account",
-
-  
-
   "SESSION_EXPIRED": "Session expired",
   "PHONE_ALREADY_EXISTS": "Phone already exists",
-  "NAME_REQUIRED" :"Mandatory name",
-  "ID_NOT_EXISTS" :"Id doesn't exist",
-  "ID_REQUIRED" :"Mandatory",
-  "SURNAME1_REQUIRED" :"Mandatory first name",
-  "SURNAME2_REQUIRED" :"Mandatory surname",
-  "PHONE_REQUIRED" :"Mandatory phone",
-  "PHONE_INVALID" :"Invalid phone",
-  "EMAIL_REQUIRED" :"Mandatory email",
-  "EMAIL_INVALID" :"Invalid email",
-  "CONTACT_NOT_EXISTS" :"Contact doesn't exist",
-  "CONTACT_ALREADY_EXISTS" :"Contact already exists",
-  "CONTACT_CONSTRAINT_VIOLATION" :"",
+  "NAME_REQUIRED": "Mandatory name",
+  "ID_NOT_EXISTS": "Id doesn't exist",
+  "ID_REQUIRED": "Mandatory",
+  "SURNAME1_REQUIRED": "Mandatory first name",
+  "SURNAME2_REQUIRED": "Mandatory surname",
+  "PHONE_REQUIRED": "Mandatory phone",
+  "PHONE_INVALID": "Invalid phone",
+  "EMAIL_REQUIRED": "Mandatory email",
+  "EMAIL_INVALID": "Invalid email",
+  "CONTACT_NOT_EXISTS": "Contact doesn't exist",
+  "CONTACT_ALREADY_EXISTS": "Contact already exists",
+  "CONTACT_CONSTRAINT_VIOLATION": "",
   "UNKNOWN_ERROR": "Unknown error",
   "PRODUCT_CREATE_SUCCESS": "Product succesfully registered",
-  "PRODUCT_DELETE_SUCCESS":"Product succesfully deleted",
-  "PRODUCT_DELETE_ERROR":"Cannot delete product",
-  "PRODUCT_EDIT_SUCCESS":"Product succesfully updated",
+  "PRODUCT_DELETE_SUCCESS": "Product succesfully deleted",
+  "PRODUCT_DELETE_ERROR": "Cannot delete product",
+  "PRODUCT_EDIT_SUCCESS": "Product succesfully updated",
   "CLOSE": "CLOSE",
   "filter": "Filter",
   "new": "New",
@@ -143,16 +176,19 @@
   "delete-element-confirmation": "Are you sure you want to continue? Your user will be deleted",
   "namerequired": "Name is a required field",
   "surnamerequired": "Surname is a required field",
-  "phonerequired":"Phone is a required field",
+  "phonerequired": "Phone is a required field",
   "phonepattern": "The phone format is not correct",
   "emailpattern": "The email format is not correct",
+  "nifpattern": "The NIF format is not correct",
   "loginrequired": "Username is a required field",
   "emailrequired": "Email is a required field",
-  "passwordrequired":"Password is a required field",
-  "passconfirmrequired":"Confirmation is a required field",
-  "passdoesnotmatch":"Confirmation and password doesn't match",
-  "quantityrequired":"Quantity is a required field",
+  "passwordrequired": "Password is a required field",
+  "passconfirmrequired": "Confirmation is a required field",
+  "passdoesnotmatch": "Confirmation and password doesn't match",
+  "typeprodrequired":"Category is a required field",
+  "quantityrequired": "Quantity is a required field",
   "descriptionrequired": "Units is a required field",
-  "pricerequired":"Price is a required field",
-  "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted"
+  "pricerequired": "Price is a required field",
+  "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted",
+  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted"
 }

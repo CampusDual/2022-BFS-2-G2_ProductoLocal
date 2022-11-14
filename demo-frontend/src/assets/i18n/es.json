@@ -25,7 +25,11 @@
     "gr": "gramos",
     "kg": "kg",
     "litres": "litros",
-    "show_products": "Gestionar productos"
+    "show_products": "Gestionar productos",
+    "show_products_client": "Productos",
+    "show_producers" : "Gestionar productores",
+    "product_details" : "Detalles del producto",
+    "producer_data" : "Datos del productor"
   },
   "main":{
     "welcome":"¡Bienvenido!"
@@ -55,27 +59,65 @@
       "address": "Dirección",
       "city": "Ciudad",
       "nif": "NIF",
-      "zip": "Código postal"
+      "zip": "Código postal",
+      "suggestions": "Productos de"
     },
     "products": {
       "ownername":"Productor",
       "name":"Nombre",
       "typeProd":"Categoría",
+      "category": {
+        "Drinks" :"Bebidas",
+        "Fruits":"Frutas",
+        "Vegetables":"Hortalizas",
+        "Legumes":"Legumbres",
+        "Dairy":"Lacteos",
+        "Others": "Otros",
+        "All": "Todas"
+      },
       "quantity":"Cantidad",
       "description":"Unidades",
-      "price":"Precio",
-      "producer": "Productor"
+      "description-units":{
+        "Kilograms": "Kilogramos",
+        "Units": "Unidades",
+        "Grams": "Gramos",
+        "Liters": "Litros"
+      },
+      "description-type": {
+        "kilos": "kg",
+        "unidades": "u",
+        "gramos": "gr",
+        "litros": "L",
+        "Kilograms": "kg",
+        "Units": "u",
+        "Grams": "gr",
+        "Liters": "L"
+      },
+      "price":"Precio (€)",
+      "producer": "Productor",
+      "email-book": "Reserva por email!",
+      "show_details":"Ver detalles",
+      "stock": "Stock"
     }
   },
+
+  "sections-title": {
+    "product-grid": "Catálogo de productos",
+    "products-management": "Gestión de productos",
+    "producers-management": "Gestión de productores"
+  },
+
   "form": {
     "contact": "Contacto",
     "newuser": "Nuevo usuario",
     "newproduct": "Nuevo producto",
-    "editproduct": "Editar producto"
+    "editproduct": "Editar producto",
+    "newproducer": "Nuevo productor"
   },
   "button": {
     "cancel": "Cancelar",
-    "save": "Guardar"
+    "save": "Guardar",
+    "go_back": "Volver"
   },
   "paginator": {
     "first_page": "Primera página",
@@ -85,6 +127,8 @@
     "previous_page": "Página anterior",
     "of": "de"
   },
+
+  
   "EN": "Inglés",
   "ES": "Español",
   "GL": "Gallego",
@@ -139,13 +183,16 @@
   "phonerequired":"El teléfono es un campo obligatorio",
   "phonepattern": "El formato del teléfono no es correcto",
   "emailpattern": "El formato del email no es correcto",
+  "nifpattern": "El formato del NIF no es correcto",
   "loginrequired": "El nombre de usuario es un campo obligatorio",
   "emailrequired": "El email es un campo obligatorio",
   "passwordrequired":"La constraseña es un campo obligatorio",
   "passconfirmrequired":"La confirmación es un campo obligatorio",
   "passdoesnotmatch":"La confirmación y la contraseña no coinciden",
+  "typeprodrequired":"La categoría es necesaria",
   "quantityrequired":"La cantidad es un campo obligatorio",
   "descriptionrequired": "Las unidades son un campo obligatorio",
   "pricerequired":"El precio es un campo obligatorio",
-  "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado."
+  "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado.",
+  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados."
 }

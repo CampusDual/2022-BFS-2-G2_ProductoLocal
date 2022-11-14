@@ -22,6 +22,7 @@ export const API_CONFIG = {
   getProducers: environment.usersBaseUrl + '/getProducers',
   deleteUser: environment.usersBaseUrl + '/deleteUser',
   editUser: environment.usersBaseUrl + '/editUser',
+  showProducers: environment.usersBaseUrl + '/findProducers',
 
   //Products API
   createProduct: environment.productsBaseUrl + '/createProduct',
@@ -29,5 +30,8 @@ export const API_CONFIG = {
   getMyProducts: environment.productsBaseUrl + '/myProducts',
   editProduct: environment.productsBaseUrl + '/editProduct',
   getProduct: environment.productsBaseUrl + '/getProduct',
-  deleteProduct: environment.productsBaseUrl + '/deleteProduct'
+  deleteProduct: environment.productsBaseUrl + '/deleteProduct',
+  findCities: environment.productsBaseUrl + '/findCities',
+  findTypes: environment.productsBaseUrl + '/findTypes',
+  findCityType: environment.productsBaseUrl + '/findCityType',
 };

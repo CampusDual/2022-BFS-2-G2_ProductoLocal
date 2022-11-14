@@ -47,6 +47,10 @@ export class GetUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
+
+    if (this.login == "demo") {
+      this.editBttn = "display: none";
+    }
     this.userFormGroup();
     this.userService.getUser(this.login).subscribe(
       response => {
@@ -64,7 +68,7 @@ export class GetUserComponent implements OnInit {
     this.userForm = this.fb.group({
       email: [this.userE.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")],
       login: [this.userE.login],
-      nif: [this.userE.nif],
+      nif: [this.userE.nif, Validators.pattern("[0-9]{8}[A-Za-z]{1}")],
       city: [this.userE.city],
       name: [this.userE.name],
       surname: [this.userE.surname],
@@ -200,9 +204,6 @@ export class GetUserComponent implements OnInit {
           this.router.navigate(['/login']);
           localStorage.setItem('close_session', '1');
           localStorage.setItem('close_session_language', this.translate.currentLang);
-          /* setTimeout(() => {
-            //window.location.reload();
-          }, 100); */
         })
       },
       err => {

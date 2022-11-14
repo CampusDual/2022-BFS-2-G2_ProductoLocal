@@ -44,15 +44,26 @@ export class NavComponent implements OnInit, OnDestroy {
       route: 'products/showProducts',
       title: 'menu.show_products',
       allowedRoles: ['SHOW_PRODUCTS_ADMIN']
-
     },
     {  
       icon: 'list',
       route: 'products/myProducts',
       title: 'menu.show_products',
       allowedRoles: ['SHOW_PRODUCTS']
+    },
+    {  
+      icon: 'store',
+      route: 'products/products',
+      title: 'menu.show_products_client',
+      allowedRoles: ['GET_PRODUCTS_CLIENT']
 
     },
+    {
+      icon: 'group',
+      route: 'users/showProducers',
+      title: 'menu.show_producers',
+      allowedRoles: ['MANAGE_USERS']
+    },  
 
   ];
 
@@ -80,9 +91,6 @@ export class NavComponent implements OnInit, OnDestroy {
   get allowedRoutes() {
     const allowedRoutes: Array<ROUTE> = [];
     if (this.isAuthenticated()) {
-      if (this.router.url =="/") {
-        this.commandBarSidenavService.toggle();
-      }
       this.sidenavRoutes.forEach(route => {
         if (this.authGuard.isAllowed(route.allowedRoles)) {
           allowedRoutes.push(route);

@@ -27,7 +27,7 @@ div.inputrow{
     display: flex;
     align-items: center;
     width: 100%;
-    min-width: 350px;
+    min-width: 450px;
 }
 
 mat-form-field{
@@ -40,16 +40,49 @@ div.mat-form-field-infix {
     min-width: 0;
 }
 
-div.btn-cont{
-    margin: 2em;
-    display: flex;
-    justify-content: space-between;
-    min-width: fit-content;
-}
+
 
 .edit-btn{
     background-color: #bfedff;
 }
 .delete-btn{
     background-color: #fdd4ce;
+}
+div.btn-cont{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    min-width: fit-content;
+    width: 100%;
+    min-width: 250px;
+} 
+
+div.inputrow{
+    min-width: 250px;
+}
+
+.mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button{
+    margin-left: 0;
+    margin-right: 0;
+}
+
+@media (min-width: 600px) {
+    .create-outer-container {
+        .create-inner-container {
+            width: 450px;
+            min-height: 800px;
+            padding-right: 5em;
+            padding-left: 5em;
+        }
+    }
+    
+    div.btn-cont{
+        max-width: 450px;
+        width : 40vw;
+        
+    }
+    div.inputrow{
+        max-width: 450px;
+        width : 40vw;
+    } 
 }

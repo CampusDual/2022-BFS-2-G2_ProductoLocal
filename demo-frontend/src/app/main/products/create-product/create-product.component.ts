@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -8,10 +8,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
+import { throwToolbarMixedModesError } from '@angular/material/toolbar';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 interface Tipo {
   value: string,
+  viewValue:String
 }
 
 @Component({
@@ -26,11 +29,31 @@ export class CreateProductComponent implements OnInit {
   userOwnerLogin:string;
   userOwner:User;
 
+  tipos: Tipo[] = [
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
+  ];
+
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  /*  fin carga imagenes*/ 
+
+  @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
+
   categories: Tipo[] = [
-    { value: 'unidades'},
-    { value: 'kilos'},
-    { value: 'gramos'},
-    { value: 'litros'}
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(
@@ -82,6 +105,8 @@ export class CreateProductComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
     newProduct.user = this.userOwner;
+    newProduct.imageUrl = "";
+    newProduct.image = this.image;
     console.log(newProduct);
     let message;
     this.productService.createProduct(newProduct).subscribe((response) => {
@@ -109,4 +134,27 @@ export class CreateProductComponent implements OnInit {
     }
   }
 
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+   this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+  
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+          this.image = this.image.slice(this.image.indexOf(",") + 1);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);     
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+
+        
+      }
+    } 
+  }
 }

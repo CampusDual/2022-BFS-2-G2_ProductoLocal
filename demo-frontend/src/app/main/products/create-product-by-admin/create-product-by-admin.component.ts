@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 
 interface Tipo {
   value: string,
+  viewValue:String
 }
 
 @Component({
@@ -27,12 +28,28 @@ export class CreateProductByAdminComponent implements OnInit {
   userOwner: User;
   producers: User[];
 
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  /*  fin carga imagenes*/ 
 
+  tipos: Tipo[] = [
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
+  ];
   categories: Tipo[] = [
-    { value: 'unidades' },
-    { value: 'kilos' },
-    { value: 'gramos' },
-    { value: 'litros' }
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(
@@ -76,7 +93,7 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/products/showProducts']);
+    history.back();
   }
 
 
@@ -87,6 +104,8 @@ export class CreateProductByAdminComponent implements OnInit {
       response => {
         this.userOwner = response;
         newProduct.user = this.userOwner;
+        newProduct.imageUrl = "";
+        newProduct.image = this.image;
         console.log(newProduct);
         this.productService.createProduct(newProduct).subscribe((response) => {
           console.log(this);
@@ -118,11 +137,36 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   redirectList(response: any) {
+    history.back();
+    /*
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/products/showProducts']);
     } else {
       console.log(response);
     }
+    */
+  }
+
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+          this.image = this.image.slice(this.image.indexOf(',') + 1);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+      }
+    } 
   }
 
 }

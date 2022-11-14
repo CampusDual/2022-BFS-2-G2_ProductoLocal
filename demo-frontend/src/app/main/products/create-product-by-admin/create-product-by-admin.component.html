@@ -1,23 +1,19 @@
 <div fxLayout="100" class="create-outer-container">
-    <div class="create-inner-container mat-elevation-z1">
-
-        
+    <div class="create-inner-container mat-elevation-z1">       
         <form [formGroup]="productFormAdmin" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
             </mat-card-header>
-
             <mat-card-content>
-
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.products.ownername' | translate}}"
                             formControlName="ownername" name="owner-name" [matAutocomplete]="auto" required >
                             <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
                                 <mat-option *ngFor="let producer of producers" [value]="producer.login">
-                                  {{producer.login}}
+                                    {{producer.login}}
                                 </mat-option>
-                              </mat-autocomplete>
+                            </mat-autocomplete>
                         <mat-error>{{'namerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -32,8 +28,13 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="text" color="primary" placeholder="{{'table.products.typeProd'| translate}}"
-                            formControlName="typeProd" name="typeProd" />
+                        <mat-label>{{'table.products.typeProd' | translate}}</mat-label>
+                        <mat-select required formControlName="typeProd">
+                            <mat-option *ngFor="let tipo of tipos" [value]="tipo.value">
+                                {{("table.products.category." + tipo.viewValue) | translate}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error>{{'typeprodrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
 
@@ -50,7 +51,7 @@
                         <mat-label>{{'table.products.description' | translate}}</mat-label>
                         <mat-select required formControlName="description">
                             <mat-option *ngFor="let category of categories" [value]="category.value">
-                                {{category.value}}
+                                {{('table.products.description-units.'+category.viewValue) | translate}}
                             </mat-option>
                         </mat-select>
                         <mat-error>{{'descriptionrequired' | translate}}</mat-error>
@@ -65,18 +66,32 @@
                     </mat-form-field>
                 </div>
 
+                <div class="inputrow">
+                    <mat-form-field>
+                        <input matInput hidden /> 
+                        <input
+                            class="MyClass"
+                            type="file"
+                            id="fileInput"
+                            name="fileInput"
+                            accept="image/*"
+                            (change)="selectFiles($event)"
+                        />
+                    </mat-form-field>
+                </div>
+
+
             </mat-card-content>
 
             <mat-card-actions>
-                <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
-
+                <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center" fxLayout="column">
                     <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
                         [disabled]="!productFormAdmin.valid">{{'button.save' | translate}}</button>
                     <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
-                        [formNoValidate]="true">{{'button.cancel' |
-                        translate}}</button>
+                        [formNoValidate]="true">{{'button.cancel' | translate}}</button>
                 </div>
             </mat-card-actions>
+
         </form>
     </div>
 </div>

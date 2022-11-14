@@ -1,6 +1,6 @@
 .frontal {
     margin: 0 auto;
-    width: 98vw;
+    width: 100vw;
     min-height: 650px;
     
     background:
@@ -79,5 +79,11 @@ button {
         align-items: center;
         align-content: center;
     }
+}
+
+.offMargin {
+    position: absolute;
+    top: 0;
+    left: 0;
 }
 

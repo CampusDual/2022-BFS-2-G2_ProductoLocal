@@ -24,4 +24,11 @@ public interface IProductService {
 	Integer deleteProduct(Integer id);
 	
 	List<ProductDTO> findByUser(String login);
+	
+	DataSourceRESTResponse<List<ProductDTO>> findCities(String city, AnyPageFilter pageFilter);
+	
+	DataSourceRESTResponse<List<ProductDTO>> findByCityType(String city, String type, AnyPageFilter pageFilter);
+	
+	DataSourceRESTResponse<List<ProductDTO>> findTypes(String typeProd, AnyPageFilter pageFilter);
+	
 }

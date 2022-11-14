@@ -1,6 +1,16 @@
 package com.example.demo.rest.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,12 +55,26 @@ public class ProductController {
 	@Autowired
 	private IProductService productService;
 	
+	/**
+	 * @param createProductRequest
+	 * @param result
+	 * @return
+	 */
 	@PostMapping(path = "/createProduct")
 	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS','CREATE_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
 		LOGGER.info("createProduct in progress...");
 		
 		ProductDTO productNew = null;
+//		if (createProductRequest.getImage() != null &&  !createProductRequest.getImage().equals("")) {
+//			String image = createProductRequest.getImage();
+			/*
+			 * String imageUrl = Integer.toString(createProductRequest.getId()) + ".jpg";
+			 * createProductRequest.setImageUrl(imageUrl);
+			 */
+		//	storeImage(image, imageUrl, createProductRequest.getUser().getLogin());
+	//	}
+
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
 		String message = Constant.PRODUCT_CREATE_SUCCESS;
@@ -58,6 +82,9 @@ public class ProductController {
 		if (!result.hasErrors()) {
 			try {
 				productNew = productService.createProduct(createProductRequest);
+				productNew.setImageUrl(Integer.toString(productNew.getId()) + ".jpg");
+				productNew.setImage(createProductRequest.getImage());
+				this.editProduct(productNew, result);
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());	
 			}
 			catch (DataAccessException dae) {
@@ -82,6 +109,7 @@ public class ProductController {
 		}
 		LOGGER.info("createProduct is finished...");
 		response.put(Constant.MESSAGE, message);
+		
 		return new ResponseEntity<Map<String, Object>>(response, status);
 	}
 
@@ -91,6 +119,15 @@ public class ProductController {
 		LOGGER.info("editProduct in progress...");
 		int id = 0;
 		ProductDTO productOlder = productService.getProduct(editProductRequest.getId());
+		if ((editProductRequest.getImage() != null &&  editProductRequest.getImageUrl() != null) &&
+				(!editProductRequest.getImage().equals("") && !editProductRequest.getImageUrl().equals("") )) {
+			String image = editProductRequest.getImage();
+			String imageUrl = Integer.toString(editProductRequest.getId()) + ".jpg";
+			editProductRequest.setImageUrl(imageUrl);
+			storeImage(image, imageUrl, productOlder.getUser().getLogin());
+			
+		}
+		
 		editProductRequest.setUser(productOlder.getUser());
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
@@ -131,13 +168,23 @@ public class ProductController {
 	}
 	
 	@PostMapping(path = "/getProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN','GET_PRODUCTS_CLIENT')")
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getProducts(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("showProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
 		
 		try {
 			dres = productService.getProducts(pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
+
 		}
 		catch(DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
@@ -159,7 +206,7 @@ public class ProductController {
 	 */
 	
 	@GetMapping("/getProduct")
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS', 'SHOW_PRODUCTS_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS', 'SHOW_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> getProduct(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("getProduct in progress...");
 		ProductDTO product = null;
@@ -167,11 +214,18 @@ public class ProductController {
 		ResponseEntity<?>re = null;
 		try {
 			product = productService.getProduct(id);
+			
 			if(product==null) {
 				response.put(Constant.MESSAGE, Constant.PRODUCT_NOT_EXISTS);
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.KO.getValue());
 				re = new ResponseEntity<Map<String, Object>>(response, HttpStatus.BAD_REQUEST);
 			}else {
+				if (product.getImageUrl() == null) {
+					
+					product.setImageUrl(Integer.toString(id) + ".jpg");
+				}
+				product.setImage(imageToString(product.getImageUrl(), product.getUser().getLogin()));
+				
 				response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 				re = new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 			}
@@ -213,13 +267,20 @@ public class ProductController {
 
 	
 	@PostMapping(path = "/myProducts",consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')")
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS','GET_PRODUCTS_CLIENT', 'SHOW_PRODUCTS_ADMIN')")
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getMyProducts(@RequestBody AnyPageFilter pageFilter, @RequestParam(value = "login") String login) {
 		LOGGER.info("showMyProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
-		
 		try {
 			dres = productService.getMyProducts(pageFilter, login);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
 		}
 		catch(DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
@@ -230,5 +291,325 @@ public class ProductController {
 		LOGGER.info("showMyProducts is finished...");
 		return dres;
 	}
+	
+
+	@PostMapping(path = "/findCities", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findCities(@RequestParam String city, @RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findCities in progress...");
+		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = productService.findCities(city, pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findCities is finished...");
+		return dres;
+	}
+	
+	@PostMapping(path = "/findTypes", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findTypes(@RequestParam String typeProd, @RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findTypes in progress...");
+		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = productService.findTypes(typeProd, pageFilter);
+			List<ProductDTO> products = dres.getData();
+			for (ProductDTO p: products) {
+				if (p.getImageUrl() == null) {
+					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+				}
+				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+			}
+			dres.setData(products);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findTypes is finished...");
+		return dres;
+	}
+		
+		@PostMapping(path = "/findCityType", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+		// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+		public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> findCityTypes(@RequestParam String city,@RequestParam String type, @RequestBody AnyPageFilter pageFilter) {
+			LOGGER.info("findCityTypes in progress...");
+			DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
+			try {
+				dres = productService.findByCityType(city, type, pageFilter);
+				List<ProductDTO> products = dres.getData();
+				for (ProductDTO p: products) {
+					if (p.getImageUrl() == null) {
+						p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
+					}
+					p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
+				}
+				dres.setData(products);
+			} catch (DataAccessException dae) {
+				if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+					LOGGER.error(dae.getMessage());
+					dres.setResponseMessage(dae.getMessage());
+				}
+			}
+			LOGGER.info("findCityTypes is finished...");
+			return dres;
+	}
+	
+	
+
+	/**
+	 * 
+	 * Recibe la cadena de texto del frontend en base64,
+	 * se descodifica y se graba en un fichero jpg.
+	 *
+	 * 
+	 * @param image
+	 * @param imageName
+	 */
+
+	
+	public void storeImage(String image, String imageName, String login) {
+		
+		String fullImagePath = Constant.IMG_PATH + login + "/" + imageName;
+		
+		String directoryPath = Constant.IMG_PATH + login + "/";
+
+		byte[] base64DecodeImage = null;
+		
+		Base64.Decoder decoder = Base64.getDecoder();
+		
+		/* 
+		 * descomponemos la cadena texto base64 en
+		 * un array de bytes codificados en base 64
+		 * 
+		*/
+		try {
+			
+			base64DecodeImage = decoder.decode(image);
+		
+		} catch (IllegalArgumentException iae) {
+		
+			iae.printStackTrace();
+		
+		}
+		
+		if (base64DecodeImage != null) {
+				
+			createImageFile(base64DecodeImage, fullImagePath, directoryPath);
+		}
+	}
+
+	
+	/**
+	 * 
+	 * Crea un fichero de imagen (jpg) en el sistema
+	 * de ficheros del servidor (backend), en la ruta
+	 * indicada
+	 * 
+	 * @param data
+	 * @param path
+	 */
+	
+	private void createImageFile(byte[] data, String imagePath, String directoryPath ) {
+		
+		Path path = Paths.get(directoryPath);
+		
+		if (Files.exists(path)) {
+		
+			File i = new File(imagePath);
+			
+			try(OutputStream fos = new FileOutputStream(i);) {
+				
+				fos.write(data);
+				
+				
+			} catch (FileNotFoundException fnfe) {
+	
+				fnfe.printStackTrace();
+			
+			} catch (IOException ioe) {
+	
+				ioe.printStackTrace();
+			}
+		}
+		else {
+			
+			File i = new File(imagePath);
+			
+					
+			try {
+				
+				Files.createDirectories(path);
+				
+			} catch (IOException e) {
+								
+				e.printStackTrace();
+			}
+			
+			
+			try(OutputStream fos = new FileOutputStream(i);) {
+				
+				fos.write(data);
+				
+				
+			} catch (FileNotFoundException fnfe) {
+	
+				fnfe.printStackTrace();
+			
+			} catch (IOException ioe) {
+	
+				ioe.printStackTrace();
+			}
+			
+		}
+			
+	}
+	
+
+	
+	/**
+	 * 
+	 * Convierte un fichero de imagen (jpg) en una cadena
+	 * de texto codificada con base64 para enviar a 
+	 * frontend.
+	 * 
+	 * 
+	 * @param fileName
+	 * @param userLogin
+	 * @return
+	 */
+	
+	public String imageToString(String fileName, String userLogin) {
+		
+		String base64Data = null;
+		
+		String fullPath = Constant.IMG_PATH + userLogin + "/" + fileName;
+		
+		Base64.Encoder encoder = Base64.getEncoder();
+		
+		
+		try {
+			
+			File imageFile = new File(fullPath);
+			
+			
+			  if (!imageFile.exists()) {
+			  
+			  fullPath = Constant.IMG_PATH + "default/veg-logo.png";
+			  
+			  imageFile = new File(fullPath); }
+			 
+			
+			FileInputStream fis = new FileInputStream(imageFile);
+			
+			byte[] rawBytes = new byte[(int) imageFile.length()];
+			
+			rawBytes = fis.readAllBytes();
+			
+			base64Data = encoder.encodeToString(rawBytes);
+			
+			base64Data = Constant.BASE64HEADER + base64Data;
+			
+			fis.close();
+
+		}
+		catch (FileNotFoundException fnfe) {
+			
+			//base64Data = "";
+						
+			fnfe.printStackTrace();
+		}
+		catch (NullPointerException npe) {
+			
+			//base64Data = "";
+			
+			npe.printStackTrace();
+		} 
+		catch (IOException ioe) {
+			
+			//base64Data = "";
+			
+			ioe.printStackTrace();
+		}
+
+		
+		return base64Data;
+	}
+	
+	
+//	/**
+//	 * Convierte los nombres plurales a singular
+//	 * puesto que los nombres de los ficheros
+//	 * de image son siempre singulares.
+//	 * 
+//	 * @param s
+//	 * @return
+//	 */
+//	public String simplize(String s) {
+//		
+//		String simple = "";
+//		s = s.trim();
+//		
+//		//if (s.substring(s.length() - 2).equals("s")) {
+//		if (s.endsWith("s")) {
+//			
+//			simple= s.substring(0, s.length() - 1);
+//		}
+//		else {
+//			
+//			simple = s;	
+//		}
+//		
+//		return simple;
+//	}
+//	
+//	/**
+//	 * 
+//	 * Elimina acentos de una palabra
+//	 * 
+//	 * @param s
+//	 * @return
+//	 */
+//	
+//	public static String stripAccents(String s) 
+//	{
+//	    /*Salvamos las ñ*/
+//	    s = s.replace('ñ', '\001');
+//	    s = s.replace('Ñ', '\002');
+//	    s = Normalizer.normalize(s, Normalizer.Form.NFD);
+//	    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
+//	    /*Volvemos las ñ a la cadena*/
+//	    s = s.replace('\001', 'ñ');
+//	    s = s.replace('\002', 'Ñ');
+//
+//	    return s;
+//	}  
+//	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 }
       

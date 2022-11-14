@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import java.io.File;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="products")
@@ -32,6 +35,12 @@ public class Product {
 	@Column
 	private double price;
 	
+	@Column
+	private String imageUrl;
+	
+	@Transient
+	private String image;
+	
 	@ManyToOne
 	/*@JoinColumn (name="id")*/
 	private User user;
@@ -47,7 +56,7 @@ public class Product {
 		this.name = name;
 	}
 
-	public Product(int id, String name, int quantity, String description, String typeProd, double price, User user) {
+	public Product(int id, String name, int quantity, String description, String typeProd, double price, String imageUrl, String image, User user) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -55,6 +64,8 @@ public class Product {
 		this.description = description;
 		this.typeProd = typeProd;
 		this.price = price;
+		this.imageUrl = imageUrl;
+		this.image = image;
 		this.user = user;
 	}
 
@@ -118,6 +129,24 @@ public class Product {
 		this.price = price;
 	}
 
+
+	public String getImageUrl() {
+		return imageUrl;
+	}
+	
+
+	public void setImageUrl(String image) {
+		this.imageUrl = image;
+	}
+
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
 
 	public User getUser() {
 		return user;

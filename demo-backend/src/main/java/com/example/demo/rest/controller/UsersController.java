@@ -1,5 +1,6 @@
 package com.example.demo.rest.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -27,13 +28,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.EditUserDTO;
 import com.example.demo.dto.ProductDTO;
 import com.example.demo.dto.UserDTO;
+import com.example.demo.entity.Contact;
 import com.example.demo.entity.enums.ResponseCodeEnum;
+import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
 import com.example.demo.service.IUserService;
-import com.example.demo.service.ProductServiceImpl;
 import com.example.demo.utils.CipherUtils;
 import com.example.demo.utils.Constant;
 
@@ -62,7 +65,8 @@ public class UsersController {
         String message = Constant.USER_CREATE_SUCCESS;
         if(!result.hasErrors()) {
             try {
-                userNew = userService.createUser(createUserRequest);    
+                userNew = userService.createUser(createUserRequest);
+                createUserImageDirectory(userNew.getLogin());
                 response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
             } catch (DataAccessException e) {
                 if(e.getMostSpecificCause().getMessage().contains(Constant.USER_PHONE_ERROR)) {
@@ -230,7 +234,36 @@ public class UsersController {
 		return userService.findProducers();
 	}
 	
-
-
+	@PostMapping(path = "/findProducers", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@PreAuthorize("hasAnyAuthority('SHOW_PRODUCERS')")
+	public @ResponseBody DataSourceRESTResponse<List<UserDTO>> findProducers(@RequestBody AnyPageFilter pageFilter) {
+		LOGGER.info("findProducers in progress...");
+		DataSourceRESTResponse<List<UserDTO>> dres = new DataSourceRESTResponse<>();
+		try {
+			dres = userService.findProducers(2, pageFilter);
+		} catch (DataAccessException dae) {
+			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
+				LOGGER.error(dae.getMessage());
+				dres.setResponseMessage(dae.getMessage());
+			}
+		}
+		LOGGER.info("findProducers is finished...");
+		return dres;
+	}
+	
+	
+	
+	public void createUserImageDirectory(String username) {
+		
+		String dirName = Constant.IMG_PATH + username + "/";
+		
+		
+		boolean resultado = (new File(dirName)).mkdir();
+		
+		String message = resultado ? "Directory created!" : "Not possible create directory"	;
+		
+		LOGGER.info(message);
+		
+	}
 
 }

@@ -1,0 +1,69 @@
+
+
+button {
+    background-color: #bfedff;
+}
+
+mat-card-title {
+    text-align: center;
+}
+
+
+.mat-card-header-text {
+    width: 100%;
+}
+
+button.mat-button[id='details'] {
+    margin-right: 8px;
+    margin-left: 8px;
+    margin-bottom: 10px;
+    background-color: white;
+    border-style: solid;
+    border-width: 3px;
+    border-color: #bfedff;
+}
+
+button.mat-button[id='details']:hover {
+    background-color: #bfedff;
+}
+
+button.mat-button[id='contact']:hover {
+    background-color: #bfedffc5;
+}
+
+div.prueba {
+    height: 510px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+mat-card {
+    width: 90%;
+}
+mat-card:hover{
+    -webkit-transform: scale(1.05);
+}
+
+
+button#details {
+    margin-left: 8px;
+    margin-right: 8px;
+}
+
+mat-card-title {
+    min-height: 3em;
+    display: flex;
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.category {
+    margin: 20px;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-evenly;
+}

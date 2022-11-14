@@ -51,14 +51,14 @@ export class UserService {
     return this.http.get<User>(url, { params, headers });
   }
 
-  public deleteUser(login: string): Observable<User> {
+  public deleteUser(login: string): Observable<any> {
     const url = API_CONFIG.deleteUser;
     const headers = new HttpHeaders({
       'Content-type': 'charset=utf-8',
       Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
-    const params = new HttpParams().set('login', login);
-    return this.http.delete<User>(url, { params, headers });
+    const params = new HttpParams().set('login', login.toString());
+    return this.http.delete<any>(url, { params,headers });
   }
 
   public editUser(user: User): Observable<any> {
@@ -69,6 +69,19 @@ export class UserService {
       Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
     });
     return this.http.post<any>(url, body, { headers }).pipe(
+      catchError((e:HttpErrorResponse) =>{
+        return throwError(()=>e);
+      })
+    );
+  }
+
+  public showProducers(pageFilter: AnyPageFilter): Observable<DataSourceRESTResponse<User[]>> {
+    const url = API_CONFIG.showProducers;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic ' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    return this.http.post<DataSourceRESTResponse<User[]>>(url, pageFilter, { headers }).pipe(
       catchError((e:HttpErrorResponse) =>{
         return throwError(()=>e);
       })

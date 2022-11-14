@@ -7,5 +7,7 @@ export class Product{
     description:string;
     typeProd:string;
     price:number;
+    imageUrl: string;
+    image: string;
     user:User;
 }

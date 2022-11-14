@@ -7,6 +7,8 @@ import { CreateProductByAdminComponent } from './create-product-by-admin/create-
 import { ShowProductComponent } from './show-product/show-product.component';
 import { EditProductComponent } from './edit-product/edit-product.component';
 import { ShowProductProducerComponent } from './show-product-producer/show-product-producer.component';
+import { ShowProductClientComponent } from './show-product-client/show-product-client.component';
+import { GetProductDetailsComponent } from './get-product-details/get-product-details.component';
 
 const routes: Routes = [
   {
@@ -19,6 +21,8 @@ const routes: Routes = [
       { path: 'showProducts', component: ShowProductComponent },
       { path: 'myProducts', component: ShowProductProducerComponent },
       { path: 'edit/:id', component: EditProductComponent },
+      { path: 'products', component: ShowProductClientComponent },
+      { path: 'getProductDetail/:id', component: GetProductDetailsComponent}
     ],
   },
 

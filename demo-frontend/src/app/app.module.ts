@@ -31,7 +31,7 @@ import { CoreModule } from './core/core.module';
   declarations: [
     AppComponent,
     ConfirmationDialogComponent,
-    MatSnackBarComponent
+    MatSnackBarComponent,
   ],
   imports: [
     TranslateModule.forRoot({

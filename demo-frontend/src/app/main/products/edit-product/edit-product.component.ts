@@ -15,6 +15,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 interface Tipo {
   value: string,
+  viewValue:String
 }
 
 @Component({
@@ -30,11 +31,28 @@ export class EditProductComponent implements OnInit {
   user: User;
   errores: string[];
 
+  /* Carga de imagenes*/
+  selectedFiles?: FileList;
+  selectedFileNames: string[] = [];
+  image: string;
+  
+  previews: string[] = [];
+  /*  fin carga imagenes*/ 
+
+  tipos: Tipo[] = [
+    { value: 'bebida', viewValue: 'Drinks' },
+    { value: 'fruta', viewValue: 'Fruits' },
+    { value: 'hortaliza', viewValue: 'Vegetables' },
+    { value: 'legumbre', viewValue: 'Legumes' },
+    { value: 'lacteo', viewValue: 'Dairy' },
+    { value: 'otro', viewValue: 'Others' },
+    { value: 'todas', viewValue: 'All' },
+  ];
   categories: Tipo[] = [
-    { value: 'unidades' },
-    { value: 'kilos' },
-    { value: 'gramos' },
-    { value: 'litros' }
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(
@@ -66,6 +84,8 @@ export class EditProductComponent implements OnInit {
         }
       );
     }
+
+    console.log(this.idProduct);
   }
 
 
@@ -76,7 +96,7 @@ export class EditProductComponent implements OnInit {
 
   createFormGroup() {
     this.productForm = this.fb.group({
-      ownername: [this.product.user.login],
+      //ownername: [this.product.user.login],
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
@@ -88,6 +108,8 @@ export class EditProductComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productForm.value);
     newProduct.id = this.idProduct;
+    newProduct.imageUrl = this.idProduct.toString();
+    newProduct.image = this.image;
     console.log(newProduct);
     if (newProduct.id) {
       this.productService.editProduct(newProduct).subscribe((response) => {
@@ -99,6 +121,8 @@ export class EditProductComponent implements OnInit {
   }
 
   redirectList(response: any) {
+    history.back();
+/*
     if (response.responseCode === 'OK') {
       if (this.isAdmin(this.user)) {
         this.router.navigate(['products/showProducts']);
@@ -108,6 +132,7 @@ export class EditProductComponent implements OnInit {
     } else {
       console.log(response);
     }
+  */
   }
 
   compareObjects(o1: any, o2: any): boolean {
@@ -118,6 +143,7 @@ export class EditProductComponent implements OnInit {
     }
   }
 
+  /*
   cancel() {
     if (this.isAdmin(this.user)) {
       this.router.navigate(['products/showProducts']);
@@ -125,7 +151,8 @@ export class EditProductComponent implements OnInit {
       this.router.navigate(['products/myProducts']);
     }
   }
-
+  */
+  
   isAdmin(user: User) {
     let admin = false;
     user.profiles.forEach(profile => {
@@ -134,5 +161,27 @@ export class EditProductComponent implements OnInit {
       }
     });
     return admin;
+  }
+
+  selectFiles(event) : void {
+    
+    this.selectedFileNames = [];
+    this.selectedFiles = event.target.files;
+
+    this.previews = [];
+    if (this.selectedFiles && this.selectedFiles[0]) {
+      const numberOfFiles = this.selectedFiles.length;
+      for (let i = 0; i < numberOfFiles; i++) {
+        const reader = new FileReader();
+
+        reader.onload = (e: any) => {
+          this.image = e.target.result;
+          this.image = this.image.slice(this.image.indexOf(',') + 1);
+          this.previews.push(e.target.result);
+        };
+        reader.readAsDataURL(this.selectedFiles[i]);
+        this.selectedFileNames.push(this.selectedFiles[i].name);
+      }
+    } 
   }
 }

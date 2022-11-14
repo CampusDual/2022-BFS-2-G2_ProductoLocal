@@ -82,5 +82,35 @@ export class ProductService {
     return this.http.delete<any>(url, { params, headers });
   }
 
+  public findCities(pageFilter: AnyPageFilter, city: string): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.findCities;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    const params = new HttpParams().set('city', city);
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
+  }
+
+  public findTypes(pageFilter: AnyPageFilter, type: string): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.findTypes;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    const params = new HttpParams().set('typeProd', type);
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
+  }
+
+  public findCityType(pageFilter: AnyPageFilter, city: string, type: string): Observable<DataSourceRESTResponse<Product[]>> {
+    const url = API_CONFIG.findCityType;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    let params = new HttpParams().set('city', city);
+    params = params.append('type', type);
+    return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
+  }
 
 }
