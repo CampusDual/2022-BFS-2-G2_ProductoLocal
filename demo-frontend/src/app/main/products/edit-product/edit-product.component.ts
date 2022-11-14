@@ -121,6 +121,8 @@ export class EditProductComponent implements OnInit {
   }
 
   redirectList(response: any) {
+    history.back();
+/*
     if (response.responseCode === 'OK') {
       if (this.isAdmin(this.user)) {
         this.router.navigate(['products/showProducts']);
@@ -130,6 +132,7 @@ export class EditProductComponent implements OnInit {
     } else {
       console.log(response);
     }
+  */
   }
 
   compareObjects(o1: any, o2: any): boolean {

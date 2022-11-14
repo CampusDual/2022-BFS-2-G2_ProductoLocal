@@ -50,10 +50,10 @@ export class CreateProductComponent implements OnInit {
   @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
 
   categories: Tipo[] = [
-    { value: 'unidades', viewValue: 'Units'},
-    { value: 'kilos', viewValue: 'Kilograms'},
-    { value: 'gramos', viewValue: 'Grams'},
-    { value: 'litros', viewValue: 'Liters'}
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(

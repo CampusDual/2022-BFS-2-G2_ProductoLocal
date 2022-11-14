@@ -42,7 +42,7 @@
                         <mat-label>{{'table.products.description' | translate}}</mat-label>
                         <mat-select required formControlName="description">
                             <mat-option *ngFor="let category of categories" [value]="category.value">
-                                {{('table.products.description-units.'+category.value) | translate}}
+                                {{('table.products.description-units.'+category.viewValue) | translate}}
                             </mat-option>
                         </mat-select>
                         <mat-error>{{'descriptionrequired' | translate}}</mat-error>
@@ -87,11 +87,10 @@
             <mat-card-actions>
                 <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center" fxLayout="column">
 
-                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
-                        [disabled]="!productForm.valid">{{'button.save' | translate}}</button>
+                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" 
+                        [disabled]="!productForm.valid" >{{'button.save' | translate}}</button>
                     <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" onclick="history.back()"
-                        [formNoValidate]="true">{{'button.cancel' |
-                        translate}}</button>
+                        [formNoValidate]="true">{{'button.cancel' | translate}}</button>
                 </div>
             </mat-card-actions>
         </form>

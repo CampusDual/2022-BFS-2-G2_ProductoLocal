@@ -46,10 +46,10 @@ export class CreateProductByAdminComponent implements OnInit {
     { value: 'todas', viewValue: 'All' },
   ];
   categories: Tipo[] = [
-    { value: 'unidades', viewValue: 'Units'},
-    { value: 'kilos', viewValue: 'Kilograms'},
-    { value: 'gramos', viewValue: 'Grams'},
-    { value: 'litros', viewValue: 'Liters'}
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(
@@ -137,11 +137,14 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   redirectList(response: any) {
+    history.back();
+    /*
     if (response.responseCode === 'OK') {
-      this.router.navigate(['/main']);
+      this.router.navigate(['/products/showProducts']);
     } else {
       console.log(response);
     }
+    */
   }
 
   selectFiles(event) : void {
