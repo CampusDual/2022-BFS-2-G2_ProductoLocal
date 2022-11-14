@@ -89,7 +89,11 @@
         "kilos": "kg",
         "unidades": "u",
         "gramos": "gr",
-        "litros": "L"
+        "litros": "L",
+        "Kilograms": "kg",
+        "Units": "u",
+        "Grams": "gr",
+        "Liters": "L"
       },
       "stock": "Stock",
       "email-book": "¡Book by email!",
