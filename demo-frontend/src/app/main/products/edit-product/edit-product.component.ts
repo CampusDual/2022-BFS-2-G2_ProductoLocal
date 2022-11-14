@@ -49,10 +49,10 @@ export class EditProductComponent implements OnInit {
     { value: 'todas', viewValue: 'All' },
   ];
   categories: Tipo[] = [
-    { value: 'unidades', viewValue: 'Units'},
-    { value: 'kilos', viewValue: 'Kilograms'},
-    { value: 'gramos', viewValue: 'Grams'},
-    { value: 'litros', viewValue: 'Liters'}
+    { value: 'Units', viewValue: 'Units'},
+    { value: 'Kilograms', viewValue: 'Kilograms'},
+    { value: 'Grams', viewValue: 'Grams'},
+    { value: 'Liters', viewValue: 'Liters'}
   ];
 
   constructor(
