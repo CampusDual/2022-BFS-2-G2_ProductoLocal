@@ -93,7 +93,7 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(['/products/showProducts']);
+    history.back();
   }
 
 
