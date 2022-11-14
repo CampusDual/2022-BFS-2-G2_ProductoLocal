@@ -29,7 +29,6 @@ export class ShowProductProducerComponent implements OnInit {
     'select',
     'name',
     'quantity',
-    'description',
     'typeProd',
     'price'
   ];
