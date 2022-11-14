@@ -113,7 +113,8 @@ export class ShowProductClientComponent implements OnInit {
       '',
       this.fields.map((field) => new AnyField(field)),
       this.paginator.pageIndex,
-      this.paginator.pageSize
+      this.paginator.pageSize,
+      'name'
     );
     if (cityValue != '' && cityValue != null && typeValue != '' && typeValue != 'todas') {
       this.dataSource.getProductsCityType(pageFilter, cityValue, typeValue);
