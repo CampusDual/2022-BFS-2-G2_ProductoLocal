@@ -2,15 +2,31 @@
 <div class="content">
     <div class="content">
         <div class='filters' fxflex fxLayout="row wrap">
-            <mat-form-field>
+            <mat-form-field class="filters">
                 <input matInput placeholder="{{ 'table.users.city' | translate }}" #input
                     id="show-product-client-filter" name="show-product-client-filter" />
             </mat-form-field>
             <div class="category">
                 <mat-select #category name="types" placeholder="{{'table.products.typeProd' | translate}}">
                     <mat-option *ngFor="let category of categories" [value]="category.value"
-                        (click)="readCategorys(category.value)">
+                        (click)="readCategorys(category.viewValue)">
                         {{("table.products.category." + category.viewValue) | translate}}
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div class="category">
+                <mat-select #producer name="producer" placeholder="{{'table.products.producer' | translate}}">
+                    <mat-option *ngFor="let producer of producers" [value]="producer"
+                        (click)="readProducer(producer)">
+                        {{producer}}
+                    </mat-option>
+                </mat-select>
+            </div>
+            <div class="category">
+                <mat-select #sort name="sort" placeholder="{{'table.products.sortBy' | translate}}">
+                    <mat-option *ngFor="let sort of this.sorting" [value]="sort.value"
+                        (click)="sortGrid(sort.value)">
+                        {{("table.products.sort." + sort.viewValue) | translate}}
                     </mat-option>
                 </mat-select>
             </div>
@@ -35,7 +51,7 @@
                         <button mat-button id='details' (click)="showDetails(element.id)">
                             {{'table.products.show_details'|translate}}
                         </button>
-                        <button mat-button (click)="contact(element.user.email, element.name)">
+                        <button mat-button (click)="contact(element.user.email, element.name, element.id)">
                             {{'table.products.email-book'|translate}}
                         </button>
                     </mat-card-actions>

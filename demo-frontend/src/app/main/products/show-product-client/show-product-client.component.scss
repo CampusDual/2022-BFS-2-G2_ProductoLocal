@@ -57,13 +57,15 @@ mat-card-title {
     justify-items: center;
     align-items: center;
     justify-content: center;
+
+    text-transform: capitalize;
 }
 
 .category {
-    margin: 20px;
+    margin: 25px;
 }
 
 .filters {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
 }

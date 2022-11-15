@@ -26,7 +26,7 @@
                         </div>
                         <div class="inputrow"> <label for="a"></label><span name="a"> </span></div>
                     </div>
-                    <button mat-button (click)="contact(product.user.email, product.name)">
+                    <button mat-button (click)="contact(product.user.email, product.name, product.id)">
                         {{'table.products.email-book'|translate}}
                     </button>
                 </div>
@@ -80,7 +80,7 @@
                                     <button mat-button id='details' (click)="showDetails(productSg.id)">
                                         {{'table.products.show_details'|translate}}
                                     </button>
-                                    <button mat-button (click)="contact(productSg.user.email, product.name)">
+                                    <button mat-button (click)="contact(productSg.user.email, product.name, product.id)">
                                         {{'table.products.email-book'|translate}}
                                     </button>
                                 </mat-card-actions>

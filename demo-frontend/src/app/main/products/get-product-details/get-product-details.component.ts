@@ -63,8 +63,8 @@ export class GetProductDetailsComponent implements OnInit {
     this.router.navigate(['/products/products']);
   }
 
-  contact(email: string, productName: string) {
-    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
+  contact(email: string, productName: string, productId: number) {
+    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20#REF: " +  productId +  "%0A-%20Producto: " +  productName + "%0A-%20Cantidad: 1";
   }
 
   showDetails(id: number) {

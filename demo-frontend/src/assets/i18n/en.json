@@ -64,8 +64,16 @@
     },
     "products": {
       "ownername": "Producer",
+      "ref": "Reference",
       "name": "Name",
       "typeProd": "Category",
+      "sortBy": "Sort by...",
+      "sort": {
+        "name": "Name",
+        "price": "Price",
+        "category": "Category",
+        "producer": "Producer"
+      },
       "category": {
         "Drinks" :"Drinks",
         "Fruits":"Fruits",

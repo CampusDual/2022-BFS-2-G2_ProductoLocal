@@ -24,13 +24,14 @@ export class ShowProductComponent implements OnInit {
   dataSource: ShowProductDatasource;
   displayedColumns = [
     'select',
+    'id',
     'name',
     'quantity',
     'typeProd',
     'price',
     'user.login'
   ];
-  fields = ['name', 'quantity', 'typeProd', 'price', 'user.login'];
+  fields = ['id', 'name', 'quantity', 'typeProd', 'price', 'user.login'];
 
   selection = new SelectionModel<Product>(true, []);
   error = false;
@@ -47,14 +48,14 @@ export class ShowProductComponent implements OnInit {
     private translate: TranslateService,
     private router: Router,
     private dialog: MatDialog
-  ){}
+  ) { }
 
   ngOnInit() {
     this.dataSource = new ShowProductDatasource(this.productService);
     const pageFilter = new AnyPageFilter(
       '',
       this.fields.map((field) => new AnyField(field)),
-      0, 
+      0,
       20,
       'name'
     );
@@ -99,12 +100,12 @@ export class ShowProductComponent implements OnInit {
       this.paginator.pageIndex,
       this.paginator.pageSize
     );
-  
+
     pageFilter.order = [];
     pageFilter.order.push(
       new SortFilter(this.sort.active, this.sort.direction.toString())
     );
-  
+
     this.dataSource.getProducts(pageFilter);
   }
   masterToggle() {
@@ -126,16 +127,17 @@ export class ShowProductComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.delete();
-        swal.fire(this.translate.instant('PRODUCT_DELETE_SUCCESS'), '','success').then((res) => {
-        return new Observable((observer: Observer<boolean>) =>
-          observer.next(true)
-        )});
+        swal.fire(this.translate.instant('PRODUCT_DELETE_SUCCESS'), '', 'success').then((res) => {
+          return new Observable((observer: Observer<boolean>) =>
+            observer.next(true)
+          )
+        });
       } else {
-        swal.fire(this.translate.instant('PRODUCT_DELETE_ERROR'), '','error').then((res) => {
-        return new Observable((observer: Observer<boolean>) =>
-        observer.next(false)
-        )
-      });
+        swal.fire(this.translate.instant('PRODUCT_DELETE_ERROR'), '', 'error').then((res) => {
+          return new Observable((observer: Observer<boolean>) =>
+            observer.next(false)
+          )
+        });
       }
     });
   }
@@ -163,7 +165,7 @@ export class ShowProductComponent implements OnInit {
     }
   }
 
-  onAdd(){
+  onAdd() {
     this.router.navigate(['/products/createProductByAdmin']);
   }
 
@@ -172,6 +174,6 @@ export class ShowProductComponent implements OnInit {
     this.router.navigate(['/products/edit/' + row.id]);
   }
 
-  }
+}
 
 

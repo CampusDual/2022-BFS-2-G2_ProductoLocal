@@ -65,7 +65,15 @@
     "products": {
       "ownername":"Productor",
       "name":"Nombre",
+      "ref": "Referencia",
       "typeProd":"Categoría",
+      "sortBy": "Ordenar por...",
+      "sort": {
+        "name": "Nombre",
+        "price": "Precio",
+        "category": "Categoría",
+        "producer": "Productor"
+      },
       "category": {
         "Drinks" :"Bebidas",
         "Fruits":"Frutas",

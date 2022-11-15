@@ -65,6 +65,15 @@
           </td>
         </ng-container> 
   
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "table.products.ref" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="id">
+            {{ row.id }}
+          </mat-cell>
+        </ng-container>
+        
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.name" | translate }}
