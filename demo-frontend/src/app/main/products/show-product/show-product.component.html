@@ -83,25 +83,25 @@
             {{ row.name }}
           </mat-cell>
         </ng-container>
-  
+        
         <ng-container matColumnDef="quantity">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.quantity" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="quantity">
-            {{ row.quantity }}    {{ row.description }}
+            {{ row.quantity }}    {{ ('table.products.description-units.'+row.description) | translate }}
           </mat-cell>
         </ng-container>
-   
+
         <ng-container matColumnDef="typeProd">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.typeProd" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="typeProd">
-            {{ row.typeProd }}
+            {{ ('table.products.category.'+row.typeProd) | translate}}
           </mat-cell>
         </ng-container>
-  
+
         <ng-container matColumnDef="price">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.price" | translate }}

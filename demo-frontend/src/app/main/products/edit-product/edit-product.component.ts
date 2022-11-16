@@ -42,13 +42,12 @@ export class EditProductComponent implements OnInit {
   /*  fin carga imagenes*/
 
   tipos: Tipo[] = [
-    { value: 'bebida', viewValue: 'Drinks' },
-    { value: 'fruta', viewValue: 'Fruits' },
-    { value: 'hortaliza', viewValue: 'Vegetables' },
-    { value: 'legumbre', viewValue: 'Legumes' },
-    { value: 'lacteo', viewValue: 'Dairy' },
-    { value: 'otro', viewValue: 'Others' },
-    { value: 'todas', viewValue: 'All' },
+    { value: 'Drinks', viewValue: 'Drinks' },
+    { value: 'Fruits', viewValue: 'Fruits' },
+    { value: 'Vegetables', viewValue: 'Vegetables' },
+    { value: 'Legumes', viewValue: 'Legumes' },
+    { value: 'Dairy', viewValue: 'Dairy' },
+    { value: 'Others', viewValue: 'Others' },
   ];
   categories: Tipo[] = [
     { value: 'Units', viewValue: 'Units' },

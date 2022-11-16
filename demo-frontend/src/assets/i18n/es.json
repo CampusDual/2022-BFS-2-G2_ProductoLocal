@@ -93,11 +93,7 @@
         "Liters": "Litros"
       },
       "description-type": {
-        "kilos": "kg",
-        "unidades": "u",
-        "gramos": "gr",
-        "litros": "L",
-        "Kilograms": "kg",
+        "Kilograms": "Kg",
         "Units": "u",
         "Grams": "gr",
         "Liters": "L"

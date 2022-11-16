@@ -91,14 +91,10 @@
         "Grams": "Gramos",
         "Liters": "Litros"
       },
-      "price": "Prezo",
+      "price": "Prezo (€)",
       "producer": "Produtor",
       "description-type": {
-        "kilos": "kg",
-        "unidades": "u",
-        "gramos": "gr",
-        "litros": "L",
-        "Kilograms": "kg",
+        "Kilograms": "Kg",
         "Units": "u",
         "Grams": "gr",
         "Liters": "L"

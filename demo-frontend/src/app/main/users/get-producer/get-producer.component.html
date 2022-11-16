@@ -1,180 +1,204 @@
-<div class="header" >
-  <h3>{{'menu.producer_data' | translate}}</h3>
-  <button class="myClass" fxFlex="25" fxLayoutAling="space-around center" fxFlex.xs="30" mat-raised-button type="button"
-      (click)="cancel()"><mat-icon>keyboard_backspace</mat-icon><span>{{'button.go_back' | translate}}</span></button>
-</div>
-
-<div fxLayout="100" class="create-outer-container">
-  <div class="create-inner-container mat-elevation-z1">
-    <form [formGroup]="producerForm" class="h-full">
-
-      <mat-card-header>
-        <mat-card-title>{{this.user.login}}</mat-card-title>
-      </mat-card-header>
-
-      <mat-card-content>
-        <input matInput type="text" hidden color="primary" placeholder="{{'table.users.login' | translate}}"
-          formControlName="login" hidden name="user-login" [value]="this.user.login" />
-        <div class="inputrow">
-          <mat-form-field fxFlex>
-            <input matInput type="text" color="primary" placeholder="{{'table.users.nif' | translate}}"
-              formControlName="nif" name="user-nif" [value]="this.user.nif" />
-              <mat-error>{{'nifpattern' | translate}}</mat-error>
-          </mat-form-field>
-          <mat-form-field fxFlex>
-            <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
-              formControlName="name" name="user-name" [value]="this.user.name" />
-          </mat-form-field>
-          <mat-form-field fxFlex class="double">
-            <input matInput type="text" color="primary" placeholder="{{'table.users.surname' | translate}}"
-              formControlName="surname" name="user-surname" [value]="this.user.surname" />
-          </mat-form-field>
-        </div>
-        <div class="inputrow">
-          <mat-form-field fxFlex class="double">
-            <input matInput type="text" color="primary" placeholder="{{'table.users.address' | translate}}"
-              formControlName="address" name="user-address" [value]="this.user.address" />
-          </mat-form-field>
-          <mat-form-field fxFlex>
-            <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
-              formControlName="city" name="user-city" [value]="this.user.city" />
-          </mat-form-field>
-          <mat-form-field fxFlex>
-            <input matInput type="text" color="primary" placeholder="{{'table.users.zip' | translate}}"
-              formControlName="zip" name="user-zip" [value]="this.user.zip" />
-          </mat-form-field>
-        </div>
-        <div class="inputrow">
-          <mat-form-field fxFlex>
-            <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary"
-              placeholder="{{'table.users.email' | translate}}" required formControlName="email" name="user-email"
-              [value]="this.user.email" />
-            <mat-error>{{'emailrequired' | translate}}</mat-error>
-          </mat-form-field>
-          <mat-form-field fxFlex>
-            <input matInput type="text" color="primary" placeholder="{{'table.users.phone' | translate}}"
-              formControlName="phone" name="user-phone" [value]="this.user.phone" />
-          </mat-form-field>
-        </div>
-        <mat-card-actions>
-          <div fclass="input-row" class="inputrow" xLayoutGap="20px" fxLayoutAlign="center center">
-            <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
-              [disabled]="!producerForm.valid" (click)="save()">{{'button.save' | translate}}</button>
-            <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
-              [formNoValidate]="true">{{'button.cancel' |
-              translate}}</button>
-          </div>
-        </mat-card-actions>
-      </mat-card-content>
-    </form>
-  </div>
-</div>
-
-<h3> {{'sections-title.products-management' | translate}}</h3>
-<div>
-  <div fxLayout="row" fxLayoutAlign="space-between center" class="upper-menu" fxLayout.lt-sm="column" fxLayoutGap="20px"
-    fxLayoutGap.lt-sm="10px">
-    <div fxFlex fxLayout.lt-sm="row" class="k-flex-wrap">
-      <button mat-raised-button (click)="onAdd()">
-        <mat-icon>add</mat-icon> {{ "new" | translate }}
-      </button>
-      <button mat-raised-button [disabled]="!selection.hasValue()" (click)="onDelete()">
-        <mat-icon>delete</mat-icon> {{ "delete" | translate }}
-      </button>
-      <button mat-raised-button (click)="loadProductsPage()">
-        <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
-      </button>
-    </div>
-    <!-- <div fxflex>
-      <mat-form-field>
-        <input matInput placeholder="{{ 'filter' | translate }}" #input id="products-filter" name="products-filter" />
-      </mat-form-field>
-    </div> -->
-  </div>
 
   <div fxLayout="100" class="create-outer-container">
-    <div class="mat-elevation-z8 table-responsive">
-      <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear
-        class="w-full">
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-          <th id="header" mat-header-cell *matHeaderCellDef>
-            <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-              [indeterminate]="selection.hasValue() && !isAllSelected()">
-            </mat-checkbox>
-          </th>
-          <td mat-cell *matCellDef="let row">
-            <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
-              [checked]="selection.isSelected(row)">
-            </mat-checkbox>
-          </td>
-        </ng-container>
 
-        <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.ref" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="id">
-            {{ row.id }}
-          </mat-cell>
-        </ng-container>
+    <div class="create-inner-container mat-elevation-z1 producer">
+      
+      <div class="header" >
+        <h3 class="section-title">{{'menu.producer_data' | translate}}  {{this.user.login}}</h3> 
+        <button class="myClass backButton" fxFlex="25" fxLayoutAling="space-around center" 
+          fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()">
+            <mat-icon>keyboard_backspace</mat-icon>
+            <span>{{'button.go_back' | translate}}</span>
+        </button>
+      </div>
 
+        <form [formGroup]="producerForm" class="h-full">
+<!--
+          <mat-card-header>
+            <mat-card-title>{{this.user.login}}</mat-card-title>
+          </mat-card-header>
+-->
+          <mat-card-content >  
+<!--
+            <input matInput type="text" hidden color="primary" placeholder="{{'table.users.login' | translate}}"
+            formControlName="login" hidden name="user-login" [value]="this.user.login" />
+-->
 
-        <ng-container matColumnDef="name">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.name" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="name">
-            {{ row.name }}
-          </mat-cell>
-        </ng-container>
+            <div class="inputrow form-fields"> 
+              <mat-form-field fxFlex class="short-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
+                  formControlName="name" name="user-name" [value]="this.user.name" />
+              </mat-form-field>
 
-        <ng-container matColumnDef="quantity">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.quantity" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="quantity">
-            {{ row.quantity }} {{ row.description }}
-          </mat-cell>
-        </ng-container>
+              <mat-form-field fxFlex class="large-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.surname' | translate}}"
+                  formControlName="surname" name="user-surname" [value]="this.user.surname" />
+                </mat-form-field>
+            </div>
 
-        <ng-container matColumnDef="typeProd">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.typeProd" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="typeProd">
-            {{ row.typeProd }}
-          </mat-cell>
-        </ng-container>
+            <div class="inputrow">
+              <mat-form-field fxFlex class="large-field">
+                <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary"
+                  placeholder="{{'table.users.email' | translate}}" required formControlName="email" name="user-email"
+                  [value]="this.user.email" />
+                <mat-error>{{'emailrequired' | translate}}</mat-error>
+              </mat-form-field>
+            </div>
 
-        <ng-container matColumnDef="price">
-          <mat-header-cell *matHeaderCellDef mat-sort-header>
-            {{ "table.products.price" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="price">
-            {{ row.price }} €
-          </mat-cell>
-        </ng-container>
+            <div class="inputrow">
+              <mat-form-field fxFlex class="large-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.address' | translate}}"
+                  formControlName="address" name="user-address" [value]="this.user.address" />
+              </mat-form-field>
+            </div>
 
-        <ng-container matColumnDef="user.login">
-          <mat-header-cell *matHeaderCellDef>
-            {{ "table.products.producer" | translate }}
-          </mat-header-cell>
-          <mat-cell *matCellDef="let row" data-label="user.login">
-            {{ row.user.login }}
-          </mat-cell>
-        </ng-container>
+            <div class="inputrow form-fields">
+              <mat-form-field fxFlex class="short-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
+                  formControlName="city" name="user-city" [value]="this.user.city" />
+              </mat-form-field>
 
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onEdit(row)" class="row-link"
-          [style.background]="
-            highlightedRow && highlightedRow.id === row.id
-              ? 'rgba(0, 0, 0, 0.15)'
-              : ''
-          ">
-        </mat-row>
-      </table>
-      <mat-paginator [length]="dataSource.totalElements" [pageSize]="20" [pageSizeOptions]="[10, 20, 50, 100]"
-        showFirstLastButtons></mat-paginator>
+              <mat-form-field fxFlex class="vshort-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.zip' | translate}}"
+                  formControlName="zip" name="user-zip" [value]="this.user.zip" />
+              </mat-form-field>
+
+              <mat-form-field fxFlex class="short-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.phone' | translate}}"
+                  formControlName="phone" name="user-phone" [value]="this.user.phone" />
+              </mat-form-field>
+
+              <mat-form-field fxFlex class="short-field">
+                <input matInput type="text" color="primary" placeholder="{{'table.users.nif' | translate}}"
+                  formControlName="nif" name="user-nif" [value]="this.user.nif" />
+                  <mat-error>{{'nifpattern' | translate}}</mat-error>
+              </mat-form-field>
+            </div>
+
+            <mat-card-actions>
+              <div fclass="input-row" class="inputrow" xLayoutGap="20px" fxLayoutAlign="center center">
+                <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
+                  [disabled]="!producerForm.valid" (click)="save()">{{'button.save' | translate}}</button>
+                <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
+                  [formNoValidate]="true">{{'button.cancel' | translate}}</button>
+              </div>
+            </mat-card-actions>
+
+          </mat-card-content> 
+        </form>
+      </div>
+
+      
+
+    <div  class="create-inner-container mat-elevation-z1">
+      <div class="products">
+          <h3 class="section-title"> {{'sections-title.products-management' | translate}}</h3>
+          <div fxLayout="row" fxLayoutAlign="space-between center" class="upper-menu" fxLayout.lt-sm="column" fxLayoutGap="20px"
+            fxLayoutGap.lt-sm="10px">
+            <div fxFlex fxLayout.lt-sm="row" class="k-flex-wrap">
+              <button mat-raised-button (click)="onAdd()">
+                <mat-icon>add</mat-icon> {{ "new" | translate }}
+              </button>
+              <button mat-raised-button [disabled]="!selection.hasValue()" (click)="onDelete()">
+                <mat-icon>delete</mat-icon> {{ "delete" | translate }}
+              </button>
+              <button mat-raised-button (click)="loadProductsPage()">
+                <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
+              </button>
+            </div>
+            <!-- <div fxflex>
+              <mat-form-field>
+                <input matInput placeholder="{{ 'filter' | translate }}" #input id="products-filter" name="products-filter" />
+              </mat-form-field>
+            </div> -->
+          </div>
+    
+          <div class="mat-elevation-z8 table-responsive">
+            <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear
+              class="w-full">
+              <!-- Checkbox Column -->
+              <ng-container matColumnDef="select">
+                <th id="header" mat-header-cell *matHeaderCellDef class="check-cell">
+                  <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()">
+                  </mat-checkbox>
+                </th>
+                <td mat-cell *matCellDef="let row" class="check-cell">
+                  <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+                  </mat-checkbox>
+                </td>
+              </ng-container>
+
+              <ng-container matColumnDef="id">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="nopadding-cell small-cell">
+                  {{ "table.products.ref" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="id" class="nopadding-cell small-cell">
+                  {{ row.id }}
+                </mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="nopadding-cell large-cell">
+                  {{ "table.products.name" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="name" class="nopadding-cell large-cell">
+                  {{ row.name }}
+                </mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="quantity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="small-cell">
+                  {{ "table.products.quantity" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="quantity" class="small-cell">
+                  {{ row.quantity }}  {{ ('table.products.description-type.'+row.description) | translate }}
+                </mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="typeProd">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="large-cell">
+                  {{ "table.products.typeProd" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="typeProd" class="large-cell">
+                  {{ ('table.products.category.'+row.typeProd) | translate}}
+                </mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="price">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="nopadding-cell small-cell">
+                  {{ "table.products.price" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="price" class="nopadding-cell small-cell">
+                  {{ row.price }} €
+                </mat-cell>
+              </ng-container>
+    
+              <ng-container matColumnDef="user.login">
+                <mat-header-cell *matHeaderCellDef>
+                  {{ "table.products.producer" | translate }}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let row" data-label="user.login">
+                  {{ row.user.login }}
+                </mat-cell>
+              </ng-container>
+    
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns" (click)="onEdit(row)" class="row-link"
+                [style.background]="
+                  highlightedRow && highlightedRow.id === row.id
+                    ? 'rgba(0, 0, 0, 0.15)'
+                    : ''
+                ">
+              </mat-row>
+            </table>
+            <mat-paginator [length]="dataSource.totalElements" [pageSize]="20" 
+              [pageSizeOptions]="[10, 20, 50, 100]"
+              showFirstLastButtons>
+          </mat-paginator>
+        </div>
     </div>
   </div>
+</div>
+

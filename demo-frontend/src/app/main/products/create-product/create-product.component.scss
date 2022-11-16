@@ -70,6 +70,15 @@ mat-card-header {
             font-size: 10pt;
             font-weight: bold;
         }
+
+        .prod-quantity{
+            width:45%;
+            float: left;
+        }
+        .prod-units{
+            width:45%;
+            margin-left: 55%;
+        }
     
     }
 }
@@ -82,14 +91,6 @@ mat-card-header {
             min-height: 685px;
             padding-right: 5em;
             padding-left: 5em;
-
-            .logo-europa-concello-container {
-                bottom: -200px;
-
-                img {
-                    height: 156px;
-                }
-            }
         }
     }
 }

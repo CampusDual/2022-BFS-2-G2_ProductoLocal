@@ -71,6 +71,14 @@ mat-card-header {
             font-weight: bold;
         }
     
+        .prod-quantity{
+            width:45%;
+            float: left;
+        }
+        .prod-units{
+            width:45%;
+            margin-left: 55%;
+        }
     }
 }
 
