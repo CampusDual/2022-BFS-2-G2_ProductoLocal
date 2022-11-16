@@ -443,6 +443,15 @@ public class ProductController {
 		LOGGER.info("findCityTypesProducer is finished...");
 		return dres;
 	}
+	
+	
+	  @GetMapping(path = "/getData") 
+	  @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS_ADMIN')")
+	  public @ResponseBody List<Object> findData() { 
+		  LOGGER.info("findAll in progress..."); 
+		  return productService.findData(); }
+	
+	
 
 	/**
 	 * 
@@ -606,53 +615,6 @@ public class ProductController {
 		return base64Data;
 	}
 
-//	/**
-//	 * Convierte los nombres plurales a singular
-//	 * puesto que los nombres de los ficheros
-//	 * de image son siempre singulares.
-//	 * 
-//	 * @param s
-//	 * @return
-//	 */
-//	public String simplize(String s) {
-//		
-//		String simple = "";
-//		s = s.trim();
-//		
-//		//if (s.substring(s.length() - 2).equals("s")) {
-//		if (s.endsWith("s")) {
-//			
-//			simple= s.substring(0, s.length() - 1);
-//		}
-//		else {
-//			
-//			simple = s;	
-//		}
-//		
-//		return simple;
-//	}
-//	
-//	/**
-//	 * 
-//	 * Elimina acentos de una palabra
-//	 * 
-//	 * @param s
-//	 * @return
-//	 */
-//	
-//	public static String stripAccents(String s) 
-//	{
-//	    /*Salvamos las ñ*/
-//	    s = s.replace('ñ', '\001');
-//	    s = s.replace('Ñ', '\002');
-//	    s = Normalizer.normalize(s, Normalizer.Form.NFD);
-//	    s = s.replaceAll("[\\p{InCombiningDiacriticalMarks}]", "");
-//	    /*Volvemos las ñ a la cadena*/
-//	    s = s.replace('\001', 'ñ');
-//	    s = s.replace('\002', 'Ñ');
-//
-//	    return s;
-//	}  
-//	
+
 
 }

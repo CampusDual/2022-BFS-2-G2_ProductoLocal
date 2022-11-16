@@ -148,4 +148,13 @@ export class ProductService {
     return this.http.post<DataSourceRESTResponse<Product[]>>(url, pageFilter, { params, headers });
   }
 
+  public getData() : Observable<Array<Object>> {
+    const url = API_CONFIG.findData;
+    const headers = new HttpHeaders({
+      'Content-type': 'application/json; charset=utf-8',
+      Authorization: 'Basic' + Buffer.from(`${environment.clientName}:${environment.clientSecret}`, 'utf8').toString('base64'),
+    });
+    return this.http.get<Array<Object>>(url, {headers});
+  }
+
 }

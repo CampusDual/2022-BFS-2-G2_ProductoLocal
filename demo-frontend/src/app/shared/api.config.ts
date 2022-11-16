@@ -37,4 +37,5 @@ export const API_CONFIG = {
   findTypesProducer: environment.productsBaseUrl + '/findTypesProducer',
   findCityType: environment.productsBaseUrl + '/findCityType',
   findCityTypeProducer: environment.productsBaseUrl + '/findCityTypeProducer',
+  findData: environment.productsBaseUrl + '/getData',
 };

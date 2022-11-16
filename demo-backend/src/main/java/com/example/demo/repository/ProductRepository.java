@@ -37,4 +37,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 	
 	@Query("SELECT distinct p FROM Product p where lower(p.typeProd)= lower(:typeProd) and lower(p.user.city) like lower(concat('%',:city,'%')) and p.user.login = :producer")
 	public Page<Product>findByCityTypeProducer( @Param("city") String city,@Param("typeProd") String typeProd, @Param("producer") String producer, Pageable pageable);
+	
+	@Query("SELECT count(*), p.typeProd FROM Product p GROUP BY p.typeProd")
+	public List<Object>findData();
 }

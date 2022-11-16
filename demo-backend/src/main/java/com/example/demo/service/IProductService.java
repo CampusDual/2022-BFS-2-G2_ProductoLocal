@@ -37,4 +37,6 @@ public interface IProductService {
 	
 	DataSourceRESTResponse<List<ProductDTO>> findByCityTypeProducer(String city, String typeProd, String producer, AnyPageFilter pageFilter);
 	
+	List<Object> findData();
+	
 }

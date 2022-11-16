@@ -171,5 +171,11 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		datares.setTotalElements((int) types.getTotalElements());
 		return datares;
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Object> findData() {
+		return this.productRepository.findData();
+	}
 
 }
