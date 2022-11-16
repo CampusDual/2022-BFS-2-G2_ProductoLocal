@@ -1,7 +1,7 @@
 <div fxLayout="100" class="create-outer-container">
     <div class="create-inner-container mat-elevation-z1">
 
-        
+
         <form [formGroup]="productForm" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
@@ -31,8 +31,9 @@
 
                 <div class="inputrow prod-quantity">
                     <mat-form-field fxFlex>
-                        <input matInput min="1" type="number" color="primary" placeholder="{{'table.products.quantity' | translate}}"
-                            formControlName="quantity" name="product-quantity" required />
+                        <input matInput min="1" type="number" color="primary"
+                            placeholder="{{'table.products.quantity' | translate}}" formControlName="quantity"
+                            name="product-quantity" required />
                         <mat-error>{{'quantityrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -51,24 +52,20 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="number" color="primary" placeholder="{{'table.products.price' | translate}}"
-                            formControlName="price" min="0" name="product-price" required />
+                        <input matInput type="number" color="primary"
+                            placeholder="{{'table.products.price' | translate}}" formControlName="price" min="0"
+                            name="product-price" required />
                         <mat-error>{{'pricerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="inputrow">
-                    
+                    <span><img class="img" *ngIf="this.imgURL != ''" id="imagen" mat-card-image
+                            src={{this.imgURL}}></span>
                     <mat-form-field>
-                        <input matInput hidden /> 
-                        <input
-                            class="MyClass"
-                            type="file"
-                            id="fileInput"
-                            name="fileInput"
-                            accept="image/*"
-                            (change)="selectFiles($event)"
-                        />
+                        <input matInput hidden />
+                        <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"
+                            (change)="selectFiles($event)" />
                     </mat-form-field>
                 </div>
             </mat-card-content>

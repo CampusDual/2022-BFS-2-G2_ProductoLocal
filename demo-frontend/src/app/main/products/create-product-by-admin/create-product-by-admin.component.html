@@ -70,6 +70,7 @@
                 </div>
 
                 <div class="inputrow">
+                    <span><img class="img" *ngIf="this.imgURL != ''" id="imagen" mat-card-image src={{this.imgURL}}></span>
                     <mat-form-field>
                         <input matInput hidden />
                         <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"

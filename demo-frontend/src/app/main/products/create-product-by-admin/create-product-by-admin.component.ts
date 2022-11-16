@@ -27,6 +27,8 @@ export class CreateProductByAdminComponent implements OnInit {
   userOwnerLogin: string;
   userOwner: User;
   producers: User[];
+  imgURL: any = '';
+
 
   /* Carga de imagenes*/
   selectedFiles?: FileList;
@@ -111,7 +113,6 @@ export class CreateProductByAdminComponent implements OnInit {
           console.log(this);
           message = this.translate.instant("PRODUCT_CREATE_SUCCESS")
           swal.fire(message, "", 'success').then((res) => this.redirectList(response));
-
         }, err => {
           console.log(err.message);
           swal.fire({
@@ -162,6 +163,7 @@ export class CreateProductByAdminComponent implements OnInit {
           this.image = e.target.result;
           this.image = this.image.slice(this.image.indexOf(',') + 1);
           this.previews.push(e.target.result);
+          this.imgURL = e.srcElement.result;
         };
         reader.readAsDataURL(this.selectedFiles[i]);
         this.selectedFileNames.push(this.selectedFiles[i].name);
