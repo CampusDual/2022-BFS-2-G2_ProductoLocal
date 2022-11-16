@@ -1,5 +1,5 @@
 <div fxLayout="100" class="create-outer-container">
-    <div class="create-inner-container mat-elevation-z1">       
+    <div class="create-inner-container mat-elevation-z1">
         <form [formGroup]="productFormAdmin" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
@@ -7,13 +7,14 @@
             <mat-card-content>
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="text" color="primary" placeholder="{{'table.products.ownername' | translate}}"
-                            formControlName="ownername" name="owner-name" [matAutocomplete]="auto" required >
-                            <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                                <mat-option *ngFor="let producer of producers" [value]="producer.login">
-                                    {{producer.login}}
-                                </mat-option>
-                            </mat-autocomplete>
+                        <input matInput type="text" color="primary"
+                            placeholder="{{'table.products.ownername' | translate}}" formControlName="ownername"
+                            name="owner-name" [matAutocomplete]="auto" required>
+                        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+                            <mat-option *ngFor="let producer of producers" [value]="producer.login">
+                                {{producer.login}}
+                            </mat-option>
+                        </mat-autocomplete>
                         <mat-error>{{'namerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
@@ -40,13 +41,11 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput min="1" type="number" color="primary" placeholder="{{'table.products.quantity' | translate}}"
-                            formControlName="quantity" name="product-quantity" required />
+                        <input matInput min="1" type="number" color="primary"
+                            placeholder="{{'table.products.quantity' | translate}}" formControlName="quantity"
+                            name="product-quantity" required />
                         <mat-error>{{'quantityrequired' | translate}}</mat-error>
                     </mat-form-field>
-                </div>
-
-                <div class="inputrow">
                     <mat-form-field fxFlex>
                         <mat-label>{{'table.products.description' | translate}}</mat-label>
                         <mat-select required formControlName="description">
@@ -60,23 +59,18 @@
 
                 <div class="inputrow">
                     <mat-form-field fxFlex>
-                        <input matInput type="number" color="primary" placeholder="{{'table.products.price' | translate}}"
-                            formControlName="price" min="0" name="product-quantity" required />
+                        <input matInput type="number" color="primary"
+                            placeholder="{{'table.products.price' | translate}}" formControlName="price" min="0"
+                            name="product-quantity" required />
                         <mat-error>{{'pricerequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
 
                 <div class="inputrow">
                     <mat-form-field>
-                        <input matInput hidden /> 
-                        <input
-                            class="MyClass"
-                            type="file"
-                            id="fileInput"
-                            name="fileInput"
-                            accept="image/*"
-                            (change)="selectFiles($event)"
-                        />
+                        <input matInput hidden />
+                        <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"
+                            (change)="selectFiles($event)" />
                     </mat-form-field>
                 </div>
 
