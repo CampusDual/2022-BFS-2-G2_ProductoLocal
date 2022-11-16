@@ -9,6 +9,15 @@
             <mat-card-content>
 
                 <div class="inputrow">
+                    <span><img class="img" id="imagen" mat-card-image src={{this.imgURL}}></span>
+                    <mat-form-field>
+                        <input matInput hidden />
+                        <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"
+                            (change)="selectFiles($event)" />
+                    </mat-form-field>
+                </div>
+
+                <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.products.name' | translate}}"
                             formControlName="name" name="product-name" required />
@@ -64,14 +73,6 @@
                     </mat-form-field>
                 </div>
 -->
-
-                <div class="inputrow">
-                    <mat-form-field>
-                        <input matInput hidden />
-                        <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"
-                            (change)="selectFiles($event)" />
-                    </mat-form-field>
-                </div>
 
             </mat-card-content>
 

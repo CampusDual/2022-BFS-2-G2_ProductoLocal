@@ -10,6 +10,7 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { debounceTime, distinctUntilChanged, merge, Observable, Observer, tap } from 'rxjs';
+import { UserService } from 'src/app/services/user.service';
 
 interface Tipo {
   value: string,
@@ -31,7 +32,7 @@ export class ShowProductClientComponent implements OnInit {
   catSel = '';
   sortSel = 'name';
   producerSel = '';
-  producers = [''];
+  producers = ['table.products.all'];
 
 
 
@@ -42,6 +43,7 @@ export class ShowProductClientComponent implements OnInit {
     private productService: ProductService,
     private translate: TranslateService,
     private router: Router,
+    private userService: UserService
   ) { }
 
   categories: Tipo[] = [
@@ -69,15 +71,12 @@ export class ShowProductClientComponent implements OnInit {
       10,
       this.sortSel
     );
+    this.userService.getProducers().subscribe((list) => list.forEach((a) => {
+      this.producers.push(a.login);
+    }));
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {
       this.products = a.data;
-      this.products.forEach(element => {
-        if (this.producers.indexOf(element.user.login) < 0) {
-          this.producers.push(element.user.login);
-        }
-      });
-      this.producers.sort();
     });
   }
 
@@ -102,7 +101,7 @@ export class ShowProductClientComponent implements OnInit {
   }
 
   contact(email: string, productName: string, productId: number) {
-    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20#REF: " +  productId +  "%0A-%20Producto: " +  productName + "%0A-%20Cantidad: 1";
+    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20#REF: " + productId + "%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
   }
 
   showDetails(id: number) {
@@ -114,7 +113,11 @@ export class ShowProductClientComponent implements OnInit {
     this.loadProductsPage();
   }
   readProducer(producer: string) {
-    this.producerSel = producer;
+    if (producer == 'table.products.all' ) {
+      this.producerSel = '';
+    } else {
+      this.producerSel = producer;
+    }
     this.loadProductsPage();
   }
 

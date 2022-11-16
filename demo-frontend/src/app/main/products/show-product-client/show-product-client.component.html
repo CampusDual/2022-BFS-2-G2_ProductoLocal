@@ -18,7 +18,7 @@
                 <mat-select #producer name="producer" placeholder="{{'table.products.producer' | translate}}">
                     <mat-option *ngFor="let producer of producers" [value]="producer"
                         (click)="readProducer(producer)">
-                        {{producer}}
+                        {{producer | translate}}
                     </mat-option>
                 </mat-select>
             </div>

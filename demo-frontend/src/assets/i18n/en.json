@@ -68,6 +68,7 @@
       "name": "Name",
       "typeProd": "Category",
       "sortBy": "Sort by...",
+      "all": "All",
       "sort": {
         "name": "Name",
         "price": "Price",

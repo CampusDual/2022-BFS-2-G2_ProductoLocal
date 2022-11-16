@@ -67,6 +67,7 @@
       "name": "Nome",
       "typeProd": "Categoría",
       "sortBy": "Ordear por...",
+      "all": "Todos",
       "sort": {
         "name": "Nome",
         "price": "Prezo",

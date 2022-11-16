@@ -68,6 +68,7 @@
       "ref": "Referencia",
       "typeProd":"Categoría",
       "sortBy": "Ordenar por...",
+      "all": "Todos",
       "sort": {
         "name": "Nombre",
         "price": "Precio",
