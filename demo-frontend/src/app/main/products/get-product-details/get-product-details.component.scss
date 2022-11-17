@@ -5,6 +5,11 @@ img.img {
     margin: 20px;
 }
 
+.titleText{
+    font-weight: bold;
+    font-size: x-large;
+  }
+
 div.productDetail {
     display: flex;
     flex-wrap: wrap;
@@ -41,9 +46,14 @@ label {
     justify-content: space-between;
 }
 
+.widthDetails {
+    width: 60%;
+}
+
 .inputrow.title {
     font-weight: bold;
     justify-content: center;
+    font-size: x-large;
 }
 
 button {
@@ -65,6 +75,11 @@ button.mat-button:hover {
 .withLogo {
     display: flex;
     align-items: center;
+}
+
+.withLogo1 {
+    font-weight: bold;
+    font-size: x-large;
 }
 
 div.producerDetails {

@@ -2,7 +2,7 @@
     <div class="input-row container">
         <mat-card fxFlex>
             <mat-card-header>
-                <mat-card-title>{{'menu.product_details' | translate }}</mat-card-title>
+                <mat-card-title class="titleText">{{'menu.product_details' | translate }}</mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <div class="productDetail">
@@ -31,37 +31,38 @@
                     </button>
                 </div>
 
+                <div class="widthDetails">
                 <div class="producerDetails">
                     <mat-card-title class="withLogo">
-                        <mat-icon>store</mat-icon>
+                        &nbsp;&nbsp;&nbsp;<mat-icon>store</mat-icon>
                         <span>&nbsp;{{this.producer.login}}</span>
                     </mat-card-title>
                     <div class="inputrow">
                         <div>
-                            <label for="user-city">{{"table.users.city" | translate}}: </label>
-                            <span class="user-city">{{this.producer.city}}</span>
+                            <mat-icon> location_on</mat-icon>
+                            <span class="user-city">&nbsp;&nbsp;{{this.producer.city}}</span>
                         </div>
                         <div>
-                            <label for="user-zip">{{"table.users.zip" | translate}}: </label>
-                            <span class="user-zip">{{this.producer.zip}}</span>
+                            <mat-icon> directions</mat-icon>
+                            <span class="user-zip">&nbsp;&nbsp;{{this.producer.zip}}</span>
                         </div>
                     </div>
                     <div class="inputrow">
                         <div>
                             <span class="user-email withLogo">
-                                <mat-icon>email</mat-icon>&nbsp;{{this.producer.email}}
+                            <mat-icon>email</mat-icon>&nbsp;&nbsp;{{this.producer.email}}
                             </span>
                         </div>
                         <div>
                             <span class="user-phone withLogo">
-                                <mat-icon>phone</mat-icon>&nbsp;{{this.producer.phone}}
+                            <mat-icon>phone</mat-icon>&nbsp;&nbsp;{{this.producer.phone}}
                             </span>
                         </div>
                     </div>
                 </div>
-
+            </div>
                 <div class="producerSuggestions">
-                    <mat-card-title class="withLogo">
+                    <mat-card-title class="withLogo1">
                         <span>{{"table.users.suggestions" | translate}}&nbsp;{{this.producer.login}}</span>
                     </mat-card-title>
                     <div class="productSuggestions">
