@@ -199,5 +199,6 @@
   "descriptionrequired": "Las unidades son un campo obligatorio",
   "pricerequired":"El precio es un campo obligatorio",
   "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado.",
-  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados."
+  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados.",
+  "total-products": "Relación de Productos Totales"
 }

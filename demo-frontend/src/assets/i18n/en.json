@@ -195,5 +195,6 @@
   "descriptionrequired": "Units is a required field",
   "pricerequired": "Price is a required field",
   "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted",
-  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted"
+  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted",
+  "total-products": "Total Products"
 }
