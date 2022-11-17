@@ -3,8 +3,13 @@
     <div class="content">
         <div class='filters' fxflex fxLayout="row wrap">
             <mat-form-field class="filters">
-                <input matInput placeholder="{{ 'table.users.city' | translate }}" #input
-                    id="show-product-client-filter" name="show-product-client-filter" />
+                <input matInput type="text" placeholder="{{ 'table.users.city' | translate }}" #input (input)="readCities()"
+                    id="show-product-client-filter" [formControl]="myControl" name="show-product-client-filter" [matAutocomplete]="auto" />
+                <mat-autocomplete #auto="matAutocomplete">
+                    <mat-option *ngFor="let city of filteredOptions |async" [value]="city" (click)="readCities()">
+                        {{city}}
+                    </mat-option>
+                </mat-autocomplete>
             </mat-form-field>
             <div class="category">
                 <mat-select #category name="types" placeholder="{{'table.products.typeProd' | translate}}">
@@ -16,16 +21,14 @@
             </div>
             <div class="category">
                 <mat-select #producer name="producer" placeholder="{{'table.products.producer' | translate}}">
-                    <mat-option *ngFor="let producer of producers" [value]="producer"
-                        (click)="readProducer(producer)">
+                    <mat-option *ngFor="let producer of producers" [value]="producer" (click)="readProducer(producer)">
                         {{producer | translate}}
                     </mat-option>
                 </mat-select>
             </div>
             <div class="category">
                 <mat-select #sort name="sort" placeholder="{{'table.products.sortBy' | translate}}">
-                    <mat-option *ngFor="let sort of this.sorting" [value]="sort.value"
-                        (click)="sortGrid(sort.value)">
+                    <mat-option *ngFor="let sort of this.sorting" [value]="sort.value" (click)="sortGrid(sort.value)">
                         {{("table.products.sort." + sort.viewValue) | translate}}
                     </mat-option>
                 </mat-select>
@@ -57,12 +60,12 @@
                     </mat-card-actions>
                 </mat-card>
             </div>
-            </div>
-            <mat-card *ngIf="dataSource.loading$ | async"
-                style="display: flex; justify-content: center; align-items: center">
-                <mat-spinner></mat-spinner>
-            </mat-card>
-            <mat-paginator [length]="dataSource.totalElements" [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]"
-                showFirstLastButtons>
-            </mat-paginator>
         </div>
+        <mat-card *ngIf="dataSource.loading$ | async"
+            style="display: flex; justify-content: center; align-items: center">
+            <mat-spinner></mat-spinner>
+        </mat-card>
+        <mat-paginator [length]="dataSource.totalElements" [pageSize]="10" [pageSizeOptions]="[10, 20, 50, 100]"
+            showFirstLastButtons>
+        </mat-paginator>
+    </div>

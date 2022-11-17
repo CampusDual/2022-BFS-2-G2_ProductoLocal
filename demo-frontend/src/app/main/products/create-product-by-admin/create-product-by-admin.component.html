@@ -8,10 +8,10 @@
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary"
-                            placeholder="{{'table.products.ownername' | translate}}" formControlName="ownername"
+                            placeholder="{{'table.products.ownername' | translate}}" [formControl]="producerControl"
                             name="owner-name" [matAutocomplete]="auto" required>
                         <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
-                            <mat-option *ngFor="let producer of producers" [value]="producer.login">
+                            <mat-option *ngFor="let producer of filteredProducers | async" [value]="producer.login">
                                 {{producer.login}}
                             </mat-option>
                         </mat-autocomplete>
