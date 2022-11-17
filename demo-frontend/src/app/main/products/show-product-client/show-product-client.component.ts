@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { fromEvent } from 'rxjs';
+import { fromEvent, of } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { Product } from 'src/app/model/product';
 import { AnyField, AnyPageFilter } from 'src/app/model/rest/filter';
@@ -11,6 +12,7 @@ import { ElementRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { debounceTime, distinctUntilChanged, merge, Observable, Observer, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
+import { FormControl } from '@angular/forms';
 
 interface Tipo {
   value: string,
@@ -30,10 +32,13 @@ export class ShowProductClientComponent implements OnInit {
   selection = new SelectionModel<Product>(true, []);
   error = false;
   catSel = '';
+  citySel = '';
   sortSel = 'name';
   producerSel = '';
   producers = ['table.products.all'];
-
+  cities: string[] = [];
+  myControl = new FormControl('');
+  filteredOptions: Observable<string[]>;
 
 
   @ViewChild('input') input: ElementRef;
@@ -71,26 +76,29 @@ export class ShowProductClientComponent implements OnInit {
       10,
       this.sortSel
     );
-    this.userService.getProducers().subscribe((list) => list.forEach((a) => {
-      this.producers.push(a.login);
-    }));
+    this.userService.getProducers().subscribe((list) => {
+      list.forEach((a) => {
+        this.producers.push(a.login);
+        if (a.city != null) {
+          if (!this.cities.includes(a.city) && a.city.trim() != '') {
+            this.cities.push(a.city);
+          }
+        }
+      });
+      this.cities.sort();
+    });
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {
       this.products = a.data;
     });
+
   }
 
   ngAfterViewInit(): void {
-    fromEvent(this.input.nativeElement, 'keyup')
-      .pipe(
-        debounceTime(150),
-        distinctUntilChanged(),
-        tap(() => {
-          this.paginator.pageIndex = 0;
-          this.loadProductsPage();
-        })
-      )
-      .subscribe();
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || '')),
+    );
 
     this.paginator.page.pipe(
       tap(() => {
@@ -98,6 +106,11 @@ export class ShowProductClientComponent implements OnInit {
       })
     )
       .subscribe()
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+    return this.cities.filter(city => city.toLowerCase().includes(filterValue));
   }
 
   contact(email: string, productName: string, productId: number) {
@@ -112,8 +125,14 @@ export class ShowProductClientComponent implements OnInit {
     this.catSel = name;
     this.loadProductsPage();
   }
+
+  readCities() {
+    this.citySel = this.input.nativeElement.value;
+    this.loadProductsPage();
+  }
+
   readProducer(producer: string) {
-    if (producer == 'table.products.all' ) {
+    if (producer == 'table.products.all') {
       this.producerSel = '';
     } else {
       this.producerSel = producer;
@@ -130,7 +149,7 @@ export class ShowProductClientComponent implements OnInit {
     this.selection.clear();
     this.error = false;
     let typeValue = this.catSel;
-    let cityValue = this.input.nativeElement.value;
+    let cityValue = this.citySel;
     const pageFilter = new AnyPageFilter(
       '',
       this.fields.map((field) => new AnyField(field)),
