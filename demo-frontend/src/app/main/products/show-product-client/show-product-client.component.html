@@ -6,7 +6,7 @@
                 <input matInput type="text" placeholder="{{ 'table.users.city' | translate }}" #input (input)="readCities()"
                     id="show-product-client-filter" [formControl]="myControl" name="show-product-client-filter" [matAutocomplete]="auto" />
                 <mat-autocomplete #auto="matAutocomplete">
-                    <mat-option *ngFor="let city of filteredOptions |async" [value]="city" (click)="readCities()">
+                    <mat-option *ngFor="let city of filteredOptions | async" [value]="city" (click)="readCities()">
                         {{city}}
                     </mat-option>
                 </mat-autocomplete>
