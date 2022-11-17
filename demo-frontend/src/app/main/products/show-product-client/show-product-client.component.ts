@@ -86,7 +86,6 @@ export class ShowProductClientComponent implements OnInit {
         }
       });
       this.cities.sort();
-      this.filteredOptions = of(this.cities);
     });
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {
