@@ -8,6 +8,7 @@ import am5themes_Material from "@amcharts/amcharts5/themes/Material";
 
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { ProductService } from 'src/app/services/product.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -27,53 +28,64 @@ export class MainHomeComponent {
   products: any[] = [];
 
   constructor(
-    private productService: ProductService) {}
+    private productService: ProductService, private translateService: TranslateService) { }
 
-  ngOnInit(){}
+  ngOnInit() { }
 
 
   ngAfterViewInit() {
 
-  this.productService.getData().subscribe((a) => {
-    //console.log('entra');
-    this.products = a;
-    //console.log(this.products);
 
-    // Chart code goes in here
-    let root = am5.Root.new("chartdiv");
+    this.productService.getData().subscribe((a) => {
+      //console.log('entra');
+      this.products = a;
+      //console.log(this.products);
 
-    root.setThemes([
-      am5themes_Animated.new(root),
-      am5themes_Material.new(root)
-    ]);
+      // Chart code goes in here
+      let root = am5.Root.new("chartdiv");
 
-    let chart = root.container.children.push(
-        am5percent.PieChart.new(root,{
-        layout: root.verticalLayout
-      })
-    );
+      root.setThemes([
+        am5themes_Animated.new(root),
+        am5themes_Material.new(root)
+      ]);
 
-    //Create series
-    let series = chart.series.push(
-      am5percent.PieSeries.new(root, {
-        valueField: "value",
-        categoryField: "category"
-      })
-    );
-    
-    // Set data   
-    for (let i = 0; i < this.products.length; i++){
-      series.data.push({
-        value: this.products[i][0],
-        category: this.products[i][1]
+      let chart = root.container.children.push(
+        am5percent.PieChart.new(root, {
+          layout: root.verticalLayout
+        })
+      );
+
+      //Create series
+      let series = chart.series.push(
+        am5percent.PieSeries.new(root, {
+          valueField: "value",
+          categoryField: "category"
+        })
+      );
+
+      // Set data   
+      for (let i = 0; i < this.products.length; i++) {
+        series.data.push({
+          value: this.products[i][0],
+          category: this.translateService.instant("table.products.category." + this.products[i][1])
+        });
+      }
+
+      series.appear(1000, 100);
+
+      this.root = root;
+
+      this.translateService.onLangChange.subscribe((a) => {
+        series.data.clear();
+        for (let i = 0; i < this.products.length; i++) {
+          series.data.push({
+            value: this.products[i][0],
+            category: this.translateService.instant("table.products.category." + this.products[i][1])
+          });
+        }
       });
-    }
-    
-    series.appear(1000,100);
+    });
 
-    this.root = root;
-      
-  });
 
   }
 
