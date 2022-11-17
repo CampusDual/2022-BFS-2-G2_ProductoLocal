@@ -4,6 +4,7 @@ import { Component, Inject, NgZone, PLATFORM_ID, ViewChild } from '@angular/core
 import * as am5 from "@amcharts/amcharts5";
 import * as am5percent from "@amcharts/amcharts5/percent";
 import am5themes_Animated from "@amcharts/amcharts5/themes/Animated";
+import am5themes_Material from "@amcharts/amcharts5/themes/Material";
 
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { ProductService } from 'src/app/services/product.service';
@@ -42,7 +43,8 @@ export class MainHomeComponent {
     let root = am5.Root.new("chartdiv");
 
     root.setThemes([
-      am5themes_Animated.new(root)
+      am5themes_Animated.new(root),
+      am5themes_Material.new(root)
     ]);
 
     let chart = root.container.children.push(
