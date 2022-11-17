@@ -90,9 +90,6 @@ export class NavComponent implements OnInit, OnDestroy {
   get allowedRoutes() {
     const allowedRoutes: Array<ROUTE> = [];
     if (this.isAuthenticated()) {
-      // if (this.router.url ==="/") {
-      //   this.commandBarSidenavService.toggle();
-      // }
       this.sidenavRoutes.forEach(route => {
         if (this.authGuard.isAllowed(route.allowedRoles)) {
           allowedRoutes.push(route);
@@ -101,5 +98,4 @@ export class NavComponent implements OnInit, OnDestroy {
     }
     return allowedRoutes;
   }
-
 }
