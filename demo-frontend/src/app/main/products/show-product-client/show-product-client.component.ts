@@ -122,16 +122,19 @@ export class ShowProductClientComponent implements OnInit {
   }
 
   readCategorys(name: string) {
+    this.paginator.pageIndex = 0;
     this.catSel = name;
     this.loadProductsPage();
   }
 
   readCities() {
+    this.paginator.pageIndex = 0;
     this.citySel = this.input.nativeElement.value;
     this.loadProductsPage();
   }
 
   readProducer(producer: string) {
+    this.paginator.pageIndex = 0;
     if (producer == 'table.products.all') {
       this.producerSel = '';
     } else {
@@ -141,6 +144,7 @@ export class ShowProductClientComponent implements OnInit {
   }
 
   sortGrid(sorting: string) {
+    this.paginator.pageIndex = 0;
     this.sortSel = sorting;
     this.loadProductsPage();
   }
