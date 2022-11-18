@@ -5,8 +5,9 @@ mat-card-header {
 }
 
 .create-outer-container {
-    margin: 8px;
+    margin: 0px;
     height: 90vh;
+    padding: 0;
 
     .create-inner-container {
         box-sizing: content-box;
@@ -110,4 +111,22 @@ img.img {
 
 .ng-star-inserted {
     max-height: 90vh;
+}
+
+mat-card-actions{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    .mat-card-actions{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+mat-card-content{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    .mat-card-content{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 }
