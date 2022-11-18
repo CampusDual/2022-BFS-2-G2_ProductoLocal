@@ -12,6 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { User } from 'src/app/model/user';
 import { AnyField, AnyPageFilter } from 'src/app/model/rest/filter';
+import { numberToString } from '@amcharts/amcharts5/.internal/core/util/Type';
 
 @Component({
   //selector: 'app-get-product-details',
@@ -52,10 +53,18 @@ export class GetProductDetailsComponent implements OnInit {
         response => {
           this.product = response;
           this.producer = this.product.user;
-          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) =>  this.suggestions = a.data);
-          console.log(this.product);
-        }
-      );
+          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) =>  {
+            this.suggestions = a.data;
+            for (const p of this.suggestions) {
+              if (p.id == this.idProduct) {
+                this.suggestions.splice(this.suggestions.indexOf(p),1);
+              }
+            }
+          });
+          
+          //console.log(this.product);
+      
+        });
     }
 
   }
