@@ -33,7 +33,7 @@ export class ShowProductClientComponent implements OnInit {
   error = false;
   catSel = '';
   citySel = '';
-  sortSel = 'name';
+  sortSel = 'id';
   producerSel = '';
   producers = ['table.products.all'];
   cities: string[] = [];
@@ -78,7 +78,7 @@ export class ShowProductClientComponent implements OnInit {
     );
     this.userService.getProducers().subscribe((list) => {
       list.forEach((a) => {
-        this.producers.push(a.login);
+        this.producers.push((a.login));
         if (a.city != null) {
           if (!this.cities.includes(a.city) && a.city.trim() != '') {
             this.cities.push(a.city);
@@ -86,6 +86,7 @@ export class ShowProductClientComponent implements OnInit {
         }
       });
       this.cities.sort();
+      this.producers.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
     });
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {

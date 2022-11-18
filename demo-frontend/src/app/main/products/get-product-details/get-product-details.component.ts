@@ -52,7 +52,7 @@ export class GetProductDetailsComponent implements OnInit {
         response => {
           this.product = response;
           this.producer = this.product.user;
-          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) => this.suggestions = a.data);
+          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) =>  this.suggestions = a.data);
           console.log(this.product);
         }
       );

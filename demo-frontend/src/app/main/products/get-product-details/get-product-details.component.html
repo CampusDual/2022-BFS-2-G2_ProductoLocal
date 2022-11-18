@@ -12,11 +12,11 @@
                         <div class="inputrow title">{{this.product.name}}</div>
                         <div class="inputrow">
                             <label for="quantity">{{"table.products.stock" | translate}}:&nbsp;</label>
-                            <span class="quantity"> {{this.product.quantity}} {{this.product.description}}</span>
+                            <span class="quantity"> {{this.product.quantity}} {{"table.products.description-units."+ this.product.description | translate}}</span>
                         </div>
                         <div class="inputrow">
                             <label for="typeProd">{{"table.products.typeProd" | translate}}:&nbsp;</label>
-                            <span class="typeProd">{{this.product.typeProd}}</span>
+                            <span class="typeProd">{{"table.products.category."+ this.product.typeProd | translate}}</span>
                         </div>
                         <div class="inputrow">
                             <label for="price">{{"table.products.price" | translate}}:&nbsp;</label>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="inputrow">
                         <div *ngIf="this.producer.email != null">
-                            <span class="user-email withLogo">
+                            <span class="user-email withLogo" style="text-transform: lowercase;">
                             <mat-icon>email</mat-icon>&nbsp;&nbsp;{{this.producer.email}}
                             </span>
                         </div>

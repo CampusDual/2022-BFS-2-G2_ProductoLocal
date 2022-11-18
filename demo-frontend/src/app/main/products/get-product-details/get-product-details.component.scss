@@ -5,10 +5,10 @@ img.img {
     margin: 20px;
 }
 
-.titleText{
+.titleText {
     font-weight: bold;
     font-size: x-large;
-  }
+}
 
 div.productDetail {
     display: flex;
@@ -67,6 +67,7 @@ button {
     border-width: 3px;
     border-color: #bfedff;
     flex-shrink: 1.5;
+    box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
 }
 
 button.mat-button:hover {
@@ -89,6 +90,7 @@ button.mat-button:hover {
 div.producerDetails {
     margin: 20px;
 }
+
 .producerSuggestions {
     margin: 20px;
     margin-top: 40px;
@@ -102,19 +104,25 @@ div.productSuggestions {
     .content {
         padding: 16px;
     }
-    
-    button{
+
+    button {
         background-color: #bfedff;
+        box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 10%), 0px 2px 2px 0px rgb(0 0 0 / 10%), 0px 1px 5px 0px rgb(0 0 0 / 10%);
+
     }
-    
+
     mat-card-title {
-        text-align: center;
+        min-height: 3em;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        justify-content: center;
     }
-    
-    .mat-card-header-text{
+
+    .mat-card-header-text {
         width: 100%;
     }
-    
+
     // button.mat-button[id='details'] {
     //     margin-bottom:10px;
     //     background-color: white;
@@ -122,13 +130,13 @@ div.productSuggestions {
     //     // border-width: 3px;
     //     border-color: #bfedff;
     // }
-    
+
     // button.mat-button[id='details']:hover{
     //     background-color: #bfedff;
     //     border-width: 5px;
     // }
-    
-    button.mat-button{
+
+    button.mat-button {
         border-style: none;
     }
 
@@ -137,7 +145,8 @@ div.productSuggestions {
         border-color: #bfedff;
         background-color: white;
     }
-    div.prueba{
+
+    div.prueba {
         width: 150px;
         margin: 20px;
     }
@@ -147,9 +156,12 @@ div.productSuggestions {
     }
 }
 
-div.input-row.container{
+div.input-row.container {
     display: flex;
     justify-content: center;
+    text-transform: capitalize;
+
+
     mat-card {
         max-width: 70vw;
         margin-top: 20px;
@@ -157,7 +169,7 @@ div.input-row.container{
     }
 }
 
-div.prueba>mat-card:hover{
+div.prueba>mat-card:hover {
     -webkit-transform: scale(1.05);
     border-style: solid;
     border-color: #bfedff;
