@@ -66,7 +66,7 @@
                         <span>{{"table.users.suggestions" | translate}}&nbsp;{{this.producer.login}}</span>
                     </mat-card-title>
                     <div class="productSuggestions">
-                        <div class="prueba" fxFlex='250px' *ngFor="let productSg of suggestions">
+                        <div class="prueba" fxFlex='250px' *ngFor="let productSg of suggestions" (click)="showDetails(productSg.id)">
                             <mat-card class="mat-elevation-z4">
                                 <mat-card-header fxLayout="column" width="100%" fxLayoutAlign="center center">
                                     <mat-card-title>{{productSg.name}}</mat-card-title>
@@ -78,10 +78,10 @@
                                     €/{{("table.products.description-type." + productSg.description) | translate}}
                                 </mat-card-content>
                                 <mat-card-actions fxLayout="column">
-                                    <button mat-button id='details' (click)="showDetails(productSg.id)">
+                                    <!-- <button mat-button id='details' (click)="showDetails(productSg.id)">
                                         {{'table.products.show_details'|translate}}
-                                    </button>
-                                    <button mat-button (click)="contact(productSg.user.email, product.name, product.id)">
+                                    </button> -->
+                                    <button mat-button (click)="contact(productSg.user.email, product.name, product.id);$event.stopPropagation()">
                                         {{'table.products.email-book'|translate}}
                                     </button>
                                 </mat-card-actions>

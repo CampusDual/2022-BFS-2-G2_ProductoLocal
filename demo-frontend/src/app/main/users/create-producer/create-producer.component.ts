@@ -42,7 +42,7 @@ export class CreateProducerComponent implements OnInit {
       email:[this.user.email],
       password:[this.user.password],
       confirmPassword:[this.user.password],
-      nif: [this.user.nif],
+      nif: [this.user.nif, Validators.pattern("[0-9]{8}[A-Za-z]{1}")],
       name: [this.user.name],
       surname: [this.user.surname],
       phone:[this.user.phone],
@@ -62,6 +62,7 @@ export class CreateProducerComponent implements OnInit {
 
   save() {
     const newUser: User = Object.assign({}, this.producerFormAdmin.value);
+    console.log(newUser);
     this.profile.id = 2;
     newUser.profiles = [this.profile];
     let message;

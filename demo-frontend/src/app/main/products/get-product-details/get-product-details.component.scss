@@ -56,6 +56,10 @@ label {
     font-size: x-large;
 }
 
+mat-card-actions.mat-card-action {
+    margin: 15px;
+}
+
 button {
     margin: 20px;
     background-color: #bfedff;
@@ -111,26 +115,30 @@ div.productSuggestions {
         width: 100%;
     }
     
-    button.mat-button[id='details'] {
-        margin-bottom:10px;
-        background-color: white;
-        border-style: solid;
-        border-width: 3px;
-        border-color: #bfedff;
-    }
+    // button.mat-button[id='details'] {
+    //     margin-bottom:10px;
+    //     background-color: white;
+    //     border-style: solid;
+    //     // border-width: 3px;
+    //     border-color: #bfedff;
+    // }
     
-    button.mat-button[id='details']:hover{
-        background-color: #bfedff;
-        border-width: 5px;
-    }
+    // button.mat-button[id='details']:hover{
+    //     background-color: #bfedff;
+    //     border-width: 5px;
+    // }
     
+    button.mat-button{
+        border-style: none;
+    }
+
     button.mat-button:hover {
         border-style: solid;
-        border-width: 3px;
         border-color: #bfedff;
+        background-color: white;
     }
     div.prueba{
-        width: 250px;
+        width: 150px;
         margin: 20px;
     }
 
@@ -144,7 +152,14 @@ div.input-row.container{
     justify-content: center;
     mat-card {
         max-width: 70vw;
-        margin-top: 2vh;
-        margin-bottom: 5vh;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
+}
+
+div.prueba>mat-card:hover{
+    -webkit-transform: scale(1.05);
+    border-style: solid;
+    border-color: #bfedff;
+    cursor: pointer;
 }
