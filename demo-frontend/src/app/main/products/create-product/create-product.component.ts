@@ -14,7 +14,7 @@ import { Observable } from 'rxjs/internal/Observable';
 
 interface Tipo {
   value: string,
-  viewValue:String
+  viewValue: String
 }
 
 @Component({
@@ -26,34 +26,34 @@ export class CreateProductComponent implements OnInit {
 
   product: Product;
   productForm: FormGroup;
-  userOwnerLogin:string;
-  userOwner:User;
+  userOwnerLogin: string;
+  userOwner: User;
+  imgURL: any = '';
 
   tipos: Tipo[] = [
-    { value: 'bebida', viewValue: 'Drinks' },
-    { value: 'fruta', viewValue: 'Fruits' },
-    { value: 'hortaliza', viewValue: 'Vegetables' },
-    { value: 'legumbre', viewValue: 'Legumes' },
-    { value: 'lacteo', viewValue: 'Dairy' },
-    { value: 'otro', viewValue: 'Others' },
-    { value: 'todas', viewValue: 'All' },
+    { value: 'Drinks', viewValue: 'Drinks' },
+    { value: 'Fruits', viewValue: 'Fruits' },
+    { value: 'Vegetables', viewValue: 'Vegetables' },
+    { value: 'Legumes', viewValue: 'Legumes' },
+    { value: 'Dairy', viewValue: 'Dairy' },
+    { value: 'Others', viewValue: 'Others' },
   ];
 
   /* Carga de imagenes*/
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
   image: string;
-  
+
   previews: string[] = [];
-  /*  fin carga imagenes*/ 
+  /*  fin carga imagenes*/
 
   @ViewChild('UploadFileInput') uploadFileInput: ElementRef;
 
   categories: Tipo[] = [
-    { value: 'Units', viewValue: 'Units'},
-    { value: 'Kilograms', viewValue: 'Kilograms'},
-    { value: 'Grams', viewValue: 'Grams'},
-    { value: 'Liters', viewValue: 'Liters'}
+    { value: 'Units', viewValue: 'Units' },
+    { value: 'Kilograms', viewValue: 'Kilograms' },
+    { value: 'Grams', viewValue: 'Grams' },
+    { value: 'Liters', viewValue: 'Liters' }
   ];
 
   constructor(
@@ -63,22 +63,22 @@ export class CreateProductComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private userService: UserService,
-    ) {
+  ) {
     this.product = new Product();
     this.userOwnerLogin = this.authService.getUserName();
     this.userService.getUser(this.userOwnerLogin).subscribe(
       response => {
         this.userOwner = response;
       }
-/*
-      ,
-      (err) => {
-        this.errors = err.error as string[];
-        console.error(err.status);
-        console.error(this.errors);
-      }
-      );
-*/
+      /*
+            ,
+            (err) => {
+              this.errors = err.error as string[];
+              console.error(err.status);
+              console.error(this.errors);
+            }
+            );
+      */
     )
   }
 
@@ -91,7 +91,7 @@ export class CreateProductComponent implements OnInit {
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
-      description:[this.product.description],
+      description: [this.product.description],
       price: [this.product.price],
     },
     );
@@ -113,7 +113,7 @@ export class CreateProductComponent implements OnInit {
       console.log(this);
       message = this.translate.instant("PRODUCT_CREATE_SUCCESS")
       swal.fire(message, "", 'success').then((res) => this.redirectList(response));
-      
+
     }, err => {
       console.log(err.message);
       swal.fire({
@@ -134,27 +134,29 @@ export class CreateProductComponent implements OnInit {
     }
   }
 
-  selectFiles(event) : void {
-    
+  selectFiles(event): void {
+
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
 
-   this.previews = [];
+    this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
       for (let i = 0; i < numberOfFiles; i++) {
         const reader = new FileReader();
-  
+
         reader.onload = (e: any) => {
           this.image = e.target.result;
           this.image = this.image.slice(this.image.indexOf(",") + 1);
           this.previews.push(e.target.result);
+          this.imgURL = e.srcElement.result;
+
         };
-        reader.readAsDataURL(this.selectedFiles[i]);     
+        reader.readAsDataURL(this.selectedFiles[i]);
         this.selectedFileNames.push(this.selectedFiles[i].name);
 
-        
+
       }
-    } 
+    }
   }
 }

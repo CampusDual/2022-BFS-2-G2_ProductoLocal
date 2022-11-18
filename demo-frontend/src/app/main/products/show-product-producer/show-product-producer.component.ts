@@ -27,12 +27,13 @@ export class ShowProductProducerComponent implements OnInit {
 
   displayedColumns = [
     'select',
+    'id',
     'name',
     'quantity',
     'typeProd',
     'price'
   ];
-  fields = ['name', 'quantity', 'description', 'typeProd', 'price'];
+  fields = ['id', 'name', 'quantity', 'description', 'typeProd', 'price'];
 
   selection = new SelectionModel<Product>(true, []);
   error = false;

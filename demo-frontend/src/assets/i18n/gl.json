@@ -63,8 +63,17 @@
     },
     "products": {
       "ownername": "Produtor",
+      "ref": "Referencia",
       "name": "Nome",
       "typeProd": "Categoría",
+      "sortBy": "Ordear por...",
+      "all": "Todos",
+      "sort": {
+        "name": "Nome",
+        "price": "Prezo",
+        "category": "Categoría",
+        "producer": "Produtor"
+      },
       "category": {
         "Drinks" :"Bebidas",
         "Fruits":"Froitas",
@@ -82,21 +91,18 @@
         "Grams": "Gramos",
         "Liters": "Litros"
       },
-      "price": "Prezo",
+      "price": "Prezo (€)",
       "producer": "Produtor",
       "description-type": {
-        "kilos": "kg",
-        "unidades": "u",
-        "gramos": "gr",
-        "litros": "L",
-        "Kilograms": "kg",
+        "Kilograms": "Kg",
         "Units": "u",
         "Grams": "gr",
         "Liters": "L"
       },
       "show_details":"Ver detalles",
       "Stock": "Stock",
-      "suggestions": "Produtos de"
+      "suggestions": "Produtos de",
+      "noSuggestions": " non ten máis produtos..."
     }
   },
   "sections-title": {
@@ -189,6 +195,7 @@
   "descriptionrequired": "As unidades son un campo obrigatorio",
   "pricerequired": "O prezo é un campo obrigatorio",
   "delete-product-confirmation": "¿Está seguro de que quere continuar? O(s) seu(s) produto(s) ha(n) ser eliminado(s)",
-  "delete-user-confirmation":"¿Estás seguro de que queres continuar? Os usuarios marcados serán eliminados."
+  "delete-user-confirmation":"¿Estás seguro de que queres continuar? Os usuarios marcados serán eliminados.",
+  "total-products": "Relación de Produtos Totais"
 
 }

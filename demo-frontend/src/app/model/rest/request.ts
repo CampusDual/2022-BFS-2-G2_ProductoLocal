@@ -54,9 +54,16 @@ export class CreateUserRequest {
     this.login = user.login;
     this.password = user.password;
     this.profiles = user.profiles;
-  
+    this.name = user.name;
+    this.surname = user.surname;
+    this.address = user.address;
+    this.city = user.city;
+    this.phone = user.phone;
+    this.nif = user.nif;
+    this.zip = user.zip;
   }
 }
+
 export class EditUserRequest {
   id: number;
   name: string;

@@ -19,7 +19,7 @@ export class AuthService {
     private router: Router,
     private jwtHelper: JwtHelperService,
     private translateService: TranslateService
-  ) {}
+  ) { }
 
   redirectUrl: string;
 
@@ -96,5 +96,17 @@ export class AuthService {
     setTimeout(() => {
       window.location.reload();
     }, 100);
+  }
+
+  setRedirectUrl() {
+    let roles = this.getRoles();
+    console.log(roles);
+    if (roles.includes('CLIENT')) {
+      this.redirectUrl = '/products/products';
+    } else if (roles.includes('PRODUCER')) {
+      this.redirectUrl = '/products/myProducts';
+    } else {
+      this.redirectUrl = '/main';
+    }
   }
 }

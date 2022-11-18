@@ -29,7 +29,7 @@ export class NavComponent implements OnInit, OnDestroy {
       icon: 'home',
       route: 'main',
       title: 'menu.home',
-      allowedRoles: ['CONTACTS']
+      allowedRoles: ['ADMIN']
     },
 /*
     {
@@ -99,5 +99,4 @@ export class NavComponent implements OnInit, OnDestroy {
     }
     return allowedRoutes;
   }
-
 }

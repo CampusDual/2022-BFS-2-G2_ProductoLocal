@@ -9,6 +9,11 @@
     overflow-x: hidden;
 }
 
+div.form-content {
+    height: 100%;
+}
+
+
 label{
     font-size: 1.2em;
     font-weight: 800;
@@ -59,6 +64,12 @@ div.btn-cont{
 
 div.inputrow{
     min-width: 250px;
+}
+.myClass {
+    margin-top: 20px;
+    background-color: #bfedff;
+    color: black;
+    align-self: flex-start;
 }
 
 .mat-card-actions .mat-button, .mat-card-actions .mat-raised-button, .mat-card-actions .mat-stroked-button{

@@ -24,5 +24,4 @@ public interface UserRepository extends JpaRepository<User, Integer>, JpaSpecifi
 			+ " lower(u.nif) like lower(concat('%',:query,'%')) or lower(u.zip) like lower(concat('%',:query,'%')) or"
 			+ " concat(u.phone,'') like %:query%)")
 	public Page<User>findByProfileIgnoreCase(@Param("id") Integer id, Pageable pageable, String query);
-
 }

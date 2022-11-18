@@ -23,10 +23,21 @@ public interface ProductRepository extends JpaRepository<Product, Integer>, JpaS
 	@Query("SELECT distinct p FROM Product p where lower(p.user.city) like lower(concat('%',:city,'%'))")
 	public Page<Product>findByCity(@Param("city") String city, Pageable pageable);
 	
+	@Query("SELECT distinct p FROM Product p where lower(p.user.city) like lower(concat('%',:city,'%')) and p.user.login = :producer")
+	public Page<Product> findByCityProducer(@Param("city") String city, @Param("producer") String producer, Pageable pageable);
+
 	@Query("SELECT distinct p FROM Product p where lower(p.typeProd) = lower(:type)")
 	public Page<Product>findByType(@Param("type") String type, Pageable pageable);
 	
+	@Query("SELECT distinct p FROM Product p where lower(p.typeProd) = lower(:type) and p.user.login = :producer")
+	public Page<Product>findByTypeProducer(@Param("type") String type,@Param("producer") String producer, Pageable pageable);
+	
 	@Query("SELECT distinct p FROM Product p where lower(p.typeProd)= lower(:typeProd) and lower(p.user.city) like lower(concat('%',:city,'%'))")
 	public Page<Product>findByCityType( @Param("city") String city,@Param("typeProd") String typeProd, Pageable pageable);
-
+	
+	@Query("SELECT distinct p FROM Product p where lower(p.typeProd)= lower(:typeProd) and lower(p.user.city) like lower(concat('%',:city,'%')) and p.user.login = :producer")
+	public Page<Product>findByCityTypeProducer( @Param("city") String city,@Param("typeProd") String typeProd, @Param("producer") String producer, Pageable pageable);
+	
+	@Query("SELECT count(*), p.typeProd FROM Product p GROUP BY p.typeProd")
+	public List<Object>findData();
 }

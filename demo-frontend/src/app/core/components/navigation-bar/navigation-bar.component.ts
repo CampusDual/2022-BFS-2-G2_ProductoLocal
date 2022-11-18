@@ -18,17 +18,17 @@ export class NavigationBarComponent {
   private returnUrl = '/';
   selectedLanguage = this.translateService.currentLang;
   userName: string;
-  user:User;
+  user: User;
   userProfile: string;
-  
 
-  constructor( 
-    private authService: AuthService, 
-    private router: Router, 
+
+  constructor(
+    private authService: AuthService,
+    private router: Router,
     private logger: LoggerService,
     private translateService: TranslateService,
-    private userService: UserService,
-    ) {
+    private userService: UserService
+  ) {
     this.userName = authService.getUserName();
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
@@ -42,8 +42,8 @@ export class NavigationBarComponent {
     this.userService.getUser(this.userName).subscribe(
       response => {
         this.user = response;
-        this.userProfile = this.user.profiles[0].name; 
-      }); 
+        this.userProfile = this.user.profiles[0].name;
+      });
   }
 
   logout() {
@@ -66,17 +66,15 @@ export class NavigationBarComponent {
     this.router.navigate(['/users/getUser']);
   }
 
-  get navVisible(){
-
-    let navVisible:boolean = true;
-
-    if(this.router.url === '/'){
-
-      navVisible= false;
-
+  get navVisible() {
+    let navVisible: boolean = true;
+    if (this.router.url === '/') {
+      navVisible = false;
     }
-
     return navVisible;
+  }
 
-   }
+  public isAdmin(): boolean {
+    return (this.authService.getRoles().includes('ADMIN'));
+  }
 }

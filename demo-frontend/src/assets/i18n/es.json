@@ -60,12 +60,22 @@
       "city": "Ciudad",
       "nif": "NIF",
       "zip": "Código postal",
-      "suggestions": "Productos de"
+      "suggestions": "Productos de",
+      "noSuggestions": " no tiene más productos..."
     },
     "products": {
       "ownername":"Productor",
       "name":"Nombre",
+      "ref": "Referencia",
       "typeProd":"Categoría",
+      "sortBy": "Ordenar por...",
+      "all": "Todos",
+      "sort": {
+        "name": "Nombre",
+        "price": "Precio",
+        "category": "Categoría",
+        "producer": "Productor"
+      },
       "category": {
         "Drinks" :"Bebidas",
         "Fruits":"Frutas",
@@ -84,11 +94,7 @@
         "Liters": "Litros"
       },
       "description-type": {
-        "kilos": "kg",
-        "unidades": "u",
-        "gramos": "gr",
-        "litros": "L",
-        "Kilograms": "kg",
+        "Kilograms": "Kg",
         "Units": "u",
         "Grams": "gr",
         "Liters": "L"
@@ -194,5 +200,6 @@
   "descriptionrequired": "Las unidades son un campo obligatorio",
   "pricerequired":"El precio es un campo obligatorio",
   "delete-product-confirmation":"¿Está seguro de que quiere continuar? Su(s) producto(s) será eliminado.",
-  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados."
+  "delete-user-confirmation":"¿Está seguro de que quiere continuar? Los usuarios marcados serán eliminados.",
+  "total-products": "Relación de Productos Totales"
 }

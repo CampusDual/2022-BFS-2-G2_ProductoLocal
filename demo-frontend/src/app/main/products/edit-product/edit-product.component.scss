@@ -5,8 +5,9 @@ mat-card-header {
 }
 
 .create-outer-container {
-    margin: 8px;
+    margin: 0px;
     height: 90vh;
+    padding: 0;
 
     .create-inner-container {
         box-sizing: content-box;
@@ -57,7 +58,7 @@ mat-card-header {
 
         mat-form-field {
             width: 100%;
-            margin: 30px 0 0;
+            margin: 30px 0 0 10px;
         }
 
         .dark_text {
@@ -70,7 +71,14 @@ mat-card-header {
             font-size: 10pt;
             font-weight: bold;
         }
-
+        .prod-quantity{
+            width:45%;
+            float: left;
+        }
+        .prod-units{
+            width:45%;
+            margin-left: 55%;
+        }
     }
 }
 
@@ -85,6 +93,13 @@ mat-card-header {
     }
 }
 
+img.img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    margin: 30px 0 0 10px;
+}
+
 .myClass {
     background-color: #bfedff;
     color: black;
@@ -96,4 +111,26 @@ mat-card-header {
 
 .ng-star-inserted {
     max-height: 90vh;
+}
+
+mat-card-actions{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    .mat-card-actions{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+}
+
+mat-card-title.mat-card-title{
+    margin: 0;
+}
+
+mat-card-content{
+    margin-bottom: 0;
+    padding-bottom: 0;
+    .mat-card-content{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
 }

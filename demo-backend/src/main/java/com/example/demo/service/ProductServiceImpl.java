@@ -1,23 +1,12 @@
 package com.example.demo.service;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import com.borjaglez.springify.repository.filter.Operator;
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
@@ -36,7 +25,7 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 
 	@Autowired
 	ProductRepository productRepository;
-	
+
 	@Autowired
 	UserRepository userRepository;
 
@@ -67,8 +56,8 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		checkInputParams(pageFilter);
 		User user = userRepository.findByLogin(login).get();
 		Filter filter = new Filter("user", Operator.EQUAL, user.getId());
-		Page<Product> products = SpecificationBuilder.selectDistinctFrom(productRepository).where(filter).where(pageFilter)
-				.findAll(pageFilter);
+		Page<Product> products = SpecificationBuilder.selectDistinctFrom(productRepository).where(filter)
+				.where(pageFilter).findAll(pageFilter);
 		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
 		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(products.getContent());
 		datares.setTotalElements((int) products.getTotalElements());
@@ -107,7 +96,7 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		List<Product> products = this.productRepository.findByLogin(login);
 		return ProductMapper.INSTANCE.productToProductDtoList(products);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public DataSourceRESTResponse<List<ProductDTO>> findCities(String city, AnyPageFilter pageFilter) {
@@ -119,7 +108,19 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		datares.setTotalElements((int) cities.getTotalElements());
 		return datares;
 	}
-	
+
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> findCitiesProducer(String city, String producer,AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Product> cities = productRepository.findByCityProducer(city, producer, pageFilter.toPageable());
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(cities.getContent());
+		datares.setData(productsDTO);
+		datares.setTotalElements((int) cities.getTotalElements());
+		return datares;
+	}
+
 	@Override
 	@Transactional(readOnly = true)
 	public DataSourceRESTResponse<List<ProductDTO>> findTypes(String typeProd, AnyPageFilter pageFilter) {
@@ -131,10 +132,24 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		datares.setTotalElements((int) types.getTotalElements());
 		return datares;
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
-	public DataSourceRESTResponse<List<ProductDTO>> findByCityType(String city, String typeProd, AnyPageFilter pageFilter) {
+	public DataSourceRESTResponse<List<ProductDTO>> findTypesProducer(String typeProd, String producer,
+			AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Product> types = productRepository.findByTypeProducer(typeProd, producer, pageFilter.toPageable());
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(types.getContent());
+		datares.setData(productsDTO);
+		datares.setTotalElements((int) types.getTotalElements());
+		return datares;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> findByCityType(String city, String typeProd,
+			AnyPageFilter pageFilter) {
 		checkInputParams(pageFilter);
 		Page<Product> types = productRepository.findByCityType(city, typeProd, pageFilter.toPageable());
 		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
@@ -143,5 +158,24 @@ public class ProductServiceImpl extends AbstractDemoService implements IProductS
 		datares.setTotalElements((int) types.getTotalElements());
 		return datares;
 	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public DataSourceRESTResponse<List<ProductDTO>> findByCityTypeProducer(String city, String typeProd,
+			String producer, AnyPageFilter pageFilter) {
+		checkInputParams(pageFilter);
+		Page<Product> types = productRepository.findByCityTypeProducer(city, typeProd, producer, pageFilter.toPageable());
+		DataSourceRESTResponse<List<ProductDTO>> datares = new DataSourceRESTResponse<>();
+		List<ProductDTO> productsDTO = ProductMapper.INSTANCE.productToProductDtoList(types.getContent());
+		datares.setData(productsDTO);
+		datares.setTotalElements((int) types.getTotalElements());
+		return datares;
+	}
 	
+	@Override
+	@Transactional(readOnly = true)
+	public List<Object> findData() {
+		return this.productRepository.findData();
+	}
+
 }

@@ -17,6 +17,7 @@ const routes: Routes = [
     children: [
       { path: "", component: ProductsComponent },
       { path: 'createProduct', component: CreateProductComponent },
+      { path: 'createProductByAdmin/:login', component: CreateProductByAdminComponent },
       { path: 'createProductByAdmin', component: CreateProductByAdminComponent },
       { path: 'showProducts', component: ShowProductComponent },
       { path: 'myProducts', component: ShowProductProducerComponent },

@@ -13,7 +13,7 @@ export class ShowProductDatasource extends DataSource<Product> {
     public loading$ = this.loadingSubject.asObservable();
     public totalElements: number;
 
-    constructor(private productService: ProductService){
+    constructor(private productService: ProductService) {
         super();
     }
 
@@ -32,7 +32,19 @@ export class ShowProductDatasource extends DataSource<Product> {
     getProductsCity(pageFilter: AnyPageFilter, city: string) {
         this.productsSubject.next([]);
         this.loadingSubject.next(true);
-        this.productService.findCities(pageFilter,city).pipe(
+        this.productService.findCities(pageFilter, city).pipe(
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+            response => {
+                this.totalElements = response.totalElements;
+                this.productsSubject.next(response.data);
+            }
+        );
+    }
+    getProductsCityProducer(pageFilter: AnyPageFilter, city: string, producer: string) {
+        this.productsSubject.next([]);
+        this.loadingSubject.next(true);
+        this.productService.findCitiesProducer(pageFilter, city, producer).pipe(
             finalize(() => this.loadingSubject.next(false))
         ).subscribe(
             response => {
@@ -53,10 +65,37 @@ export class ShowProductDatasource extends DataSource<Product> {
             }
         );
     }
-    getProductsCityType(pageFilter: AnyPageFilter, city: string, type:string) {
+    
+    getProductsTypeProducer(pageFilter: AnyPageFilter, type: string, producer:string) {
         this.productsSubject.next([]);
         this.loadingSubject.next(true);
-        this.productService.findCityType(pageFilter,city,type).pipe(
+        this.productService.findTypesProducer(pageFilter, type, producer).pipe(
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+            response => {
+                this.totalElements = response.totalElements;
+                this.productsSubject.next(response.data);
+            }
+        );
+    }
+
+    getProductsCityType(pageFilter: AnyPageFilter, city: string, type: string) {
+        this.productsSubject.next([]);
+        this.loadingSubject.next(true);
+        this.productService.findCityType(pageFilter, city, type).pipe(
+            finalize(() => this.loadingSubject.next(false))
+        ).subscribe(
+            response => {
+                this.totalElements = response.totalElements;
+                this.productsSubject.next(response.data);
+            }
+        );
+    }
+
+    getProductsCityTypeProducer(pageFilter: AnyPageFilter, city: string, type: string, producer: string) {
+        this.productsSubject.next([]);
+        this.loadingSubject.next(true);
+        this.productService.findCityTypeProducer(pageFilter, city, type, producer).pipe(
             finalize(() => this.loadingSubject.next(false))
         ).subscribe(
             response => {
@@ -81,12 +120,12 @@ export class ShowProductDatasource extends DataSource<Product> {
 
 
 
-/*     connect(collectionViewer: CollectionViewer): Observable<readonly Product[]> {
-        throw new Error("Method not implemented.");
-    } */
-/*     disconnect(collectionViewer: CollectionViewer): void {
-        throw new Error("Method not implemented.");
-    } */
+    /*     connect(collectionViewer: CollectionViewer): Observable<readonly Product[]> {
+            throw new Error("Method not implemented.");
+        } */
+    /*     disconnect(collectionViewer: CollectionViewer): void {
+            throw new Error("Method not implemented.");
+        } */
 
     connect(): BehaviorSubject<Product[]> {
         return this.productsSubject;

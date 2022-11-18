@@ -9,6 +9,15 @@
             <mat-card-content>
 
                 <div class="inputrow">
+                    <span><img class="img" id="imagen" mat-card-image src={{this.imgURL}}></span>
+                    <mat-form-field>
+                        <input matInput hidden />
+                        <input class="MyClass" type="file" id="fileInput" name="fileInput" accept="image/*"
+                            (change)="selectFiles($event)" />
+                    </mat-form-field>
+                </div>
+
+                <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.products.name' | translate}}"
                             formControlName="name" name="product-name" required />
@@ -28,7 +37,7 @@
                     </mat-form-field>
                 </div>
 
-                <div class="inputrow">
+                <div class="inputrow prod-quantity">
                     <mat-form-field fxFlex>
                         <input matInput min="1" type="number" color="primary"
                             placeholder="{{'table.products.quantity' | translate}}" formControlName="quantity"
@@ -37,7 +46,7 @@
                     </mat-form-field>
                 </div>
 
-                <div class="inputrow">
+                <div class="inputrow prod-units">
                     <mat-form-field fxFlex>
                         <mat-label>{{'table.products.description' | translate}}</mat-label>
                         <mat-select required formControlName="description">
@@ -58,7 +67,7 @@
                     </mat-form-field>
                 </div>
 
-<!--
+                <!--
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary"
@@ -68,29 +77,15 @@
                 </div>
 -->
 
-                <div class="inputrow">
-                    <mat-form-field>
-                        <input matInput hidden /> 
-                        <input
-                            class="MyClass"
-                            type="file"
-                            id="fileInput"
-                            name="fileInput"
-                            accept="image/*"
-                            (change)="selectFiles($event)"
-                        />
-                    </mat-form-field>
-                </div>
-
             </mat-card-content>
 
             <mat-card-actions>
                 <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center" fxLayout="column">
 
-                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit" 
-                        [disabled]="!productForm.valid" >{{'button.save' | translate}}</button>
-                    <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" onclick="history.back()"
-                        [formNoValidate]="true">{{'button.cancel' | translate}}</button>
+                    <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
+                        [disabled]="!productForm.valid">{{'button.save' | translate}}</button>
+                    <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button"
+                        onclick="history.back()" [formNoValidate]="true">{{'button.cancel' | translate}}</button>
                 </div>
             </mat-card-actions>
         </form>

@@ -20,7 +20,8 @@
                         <input matInput type="text" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" color="primary" 
                             placeholder="{{'table.users.email' | translate}}" required
                             formControlName="email" name="user-email" />
-                            <mat-error>{{'emailrequired' | translate}}</mat-error>
+                            <mat-error *ngIf="producerFormAdmin.get('email').hasError('required')">{{'emailrequired' | translate}}</mat-error>
+                            <mat-error *ngIf="producerFormAdmin.get('email').hasError('pattern')">{{'emailpattern' | translate}}</mat-error>    
                     </mat-form-field>
                 </div>
                 <div class="inputrow">
@@ -44,6 +45,8 @@
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.users.nif' | translate}}"
                             formControlName="nif" name="user-nif" [value]="this.user.nif" />
+                    <mat-error>{{'nifpattern' | translate}}</mat-error>
+
                     </mat-form-field>
                 </div>
                 <div class="inputrow">

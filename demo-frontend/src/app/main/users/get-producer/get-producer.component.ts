@@ -43,12 +43,13 @@ export class GetProducerComponent implements OnInit {
   dataSource: ShowProductDatasource;
   displayedColumns = [
     'select',
+    'id',
     'name',
     'quantity',
     'typeProd',
     'price',
   ];
-  fields = ['name', 'quantity', 'typeProd', 'price'];
+  fields = ['id', 'name', 'quantity', 'typeProd', 'price'];
 
   selection = new SelectionModel<Product>(true, []);
   error = false;
@@ -294,7 +295,8 @@ export class GetProducerComponent implements OnInit {
   }
 
   onAdd() {
-    this.router.navigate(['/products/createProductByAdmin']);
+    this.router.navigate(['/products/createProductByAdmin/' + this.user.login]);
+
   }
 }
 

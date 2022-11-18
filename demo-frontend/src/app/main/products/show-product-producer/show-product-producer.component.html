@@ -1,3 +1,5 @@
+<h3> {{'sections-title.products-management' | translate}}</h3>
+
 <div>
     <div
       fxLayout="row"
@@ -18,9 +20,9 @@
         >
           <mat-icon>delete</mat-icon> {{ "delete" | translate }}
         </button>
-        <button mat-raised-button (click)="loadProductsPage()">
+        <!--<button mat-raised-button (click)="loadProductsPage()">
           <mat-icon>refresh</mat-icon> {{ "refresh" | translate }}
-        </button>
+        </button> -->
       </div>
       <div fxflex>
         <mat-form-field>
@@ -65,6 +67,15 @@
           </td>
         </ng-container> 
   
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef mat-sort-header>
+            {{ "table.products.ref" | translate }}
+          </mat-header-cell>
+          <mat-cell *matCellDef="let row" data-label="id">
+            {{ row.id }}
+          </mat-cell>
+        </ng-container>
+        
         <ng-container matColumnDef="name">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
             {{ "table.products.name" | translate }}
@@ -79,7 +90,7 @@
             {{ "table.products.quantity" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="quantity">
-            {{ row.quantity }}    {{ row.description }}
+            {{ row.quantity }}    {{ ('table.products.description-units.'+row.description) | translate }}
           </mat-cell>
         </ng-container>
   
@@ -88,7 +99,7 @@
             {{ "table.products.typeProd" | translate }}
           </mat-header-cell>
           <mat-cell *matCellDef="let row" data-label="typeProd">
-            {{ row.typeProd }}
+            {{ ('table.products.category.'+row.typeProd) | translate}}
           </mat-cell>
         </ng-container>
   

@@ -60,12 +60,22 @@
       "city": "City",
       "nif": "NIF",
       "zip": "ZIP Code",
-      "suggestions": "Products from"
+      "suggestions": "Products from",
+      "noSuggestions": " has no more products..."
     },
     "products": {
       "ownername": "Producer",
+      "ref": "Reference",
       "name": "Name",
       "typeProd": "Category",
+      "sortBy": "Sort by...",
+      "all": "All",
+      "sort": {
+        "name": "Name",
+        "price": "Price",
+        "category": "Category",
+        "producer": "Producer"
+      },
       "category": {
         "Drinks" :"Drinks",
         "Fruits":"Fruits",
@@ -86,11 +96,7 @@
       "price": "Price (€)",
       "producer": "Producer",
       "description-type": {
-        "kilos": "kg",
-        "unidades": "u",
-        "gramos": "gr",
-        "litros": "L",
-        "Kilograms": "kg",
+        "Kilograms": "Kg",
         "Units": "u",
         "Grams": "gr",
         "Liters": "L"
@@ -190,5 +196,6 @@
   "descriptionrequired": "Units is a required field",
   "pricerequired": "Price is a required field",
   "delete-product-confirmation": "Are you sure you want to continue? Your product(s) will be deleted",
-  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted"
+  "delete-user-confirmation": "Are you sure you want to continue? Marked users will be deleted",
+  "total-products": "Total Products"
 }

@@ -3,16 +3,16 @@ import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
+import { map, from, of, Observable, startWith } from 'rxjs';
 
 
 interface Tipo {
   value: string,
-  viewValue:String
+  viewValue: String
 }
 
 @Component({
@@ -26,30 +26,34 @@ export class CreateProductByAdminComponent implements OnInit {
   productFormAdmin: FormGroup;
   userOwnerLogin: string;
   userOwner: User;
-  producers: User[];
+  imgURL: any = '';
+  producers: User[] = [];
+  producerControl = new FormControl('');
+  filteredProducers: Observable<User[]>;
+  userLogin: string;
 
   /* Carga de imagenes*/
   selectedFiles?: FileList;
   selectedFileNames: string[] = [];
   image: string;
-  
+
   previews: string[] = [];
-  /*  fin carga imagenes*/ 
+  /*  fin carga imagenes*/
 
   tipos: Tipo[] = [
-    { value: 'bebida', viewValue: 'Drinks' },
-    { value: 'fruta', viewValue: 'Fruits' },
-    { value: 'hortaliza', viewValue: 'Vegetables' },
-    { value: 'legumbre', viewValue: 'Legumes' },
-    { value: 'lacteo', viewValue: 'Dairy' },
-    { value: 'otro', viewValue: 'Others' },
-    { value: 'todas', viewValue: 'All' },
+    { value: 'Drinks', viewValue: 'Drinks' },
+    { value: 'Fruits', viewValue: 'Fruits' },
+    { value: 'Vegetables', viewValue: 'Vegetables' },
+    { value: 'Legumes', viewValue: 'Legumes' },
+    { value: 'Dairy', viewValue: 'Dairy' },
+    { value: 'Others', viewValue: 'Others' },
+
   ];
   categories: Tipo[] = [
-    { value: 'Units', viewValue: 'Units'},
-    { value: 'Kilograms', viewValue: 'Kilograms'},
-    { value: 'Grams', viewValue: 'Grams'},
-    { value: 'Liters', viewValue: 'Liters'}
+    { value: 'Units', viewValue: 'Units' },
+    { value: 'Kilograms', viewValue: 'Kilograms' },
+    { value: 'Grams', viewValue: 'Grams' },
+    { value: 'Liters', viewValue: 'Liters' }
   ];
 
   constructor(
@@ -58,6 +62,8 @@ export class CreateProductByAdminComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private userService: UserService,
+    private route: ActivatedRoute,
+
   ) {
     this.product = new Product();
     this.userOwner = new User();
@@ -65,24 +71,34 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getProducers().subscribe((response) => {
-     // console.log(response);
-      this.producers = response;
-    }, (err) => {
-      swal.fire({
-        confirmButtonColor: '#bfedff',
-        title: this.translate.instant('ERROR'),
-        text: this.translate.instant("GET_PRODUCERS_ERROR"),
-        icon: 'error'
-      });
+    this.userLogin = this.route.snapshot.params['login'];
+    if (!this.userLogin) {
+      this.userService.getProducers().subscribe((response) => {
+        response.forEach(a => this.producers.push(a));
+        this.producers.sort((a, b) => a.login.localeCompare(b.login));
+      }, (err) => {
+        swal.fire({
+          confirmButtonColor: '#bfedff',
+          title: this.translate.instant('ERROR'),
+          text: this.translate.instant("GET_PRODUCERS_ERROR"),
+          icon: 'error'
+        });
+      }
+      );
     }
-    )
     this.createFormGroup();
+  }
+
+  ngAfterViewInit(): void {
+    this.filteredProducers = this.producerControl.valueChanges.pipe(
+      startWith(''),
+      map(value => this._filter(value || ''))
+    );
   }
 
   createFormGroup() {
     this.productFormAdmin = this.fb.group({
-      ownername: [this.product.user.login],
+      ownername: this.producerControl,
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
@@ -96,11 +112,19 @@ export class CreateProductByAdminComponent implements OnInit {
     history.back();
   }
 
+  private _filter(value: string): User[] {
+    const filterValue = value.toLowerCase();
+    return this.producers.filter(user => user.login.toLowerCase().includes(filterValue));
+  }
 
   save() {
     const newProduct: Product = Object.assign({}, this.productFormAdmin.value);
     let message;
-    this.userService.getUser(this.productFormAdmin.value.ownername).subscribe(
+    if(!this.userLogin) {
+      this.userLogin = this.productFormAdmin.value.ownername;
+    }
+    console.log(this.userLogin);
+    this.userService.getUser(this.userLogin).subscribe(
       response => {
         this.userOwner = response;
         newProduct.user = this.userOwner;
@@ -111,7 +135,6 @@ export class CreateProductByAdminComponent implements OnInit {
           console.log(this);
           message = this.translate.instant("PRODUCT_CREATE_SUCCESS")
           swal.fire(message, "", 'success').then((res) => this.redirectList(response));
-
         }, err => {
           console.log(err.message);
           swal.fire({
@@ -147,8 +170,8 @@ export class CreateProductByAdminComponent implements OnInit {
     */
   }
 
-  selectFiles(event) : void {
-    
+  selectFiles(event): void {
+
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
 
@@ -162,11 +185,12 @@ export class CreateProductByAdminComponent implements OnInit {
           this.image = e.target.result;
           this.image = this.image.slice(this.image.indexOf(',') + 1);
           this.previews.push(e.target.result);
+          this.imgURL = e.srcElement.result;
         };
         reader.readAsDataURL(this.selectedFiles[i]);
         this.selectedFileNames.push(this.selectedFiles[i].name);
       }
-    } 
+    }
   }
 
 }
