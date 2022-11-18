@@ -295,7 +295,8 @@ export class GetProducerComponent implements OnInit {
   }
 
   onAdd() {
-    this.router.navigate(['/products/createProductByAdmin']);
+    this.router.navigate(['/products/createProductByAdmin/' + this.user.login]);
+
   }
 }
 

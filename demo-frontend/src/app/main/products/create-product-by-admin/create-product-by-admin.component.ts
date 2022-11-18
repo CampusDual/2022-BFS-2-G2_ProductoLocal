@@ -4,7 +4,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
 import { map, from, of, Observable, startWith } from 'rxjs';
@@ -30,7 +30,7 @@ export class CreateProductByAdminComponent implements OnInit {
   producers: User[] = [];
   producerControl = new FormControl('');
   filteredProducers: Observable<User[]>;
-
+  userLogin: string;
 
   /* Carga de imagenes*/
   selectedFiles?: FileList;
@@ -62,6 +62,8 @@ export class CreateProductByAdminComponent implements OnInit {
     private router: Router,
     private translate: TranslateService,
     private userService: UserService,
+    private route: ActivatedRoute,
+
   ) {
     this.product = new Product();
     this.userOwner = new User();
@@ -69,18 +71,21 @@ export class CreateProductByAdminComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getProducers().subscribe((response) => {
-      response.forEach(a => this.producers.push(a));
-      this.producers.sort((a, b) => a.login.localeCompare(b.login));
-    }, (err) => {
-      swal.fire({
-        confirmButtonColor: '#bfedff',
-        title: this.translate.instant('ERROR'),
-        text: this.translate.instant("GET_PRODUCERS_ERROR"),
-        icon: 'error'
-      });
+    this.userLogin = this.route.snapshot.params['login'];
+    if (!this.userLogin) {
+      this.userService.getProducers().subscribe((response) => {
+        response.forEach(a => this.producers.push(a));
+        this.producers.sort((a, b) => a.login.localeCompare(b.login));
+      }, (err) => {
+        swal.fire({
+          confirmButtonColor: '#bfedff',
+          title: this.translate.instant('ERROR'),
+          text: this.translate.instant("GET_PRODUCERS_ERROR"),
+          icon: 'error'
+        });
+      }
+      );
     }
-    )
     this.createFormGroup();
   }
 
@@ -115,7 +120,11 @@ export class CreateProductByAdminComponent implements OnInit {
   save() {
     const newProduct: Product = Object.assign({}, this.productFormAdmin.value);
     let message;
-    this.userService.getUser(this.productFormAdmin.value.ownername).subscribe(
+    if(!this.userLogin) {
+      this.userLogin = this.productFormAdmin.value.ownername;
+    }
+    console.log(this.userLogin);
+    this.userService.getUser(this.userLogin).subscribe(
       response => {
         this.userOwner = response;
         newProduct.user = this.userOwner;
