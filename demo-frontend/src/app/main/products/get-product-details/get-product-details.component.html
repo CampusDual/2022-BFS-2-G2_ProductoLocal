@@ -38,22 +38,22 @@
                         <span>&nbsp;{{this.producer.login}}</span>
                     </mat-card-title>
                     <div class="inputrow">
-                        <div>
+                        <div *ngIf="this.producer.city != null">
                             <mat-icon> location_on</mat-icon>
                             <span class="user-city">&nbsp;&nbsp;{{this.producer.city}}</span>
                         </div>
-                        <div>
+                        <div *ngIf="this.producer.zip != null">
                             <mat-icon> directions</mat-icon>
                             <span class="user-zip">&nbsp;&nbsp;{{this.producer.zip}}</span>
                         </div>
                     </div>
                     <div class="inputrow">
-                        <div>
+                        <div *ngIf="this.producer.email != null">
                             <span class="user-email withLogo">
                             <mat-icon>email</mat-icon>&nbsp;&nbsp;{{this.producer.email}}
                             </span>
                         </div>
-                        <div>
+                        <div *ngIf="this.producer.phone != null">
                             <span class="user-phone withLogo">
                             <mat-icon>phone</mat-icon>&nbsp;&nbsp;{{this.producer.phone}}
                             </span>
