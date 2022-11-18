@@ -60,7 +60,8 @@
       "city": "City",
       "nif": "NIF",
       "zip": "ZIP Code",
-      "suggestions": "Products from"
+      "suggestions": "Products from",
+      "noSuggestions": " has no more products..."
     },
     "products": {
       "ownername": "Producer",

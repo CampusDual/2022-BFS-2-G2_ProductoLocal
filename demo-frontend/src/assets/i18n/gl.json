@@ -101,7 +101,8 @@
       },
       "show_details":"Ver detalles",
       "Stock": "Stock",
-      "suggestions": "Produtos de"
+      "suggestions": "Produtos de",
+      "noSuggestions": " non ten máis produtos..."
     }
   },
   "sections-title": {

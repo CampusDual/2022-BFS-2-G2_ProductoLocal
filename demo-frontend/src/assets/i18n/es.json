@@ -60,7 +60,8 @@
       "city": "Ciudad",
       "nif": "NIF",
       "zip": "Código postal",
-      "suggestions": "Productos de"
+      "suggestions": "Productos de",
+      "noSuggestions": " no tiene más productos..."
     },
     "products": {
       "ownername":"Productor",

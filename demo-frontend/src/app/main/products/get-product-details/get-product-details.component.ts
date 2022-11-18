@@ -25,6 +25,7 @@ export class GetProductDetailsComponent implements OnInit {
   productForm: FormGroup;
   producer: User;
   suggestions: Product[];
+  sgt: boolean;
 
   constructor(
     private productService: ProductService,
@@ -53,17 +54,15 @@ export class GetProductDetailsComponent implements OnInit {
         response => {
           this.product = response;
           this.producer = this.product.user;
-          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) =>  {
+          this.productService.getMyProducts(pageFilter, this.producer.login).subscribe((a) => {
             this.suggestions = a.data;
             for (const p of this.suggestions) {
               if (p.id == this.idProduct) {
-                this.suggestions.splice(this.suggestions.indexOf(p),1);
+                this.suggestions.splice(this.suggestions.indexOf(p), 1);
               }
             }
+            this.sgt = (this.suggestions.length > 0);
           });
-          
-          //console.log(this.product);
-      
         });
     }
 
@@ -73,7 +72,7 @@ export class GetProductDetailsComponent implements OnInit {
   }
 
   contact(email: string, productName: string, productId: number) {
-    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20#REF: " +  productId +  "%0A-%20Producto: " +  productName + "%0A-%20Cantidad: 1";
+    location.href = "mailto:" + email + "?Subject=Reserva " + productName + "&body=Hola!%0AMe%20gustaría%20reservar%20este%20producto:%0A-%20#REF: " + productId + "%0A-%20Producto: " + productName + "%0A-%20Cantidad: 1";
   }
 
   showDetails(id: number) {

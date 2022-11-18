@@ -12,11 +12,13 @@
                         <div class="inputrow title">{{this.product.name}}</div>
                         <div class="inputrow">
                             <label for="quantity">{{"table.products.stock" | translate}}:&nbsp;</label>
-                            <span class="quantity"> {{this.product.quantity}} {{"table.products.description-units."+ this.product.description | translate}}</span>
+                            <span class="quantity"> {{this.product.quantity}} {{"table.products.description-units."+
+                                this.product.description | translate}}</span>
                         </div>
                         <div class="inputrow">
                             <label for="typeProd">{{"table.products.typeProd" | translate}}:&nbsp;</label>
-                            <span class="typeProd">{{"table.products.category."+ this.product.typeProd | translate}}</span>
+                            <span class="typeProd">{{"table.products.category."+ this.product.typeProd |
+                                translate}}</span>
                         </div>
                         <div class="inputrow">
                             <label for="price">{{"table.products.price" | translate}}:&nbsp;</label>
@@ -32,41 +34,42 @@
                 </div>
 
                 <div class="widthDetails">
-                <div class="producerDetails">
-                    <mat-card-title class="withLogo">
-                        &nbsp;&nbsp;&nbsp;<mat-icon>store</mat-icon>
-                        <span>&nbsp;{{this.producer.login}}</span>
-                    </mat-card-title>
-                    <div class="inputrow">
-                        <div *ngIf="this.producer.city != null">
-                            <mat-icon> location_on</mat-icon>
-                            <span class="user-city">&nbsp;&nbsp;{{this.producer.city}}</span>
+                    <div class="producerDetails">
+                        <mat-card-title class="withLogo">
+                            &nbsp;&nbsp;&nbsp;<mat-icon>store</mat-icon>
+                            <span>&nbsp;{{this.producer.login}}</span>
+                        </mat-card-title>
+                        <div class="inputrow">
+                            <div *ngIf="this.producer.city != null">
+                                <mat-icon> location_on</mat-icon>
+                                <span class="user-city">&nbsp;&nbsp;{{this.producer.city}}</span>
+                            </div>
+                            <div *ngIf="this.producer.zip != null">
+                                <mat-icon> directions</mat-icon>
+                                <span class="user-zip">&nbsp;&nbsp;{{this.producer.zip}}</span>
+                            </div>
                         </div>
-                        <div *ngIf="this.producer.zip != null">
-                            <mat-icon> directions</mat-icon>
-                            <span class="user-zip">&nbsp;&nbsp;{{this.producer.zip}}</span>
-                        </div>
-                    </div>
-                    <div class="inputrow">
-                        <div *ngIf="this.producer.email != null">
-                            <span class="user-email withLogo" style="text-transform: lowercase;">
-                            <mat-icon>email</mat-icon>&nbsp;&nbsp;{{this.producer.email}}
-                            </span>
-                        </div>
-                        <div *ngIf="this.producer.phone != null">
-                            <span class="user-phone withLogo">
-                            <mat-icon>phone</mat-icon>&nbsp;&nbsp;{{this.producer.phone}}
-                            </span>
+                        <div class="inputrow">
+                            <div *ngIf="this.producer.email != null">
+                                <span class="user-email withLogo" style="text-transform: lowercase;">
+                                    <mat-icon>email</mat-icon>&nbsp;&nbsp;{{this.producer.email}}
+                                </span>
+                            </div>
+                            <div *ngIf="this.producer.phone != null">
+                                <span class="user-phone withLogo">
+                                    <mat-icon>phone</mat-icon>&nbsp;&nbsp;{{this.producer.phone}}
+                                </span>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-                <div class="producerSuggestions">
+                <div class="producerSuggestions" *ngIf="sgt; else elseBlock">
                     <mat-card-title class="withLogo1">
                         <span>{{"table.users.suggestions" | translate}}&nbsp;{{this.producer.login}}</span>
                     </mat-card-title>
                     <div class="productSuggestions">
-                        <div class="prueba" fxFlex='250px' *ngFor="let productSg of suggestions" (click)="showDetails(productSg.id)">
+                        <div class="prueba" fxFlex='250px' *ngFor="let productSg of suggestions"
+                            (click)="showDetails(productSg.id)">
                             <mat-card class="mat-elevation-z4">
                                 <mat-card-header fxLayout="column" width="100%" fxLayoutAlign="center center">
                                     <mat-card-title>{{productSg.name}}</mat-card-title>
@@ -81,7 +84,8 @@
                                     <!-- <button mat-button id='details' (click)="showDetails(productSg.id)">
                                         {{'table.products.show_details'|translate}}
                                     </button> -->
-                                    <button mat-button (click)="contact(productSg.user.email, product.name, product.id);$event.stopPropagation()">
+                                    <button mat-button
+                                        (click)="contact(productSg.user.email, product.name, product.id);$event.stopPropagation()">
                                         {{'table.products.email-book'|translate}}
                                     </button>
                                 </mat-card-actions>
@@ -89,6 +93,10 @@
                         </div>
                     </div>
                 </div>
+                <ng-template #elseBlock>
+                    <h2 class="suggestionsElse">{{this.producer.login}} <span style="text-transform: none;">{{"table.users.noSuggestions" |
+                            translate}}</span></h2>
+                </ng-template>
                 <div class="btn-cont">
                     <button class="delete-btn" (click)="goBack()" [style]="" mat-raised-button>
                         <mat-icon>keyboard_backspace</mat-icon> {{ "button.go_back" | translate }}
