@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.borjaglez.springify.repository.filter.impl.AnyPageFilter;
 import com.example.demo.dto.ProductDTO;
+import com.example.demo.entity.Product;
 import com.example.demo.entity.enums.ResponseCodeEnum;
 import com.example.demo.rest.response.DataSourceRESTResponse;
 import com.example.demo.service.IProductService;
@@ -242,9 +243,11 @@ public class ProductController {
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.OK;
 		String message = Constant.PRODUCT_DELETE_SUCCESS;
+		String userLogin = productService.getProduct(id).getUser().getLogin();
 
 		try {
 			productService.deleteProduct(id);
+			deleteImage(id, userLogin);
 			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
 		} catch (DataAccessException dae) {
 			response.put(Constant.MESSAGE, Constant.DATABASE_QUERY_ERROR);
@@ -557,7 +560,35 @@ public class ProductController {
 		}
 		return base64Data;
 	}
-
-
+	
+	
+	public void deleteImage(int fileName, String folderName) {
+		
+		String pathRoot = Constant.IMG_PATH;
+		
+		String fullPath = pathRoot + "\\" + folderName + "\\" + Integer.toString(fileName) + ".jpg";
+		
+		System.out.println(fullPath);
+		
+		try {
+		
+			File f = new File(fullPath);
+			
+			if (f.exists()) {
+				Boolean result = f.delete();
+				
+				String message = result ? "File deleted!" : "File cannot be deleted";
+				
+				System.out.println(message);
+			
+			}
+		
+		}
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
 
 }
