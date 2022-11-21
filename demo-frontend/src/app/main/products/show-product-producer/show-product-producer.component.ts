@@ -26,6 +26,7 @@ export class ShowProductProducerComponent implements OnInit {
 
 
   displayedColumns = [
+    'image',
     'select',
     'id',
     'name',

@@ -114,6 +114,14 @@
             <table mat-table [dataSource]="dataSource" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear
               class="w-full">
               <!-- Checkbox Column -->
+
+              <ng-container matColumnDef="image" class="img small">
+                <mat-header-cell *matHeaderCellDef class="img small"></mat-header-cell>
+                <mat-cell *matCellDef="let row" class="img small" data-label="image">
+                  <img class="img" id="img" src="{{row.image}}" alt="image">
+                </mat-cell>
+              </ng-container>
+
               <ng-container matColumnDef="select">
                 <th id="header" mat-header-cell *matHeaderCellDef class="check-cell">
                   <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
@@ -169,15 +177,6 @@
                 </mat-header-cell>
                 <mat-cell *matCellDef="let row" data-label="price" class="nopadding-cell small-cell">
                   {{ row.price }} €
-                </mat-cell>
-              </ng-container>
-    
-              <ng-container matColumnDef="user.login">
-                <mat-header-cell *matHeaderCellDef>
-                  {{ "table.products.producer" | translate }}
-                </mat-header-cell>
-                <mat-cell *matCellDef="let row" data-label="user.login">
-                  {{ row.user.login }}
                 </mat-cell>
               </ng-container>
     

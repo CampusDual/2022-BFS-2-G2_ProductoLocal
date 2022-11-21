@@ -172,19 +172,16 @@ public class ProductController {
 	public @ResponseBody DataSourceRESTResponse<List<ProductDTO>> getProducts(@RequestBody AnyPageFilter pageFilter) {
 		LOGGER.info("showProducts in progress...");
 		DataSourceRESTResponse<List<ProductDTO>> dres = new DataSourceRESTResponse<>();
-
 		try {
 			dres = productService.getProducts(pageFilter);
 			List<ProductDTO> products = dres.getData();
 			for (ProductDTO p : products) {
 				if (p.getImageUrl() == null) {
-
 					p.setImageUrl(Integer.toString(p.getId()) + ".jpg");
 				}
 				p.setImage(imageToString(p.getImageUrl(), p.getUser().getLogin()));
 			}
 			dres.setData(products);
-
 		} catch (DataAccessException dae) {
 			if (dae.getMostSpecificCause().getMessage().contains(Constant.DATABASE_QUERY_ERROR)) {
 				LOGGER.error(dae.getMessage());
@@ -464,32 +461,21 @@ public class ProductController {
 	 */
 
 	public void storeImage(String image, String imageName, String login) {
-
 		String fullImagePath = Constant.IMG_PATH + login + "/" + imageName;
-
 		String directoryPath = Constant.IMG_PATH + login + "/";
-
 		byte[] base64DecodeImage = null;
-
 		Base64.Decoder decoder = Base64.getDecoder();
-
 		/*
 		 * descomponemos la cadena texto base64 en un array de bytes codificados en base
 		 * 64
 		 * 
 		 */
 		try {
-
 			base64DecodeImage = decoder.decode(image);
-
 		} catch (IllegalArgumentException iae) {
-
 			iae.printStackTrace();
-
 		}
-
 		if (base64DecodeImage != null) {
-
 			createImageFile(base64DecodeImage, fullImagePath, directoryPath);
 		}
 	}
@@ -504,48 +490,28 @@ public class ProductController {
 	 */
 
 	private void createImageFile(byte[] data, String imagePath, String directoryPath) {
-
 		Path path = Paths.get(directoryPath);
-
 		if (Files.exists(path)) {
-
 			File i = new File(imagePath);
-
 			try (OutputStream fos = new FileOutputStream(i);) {
-
 				fos.write(data);
-
 			} catch (FileNotFoundException fnfe) {
-
 				fnfe.printStackTrace();
-
 			} catch (IOException ioe) {
-
 				ioe.printStackTrace();
 			}
 		} else {
-
 			File i = new File(imagePath);
-
 			try {
-
 				Files.createDirectories(path);
-
 			} catch (IOException e) {
-
 				e.printStackTrace();
 			}
-
 			try (OutputStream fos = new FileOutputStream(i);) {
-
 				fos.write(data);
-
 			} catch (FileNotFoundException fnfe) {
-
 				fnfe.printStackTrace();
-
 			} catch (IOException ioe) {
-
 				ioe.printStackTrace();
 			}
 
@@ -563,55 +529,32 @@ public class ProductController {
 	 * @param userLogin
 	 * @return
 	 */
-
 	public String imageToString(String fileName, String userLogin) {
-
 		String base64Data = null;
-
 		String fullPath = Constant.IMG_PATH + userLogin + "/" + fileName;
-
 		Base64.Encoder encoder = Base64.getEncoder();
-
 		try {
-
 			File imageFile = new File(fullPath);
-
 			if (!imageFile.exists()) {
-
 				fullPath = Constant.IMG_PATH + "default/veg-logo.png";
-
 				imageFile = new File(fullPath);
 			}
-
 			FileInputStream fis = new FileInputStream(imageFile);
-
 			byte[] rawBytes = new byte[(int) imageFile.length()];
-
 			rawBytes = fis.readAllBytes();
-
 			base64Data = encoder.encodeToString(rawBytes);
-
 			base64Data = Constant.BASE64HEADER + base64Data;
-
 			fis.close();
-
 		} catch (FileNotFoundException fnfe) {
-
 			// base64Data = "";
-
 			fnfe.printStackTrace();
 		} catch (NullPointerException npe) {
-
 			// base64Data = "";
-
 			npe.printStackTrace();
 		} catch (IOException ioe) {
-
 			// base64Data = "";
-
 			ioe.printStackTrace();
 		}
-
 		return base64Data;
 	}
 

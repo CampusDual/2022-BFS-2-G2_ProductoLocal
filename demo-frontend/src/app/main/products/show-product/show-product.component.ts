@@ -23,6 +23,7 @@ export class ShowProductComponent implements OnInit {
 
   dataSource: ShowProductDatasource;
   displayedColumns = [
+    'image',
     'select',
     'id',
     'name',

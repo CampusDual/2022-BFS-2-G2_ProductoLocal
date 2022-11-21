@@ -66,6 +66,13 @@
             </mat-checkbox>
           </td>
         </ng-container> 
+
+        <ng-container matColumnDef="image" class="img small">
+          <mat-header-cell *matHeaderCellDef class="img small"></mat-header-cell>
+          <mat-cell *matCellDef="let row" class="img small" data-label="image">
+            <img class="img" id="img" src="{{row.image}}" alt="image">
+          </mat-cell>
+        </ng-container>
   
         <ng-container matColumnDef="id">
           <mat-header-cell *matHeaderCellDef mat-sort-header>
