@@ -150,6 +150,7 @@ public class UsersController {
 			List<ProductDTO> productList = productService.findByUser(login);
 			for(ProductDTO product : productList) {
 				productService.deleteProduct(product.getId());
+				deleteFiles(login);
 			}
 			userService.deleteUser(login);
 			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
@@ -262,6 +263,35 @@ public class UsersController {
 		String message = resultado ? "Directory created!" : "Not possible create directory"	;
 		
 		LOGGER.info(message);
+		
+	}
+	
+	public void deleteFiles(String folderName) {
+		
+		String pathRoot = Constant.IMG_PATH;
+		
+		String fullPath = pathRoot + '\\' + folderName;
+		
+		File directory = new File(fullPath);
+		
+		if (directory.isDirectory()) {
+			File[] fs = directory.listFiles();
+			if (fs.length != 0) {
+				for (File f : fs) {
+					f.delete();
+				}
+			}
+			else {
+				System.out.println("Empty directory!");
+			}
+		}
+		
+		boolean result = directory.delete();
+		
+		String message = result ? "Directory deleted" : "Something happen. Directory is not deleted";
+		
+			System.out.println(message);
+		
 		
 	}
 
