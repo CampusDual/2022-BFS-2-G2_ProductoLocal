@@ -4,6 +4,8 @@ mat-card-header {
     flex-direction: column;
 }
 
+
+
 .create-outer-container {
     margin: 8px;
 
@@ -43,7 +45,7 @@ mat-card-header {
         }
 
         form {
-            margin-top: 4vh;
+            margin-top: 10px;
             height: 65%;
             top: -75px;
             bottom: 0;
@@ -95,4 +97,12 @@ mat-card-header {
 
 .ng-star-inserted {
     max-height: 90vh;
+}
+
+.back {
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    top: 20px
+    
 }

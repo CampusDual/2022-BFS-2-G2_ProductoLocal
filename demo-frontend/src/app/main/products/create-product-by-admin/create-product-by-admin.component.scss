@@ -2,6 +2,12 @@ mat-card-header {
     display: flex;
     align-items: center;
     flex-direction: column;
+    .back {
+        cursor: pointer;
+        position: absolute;
+        left: 20px;
+        top: 20px;
+    }
 }
 
 .create-outer-container {
@@ -117,3 +123,5 @@ img.img#imagen {
 .ng-star-inserted {
     max-height: 90vh;
 }
+
+

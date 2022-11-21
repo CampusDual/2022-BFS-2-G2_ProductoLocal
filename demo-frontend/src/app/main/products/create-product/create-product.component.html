@@ -4,7 +4,7 @@
 
         <form [formGroup]="productForm" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
-                <mat-card-title>{{'form.newproduct' | translate}}</mat-card-title>
+                <mat-card-title><mat-icon class='back' onclick="history.back()">arrow_back</mat-icon>{{'form.newproduct' | translate}}</mat-card-title>
             </mat-card-header>
 
             <mat-card-content>

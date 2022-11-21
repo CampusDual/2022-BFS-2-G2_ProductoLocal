@@ -3,13 +3,11 @@
         <div class="input-row">
 
             <mat-card fxFlex>
-                <button class="myClass backButton" fxFlex="25" fxLayoutAling="space-around center" fxFlex.xs="30"
-                    mat-raised-button type="button" (click)="cancel()">
-                    <mat-icon>keyboard_backspace</mat-icon>
-                    <span>{{'button.go_back' | translate}}</span>
-                </button>
                 <mat-card-header>
-                    <mat-card-title>{{'menu.personal_data' | translate}}</mat-card-title>
+                    <mat-card-title>
+                        <mat-icon class='back' (click)="cancel()">arrow_back</mat-icon>{{'menu.personal_data' |
+                        translate}}
+                    </mat-card-title>
                 </mat-card-header>
 
                 <mat-card-content>

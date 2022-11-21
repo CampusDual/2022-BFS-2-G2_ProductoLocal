@@ -1,13 +1,10 @@
 <div fxLayout="100" class="create-outer-container">
     <div class="create-inner-container mat-elevation-z1">
-
         <form [formGroup]="productForm" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
-                <mat-card-title>{{'form.editproduct' | translate}}</mat-card-title>
+                <mat-card-title><mat-icon class='back' onclick="history.back()">arrow_back</mat-icon>{{'form.editproduct' | translate}}</mat-card-title>
             </mat-card-header>
-
             <mat-card-content>
-
                 <div class="inputrow">
                     <span class="img-cont"><img class="img" id="imagen" mat-card-image src={{this.imgURL}}></span>
                     <mat-form-field>
