@@ -188,6 +188,7 @@
   "emailpattern": "The email format is not correct",
   "nifpattern": "The NIF format is not correct",
   "loginrequired": "Username is a required field",
+  "cityrequired": "City is a required field",
   "emailrequired": "Email is a required field",
   "passwordrequired": "Password is a required field",
   "passconfirmrequired": "Confirmation is a required field",

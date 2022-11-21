@@ -1,9 +1,10 @@
 <div fxLayout="100" class="create-outer-container">
     <div class="create-inner-container mat-elevation-z1">
+
         <div class="logo-container mat-elevation-z4">
-            <!--<img src="./assets/images/campus-dual-azul-squared.png" alt="Logo" /> -->
             <img src="./assets/images/veg-logo.png" alt="Logo" />
         </div>
+
         <form [formGroup]="userForm" (ngSubmit)="save()" class="h-full">
             <mat-card-header>
                 <mat-card-title>{{'form.newuser' | translate}}</mat-card-title>
@@ -20,42 +21,6 @@
                     </mat-form-field>
                 </div>
 
-
-                <!--<div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="select" color="primary"
-                                placeholder="{{'table.users.type' | translate}}" name="user-email" required />
-                            <mat-error>{{'emailrequired' | translate}}</mat-error>
-                        </mat-form-field>
-                    </div>
-                    <!--<div class="input-row" fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px" fxLayoutGap.lt-md="0px">
-                        <mat-form-field  fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
-                            formControlName="name" name="user-name" />
-                            <mat-error>{{}}</mat-error>
-                        </mat-form-field>
-                    </div> -->
-                <!--<div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.surname' | translate}}"
-                            formControlName="surname" name="user-surname" />
-                            <!--<mat-error>{{}}</mat-error> 
-                        </mat-form-field>
-                    </div>  
-                    <div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.address' | translate}}"
-                            formControlName="address" name="user-address" />
-                            <!--<mat-error>{{}}</mat-error> 
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
-                            formControlName="city" name="user-city" />
-                            <!--<mat-error>{{}}</mat-error>
-                        </mat-form-field>
-                    </div>-->
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="email" color="primary" placeholder="{{'table.users.email' | translate}}"
@@ -64,20 +29,7 @@
                         <mat-error *ngIf="userForm.get('email').hasError('pattern')">{{'emailpattern' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
-                <!--    <div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.phone' | translate}}"
-                            formControlName="phone" name="user-phone" />
-                            <!--<mat-error>{{}}</mat-error> 
-                        </mat-form-field>
-                    </div>
-                    <div class="inputrow">
-                        <mat-form-field fxFlex>
-                            <input matInput type="text" color="primary" placeholder="{{'table.users.zip' | translate}}"
-                            formControlName="zip" name="user-zip" />
-                            <!--<mat-error>{{}}</mat-error> 
-                        </mat-form-field>
-                    </div>-->
+
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.users.login' | translate}}"
@@ -85,6 +37,15 @@
                         <mat-error>{{'loginrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
+
+                <div class="inputrow">
+                    <mat-form-field fxFlex>
+                        <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
+                            formControlName="city" name="user-city" required />
+                        <mat-error>{{'cityrequired' | translate}}</mat-error>
+                    </mat-form-field>
+                </div>
+
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="password" color="primary"
