@@ -45,11 +45,11 @@
       </ng-container>
 
 
-      <ng-container matColumnDef="id">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <ng-container matColumnDef="id" class="col-small">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="col-small">
           {{ "table.products.ref" | translate }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" data-label="id">
+        <mat-cell *matCellDef="let row" data-label="id" class="col-small">
           {{ row.id }}
         </mat-cell>
       </ng-container>
@@ -81,11 +81,11 @@
         </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="price">
-        <mat-header-cell *matHeaderCellDef mat-sort-header>
+      <ng-container matColumnDef="price" class="col-small">
+        <mat-header-cell *matHeaderCellDef mat-sort-header class="col-small">
           {{ "table.products.price" | translate }}
         </mat-header-cell>
-        <mat-cell *matCellDef="let row" data-label="price">
+        <mat-cell *matCellDef="let row" data-label="price" class="col-small">
           {{ row.price }} €
         </mat-cell>
       </ng-container>

@@ -186,6 +186,7 @@
   "emailpattern": "O formato do email non é correcto",
   "nifpattern": "O formato do NIF non é correcto",
   "loginrequired": "O nome de usuario é un campo obrigatorio",
+  "cityrequired": "A cidade é un campo obrigatorio",
   "emailrequired": "O email é un campo obrigatorio",
   "passwordrequired": "O contrasinal é un campo obrigatorio",
   "passconfirmrequired": "A confirmación é un campo obrigatorio",
