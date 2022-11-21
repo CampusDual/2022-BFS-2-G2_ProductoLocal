@@ -81,7 +81,8 @@
                 <div class="inputrow">
                     <mat-form-field fxFlex>
                         <input matInput type="text" color="primary" placeholder="{{'table.users.city' | translate}}"
-                            formControlName="city" name="user-city" />
+                            formControlName="city" name="user-city" required/>
+                            <mat-error>{{'cityrequired' | translate}}</mat-error>
                     </mat-form-field>
                 </div>
                 <div class="inputrow">
