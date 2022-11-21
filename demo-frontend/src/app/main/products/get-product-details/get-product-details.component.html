@@ -78,7 +78,9 @@
                             (click)="showDetails(productSg.id)">
                             <mat-card class="mat-elevation-z4">
                                 <mat-card-header fxLayout="column" width="100%" fxLayoutAlign="center center">
-                                    <mat-card-title>{{productSg.name}}</mat-card-title>
+                                    <mat-card-title class="prod-cards">
+                                        <p class="title">{{productSg.name}}</p>
+                                    </mat-card-title>
                                 </mat-card-header>
                                 <!--<img mat-card-image src="./../../../../assets/images/Producto Local_files/veg-logo.png"> -->
                                 <img mat-card-image src={{this.productSg.image}}>
