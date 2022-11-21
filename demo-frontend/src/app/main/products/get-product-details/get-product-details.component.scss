@@ -8,13 +8,19 @@ img.img {
 .titleText {
     font-weight: bold;
     font-size: x-large;
+    text-align: center;
+}
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
 div.productDetail {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .producerDetails>.inputrow {
@@ -27,8 +33,10 @@ div.productDetail {
 
 div.product {
     display: inline-block;
-    flex-grow: 1.5;
-    margin: 0 5vw;
+    margin: 0 50px;
+    max-width: 500px;
+    width: 80%;
+
 }
 
 span.quantity {
@@ -68,6 +76,15 @@ button {
     border-color: #bfedff;
     flex-shrink: 1.5;
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+button.mat-button#contact {
+    display: inline-block;
+    flex-grow: 1.5;
+    width: 80%;
+    max-width: 500px;
+    margin: 0 60px;
+
 }
 
 button.mat-button:hover {
@@ -125,6 +142,7 @@ div.productSuggestions {
 
     .mat-card-header-text {
         width: 100%;
+        text-align: center;
     }
 
     // button.mat-button[id='details'] {
@@ -164,10 +182,11 @@ div.input-row.container {
     display: flex;
     justify-content: center;
     text-transform: capitalize;
-
+    width: 100%;
 
     mat-card {
-        max-width: 70vw;
+        max-width: 950px;
+        width: 100%;
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -177,5 +196,9 @@ div.prueba>mat-card:hover {
     -webkit-transform: scale(1.05);
     border-style: solid;
     border-color: #bfedff;
+    cursor: pointer;
+}
+
+.back {
     cursor: pointer;
 }

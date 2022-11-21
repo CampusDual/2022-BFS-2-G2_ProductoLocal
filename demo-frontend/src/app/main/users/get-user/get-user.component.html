@@ -87,14 +87,11 @@
                             mat-raised-button>
                             <mat-icon>save</mat-icon> {{ "button.save" | translate }}
                         </button>
-                        <button class="delete-btn" (click)="onCancel()" [style]="this.saveBttn" mat-raised-button>
-                            <mat-icon>cancel</mat-icon> {{ "button.cancel" | translate }}
-                        </button>
                         <button class="edit-btn" [style]="this.editBttn" (click)="onEditable()" mat-raised-button>
                             <mat-icon>edit</mat-icon> {{ "edit" | translate }}
                         </button>
-                        <button class="delete-btn" [style]="this.editBttn" mat-raised-button (click)="onDelete()">
-                            <mat-icon>delete</mat-icon> {{ "delete" | translate }}
+                        <button class="delete-btn" (click)="cancel()" mat-raised-button>
+                            <mat-icon>cancel</mat-icon> {{ "button.cancel" | translate }}
                         </button>
                     </div>
                 </mat-card-actions>

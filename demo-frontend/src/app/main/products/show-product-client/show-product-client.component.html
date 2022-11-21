@@ -50,12 +50,12 @@
                         {{element.price}}
                         €/{{("table.products.description-type." + element.description) | translate}}
                     </mat-card-content>
-                    <mat-card-actions fxLayout="column">
+                    <mat-card-actions fxLayout="row">
                       <!-- <button mat-button id='details' (click)="showDetails(element.id)">
                             {{'table.products.show_details'|translate}}
                         </button> -->
-                        <button mat-button id="contact" (click)="contact(element.user.email, element.name, element.id);$event.stopPropagation()">
-                            {{'table.products.email-book'|translate}}
+                        <button mat-button id="contact" fxFlex fxLayoutAlign="center center" (click)="contact(element.user.email, element.name, element.id);$event.stopPropagation()">
+                            <mat-icon>email</mat-icon>&nbsp;{{'table.products.email-book'|translate}}
                         </button>
                     </mat-card-actions>
                 </mat-card>

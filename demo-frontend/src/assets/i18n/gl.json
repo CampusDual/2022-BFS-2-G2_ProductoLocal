@@ -85,6 +85,7 @@
       },
       "quantity": "Cantidade",
       "description": "Unidades",
+      "email-book": "Reserva por email",
       "description-units":{
         "Kilograms": "Quilogramos",
         "Units": "Unidades",
@@ -173,6 +174,7 @@
   "filter": "Filtro",
   "new": "Novo",
   "delete": "Eliminar",
+  "delete_profile": "Eliminar perfil",
   "edit": "Modificar",
   "refresh": "Refrescar",
   "loading": "Cargando",

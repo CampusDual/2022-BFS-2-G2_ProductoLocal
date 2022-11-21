@@ -78,9 +78,9 @@
             <mat-card-actions>
               <div fclass="input-row" class="inputrow" xLayoutGap="20px" fxLayoutAlign="center center">
                 <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
-                  [disabled]="!producerForm.valid" (click)="save()">{{'button.save' | translate}}</button>
+                  [disabled]="!producerForm.valid" (click)="save()"><mat-icon>save</mat-icon>&nbsp;{{'button.save' | translate}}</button>
                 <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
-                  [formNoValidate]="true">{{'button.cancel' | translate}}</button>
+                  [formNoValidate]="true"><mat-icon>cancel</mat-icon>&nbsp;{{'button.cancel' | translate}}</button>
               </div>
             </mat-card-actions>
 

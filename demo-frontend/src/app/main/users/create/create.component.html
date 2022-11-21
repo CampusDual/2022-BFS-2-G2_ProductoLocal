@@ -108,9 +108,9 @@
                 <div fclass="input-row" xLayoutGap="20px" fxLayoutAlign="center center">
 
                     <button class="myClass" fxFlex="25" fxFlex.xs="30" mat-raised-button type="submit"
-                        [disabled]="!userForm.valid">{{'button.save' | translate}}</button>
+                        [disabled]="!userForm.valid"><mat-icon>save</mat-icon>&nbsp;{{'button.save' | translate}}</button>
                     <button class="cancel" fxFlex="25" fxFlex.xs="30" mat-raised-button type="button" (click)="cancel()"
-                        [formNoValidate]="true">{{'button.cancel' |
+                        [formNoValidate]="true"><mat-icon>cancel</mat-icon>&nbsp;{{'button.cancel' |
                         translate}}</button>
                 </div>
             </mat-card-actions>

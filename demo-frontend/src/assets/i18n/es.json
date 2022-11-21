@@ -101,7 +101,7 @@
       },
       "price":"Precio (€)",
       "producer": "Productor",
-      "email-book": "Reserva por email!",
+      "email-book": "Reserva por email",
       "show_details":"Ver detalles",
       "stock": "Stock"
     }
@@ -178,6 +178,7 @@
   "filter": "Filtro",
   "new": "Nuevo",
   "delete": "Eliminar",
+  "delete_profile": "Eliminar perfil",
   "edit": "Modificar",
   "refresh": "Refrescar",
   "loading": "Cargando",
