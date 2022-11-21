@@ -58,10 +58,24 @@ label {
     width: 60%;
 }
 
-.inputrow.title {
+div.inputrow.title {
+    width: 460px;
     font-weight: bold;
     justify-content: center;
     font-size: x-large;
+    
+    /* Cut long words */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 mat-card-actions.mat-card-action {
@@ -186,7 +200,6 @@ div.input-row.container {
 
     mat-card {
         max-width: 950px;
-        width: 100%;
         margin-top: 20px;
         margin-bottom: 20px;
     }
