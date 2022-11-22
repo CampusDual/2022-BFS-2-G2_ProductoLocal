@@ -82,16 +82,12 @@
                                         <p class="title">{{productSg.name}}</p>
                                     </mat-card-title>
                                 </mat-card-header>
-                                <!--<img mat-card-image src="./../../../../assets/images/Producto Local_files/veg-logo.png"> -->
                                 <img mat-card-image src={{this.productSg.image}}>
                                 <mat-card-content fxLayout="column" fxLayoutAlign="center center">
                                     {{productSg.price}}
                                     €/{{("table.products.description-type." + productSg.description) | translate}}
                                 </mat-card-content>
                                 <mat-card-actions fxLayout="column">
-                                    <!-- <button mat-button id='details' (click)="showDetails(productSg.id)">
-                                        {{'table.products.show_details'|translate}}
-                                    </button> -->
                                     <button mat-button
                                         (click)="contact(productSg.user.email, product.name, product.id);$event.stopPropagation()">
                                         <mat-icon>email</mat-icon>&nbsp;{{'table.products.email-book'|translate}}

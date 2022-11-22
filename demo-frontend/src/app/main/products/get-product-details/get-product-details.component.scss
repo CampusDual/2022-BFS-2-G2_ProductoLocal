@@ -139,6 +139,8 @@ div.productSuggestions {
     display: flex;
     justify-content: start;
     overflow-x: scroll;
+    min-height: 500px;
+    max-height: 500px;
 
     .content {
         padding: 16px;
