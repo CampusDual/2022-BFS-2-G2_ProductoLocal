@@ -8,7 +8,6 @@
             </mat-card-header>
             <mat-card-content>
                 <div class="productDetail">
-                    <!--<span><img class="img" mat-card-image src="./../../../../assets/images/items/cebolla.jpg"></span>-->
                     <span><img class="img" mat-card-image src={{this.product.image}}></span>
                     <div fxFlex fxLayout="column wrap" fxLayoutAlign="center center">
                         <div class="product">
@@ -36,15 +35,12 @@
                         </button>
                     </div>
                 </div>
-
                 <div class="widthDetails">
                     <div class="producerDetails">
-
                         <h2 class="withLogo">
                             <mat-icon>store</mat-icon>
                             <span>&nbsp;{{this.producer.login}}</span>
                         </h2>
-
                         <div class="inputrow">
                             <div *ngIf="this.producer.city != null" class="withLogo">
                                 <mat-icon> location_on</mat-icon>

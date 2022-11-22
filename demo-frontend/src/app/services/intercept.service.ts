@@ -12,7 +12,6 @@ import { Observable } from 'rxjs';
 import { tap, finalize } from 'rxjs/operators';
 import { TranslateService } from '@ngx-translate/core';
 import { Router } from '@angular/router';
-import { stringToKeyValue } from '@angular/flex-layout/extended/style/style-transforms';
 
 
 @Injectable()

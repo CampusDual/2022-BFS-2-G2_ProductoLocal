@@ -9,13 +9,11 @@ import { debounceTime, distinctUntilChanged, fromEvent, merge, Observable, Obser
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { Product } from 'src/app/model/product';
 import { AnyField, AnyPageFilter, SortFilter } from 'src/app/model/rest/filter';
-import { User } from 'src/app/model/user';
 import { ProductService } from 'src/app/services/product.service';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
 import swal from 'sweetalert2';
 
 @Component({
-  //selector: 'app-show-product',
   templateUrl: './show-product.component.html',
   styleUrls: ['./show-product.component.scss']
 })
@@ -37,7 +35,6 @@ export class ShowProductComponent implements OnInit {
   selection = new SelectionModel<Product>(true, []);
   error = false;
 
-  //@ViewChild('edit') editTemplate: any;
   highlightedRow: Product;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

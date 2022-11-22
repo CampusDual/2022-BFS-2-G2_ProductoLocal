@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { API_CONFIG } from '../shared/api.config';
 import { environment } from 'src/environments/environment';
 import { AnyPageFilter } from '../model/rest/filter';

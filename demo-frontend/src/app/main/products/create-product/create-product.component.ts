@@ -8,9 +8,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
-import { throwToolbarMixedModesError } from '@angular/material/toolbar';
-import { Observable } from 'rxjs/internal/Observable';
-
 
 interface Tipo {
   value: string,
@@ -70,15 +67,6 @@ export class CreateProductComponent implements OnInit {
       response => {
         this.userOwner = response;
       }
-      /*
-            ,
-            (err) => {
-              this.errors = err.error as string[];
-              console.error(err.status);
-              console.error(this.errors);
-            }
-            );
-      */
     )
   }
 
@@ -154,8 +142,6 @@ export class CreateProductComponent implements OnInit {
         };
         reader.readAsDataURL(this.selectedFiles[i]);
         this.selectedFileNames.push(this.selectedFiles[i].name);
-
-
       }
     }
   }

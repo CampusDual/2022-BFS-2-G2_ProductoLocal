@@ -11,17 +11,7 @@
     </div>
 
     <form [formGroup]="producerForm" class="h-full">
-      <!--
-          <mat-card-header>
-            <mat-card-title>{{this.user.login}}</mat-card-title>
-          </mat-card-header>
--->
       <mat-card-content>
-        <!--
-            <input matInput type="text" hidden color="primary" placeholder="{{'table.users.login' | translate}}"
-            formControlName="login" hidden name="user-login" [value]="this.user.login" />
--->
-
         <div class="inputrow form-fields">
           <mat-form-field fxFlex class="short-field">
             <input matInput type="text" color="primary" placeholder="{{'table.users.name' | translate}}"
@@ -105,11 +95,6 @@
             <mat-icon>delete</mat-icon> {{ "delete" | translate }}
           </button>
         </div>
-        <!-- <div fxflex>
-              <mat-form-field>
-                <input matInput placeholder="{{ 'filter' | translate }}" #input id="products-filter" name="products-filter" />
-              </mat-form-field>
-            </div> -->
       </div>
 
       <div class="mat-elevation-z8 table-responsive">

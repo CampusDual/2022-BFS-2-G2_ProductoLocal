@@ -37,10 +37,8 @@ export class MainHomeComponent {
 
 
     this.productService.getData().subscribe((a) => {
-      //console.log('entra');
       this.products = a;
-      //console.log(this.products);
-
+      
       // Chart code goes in here
       let root = am5.Root.new("chartdiv");
 

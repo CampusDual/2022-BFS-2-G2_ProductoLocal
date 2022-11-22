@@ -6,12 +6,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
-import { Observable } from 'rxjs';
 import { ConfirmPasswordValidator } from 'src/app/model/rest/confirm-password.validator';
 
 
 @Component({
-  //selector: 'app-create-producer',
   templateUrl: './create-producer.component.html',
   styleUrls: ['./create-producer.component.scss']
 })

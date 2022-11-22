@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from '@angular/common/http';
-import { catchError, map, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError } from 'rxjs';
 import { API_CONFIG } from '../shared/api.config';
 import { environment } from 'src/environments/environment';
 import { AnyPageFilter } from '../model/rest/filter';
@@ -20,7 +20,6 @@ export class ProductService {
     const body: CreateProductRequest = new CreateProductRequest(product);
     const headers = new HttpHeaders({
       'Content-type': 'application/json; charset=utf-8',
-      //'Content-type': 'charset=utf-8',
     });
     return this.http.post<Product>(url, body, { headers }).pipe(
       catchError(e =>{

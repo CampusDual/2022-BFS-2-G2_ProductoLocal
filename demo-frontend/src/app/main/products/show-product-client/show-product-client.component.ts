@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
-import { fromEvent, of } from 'rxjs';
 import { map, startWith } from 'rxjs/operators';
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
 import { Product } from 'src/app/model/product';
@@ -10,7 +8,7 @@ import { ProductService } from 'src/app/services/product.service';
 import { SelectionModel } from '@angular/cdk/collections';
 import { ElementRef, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { debounceTime, distinctUntilChanged, merge, Observable, Observer, tap } from 'rxjs';
+import { Observable, tap } from 'rxjs';
 import { UserService } from 'src/app/services/user.service';
 import { FormControl } from '@angular/forms';
 
@@ -46,7 +44,6 @@ export class ShowProductClientComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   constructor(
     private productService: ProductService,
-    private translate: TranslateService,
     private router: Router,
     private userService: UserService
   ) { }

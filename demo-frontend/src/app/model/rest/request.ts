@@ -1,4 +1,3 @@
-import { Contact } from '../contact';
 import { Product } from '../product';
 import { Profile } from '../profile';
 import { User } from '../user';
@@ -16,22 +15,6 @@ export class QuerySortPaginationRequest {
     this.pageSize = pageSize;
     this.sortDirection = sortDirection;
     this.sortColumn = sortColumn;
-  }
-}
-
-export class CreateContactRequest {
-  name: string;
-  surname1: string;
-  surname2: string;
-  phone: number;
-  email: string;
-
-  constructor(contact: Contact) {
-    this.name = contact.name;
-    this.surname1 = contact.surname1;
-    this.surname2 = contact.surname2;
-    this.phone = contact.phone;
-    this.email = contact.email;
   }
 }
 
@@ -89,15 +72,6 @@ export class EditUserRequest {
     this.nif = user.nif;
     this.login = user.login;
     this.zip = user.zip;    
-  }
-}
-
-export class EditContactRequest extends CreateContactRequest {
-  id: number;
-
-  constructor(contact: Contact) {
-    super(contact);
-    this.id = contact.id;
   }
 }
 

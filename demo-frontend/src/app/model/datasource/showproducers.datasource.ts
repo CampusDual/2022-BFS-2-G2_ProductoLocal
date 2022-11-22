@@ -1,7 +1,5 @@
-import { CollectionViewer } from "@angular/cdk/collections";
 import { DataSource } from "@angular/cdk/table";
-import { throwToolbarMixedModesError } from "@angular/material/toolbar";
-import { Observable, BehaviorSubject, finalize } from "rxjs";
+import { BehaviorSubject, finalize } from "rxjs";
 import { UserService } from "src/app/services/user.service";
 import { User } from "../user";
 import { AnyPageFilter } from "../rest/filter";

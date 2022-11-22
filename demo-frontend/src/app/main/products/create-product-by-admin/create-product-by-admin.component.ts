@@ -3,11 +3,11 @@ import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import swal from "sweetalert2";
 import { TranslateService } from '@ngx-translate/core';
-import { map, from, of, Observable, startWith } from 'rxjs';
+import { map, Observable, startWith } from 'rxjs';
 
 
 interface Tipo {
@@ -161,13 +161,6 @@ export class CreateProductByAdminComponent implements OnInit {
 
   redirectList(response: any) {
     history.back();
-    /*
-    if (response.responseCode === 'OK') {
-      this.router.navigate(['/products/showProducts']);
-    } else {
-      console.log(response);
-    }
-    */
   }
 
   selectFiles(event): void {
