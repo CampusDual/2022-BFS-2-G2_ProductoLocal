@@ -139,7 +139,6 @@ public class UsersController {
 	}
     
     
-/*Elimina un usuario de la BDD.*/
 	@DeleteMapping("/deleteUser")
 	public ResponseEntity<?> deleteUser(@RequestParam(value = "login")String login) {
 		LOGGER.info("deleteUser in progress...");
@@ -150,6 +149,7 @@ public class UsersController {
 			List<ProductDTO> productList = productService.findByUser(login);
 			for(ProductDTO product : productList) {
 				productService.deleteProduct(product.getId());
+				deleteFiles(login);
 			}
 			userService.deleteUser(login);
 			response.put(Constant.RESPONSE_CODE, ResponseCodeEnum.OK.getValue());
@@ -166,7 +166,6 @@ public class UsersController {
 	}
 	
 	
-/*Actualizar datos de usuario*/
 	@PostMapping(path = "/editUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> editUser(@Valid @RequestBody EditUserDTO editUserRequest, BindingResult result) {
 		LOGGER.info("editUser in progress...");
@@ -262,6 +261,35 @@ public class UsersController {
 		String message = resultado ? "Directory created!" : "Not possible create directory"	;
 		
 		LOGGER.info(message);
+		
+	}
+	
+	public void deleteFiles(String folderName) {
+		
+		String pathRoot = Constant.IMG_PATH;
+		
+		String fullPath = pathRoot + '\\' + folderName;
+		
+		File directory = new File(fullPath);
+		
+		if (directory.isDirectory()) {
+			File[] fs = directory.listFiles();
+			if (fs.length != 0) {
+				for (File f : fs) {
+					f.delete();
+				}
+			}
+			else {
+				System.out.println("Empty directory!");
+			}
+		}
+		
+		boolean result = directory.delete();
+		
+		String message = result ? "Directory deleted" : "Something happen. Directory is not deleted";
+		
+			System.out.println(message);
+		
 		
 	}
 

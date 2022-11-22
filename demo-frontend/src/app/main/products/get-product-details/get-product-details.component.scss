@@ -8,13 +8,19 @@ img.img {
 .titleText {
     font-weight: bold;
     font-size: x-large;
+    text-align: center;
+}
+mat-card-header {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
 }
 
 div.productDetail {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .producerDetails>.inputrow {
@@ -27,8 +33,10 @@ div.productDetail {
 
 div.product {
     display: inline-block;
-    flex-grow: 1.5;
-    margin: 0 5vw;
+    margin: 0 50px;
+    max-width: 500px;
+    width: 80%;
+
 }
 
 span.quantity {
@@ -50,10 +58,24 @@ label {
     width: 60%;
 }
 
-.inputrow.title {
+div.inputrow.title {
+    width: 460px;
     font-weight: bold;
     justify-content: center;
     font-size: x-large;
+    
+    /* Cut long words */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }
 
 mat-card-actions.mat-card-action {
@@ -68,6 +90,15 @@ button {
     border-color: #bfedff;
     flex-shrink: 1.5;
     box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+}
+
+button.mat-button#contact {
+    display: inline-block;
+    flex-grow: 1.5;
+    width: 80%;
+    max-width: 500px;
+    margin: 0 60px;
+
 }
 
 button.mat-button:hover {
@@ -87,6 +118,10 @@ button.mat-button:hover {
     font-size: x-large;
 }
 
+.user-zip {
+    margin-left: 40px;
+}
+
 div.producerDetails {
     margin: 20px;
 }
@@ -104,6 +139,8 @@ div.productSuggestions {
     display: flex;
     justify-content: start;
     overflow-x: scroll;
+    min-height: 500px;
+    max-height: 500px;
 
     .content {
         padding: 16px;
@@ -125,20 +162,8 @@ div.productSuggestions {
 
     .mat-card-header-text {
         width: 100%;
+        text-align: center;
     }
-
-    // button.mat-button[id='details'] {
-    //     margin-bottom:10px;
-    //     background-color: white;
-    //     border-style: solid;
-    //     // border-width: 3px;
-    //     border-color: #bfedff;
-    // }
-
-    // button.mat-button[id='details']:hover{
-    //     background-color: #bfedff;
-    //     border-width: 5px;
-    // }
 
     button.mat-button {
         border-style: none;
@@ -152,7 +177,7 @@ div.productSuggestions {
 
     div.prueba {
         width: 150px;
-        margin: 20px;
+        margin: 25px;
     }
 
     img {
@@ -164,10 +189,10 @@ div.input-row.container {
     display: flex;
     justify-content: center;
     text-transform: capitalize;
-
+    width: 100%;
 
     mat-card {
-        max-width: 70vw;
+        max-width: 950px;
         margin-top: 20px;
         margin-bottom: 20px;
     }
@@ -178,4 +203,45 @@ div.prueba>mat-card:hover {
     border-style: solid;
     border-color: #bfedff;
     cursor: pointer;
+}
+
+.back {
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    
+}
+
+mat-card-title.mat-card-title.prod-cards {
+    min-height: 3em;
+    width : 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+p.title{
+    text-align: center;
+    margin: 0;
+    font-weight: 650;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+            line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    text-justify:distribute-all-lines;
+
+    /* Cut long words */
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
 }

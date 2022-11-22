@@ -26,6 +26,7 @@ export class ShowProductProducerComponent implements OnInit {
 
 
   displayedColumns = [
+    'image',
     'select',
     'id',
     'name',
@@ -37,9 +38,6 @@ export class ShowProductProducerComponent implements OnInit {
 
   selection = new SelectionModel<Product>(true, []);
   error = false;
-
-
-  //@ViewChild('edit') editTemplate: any;
   highlightedRow: Product;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

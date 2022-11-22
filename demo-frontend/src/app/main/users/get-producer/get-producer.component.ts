@@ -1,14 +1,14 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import { debounceTime, distinctUntilChanged, fromEvent, merge, Observable, Observer, tap } from 'rxjs';
+import { merge, Observable, Observer, tap } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 import { ShowProductDatasource } from 'src/app/model/datasource/showproduct.datasource';
@@ -25,7 +25,6 @@ interface Tipo {
 }
 
 @Component({
-  //selector: 'app-get-producer',
   templateUrl: './get-producer.component.html',
   styleUrls: ['./get-producer.component.scss']
 })
@@ -42,6 +41,7 @@ export class GetProducerComponent implements OnInit {
 
   dataSource: ShowProductDatasource;
   displayedColumns = [
+    'image',
     'select',
     'id',
     'name',
@@ -54,14 +54,12 @@ export class GetProducerComponent implements OnInit {
   selection = new SelectionModel<Product>(true, []);
   error = false;
 
-  //@ViewChild('edit') editTemplate: any;
   highlightedRow: Product;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
-    private authService: AuthService,
     private userService: UserService,
     private fb: FormBuilder,
     private router: Router,

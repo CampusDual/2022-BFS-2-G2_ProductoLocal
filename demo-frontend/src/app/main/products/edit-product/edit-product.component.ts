@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
-import { ActivatedRoute, Route, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
 import { User } from 'src/app/model/user';
-import { Profile } from 'src/app/model/profile';
-import { CreateProductByAdminComponent } from '../create-product-by-admin/create-product-by-admin.component';
 import { AuthService } from 'src/app/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 import swal from 'sweetalert2';
@@ -86,11 +84,8 @@ export class EditProductComponent implements OnInit {
         }
       );
     }
-
     console.log(this.idProduct);
   }
-
-
 
   onFormChanges() {
     this.productForm.valueChanges.subscribe((val) => { });
@@ -98,7 +93,6 @@ export class EditProductComponent implements OnInit {
 
   createFormGroup() {
     this.productForm = this.fb.group({
-      //ownername: [this.product.user.login],
       name: [this.product.name],
       typeProd: [this.product.typeProd],
       quantity: [this.product.quantity],
@@ -124,17 +118,6 @@ export class EditProductComponent implements OnInit {
 
   redirectList(response: any) {
     history.back();
-    /*
-        if (response.responseCode === 'OK') {
-          if (this.isAdmin(this.user)) {
-            this.router.navigate(['products/showProducts']);
-          } else {
-            this.router.navigate(['products/myProducts']);
-          }
-        } else {
-          console.log(response);
-        }
-      */
   }
 
   compareObjects(o1: any, o2: any): boolean {
@@ -144,16 +127,6 @@ export class EditProductComponent implements OnInit {
       return false;
     }
   }
-
-  /*
-  cancel() {
-    if (this.isAdmin(this.user)) {
-      this.router.navigate(['products/showProducts']);
-    } else {
-      this.router.navigate(['products/myProducts']);
-    }
-  }
-  */
 
   isAdmin(user: User) {
     let admin = false;
@@ -166,10 +139,8 @@ export class EditProductComponent implements OnInit {
   }
 
   selectFiles(event): void {
-
     this.selectedFileNames = [];
     this.selectedFiles = event.target.files;
-
     this.previews = [];
     if (this.selectedFiles && this.selectedFiles[0]) {
       const numberOfFiles = this.selectedFiles.length;
@@ -179,7 +150,6 @@ export class EditProductComponent implements OnInit {
           this.image = e.target.result;
           this.image = this.image.slice(this.image.indexOf(',') + 1);
           this.previews.push(e.target.result);
-          /*Para previsualizar la imagen al cargar*/
           this.imgURL = e.srcElement.result;
         };
         reader.readAsDataURL(this.selectedFiles[i]);

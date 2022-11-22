@@ -101,7 +101,7 @@
       },
       "price":"Precio (€)",
       "producer": "Productor",
-      "email-book": "Reserva por email!",
+      "email-book": "Reserva por email",
       "show_details":"Ver detalles",
       "stock": "Stock"
     }
@@ -178,6 +178,7 @@
   "filter": "Filtro",
   "new": "Nuevo",
   "delete": "Eliminar",
+  "delete_profile": "Eliminar perfil",
   "edit": "Modificar",
   "refresh": "Refrescar",
   "loading": "Cargando",
@@ -191,6 +192,7 @@
   "emailpattern": "El formato del email no es correcto",
   "nifpattern": "El formato del NIF no es correcto",
   "loginrequired": "El nombre de usuario es un campo obligatorio",
+  "cityrequired": "La ciudad es un campo obligatorio",
   "emailrequired": "El email es un campo obligatorio",
   "passwordrequired":"La constraseña es un campo obligatorio",
   "passconfirmrequired":"La confirmación es un campo obligatorio",

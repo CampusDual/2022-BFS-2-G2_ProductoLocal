@@ -1,18 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/model/product';
 import { ProductService } from 'src/app/services/product.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { LoggerService } from 'src/app/services/logger.service';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationDialogComponent } from 'src/app/shared/confirmation-dialog/confirmation-dialog.component';
-import { Observable, Observer } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import Swal from 'sweetalert2';
 import { User } from 'src/app/model/user';
 import { AnyField, AnyPageFilter } from 'src/app/model/rest/filter';
-import { numberToString } from '@amcharts/amcharts5/.internal/core/util/Type';
 
 @Component({
   //selector: 'app-get-product-details',

@@ -1,8 +1,5 @@
-import { CollectionViewer } from "@angular/cdk/collections";
 import { DataSource } from "@angular/cdk/table";
-import { Type } from "@angular/core";
-import { throwToolbarMixedModesError } from "@angular/material/toolbar";
-import { Observable, BehaviorSubject, finalize } from "rxjs";
+import { BehaviorSubject, finalize } from "rxjs";
 import { ProductService } from "src/app/services/product.service";
 import { Product } from "../product";
 import { AnyPageFilter } from "../rest/filter";
@@ -117,15 +114,6 @@ export class ShowProductDatasource extends DataSource<Product> {
             }
         );
     }
-
-
-
-    /*     connect(collectionViewer: CollectionViewer): Observable<readonly Product[]> {
-            throw new Error("Method not implemented.");
-        } */
-    /*     disconnect(collectionViewer: CollectionViewer): void {
-            throw new Error("Method not implemented.");
-        } */
 
     connect(): BehaviorSubject<Product[]> {
         return this.productsSubject;

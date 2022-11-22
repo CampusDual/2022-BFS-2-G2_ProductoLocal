@@ -1,50 +1,52 @@
 <div fxLayout="column" fxLayoutGap="20px">
     <div class="input-row container">
-        <mat-card fxFlex>
+        <mat-card>
             <mat-card-header>
-                <mat-card-title class="titleText">{{'menu.product_details' | translate }}</mat-card-title>
+                <mat-card-title class="titleText">
+                    <span> <mat-icon class='back' (click)="goBack()">arrow_back</mat-icon>{{'menu.product_details' | translate }}</span>
+                </mat-card-title>
             </mat-card-header>
             <mat-card-content>
                 <div class="productDetail">
-                    <!--<span><img class="img" mat-card-image src="./../../../../assets/images/items/cebolla.jpg"></span>-->
                     <span><img class="img" mat-card-image src={{this.product.image}}></span>
-                    <div class="product">
-                        <div class="inputrow title">{{this.product.name}}</div>
-                        <div class="inputrow">
-                            <label for="quantity">{{"table.products.stock" | translate}}:&nbsp;</label>
-                            <span class="quantity"> {{this.product.quantity}} {{"table.products.description-units."+
-                                this.product.description | translate}}</span>
+                    <div fxFlex fxLayout="column wrap" fxLayoutAlign="center center">
+                        <div class="product">
+                            <div class="inputrow title">{{this.product.name}}</div>
+                            <div class="inputrow">
+                                <label for="quantity">{{"table.products.stock" | translate}}:&nbsp;</label>
+                                <span class="quantity"> {{this.product.quantity}} {{"table.products.description-units."+
+                                    this.product.description | translate}}</span>
+                            </div>
+                            <div class="inputrow">
+                                <label for="typeProd">{{"table.products.typeProd" | translate}}:&nbsp;</label>
+                                <span class="typeProd">{{"table.products.category."+ this.product.typeProd |
+                                    translate}}</span>
+                            </div>
+                            <div class="inputrow">
+                                <label for="price">{{"table.products.price" | translate}}:&nbsp;</label>
+                                <span class="precio"> {{this.product.price}}
+                                    €/{{("table.products.description-type." + this.product.description) |
+                                    translate}}</span>
+                            </div>
+                            <div class="inputrow"> <label for="a"></label><span name="a"> </span></div>
                         </div>
-                        <div class="inputrow">
-                            <label for="typeProd">{{"table.products.typeProd" | translate}}:&nbsp;</label>
-                            <span class="typeProd">{{"table.products.category."+ this.product.typeProd |
-                                translate}}</span>
-                        </div>
-                        <div class="inputrow">
-                            <label for="price">{{"table.products.price" | translate}}:&nbsp;</label>
-                            <span class="precio"> {{this.product.price}}
-                                €/{{("table.products.description-type." + this.product.description) |
-                                translate}}</span>
-                        </div>
-                        <div class="inputrow"> <label for="a"></label><span name="a"> </span></div>
+                        <button mat-button id="contact" (click)="contact(product.user.email, product.name, product.id)">
+                            <mat-icon>email</mat-icon>&nbsp;{{'table.products.email-book'|translate}}
+                        </button>
                     </div>
-                    <button mat-button (click)="contact(product.user.email, product.name, product.id)">
-                        {{'table.products.email-book'|translate}}
-                    </button>
                 </div>
-
                 <div class="widthDetails">
                     <div class="producerDetails">
-                        <mat-card-title class="withLogo">
-                            &nbsp;&nbsp;&nbsp;<mat-icon>store</mat-icon>
+                        <h2 class="withLogo">
+                            <mat-icon>store</mat-icon>
                             <span>&nbsp;{{this.producer.login}}</span>
-                        </mat-card-title>
+                        </h2>
                         <div class="inputrow">
-                            <div *ngIf="this.producer.city != null">
+                            <div *ngIf="this.producer.city != null" class="withLogo">
                                 <mat-icon> location_on</mat-icon>
                                 <span class="user-city">&nbsp;&nbsp;{{this.producer.city}}</span>
                             </div>
-                            <div *ngIf="this.producer.zip != null">
+                            <div *ngIf="this.producer.zip != null" class="withLogo">
                                 <mat-icon> directions</mat-icon>
                                 <span class="user-zip">&nbsp;&nbsp;{{this.producer.zip}}</span>
                             </div>
@@ -72,21 +74,19 @@
                             (click)="showDetails(productSg.id)">
                             <mat-card class="mat-elevation-z4">
                                 <mat-card-header fxLayout="column" width="100%" fxLayoutAlign="center center">
-                                    <mat-card-title>{{productSg.name}}</mat-card-title>
+                                    <mat-card-title class="prod-cards">
+                                        <p class="title">{{productSg.name}}</p>
+                                    </mat-card-title>
                                 </mat-card-header>
-                                <!--<img mat-card-image src="./../../../../assets/images/Producto Local_files/veg-logo.png"> -->
                                 <img mat-card-image src={{this.productSg.image}}>
                                 <mat-card-content fxLayout="column" fxLayoutAlign="center center">
                                     {{productSg.price}}
                                     €/{{("table.products.description-type." + productSg.description) | translate}}
                                 </mat-card-content>
                                 <mat-card-actions fxLayout="column">
-                                    <!-- <button mat-button id='details' (click)="showDetails(productSg.id)">
-                                        {{'table.products.show_details'|translate}}
-                                    </button> -->
                                     <button mat-button
                                         (click)="contact(productSg.user.email, product.name, product.id);$event.stopPropagation()">
-                                        {{'table.products.email-book'|translate}}
+                                        <mat-icon>email</mat-icon>&nbsp;{{'table.products.email-book'|translate}}
                                     </button>
                                 </mat-card-actions>
                             </mat-card>
@@ -94,7 +94,8 @@
                     </div>
                 </div>
                 <ng-template #elseBlock>
-                    <h2 class="suggestionsElse">{{this.producer.login}} <span style="text-transform: none;">{{"table.users.noSuggestions" |
+                    <h2 class="suggestionsElse">{{this.producer.login}} <span
+                            style="text-transform: none;">{{"table.users.noSuggestions" |
                             translate}}</span></h2>
                 </ng-template>
                 <div class="btn-cont">

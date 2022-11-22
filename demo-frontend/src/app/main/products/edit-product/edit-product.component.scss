@@ -93,11 +93,19 @@ mat-card-header {
     }
 }
 
+span.img-cont{
+    display: flex;
+    justify-content: center;
+}
+
 img.img {
     border-radius: 50%;
     width: 150px;
     height: 150px;
     margin: 30px 0 0 10px;
+    align-self: center;
+    justify-self: center;
+    text-align: center;
 }
 
 .myClass {
@@ -133,4 +141,10 @@ mat-card-content{
         margin-bottom: 0;
         padding-bottom: 0;
     }
+}
+.back {
+    cursor: pointer;
+    position: absolute;
+    left: 20px;
+    
 }

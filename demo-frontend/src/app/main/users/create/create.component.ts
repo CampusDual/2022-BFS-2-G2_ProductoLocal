@@ -45,6 +45,7 @@ export class CreateComponent implements OnInit {
     this.userForm = this.fb.group({
       email: [this.user.email, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")],
       login: [this.user.login],
+      city: [this.user.city],
       password:[this.user.password],
       profiles: [this.user.profiles],
       confirmPassword:[this.user.password]

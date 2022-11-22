@@ -47,10 +47,6 @@ export class GetUserComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    if (this.login == "demo") {
-      this.editBttn = "display: none";
-    }
     this.userFormGroup();
     this.userService.getUser(this.login).subscribe(
       response => {
@@ -213,7 +209,5 @@ export class GetUserComponent implements OnInit {
         console.error(this.errors);
       }
     );
-
-
   }
 }
