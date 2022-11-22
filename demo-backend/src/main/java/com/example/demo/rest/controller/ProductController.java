@@ -64,16 +64,7 @@ public class ProductController {
 	@PreAuthorize("hasAnyAuthority('CREATE_PRODUCTS','CREATE_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductDTO createProductRequest, BindingResult result) {
 		LOGGER.info("createProduct in progress...");
-
 		ProductDTO productNew = null;
-//		if (createProductRequest.getImage() != null &&  !createProductRequest.getImage().equals("")) {
-//			String image = createProductRequest.getImage();
-		/*
-		 * String imageUrl = Integer.toString(createProductRequest.getId()) + ".jpg";
-		 * createProductRequest.setImageUrl(imageUrl);
-		 */
-		// storeImage(image, imageUrl, createProductRequest.getUser().getLogin());
-		// }
 
 		Map<String, Object> response = new HashMap<>();
 		HttpStatus status = HttpStatus.CREATED;
@@ -193,16 +184,8 @@ public class ProductController {
 		return dres;
 	}
 
-	/*
-	 * @GetMapping(path = "/getProducts")
-	 * 
-	 * @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS')") public @ResponseBody
-	 * List<ProductDTO> findAll() { LOGGER.info("findAll in progress..."); return
-	 * productService.findAll(); }
-	 */
 
 	@GetMapping("/getProduct")
-	// @PreAuthorize("hasAnyAuthority('SHOW_PRODUCTS', 'SHOW_PRODUCTS_ADMIN')")
 	public ResponseEntity<?> getProduct(@RequestParam(value = "id") Integer id) {
 		LOGGER.info("getProduct in progress...");
 		ProductDTO product = null;

@@ -139,7 +139,6 @@ public class UsersController {
 	}
     
     
-/*Elimina un usuario de la BDD.*/
 	@DeleteMapping("/deleteUser")
 	public ResponseEntity<?> deleteUser(@RequestParam(value = "login")String login) {
 		LOGGER.info("deleteUser in progress...");
@@ -167,7 +166,6 @@ public class UsersController {
 	}
 	
 	
-/*Actualizar datos de usuario*/
 	@PostMapping(path = "/editUser", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> editUser(@Valid @RequestBody EditUserDTO editUserRequest, BindingResult result) {
 		LOGGER.info("editUser in progress...");

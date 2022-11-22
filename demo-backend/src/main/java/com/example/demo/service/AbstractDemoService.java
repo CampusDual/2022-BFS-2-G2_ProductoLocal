@@ -37,12 +37,7 @@ public class AbstractDemoService {
 		return new Contact(contactRequest.getName(), contactRequest.getSurname1(), contactRequest.getSurname2(),
 				contactRequest.getPhone(), contactRequest.getEmail());
 	}
-	
-	/*
-	(Integer id, String nif, String name, String surname, 
-			String address, String city, Integer phone, String login, String email, 
-			String zip, String password)
-	}*/
+
 	
 	public User fromEditUserRequest(User userRequest) {
 		return new User(userRequest.getId(), userRequest.getNif(),userRequest.getName(), userRequest.getSurname(),
