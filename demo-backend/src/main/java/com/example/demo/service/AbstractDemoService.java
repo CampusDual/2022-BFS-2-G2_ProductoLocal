@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import com.borjaglez.springify.repository.filter.IPageFilter;
-import com.example.demo.dto.ContactDTO;
-import com.example.demo.entity.Contact;
 import com.example.demo.entity.Product;
 import com.example.demo.entity.User;
 import com.example.demo.exception.DemoException;
@@ -27,17 +25,6 @@ public class AbstractDemoService {
 			throw new DemoException(Constant.PAGE_SIZE_REQUIRED);
 		}
 	}
-	
-	public Contact fromEditContactRequest(Contact contactRequest) {
-		return new Contact(contactRequest.getId(), contactRequest.getName(), contactRequest.getSurname1(),
-				contactRequest.getSurname2(), contactRequest.getPhone(), contactRequest.getEmail());
-	}
-	
-	public Contact fromCreateContactRequest(ContactDTO contactRequest) {
-		return new Contact(contactRequest.getName(), contactRequest.getSurname1(), contactRequest.getSurname2(),
-				contactRequest.getPhone(), contactRequest.getEmail());
-	}
-
 	
 	public User fromEditUserRequest(User userRequest) {
 		return new User(userRequest.getId(), userRequest.getNif(),userRequest.getName(), userRequest.getSurname(),
