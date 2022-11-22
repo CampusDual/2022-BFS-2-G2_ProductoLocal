@@ -35,7 +35,7 @@ export class ShowProductClientComponent implements OnInit {
   citySel = '';
   sortSel = 'id';
   producerSel = '';
-  producers = ['table.products.all'];
+  producers = [];
   cities: string[] = [];
   myControl = new FormControl('');
   filteredOptions: Observable<string[]>;
@@ -87,6 +87,7 @@ export class ShowProductClientComponent implements OnInit {
       });
       this.cities.sort();
       this.producers.sort((a, b) => a.toLowerCase().localeCompare(b.toLowerCase()));
+      this.producers.splice(0,0,'table.products.all');
     });
     this.dataSource.getProducts(pageFilter);
     this.productService.getProducts(pageFilter).subscribe((a) => {
